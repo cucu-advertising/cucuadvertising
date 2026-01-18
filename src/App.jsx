@@ -251,13 +251,14 @@ const FAQ = () => {
 const StandardFooterContent = () => (
   <div className="relative z-10 flex flex-col md:flex-row justify-between items-end border-t border-[#050505]/20 pt-8 pb-8 w-full">
     <div className="flex gap-12 mb-8 md:mb-0">
-      <a href="#" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">Instagram</a>
-      <a href="#" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">LinkedIn</a>
-      <a href="#" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">Twitter</a>
+      <a href="https://www.facebook.com/profile.php?id=61551579710039" target="_blank" rel="noopener noreferrer" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">Facebook</a>
+      <a href="https://www.instagram.com/cucuadvertising/" target="_blank" rel="noopener noreferrer" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">Instagram</a>
+      <a href="https://www.linkedin.com/company/cucuadvertsing/" target="_blank" rel="noopener noreferrer" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">LinkedIn</a>
+      <a href="https://api.whatsapp.com/send?phone=919440417034" target="_blank" rel="noopener noreferrer" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">WhatsApp</a>
     </div>
     <div className="text-right">
-      <p className="font-mono text-sm uppercase font-bold text-[#050505] md:text-[#050505]">© 2024 Cucu Advertising</p>
-      <p className="font-mono text-sm uppercase opacity-70 text-[#050505] md:text-[#050505]">New York • Paris • Tokyo</p>
+      <p className="font-mono text-sm uppercase font-bold text-[#050505] md:text-[#050505]">© 2023 Cucu Advertising</p>
+      <p className="font-mono text-sm uppercase opacity-70 text-[#050505] md:text-[#050505]">Karnataka • Tamil Nadu • Kerala</p>
     </div>
   </div>
 );
@@ -304,7 +305,7 @@ const Hero = ({ setPage }) => (
           <button onClick={() => setPage('services')} className="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Services</button>
         </div>
         <div className="text-right hidden md:block">
-          <p className="text-[#8CF2C6] font-mono text-sm tracking-widest uppercase mb-1">Est. 2024</p>
+          <p className="text-[#8CF2C6] font-mono text-sm tracking-widest uppercase mb-1">Est. 2023</p>
           <p className="text-white/40 font-mono text-xs uppercase tracking-widest">Global Creative Intelligence</p>
         </div>
       </div>
@@ -425,7 +426,7 @@ const ProjectDetailPage = ({ project, onBack, setPage }) => (
       <h1 className="text-[10vw] font-black uppercase text-[#F0F0F0] leading-[0.85] mb-8">{project.title}</h1>
       <div className="flex flex-wrap gap-4 mb-12">
         <span className="px-4 py-1 border border-[#8CF2C6] rounded-full text-[#8CF2C6] text-sm uppercase font-bold tracking-widest">{project.category}</span>
-        <span className="px-4 py-1 border border-white/20 rounded-full text-white text-sm uppercase font-bold tracking-widest">2024</span>
+        <span className="px-4 py-1 border border-white/20 rounded-full text-white text-sm uppercase font-bold tracking-widest">2023</span>
         <span className="px-4 py-1 border border-white/20 rounded-full text-white text-sm uppercase font-bold tracking-widest">Case Study</span>
       </div>
     </div>
@@ -682,7 +683,7 @@ const AboutPage = ({ setPage }) => {
           <div className="space-y-8">
             <h3 className="text-[#8CF2C6] font-mono uppercase tracking-widest">Our Vision</h3>
             <p className="text-xl text-neutral-500 leading-relaxed">
-              Founded in 2024, we operate globally with a decentralized team of elite creatives, engineers, and strategists. Our mission is to eliminate digital clutter and deliver pure, potent experiences that cut through the noise.
+              Founded in 2023, we operate globally with a decentralized team of elite creatives, engineers, and strategists. Our mission is to eliminate digital clutter and deliver pure, potent experiences that cut through the noise.
             </p>
           </div>
         </div>
@@ -692,9 +693,9 @@ const AboutPage = ({ setPage }) => {
         <h2 className="text-4xl font-black uppercase text-[#050505] mb-12">Leadership</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {[
-            { name: "Alex Chen", role: "Creative Director" },
-            { name: "Sarah Jones", role: "Head of Strategy" },
-            { name: "Marcus Void", role: "Lead Engineer" }
+            { name: "Arjun Mehta", role: "Creative Director" },
+            { name: "Priya Sharma", role: "Head of Strategy" },
+            { name: "Vikram Singh", role: "Lead Engineer" }
           ].map((m, i) => (
             <div key={i} className="border-t border-black pt-4">
               <h3 className="text-2xl font-bold text-white uppercase">{m.name}</h3>
@@ -733,14 +734,14 @@ const ContactPage = ({ setPage }) => {
               <p className="text-[#8CF2C6] font-mono text-sm uppercase tracking-widest">Call Us</p>
               <div className="flex items-center gap-4 text-white text-2xl font-bold hover:text-[#8CF2C6] transition-colors cursor-pointer">
                 <Phone className="text-[#8CF2C6]" />
-                <span>+1 (555) 019-2834</span>
+                <span>+91 94404 17034</span>
               </div>
             </div>
             <div className="space-y-2">
               <p className="text-[#8CF2C6] font-mono text-sm uppercase tracking-widest">Visit Us</p>
               <div className="flex items-center gap-4 text-white text-2xl font-bold">
                 <MapPin className="text-[#8CF2C6]" />
-                <span>123 Digital Ave, New York, NY</span>
+                <span>123 Digital Ave, Bangalore, KA</span>
               </div>
             </div>
           </div>
@@ -759,11 +760,11 @@ const ContactPage = ({ setPage }) => {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-[#8CF2C6]">Name</label>
-                  <input required type="text" className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#8CF2C6] outline-none transition-colors" placeholder="John Doe" />
+                  <input required type="text" className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#8CF2C6] outline-none transition-colors" placeholder="Rahul Verma" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-[#8CF2C6]">Email</label>
-                  <input required type="email" className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#8CF2C6] outline-none transition-colors" placeholder="john@example.com" />
+                  <input required type="email" className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#8CF2C6] outline-none transition-colors" placeholder="rahul@example.com" />
                 </div>
               </div>
               <div className="space-y-2">
@@ -782,13 +783,14 @@ const ContactPage = ({ setPage }) => {
       <div className="bg-[#050505] p-6 md:p-12 border-t border-white/10">
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-end w-full">
           <div className="flex gap-12 mb-8 md:mb-0">
-            <a href="#" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">Twitter</a>
+            <a href="https://www.facebook.com/profile.php?id=61551579710039" target="_blank" rel="noopener noreferrer" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">Facebook</a>
+            <a href="https://www.instagram.com/cucuadvertising/" target="_blank" rel="noopener noreferrer" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">Instagram</a>
+            <a href="https://www.linkedin.com/company/cucuadvertsing/" target="_blank" rel="noopener noreferrer" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://api.whatsapp.com/send?phone=919440417034" target="_blank" rel="noopener noreferrer" className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors">WhatsApp</a>
           </div>
           <div className="text-right">
-            <p className="font-mono text-sm uppercase font-bold text-[#F0F0F0]">© 2024 Cucu Advertising</p>
-            <p className="font-mono text-sm uppercase opacity-70 text-[#F0F0F0]">New York • Paris • Tokyo</p>
+            <p className="font-mono text-sm uppercase font-bold text-[#F0F0F0]">© 2023 Cucu Advertising</p>
+            <p className="font-mono text-sm uppercase opacity-70 text-[#F0F0F0]">Bangalore • Mumbai • Hyderabad</p>
           </div>
         </div>
       </div>
