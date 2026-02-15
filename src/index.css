@@ -1,18 +1,45 @@
 @import "tailwindcss";
 
 @layer base {
-    * {
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+  :root {
+    --font-outfit: "Outfit", sans-serif;
+  }
 
-    html,
-    body {
-        margin: 0;
-        padding: 0;
-        background: #050505;
-        overflow-x: hidden;
-    }
+  * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none !important; /* Hide default cursor to use custom one */
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: #050505;
+    color: #f0f0f0;
+    font-family: var(--font-outfit);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  /* Film Grain Texture */
+  .noise::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("https://grains.y78.design/noise.png");
+  }
+
+  ::selection {
+    background: #8cf2c6;
+    color: #050505;
+  }
 }
