@@ -887,34 +887,49 @@ const ServiceRow = ({ title, items, setModal, isExpanded, toggleExpand }) => (
   </div>
 );
 
+import ravasaLogo from "./assets/client/RavasaArtboard 1 copy.png";
+import varunLogo from "./assets/client/varun.png";
+import happyEventsLogo from "./assets/client/Happy events.png";
+import jaspireLogo from "./assets/client/Jaspire logo.png";
+import sannidhiLogo from "./assets/client/Sannidhi-Logo.png";
+import splitBeLogo from "./assets/client/Splitbe Transparent.png";
+import esLogo from "./assets/client/es.png";
+import fruitBandiLogo from "./assets/client/fruit bandi.png";
+import globusLogo from "./assets/client/globus it.png";
+import oryzaLogo from "./assets/client/oryza.png";
+import remedyLogo from "./assets/client/remedi.png";
+import svdLogo from "./assets/client/svd.png";
+import vihariLogo from "./assets/client/vihari.png";
+import zargoldLogo from "./assets/client/zargold.png";
+import secretPingLogo from "./assets/client/SECRETPING.png";
+import thakithaLogo from "./assets/client/1.png";
+import jewellersLogo from "./assets/client/logo png.png";
+import voxelaLogo from "./assets/client/Artboard 4.png";
+import oneEntLogo from "./assets/client/Artboard 39 copy 6.png";
+import lapwingLogo from "./assets/client/Lapwing PNG.png";
+
 const ClientsListing = () => {
   const clients = [
-    "Ravasa Retreat",
-    "Varun Engineers",
-    "Anand Om Prakash Jewellers",
-    "Thakitha Thakitha",
-    "Vihari Projects",
-    "Oryza Farmlands",
-    "Globus IT",
-    "Arbor Rd Estate",
-    "Voxela",
-    "Happy Events",
-    "GN Caters",
-    "Es Enterprises",
-    "SVD",
-    "Jaspire Foreign Education",
-    "Zargold",
-    "One ENT",
-    "Remedy Hospitals",
-    "DailyMed",
-    "Nyra Farms",
-    "Troika",
-    "Fruit Bandi",
-    "Sannidi Emerald",
-    "Secret Ping",
-    "Terracoat",
-    "Gruham",
-    "Split Be",
+    { name: "Ravasa Retreat", logo: ravasaLogo },
+    { name: "Varun Engineers", logo: varunLogo },
+    { name: "Anand Om Prakash Jewellers", logo: jewellersLogo },
+    { name: "Thakitha Thakitha", logo: thakithaLogo },
+    { name: "Vihari Projects", logo: vihariLogo },
+    { name: "Oryza Farmlands", logo: oryzaLogo },
+    { name: "Globus IT", logo: globusLogo },
+    { name: "Voxela", logo: voxelaLogo },
+    { name: "Happy Events", logo: happyEventsLogo },
+    { name: "One ENT", logo: oneEntLogo },
+    { name: "Es Enterprises", logo: esLogo },
+    { name: "SVD", logo: svdLogo },
+    { name: "Jaspire Foreign Education", logo: jaspireLogo },
+    { name: "Zargold", logo: zargoldLogo },
+    { name: "Remedy Hospitals", logo: remedyLogo },
+    { name: "Fruit Bandi", logo: fruitBandiLogo },
+    { name: "Sannidi Emerald", logo: sannidhiLogo },
+    { name: "Secret Ping", logo: secretPingLogo },
+    { name: "Split Be", logo: splitBeLogo },
+    { name: "Lapwing", logo: lapwingLogo },
   ];
 
   return (
@@ -933,11 +948,17 @@ const ClientsListing = () => {
           {clients.map((client, i) => (
             <div
               key={i}
-              className="border-r border-b border-white/10 p-8 md:p-12 hover:bg-[#0F5E3C] transition-colors group"
+              className="border-r border-b border-white/10 p-4 md:p-6 h-40 md:h-48 flex items-center justify-center hover:bg-[#F0F0F0] transition-colors group relative overflow-hidden"
             >
-              <p className="text-lg md:text-xl font-bold uppercase tracking-tighter text-white/40 group-hover:text-white transition-colors">
-                {client}
-              </p>
+              <div className="absolute inset-0 bg-[#0F5E3C] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0" />
+
+              <div className="relative z-10 w-full h-full flex items-center justify-center">
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="max-w-[95%] max-h-[95%] object-contain filter grayscale brightness-200 contrast-0 group-hover:filter-none group-hover:brightness-100 group-hover:contrast-100 transition-all duration-500 opacity-60 group-hover:opacity-100"
+                />
+              </div>
             </div>
           ))}
         </div>
