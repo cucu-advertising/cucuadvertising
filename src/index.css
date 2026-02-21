@@ -10,15 +10,14 @@
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: none !important; /* Hide default cursor to use custom one */
   }
 
   html,
   body {
     margin: 0;
     padding: 0;
-    background: #050505;
-    color: #f0f0f0;
+    background: #1e9b59;
+    color: #40f996;
     font-family: var(--font-outfit);
     overflow-x: hidden;
     scroll-behavior: smooth;
