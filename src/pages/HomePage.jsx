@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import useTabAttention from "../hooks/useTabAttention";
 
 import { Hero } from "../components/sections/Hero";
