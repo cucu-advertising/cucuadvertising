@@ -21,7 +21,7 @@ export const ContactPage = ({ setPage }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen pt-40 pb-24 bg-[#050505] text-[#40F996] px-6 md:px-12"
+      className="min-h-screen pt-40 pb-24 bg-white text-black px-6 md:px-12"
     >
       <div className="max-w-[1800px] mx-auto grid lg:grid-cols-2 gap-24">
         <div>
@@ -37,7 +37,7 @@ export const ContactPage = ({ setPage }) => {
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
                   Email Us
                 </h4>
-                <p className="text-2xl font-light opacity-70">
+                <p className="text-2xl font-light text-black/60">
                   hello@cucuadvertising.com
                 </p>
               </div>
@@ -50,7 +50,7 @@ export const ContactPage = ({ setPage }) => {
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
                   Call Us
                 </h4>
-                <p className="text-2xl font-light opacity-70">
+                <p className="text-2xl font-light text-black/60">
                   +91 94404 17034
                 </p>
               </div>
@@ -63,7 +63,7 @@ export const ContactPage = ({ setPage }) => {
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
                   Visit Us
                 </h4>
-                <p className="text-2xl font-light opacity-70">
+                <p className="text-2xl font-light text-black/60">
                   Bangalore • Mumbai • Hyderabad
                 </p>
               </div>
@@ -71,7 +71,7 @@ export const ContactPage = ({ setPage }) => {
           </div>
         </div>
 
-        <div className="bg-[#197C48]/10 p-8 md:p-16 rounded-[4rem] border border-[#197C48]/20">
+        <div className="bg-[#197C48]/5 p-8 md:p-16 rounded-[4rem] border border-[#197C48]/10 shadow-sm">
           {status === "success" ? (
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -96,7 +96,7 @@ export const ContactPage = ({ setPage }) => {
                   <input
                     required
                     type="text"
-                    className="w-full bg-transparent border-b-2 border-[#197C48]/30 py-4 text-2xl focus:border-[#40F996] outline-none transition-colors"
+                    className="w-full bg-transparent border-b-2 border-black/10 py-4 text-2xl focus:border-[#197C48] outline-none transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
@@ -107,7 +107,7 @@ export const ContactPage = ({ setPage }) => {
                   <input
                     required
                     type="email"
-                    className="w-full bg-transparent border-b-2 border-[#197C48]/30 py-4 text-2xl focus:border-[#40F996] outline-none transition-colors"
+                    className="w-full bg-transparent border-b-2 border-black/10 py-4 text-2xl focus:border-[#197C48] outline-none transition-colors"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -119,7 +119,7 @@ export const ContactPage = ({ setPage }) => {
                 <textarea
                   required
                   rows={4}
-                  className="w-full bg-transparent border-b-2 border-[#197C48]/30 py-4 text-2xl focus:border-[#40F996] outline-none transition-colors resize-none"
+                  className="w-full bg-transparent border-b-2 border-black/10 py-4 text-2xl focus:border-[#197C48] outline-none transition-colors resize-none"
                   placeholder="I want to build..."
                 />
               </div>
@@ -145,10 +145,10 @@ export const ContactPage = ({ setPage }) => {
         <div className="flex flex-col md:flex-row gap-8 md:items-center">
           <div className="w-1 h-16 bg-[#FFBD12] hidden md:block" />
           <div>
-            <h4 className="text-black md:text-[#40F996] font-black uppercase tracking-widest mb-2 bg-[#FFBD12] md:bg-transparent px-4 md:px-0 py-1 inline-block">
+            <h4 className="text-white font-black uppercase tracking-widest mb-2 bg-[#197C48] px-4 py-1 inline-block">
               New Business
             </h4>
-            <p className="text-2xl text-[#40F996] font-bold hover:text-[#FFBD12] transition-colors cursor-pointer">
+            <p className="text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer">
               hello@cucuadvertising.com
             </p>
           </div>
@@ -156,10 +156,10 @@ export const ContactPage = ({ setPage }) => {
         <div className="flex flex-col md:flex-row gap-8 md:items-center">
           <div className="w-1 h-16 bg-[#FFBD12] hidden md:block" />
           <div>
-            <h4 className="text-black md:text-[#40F996] font-black uppercase tracking-widest mb-2 bg-[#FFBD12] md:bg-transparent px-4 md:px-0 py-1 inline-block">
+            <h4 className="text-white font-black uppercase tracking-widest mb-2 bg-[#197C48] px-4 py-1 inline-block">
               Career Opportunities
             </h4>
-            <p className="text-2xl text-[#40F996] font-bold hover:text-[#FFBD12] transition-colors cursor-pointer">
+            <p className="text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer">
               coffee@cucuadvertising.com
             </p>
           </div>
@@ -167,15 +167,15 @@ export const ContactPage = ({ setPage }) => {
       </div>
 
       <div className="mt-24 text-center">
-        <h2 className="text-3xl md:text-5xl font-black uppercase text-[#40F996] leading-tight">
+        <h2 className="text-3xl md:text-5xl font-black uppercase text-black leading-tight">
           Ready to start? <br />
-          <span className="text-[#FFBD12]">
+          <span className="text-[#197C48]">
             Because once we do, there's no looking back.
           </span>
         </h2>
       </div>
 
-      <div className="bg-[#197C48] p-8 md:p-16 border-t border-[#40F996]/50 mt-12 rounded-3xl">
+      <div className="bg-[#197C48] p-8 md:p-16 border-t border-black/10 mt-12 rounded-3xl">
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-center w-full">
           <div className="flex flex-wrap gap-12 mb-8 md:mb-0">
             {[
@@ -232,10 +232,10 @@ export const ContactPage = ({ setPage }) => {
             ))}
           </div>
           <div className="text-right">
-            <p className="font-mono text-sm uppercase font-bold text-[#40F996]">
+            <p className="font-mono text-sm uppercase font-bold text-white">
               © 2023 Cucu Advertising
             </p>
-            <p className="font-mono text-sm uppercase opacity-70 text-[#40F996]">
+            <p className="font-mono text-sm uppercase opacity-70 text-white">
               Bangalore • Mumbai • Hyderabad
             </p>
           </div>
