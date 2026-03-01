@@ -6,6 +6,7 @@ import { Hero } from "../components/sections/Hero";
 import { Mission } from "../components/sections/Mission";
 import { ProcessSection } from "../components/sections/ProcessSection";
 import { AreasOfExpertise } from "../components/sections/AreasOfExpertise";
+import { ProjectsColumns } from "../components/sections/ProjectsColumns";
 import { StickyProject } from "../components/sections/StickyProject";
 import { FAQ } from "../components/UIComponents";
 import { BigFooter } from "../components/Footer";
@@ -74,6 +75,7 @@ export const HomePage = ({ setPage, setSelectedProject }) => {
       <Mission />
       <AreasOfExpertise />
       <ProcessSection />
+      <ProjectsColumns />
       <FAQ />
       <BigFooter setPage={setPage} />
     </motion.div>
