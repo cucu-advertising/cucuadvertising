@@ -113,7 +113,7 @@ export const AreasOfExpertise = () => {
     const st = ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top top",
-      end: "+=300", // Lock duration
+      end: "+=2000", // Increased lock duration to force viewing every item
       pin: true,
       anticipatePin: 1,
       onEnter: attachListener,
@@ -134,11 +134,11 @@ export const AreasOfExpertise = () => {
   return (
     <section
       ref={containerRef}
-      className="h-screen w-full bg-[#0a0a0a] overflow-hidden flex items-center px-6 md:px-12 z-20"
+      className="h-screen w-full bg-[#0a0a0a] overflow-hidden flex items-start pt-32 px-6 md:px-12 z-20"
     >
       <div className="w-full max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-center">
         {/* Left Side - Static Heading & Active Image */}
-        <div className="flex flex-col justify-center py-12 lg:py-0">
+        <div className="flex flex-col justify-center">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
