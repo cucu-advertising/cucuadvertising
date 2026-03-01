@@ -59,168 +59,226 @@ const services = [
 ];
 
 export const AreasOfExpertise = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [scrollActiveIndex, setScrollActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
-
-  // Create a ref array to store references to each service item
-  const itemRefs = useRef([]);
-  // Helper to accurately register each item in the ref array
-  const setItemRef = (el, i) => {
-    itemRefs.current[i] = el;
-  };
+  const isTransitioning = useRef(false);
+  const total = services.length;
 
   useEffect(() => {
-    let mm = gsap.matchMedia();
+    let wheelListener = null;
 
-    // Only track active index via scroll on desktop/mobile without pinning
-    mm.add("(all)", () => {
-      itemRefs.current.forEach((item, index) => {
-        if (!item) return;
-        ScrollTrigger.create({
-          trigger: item,
-          start: "top 40%",
-          end: "bottom 40%",
-          onToggle: (self) => {
-            if (self.isActive) setScrollActiveIndex(index);
-          },
+    const handleWheel = (e) => {
+      const isScrollingDown = e.deltaY > 0;
+
+      // Determine if we are at the boundaries
+      const shouldLock =
+        (isScrollingDown && currentIndex < total - 1) ||
+        (!isScrollingDown && currentIndex > 0);
+
+      if (shouldLock) {
+        if (e.cancelable) e.preventDefault();
+
+        if (isTransitioning.current) return;
+        if (Math.abs(e.deltaY) < 15) return; // Solid threshold
+
+        isTransitioning.current = true;
+
+        if (isScrollingDown) {
+          setCurrentIndex((prev) => Math.min(prev + 1, total - 1));
+        } else {
+          setCurrentIndex((prev) => Math.max(prev - 1, 0));
+        }
+
+        // Snap back to "ready" state after animation
+        gsap.delayedCall(0.8, () => {
+          isTransitioning.current = false;
         });
-      });
+      }
+    };
+
+    const attachListener = () => {
+      if (!wheelListener) {
+        window.addEventListener("wheel", handleWheel, { passive: false });
+        wheelListener = handleWheel;
+      }
+    };
+
+    const detachListener = () => {
+      if (wheelListener) {
+        window.removeEventListener("wheel", wheelListener);
+        wheelListener = null;
+      }
+    };
+
+    const st = ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top top",
+      end: "+=300", // Lock duration
+      pin: true,
+      anticipatePin: 1,
+      onEnter: attachListener,
+      onEnterBack: attachListener,
+      onLeave: detachListener,
+      onLeaveBack: detachListener,
+      invalidateOnRefresh: true,
     });
 
-    return () => mm.revert();
-  }, []);
+    return () => {
+      st.kill();
+      detachListener();
+    };
+  }, [currentIndex, total]);
 
-  // Determine what is currently visually active (Hover wins over scroll position)
-  const activeIndex = hoveredIndex !== null ? hoveredIndex : scrollActiveIndex;
+  const service = services[currentIndex];
 
   return (
     <section
       ref={containerRef}
-      className="py-16 md:py-24 px-6 md:px-12 bg-[#0a0a0a] relative z-20 overflow-visible"
+      className="h-screen w-full bg-[#0a0a0a] overflow-hidden flex items-center px-6 md:px-12 z-20"
     >
-      <div className="max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-stretch">
-        {/* Left Side - Heading + Image + Description */}
-        <div className="w-full relative h-full">
-          <div className="w-full lg:sticky lg:top-24 lg:h-[calc(100vh-120px)] lg:flex lg:flex-col lg:justify-center py-12 lg:py-0 z-30">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-white/30 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase block mb-3 shrink-0"
-            >
-              What We Do
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-black uppercase text-white leading-[0.95] tracking-tighter mb-4 xl:mb-6 shrink-0"
-            >
-              Areas of <br />
-              <span className="text-[#197C48]">Expertise</span>
-            </motion.h2>
+      <div className="w-full max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-center">
+        {/* Left Side - Static Heading & Active Image */}
+        <div className="flex flex-col justify-center py-12 lg:py-0">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-white/30 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase block mb-3"
+          >
+            What We Do
+          </motion.span>
 
-            {/* Hover Image Preview */}
-            <div className="rounded-2xl overflow-hidden mb-4 xl:mb-6 w-full max-w-[260px] xl:max-w-[320px] aspect-[16/9] bg-white/5 relative shrink-0">
-              <AnimatePresence mode="wait">
-                {activeIndex !== null ? (
-                  <motion.img
-                    key={activeIndex}
-                    src={services[activeIndex].image}
-                    alt={services[activeIndex].title}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-full h-full object-cover absolute inset-0"
-                  />
-                ) : (
-                  <motion.img
-                    key="default"
-                    src="/FAQ.jpg"
-                    alt="Creative Expertise"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-full h-full object-cover absolute inset-0"
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-black uppercase text-white leading-[0.95] tracking-tighter mb-6"
+          >
+            Areas of <br />
+            <span className="text-[#197C48]">Expertise</span>
+          </motion.h2>
+
+          {/* Preview image – crossfades as you step */}
+          <div className="rounded-2xl overflow-hidden mb-6 w-full max-w-[280px] xl:max-w-[340px] aspect-[16/9] bg-white/5 relative">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentIndex}
+                src={service.image}
+                alt={service.title}
+                initial={{ opacity: 0, scale: 1.08 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full h-full object-cover absolute inset-0"
+              />
+            </AnimatePresence>
+
+            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm border border-white/10 rounded-full px-2.5 py-1 text-[10px] font-bold font-mono text-white/60 tracking-widest">
+              {String(currentIndex + 1).padStart(2, "0")} /{" "}
+              {String(services.length).padStart(2, "0")}
+            </div>
+          </div>
+
+          <p className="text-white/50 text-xs md:text-sm leading-relaxed max-w-sm mb-6">
+            Being a design studio at the forefront of digital transformation and
+            product design, we take it upon ourselves to deliver excellence
+            across every discipline we touch.
+          </p>
+
+          {/* Progress dots */}
+          <div className="flex gap-2">
+            {services.map((_, i) => (
+              <div
+                key={i}
+                className="relative h-[3px] rounded-full overflow-hidden transition-all duration-300"
+                style={{
+                  width: i === currentIndex ? "28px" : "8px",
+                  background: "rgba(255,255,255,0.12)",
+                }}
+              >
+                {i === currentIndex && (
+                  <motion.div
+                    layoutId="progressFillAreas"
+                    className="absolute inset-0 bg-[#197C48] rounded-full"
                   />
                 )}
-              </AnimatePresence>
-            </div>
-
-            <p className="text-white/50 text-xs md:text-sm leading-relaxed max-w-sm shrink">
-              Being a design studio at the forefront of digital transformation
-              and product design, we take it upon ourselves to deliver
-              excellence across every discipline we touch.
-            </p>
+                {i < currentIndex && (
+                  <div className="absolute inset-0 bg-[#197C48]/50 rounded-full" />
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right Side - Service Items */}
-        <div className="space-y-0 relative z-20">
-          {services.map((service, i) => (
+        {/* Right Side - Step Content Crossfade */}
+        <div className="relative flex items-center justify-center">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={i}
-              ref={(el) => setItemRef(el, i)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: i * 0.08,
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              viewport={{ once: true }}
-              className="border-t border-white/10 last:border-b last:border-white/10 py-8 group hover:bg-white/[0.02] transition-colors px-4 -mx-4 rounded-lg cursor-default"
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              key={currentIndex}
+              initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -40, filter: "blur(8px)" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full"
             >
-              <div className="flex items-start gap-5">
-                {/* Small hover icon */}
-                <div
-                  className={`w-12 h-12 rounded-xl overflow-hidden shrink-0 border transition-all duration-300 mt-1 ${
-                    activeIndex === i
-                      ? "opacity-100 border-[#197C48]/50 scale-100"
-                      : "opacity-0 border-white/10 scale-90"
-                  }`}
-                >
+              {/* Large service number */}
+              <div className="text-[120px] md:text-[160px] font-black leading-none text-white/[0.04] select-none mb-0 -mb-6 tracking-tighter">
+                {String(currentIndex + 1).padStart(2, "0")}
+              </div>
+
+              {/* Thumbnail row */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-xl overflow-hidden border border-[#197C48] shrink-0">
                   <img
                     src={service.image}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
+                <div className="h-px flex-1 bg-gradient-to-r from-[#197C48] to-transparent" />
+              </div>
 
-                <div className="flex-1">
-                  <h3
-                    className={`text-xl md:text-2xl font-black uppercase tracking-tight mb-3 transition-colors duration-300 ${
-                      activeIndex === i ? "text-[#40F996]" : "text-white"
-                    }`}
+              <h3 className="text-3xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-[#40F996] leading-[0.95] mb-6">
+                {service.title}
+              </h3>
+
+              <p className="text-white/70 text-sm md:text-base font-light leading-relaxed mb-8 max-w-lg">
+                {service.desc}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-10">
+                {service.tags.map((tag, idx) => (
+                  <motion.span
+                    key={tag}
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.15 + idx * 0.06, duration: 0.35 }}
+                    className="px-4 py-1.5 border border-[#197C48]/40 text-[#40F996] rounded-full text-[10px] font-bold uppercase tracking-widest"
                   >
-                    {service.title}
-                  </h3>
-                  <p className="text-white/40 text-sm font-light uppercase tracking-widest leading-relaxed mb-5 max-w-2xl">
-                    {service.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {service.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className={`px-4 py-1.5 border rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${
-                          activeIndex === i
-                            ? "border-[#197C48]/40 text-[#40F996]"
-                            : "border-white/10 text-white/50"
-                        }`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                    {tag}
+                  </motion.span>
+                ))}
+              </div>
+
+              {/* Scroll hint */}
+              <div className="flex items-center gap-3 text-white/20">
+                <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path
+                      d="M6 2v8M6 10l-3-3M6 10l3-3"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em]">
+                  {currentIndex < services.length - 1
+                    ? `${services.length - 1 - currentIndex} more to explore`
+                    : "End of expertise"}
+                </span>
               </div>
             </motion.div>
-          ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>
