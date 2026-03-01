@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { TRANSITION } from "../constants/config";
 import logo from "../assets/logo_cucu_nobg.png";
@@ -17,6 +17,13 @@ export const Navbar = ({ activePage, setPage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   const navLinks = [
     { label: "About Us", path: "about", icon: aboutIcon },
@@ -72,8 +79,14 @@ export const Navbar = ({ activePage, setPage }) => {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <motion.div
+        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-0.75 bg-[#197C48] origin-left z-[102]"
+      />
+
       <nav
-        className={`fixed top-0 left-0 w-full z-[100] py-6 md:py-3 px-8 md:px-12 flex justify-between items-center transition-all duration-300 bg-white border-b border-gray-100 shadow-sm`}
+        className={`fixed top-0 left-0 w-full z-[100] pt-[calc(1.5rem+6px)] pb-6 md:pt-[calc(0.75rem+6px)] md:pb-3 px-8 md:px-12 flex justify-between items-center transition-all duration-300 bg-white border-b border-gray-100 shadow-sm`}
       >
         <button
           onClick={() => setPage("home")}

@@ -5,6 +5,7 @@ import useTabAttention from "../hooks/useTabAttention";
 import { Hero } from "../components/sections/Hero";
 import { Mission } from "../components/sections/Mission";
 import { ProcessSection } from "../components/sections/ProcessSection";
+import { AreasOfExpertise } from "../components/sections/AreasOfExpertise";
 import { StickyProject } from "../components/sections/StickyProject";
 import { FAQ } from "../components/UIComponents";
 import { BigFooter } from "../components/Footer";
@@ -71,6 +72,7 @@ export const HomePage = ({ setPage, setSelectedProject }) => {
     >
       <Hero setPage={setPage} />
       <Mission />
+      <AreasOfExpertise />
       <ProcessSection />
       <FAQ />
       <BigFooter setPage={setPage} />

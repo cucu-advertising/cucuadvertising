@@ -63,8 +63,8 @@ export const ProcessSection = () => {
   ];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-[#197C48] text-[#40F996] relative z-20 overflow-hidden">
-      <div className="max-w-[1800px] mx-auto text-center mb-32">
+    <section className="py-16 px-6 md:px-12 bg-white text-[#111] relative z-20 overflow-hidden">
+      <div className="max-w-[1800px] mx-auto text-center mb-12">
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export const ProcessSection = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-[8vw] font-black uppercase tracking-tighter leading-none text-white"
+          className="text-5xl md:text-[8vw] font-black uppercase tracking-tighter leading-none text-[#111]"
         >
           Our Process
         </motion.h2>
@@ -93,28 +93,28 @@ export const ProcessSection = () => {
               ease: [0.22, 1, 0.36, 1],
             }}
             viewport={{ once: true }}
-            className="group relative border border-[#40F996]/50 p-12 hover:border-[#40F996]/50 transition-colors bg-[#050505] hover:bg-black/80 rounded-[2rem] overflow-hidden shadow-2xl"
+            className="group relative border border-black/10 p-12 hover:border-[#197C48]/30 transition-colors bg-white hover:bg-gray-50 rounded-[2rem] overflow-hidden shadow-lg"
           >
-            <div className="absolute top-8 right-8 text-6xl font-black text-white/50 group-hover:text-white/80 transition-colors">
+            <div className="absolute top-8 right-8 text-6xl font-black text-black/10 group-hover:text-black/20 transition-colors">
               {step.id}
             </div>
 
             <div className="relative z-10 h-full flex flex-col">
-              <span className="text-[#197C48] font-mono text-[10px] tracking-widest uppercase mb-6 px-3 py-1 border border-[#40F996]/30 w-fit rounded-full group-hover:bg-[#40F996] group-hover:text-black transition-all">
+              <span className="text-[#197C48] font-mono text-[10px] tracking-widest uppercase mb-6 px-3 py-1 border border-[#197C48]/30 w-fit rounded-full group-hover:bg-[#197C48] group-hover:text-white transition-all">
                 {step.accent}
               </span>
-              <h3 className="text-5xl font-black uppercase tracking-tighter mb-16 group-hover:translate-x-2 transition-transform">
+              <h3 className="text-5xl font-black uppercase tracking-tighter mb-16 text-[#111] group-hover:translate-x-2 transition-transform">
                 {step.title}
               </h3>
 
               <div className="space-y-12 flex-grow">
                 {step.items.map((item, idx) => (
                   <div key={idx} className="space-y-3">
-                    <h4 className="text-lg font-bold text-[#40F996] uppercase flex items-center gap-3">
-                      <span className="w-1.5 h-1.5 bg-[#40F996] rounded-full shadow-[0_0_10px_#8CF2C6]" />
+                    <h4 className="text-lg font-bold text-[#197C48] uppercase flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 bg-[#197C48] rounded-full" />
                       {item.label}
                     </h4>
-                    <p className="text-[#40F996]/70 leading-relaxed font-light text-sm group-hover:text-[#40F996] transition-colors">
+                    <p className="text-black/60 leading-relaxed font-light text-sm group-hover:text-black/80 transition-colors">
                       {item.desc}
                     </p>
                   </div>

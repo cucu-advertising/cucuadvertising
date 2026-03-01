@@ -247,7 +247,7 @@ export const ServicesPage = ({ setPage }) => {
                   className="max-w-xl"
                 >
                   {/* Headline */}
-                  <h1 className="text-3xl lg:text-4xl xl:text-[3rem] leading-[1.1] font-normal tracking-tight text-black">
+                  <h1 className="text-2xl lg:text-3xl xl:text-4xl 2xl:text-[2.75rem] leading-[1.1] font-normal tracking-tight text-black">
                     <span className="text-[#197C48] font-black">
                       {activeService.headlineHighlight}
                     </span>
@@ -255,11 +255,11 @@ export const ServicesPage = ({ setPage }) => {
                   </h1>
 
                   {/* Decorative Element */}
-                  <div className="w-12 h-1 bg-[#197C48] rounded-full mt-10 lg:mt-14 opacity-20"></div>
+                  <div className="w-12 h-1 bg-[#197C48] rounded-full mt-6 lg:mt-8 opacity-20"></div>
 
                   {/* Description & CTA Container */}
-                  <div className="mt-10 lg:mt-14">
-                    <p className="text-gray-500 text-base md:text-lg leading-relaxed whitespace-pre-line mb-8 max-w-sm font-medium">
+                  <div className="mt-6 lg:mt-8">
+                    <p className="text-gray-500 text-sm md:text-base lg:text-lg leading-relaxed whitespace-pre-line mb-6 lg:mb-8 max-w-sm font-medium">
                       {activeService.description}
                     </p>
 
@@ -280,14 +280,14 @@ export const ServicesPage = ({ setPage }) => {
             </div>
 
             {/* Right-Edge Visual Navigator */}
-            <div className="w-16 lg:w-24 h-full flex flex-col justify-center items-center gap-4 bg-[#f8f9fa] border-l border-gray-100 relative z-20 py-8">
+            <div className="w-16 lg:w-24 h-full flex flex-col justify-center items-center gap-2 lg:gap-4 bg-[#f8f9fa] border-l border-gray-100 relative z-20 py-4 lg:py-8">
               {services.map((s, i) => (
                 <div
                   key={s.id}
                   onMouseEnter={() => setHoveredIndex(i)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   onClick={() => setCurrentIndex(i)}
-                  className={`relative cursor-pointer w-10 h-10 lg:w-14 lg:h-14 transition-all duration-500 rounded-xl overflow-hidden shadow-sm ${displayedIndex === i ? "ring-2 ring-[#197C48] ring-offset-2" : "hover:scale-105"}`}
+                  className={`relative cursor-pointer w-8 h-8 lg:w-12 lg:h-12 2xl:w-14 2xl:h-14 transition-all duration-500 rounded-lg lg:rounded-xl overflow-hidden shadow-sm ${displayedIndex === i ? "ring-2 ring-[#197C48] ring-offset-1 lg:ring-offset-2" : "hover:scale-105"}`}
                 >
                   <img
                     src={s.thumb}

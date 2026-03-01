@@ -46,32 +46,56 @@ export const FAQ = () => {
   ];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-[#197C48] border-t border-[#40F996]/50 relative z-10">
-      <div className="max-w-[1800px] mx-auto grid lg:grid-cols-2 gap-16">
+    <section className="py-16 md:py-24 px-6 md:px-12 bg-[#0a0a0a] relative z-10">
+      <div className="max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_1.2fr] gap-12 md:gap-20">
+        {/* Left Side - Heading + Image + Description */}
         <div className="sticky top-32 h-fit">
-          <span className="text-black/40 font-mono text-sm tracking-widest uppercase block mb-8">
+          <span className="text-white/30 font-mono text-xs tracking-[0.3em] uppercase block mb-6">
             Common Queries
           </span>
-          <h2 className="text-4xl md:text-6xl font-black uppercase text-white leading-tight">
-            Clarity in <br /> Process
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white leading-[0.95] tracking-tighter mb-10">
+            Clarity in <br />
+            <span className="text-[#197C48]">Process</span>
           </h2>
+
+          {/* Image */}
+          <div className="rounded-2xl overflow-hidden mb-8 w-full max-w-[280px] aspect-[16/9]">
+            <img
+              src="/FAQ.jpg"
+              alt="Creative Process"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <p className="text-white/50 text-sm leading-relaxed max-w-sm">
+            Being a design studio at the forefront of digital transformation and
+            product design, we take it upon ourselves to drop some knowledge,
+            share insights, and answer the questions you've always wanted to
+            ask.
+          </p>
         </div>
+
+        {/* Right Side - FAQ Accordions */}
         <div className="space-y-0">
           {faqs.map((faq, i) => (
-            <div key={i} className="border-t border-[#40F996]/50">
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full py-10 text-left flex justify-between items-start group"
-              >
-                <span className="text-xl md:text-2xl font-bold text-[#40F996] group-hover:text-white transition-colors pr-8">
+            <div
+              key={i}
+              className="border-t border-white/10 last:border-b last:border-white/10"
+              onMouseEnter={() => setOpenIndex(i)}
+              onMouseLeave={() => setOpenIndex(null)}
+            >
+              <div className="w-full py-8 text-left flex justify-between items-center group cursor-default">
+                <span
+                  className={`text-lg md:text-xl font-bold transition-colors pr-8 ${openIndex === i ? "text-[#40F996]" : "text-white"}`}
+                >
                   {faq.q}
                 </span>
                 <span
-                  className={`text-black/40 transition-transform duration-300 ${openIndex === i ? "rotate-45" : ""}`}
+                  className={`transition-all duration-300 shrink-0 ${openIndex === i ? "text-[#40F996] rotate-45" : "text-white/30"}`}
                 >
-                  <Plus size={32} />
+                  <Plus size={28} />
                 </span>
-              </button>
+              </div>
               <AnimatePresence>
                 {openIndex === i && (
                   <motion.div
@@ -81,7 +105,7 @@ export const FAQ = () => {
                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-10 text-[#050505] text-lg leading-relaxed max-w-2xl">
+                    <p className="pb-8 text-white/60 text-base leading-relaxed max-w-2xl">
                       {faq.a}
                     </p>
                   </motion.div>

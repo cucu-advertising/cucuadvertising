@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Manrope", sans-serif;
+}
+
 @layer base {
   :root {
-    --font-outfit: "Outfit", sans-serif;
+    --font-manrope: "Manrope", sans-serif;
   }
 
   * {
@@ -16,11 +20,10 @@
   body {
     margin: 0;
     padding: 0;
-    background: #1e9b59;
+    background: #19463f;
     color: #40f996;
-    font-family: var(--font-outfit);
+    font-family: var(--font-manrope);
     overflow-x: hidden;
-    scroll-behavior: smooth;
   }
 
   /* Film Grain Texture */
@@ -41,4 +44,56 @@
     background: #8cf2c6;
     color: #050505;
   }
+}
+
+/* Custom Marquee Animations */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 2rem));
+  } /* matches gap-8 */
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(calc(-100% - 2rem));
+  } /* matches gap-8 */
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 768px) {
+  @keyframes marquee-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% - 3rem));
+    } /* matches md:gap-12 */
+  }
+
+  @keyframes marquee-right {
+    0% {
+      transform: translateX(calc(-100% - 3rem));
+    } /* matches md:gap-12 */
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+.animate-marquee-l {
+  animation: marquee-left 35s linear infinite;
+}
+
+.animate-marquee-r {
+  animation: marquee-right 35s linear infinite;
+}
+
+.group:hover .animate-marquee-l,
+.group:hover .animate-marquee-r {
+  animation-play-state: paused;
 }
