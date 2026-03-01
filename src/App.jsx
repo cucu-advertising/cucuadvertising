@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 // Components
 import { Navbar } from "./components/Navbar";
 import { ComingSoon } from "./components/UIComponents";
+import Preloader from "./components/Preloader";
 
 // Pages
 import { HomePage } from "./pages/HomePage";
@@ -17,6 +18,47 @@ import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 export default function App() {
   const [page, setPage] = useState("home");
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isAppLoading, setIsAppLoading] = useState(true);
+
+  // Preloader logic: Wait for all images
+  useEffect(() => {
+    const images = document.querySelectorAll("img");
+    const totalImages = images.length;
+    let loadedCount = 0;
+
+    if (totalImages === 0) {
+      setIsAppLoading(false);
+      return;
+    }
+
+    const onImageLoad = () => {
+      loadedCount++;
+      if (loadedCount >= totalImages) {
+        // Slight delay for smoothness
+        setTimeout(() => setIsAppLoading(false), 500);
+      }
+    };
+
+    images.forEach((img) => {
+      if (img.complete) {
+        onImageLoad();
+      } else {
+        img.addEventListener("load", onImageLoad);
+        img.addEventListener("error", onImageLoad); // Count errors too to avoid infinite loading
+      }
+    });
+
+    // Fallback: Max 10 seconds loading
+    const timer = setTimeout(() => setIsAppLoading(false), 10000);
+
+    return () => {
+      clearTimeout(timer);
+      images.forEach((img) => {
+        img.removeEventListener("load", onImageLoad);
+        img.removeEventListener("error", onImageLoad);
+      });
+    };
+  }, []);
 
   // Scroll to top on page change
   useEffect(() => {
@@ -25,6 +67,7 @@ export default function App() {
 
   return (
     <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-hidden noise">
+      <Preloader isLoading={isAppLoading} />
       <Navbar activePage={page} setPage={setPage} />
 
       <AnimatePresence mode="wait">

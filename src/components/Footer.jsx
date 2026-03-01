@@ -1,6 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollToPlugin);
+}
 
 import facebookIcon from "../assets/footbar/facebook-icon.svg";
 import instagramIcon from "../assets/footbar/instagram-icon.svg";
@@ -80,11 +86,44 @@ export const StandardFooterContent = () => (
 );
 
 export const BigFooter = ({ setPage }) => {
+  const handleScrollToTop = () => {
+    gsap.to(window, { duration: 1.5, scrollTo: 0, ease: "power2.inOut" });
+  };
+
   return (
-    <section className="min-h-screen bg-[#050505] text-[#40F996] flex flex-col justify-between p-6 md:p-12 relative overflow-hidden z-10">
+    <section className="min-h-screen bg-[#050505] text-[#40F996] flex flex-col justify-between p-6 md:p-12 relative overflow-hidden z-20">
       <div className="relative z-10 flex justify-between items-start pt-12">
-        <h2 className="text-2xl font-bold uppercase">Start a Project</h2>
-        <ArrowUpRight size={64} className="text-[#40F996]" />
+        <div className="flex flex-col gap-4">
+          <h2 className="text-2xl font-bold uppercase">Start a Project</h2>
+        </div>
+        <motion.div
+          onClick={handleScrollToTop}
+          initial="initial"
+          whileHover="hovered"
+          className="flex flex-col items-end gap-2 cursor-pointer relative group"
+        >
+          {/* Tooltip */}
+          <motion.div
+            variants={{
+              initial: { opacity: 0, y: 10, scale: 0.9 },
+              hovered: { opacity: 1, y: 0, scale: 1 },
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="absolute -top-12 right-0 bg-[#40F996] text-[#050505] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap pointer-events-none shadow-xl shadow-[#40F996]/20 z-50"
+          >
+            Back to Top
+            {/* Tooltip Arrow */}
+            <div className="absolute -bottom-1 right-6 w-2 h-2 bg-[#40F996] rotate-45" />
+          </motion.div>
+
+          <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.2em] text-[#40F996]/60 group-hover:text-[#40F996] transition-colors duration-500">
+            We don't just deliver, we elevate.
+          </span>
+          <ArrowUpRight
+            size={64}
+            className="text-[#40F996] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"
+          />
+        </motion.div>
       </div>
 
       <div className="relative z-10 text-center py-24">
