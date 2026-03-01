@@ -61,11 +61,7 @@ const services = [
 export const AreasOfExpertise = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [scrollActiveIndex, setScrollActiveIndex] = useState(0);
-  const [isHeroReady, setIsHeroReady] = useState(false);
-
   const containerRef = useRef(null);
-  const leftColRef = useRef(null);
-  const rightColRef = useRef(null);
 
   // Create a ref array to store references to each service item
   const itemRefs = useRef([]);
@@ -74,78 +70,16 @@ export const AreasOfExpertise = () => {
     itemRefs.current[i] = el;
   };
 
-  // Sync with Hero section loading
   useEffect(() => {
-    if (window.__CUCU_HERO_READY__) {
-      setIsHeroReady(true);
-      return;
-    }
-
-    const handleHeroReady = () => setIsHeroReady(true);
-    window.addEventListener("cucu:heroReady", handleHeroReady);
-    return () => window.removeEventListener("cucu:heroReady", handleHeroReady);
-  }, []);
-
-  useEffect(() => {
-    if (!isHeroReady) return;
-
     let mm = gsap.matchMedia();
 
-    mm.add("(min-width: 1024px)", () => {
-      // 1. PIN THE LEFT COLUMN
-      const pinST = ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        pin: leftColRef.current,
-        pinSpacing: false,
-        anticipatePin: 1,
-        // pinType: "fixed", // Removed to prevent premature viewport sticking
-        invalidateOnRefresh: true,
-      });
-
-      // 2. TRACK SERVICE ITEMS FOR ACTIVE INDEX
+    // Only track active index via scroll on desktop/mobile without pinning
+    mm.add("(all)", () => {
       itemRefs.current.forEach((item, index) => {
         if (!item) return;
         ScrollTrigger.create({
           trigger: item,
-          start: "top 50%",
-          end: "bottom 50%",
-          onToggle: (self) => {
-            if (self.isActive) setScrollActiveIndex(index);
-          },
-        });
-      });
-
-      // Essential: Refresh everything once the initial DOM/Images are likely settled.
-      // We use multiple refreshes to account for the Hero canvas loading 192 frames asynchronously.
-      // The Hero section adds a massive spacer (+300%) only AFTER frames are loaded.
-      const refresh = () => {
-        ScrollTrigger.refresh();
-      };
-
-      const timer1 = setTimeout(refresh, 1000);
-      const timer2 = setTimeout(refresh, 2500);
-      const timer3 = setTimeout(refresh, 5000);
-
-      window.addEventListener("load", refresh);
-
-      return () => {
-        pinST.kill();
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-        window.removeEventListener("load", refresh);
-      };
-    });
-
-    // Mobile tracking
-    mm.add("(max-width: 1023px)", () => {
-      itemRefs.current.forEach((item, index) => {
-        if (!item) return;
-        ScrollTrigger.create({
-          trigger: item,
-          start: "top 60%",
+          start: "top 40%",
           end: "bottom 40%",
           onToggle: (self) => {
             if (self.isActive) setScrollActiveIndex(index);
@@ -168,10 +102,7 @@ export const AreasOfExpertise = () => {
       <div className="max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-stretch">
         {/* Left Side - Heading + Image + Description */}
         <div className="w-full relative h-full">
-          <div
-            ref={leftColRef}
-            className="w-full lg:h-screen lg:flex lg:flex-col lg:justify-center py-12 lg:py-0 z-30"
-          >
+          <div className="w-full lg:sticky lg:top-24 lg:h-[calc(100vh-120px)] lg:flex lg:flex-col lg:justify-center py-12 lg:py-0 z-30">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -228,7 +159,7 @@ export const AreasOfExpertise = () => {
         </div>
 
         {/* Right Side - Service Items */}
-        <div ref={rightColRef} className="space-y-0 relative z-20">
+        <div className="space-y-0 relative z-20">
           {services.map((service, i) => (
             <motion.div
               key={i}
