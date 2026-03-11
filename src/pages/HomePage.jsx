@@ -73,7 +73,7 @@ export const HomePage = ({ setPage, setSelectedProject }) => {
     >
       <Hero setPage={setPage} />
       <Mission />
-      <AreasOfExpertise />
+      {/* <AreasOfExpertise /> */}
       <ProcessSection />
       <ProjectsColumns />
       <FAQ />

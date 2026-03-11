@@ -4,11 +4,11 @@ import { Menu, X } from "lucide-react";
 import { TRANSITION } from "../constants/config";
 import logo from "../assets/logo_cucu_nobg.png";
 
-import aboutIcon from "../assets/navbar/about-icon.svg";
-import servicesIcon from "../assets/navbar/services-icon.svg";
-import clientsIcon from "../assets/navbar/clients-icon.svg";
+import aboutIcon from "../assets/navbar/about-icon.png";
+import servicesIcon from "../assets/navbar/services-icon.png";
+import clientsIcon from "../assets/navbar/clients-icon.png";
 import careerIcon from "../assets/navbar/career-icon.svg";
-import contactIcon from "../assets/navbar/contact-icon.svg";
+import contactIcon from "../assets/navbar/contact-icon.png";
 import projectsIcon from "../assets/navbar/projects-icon.svg";
 import awardsIcon from "../assets/navbar/awards-icon.svg";
 import teamIcon from "../assets/navbar/team-icon.svg";

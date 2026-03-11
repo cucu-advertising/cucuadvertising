@@ -6,21 +6,14 @@ import { BigFooter } from "../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import adFilmImg from "../assets/services/Ad film.jpg";
+import videoEditingImg from "../assets/services/Video Editing and motion graphics.jpg";
+import contentWritingImg from "../assets/services/content writing.jpg";
+import performanceMarketingImg from "../assets/services/performance marketing.jpg";
+import seoImg from "../assets/services/seo.jpg";
+import socialMediaImg from "../assets/services/social media marketing.jpg";
+
 const services = [
-  {
-    id: "branding",
-    title: "Branding",
-    headlineHighlight: "Defining the foundation",
-    headlineRest:
-      " that gives every decision meaning: purpose, positioning and direction built for growth.",
-    description:
-      "Every service is a module.\nTogether, they form a system built to scale, connect and lead.",
-    cta: "Know more",
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop",
-    thumb:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=150&auto=format&fit=crop",
-  },
   {
     id: "social",
     title: "Social Media Marketing",
@@ -30,10 +23,8 @@ const services = [
     description:
       "Content that sparks interaction.\nTurn casual followers into lifelong brand advocates.",
     cta: "Know more",
-    image:
-      "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=1000&auto=format&fit=crop",
-    thumb:
-      "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=150&auto=format&fit=crop",
+    image: socialMediaImg,
+    thumb: socialMediaImg,
   },
   {
     id: "performance",
@@ -44,10 +35,8 @@ const services = [
     description:
       "Data is our compass.\nWe scale your business with precision and targeted action.",
     cta: "Know more",
-    image:
-      "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=1000&auto=format&fit=crop",
-    thumb:
-      "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=150&auto=format&fit=crop",
+    image: performanceMarketingImg,
+    thumb: performanceMarketingImg,
   },
   {
     id: "seo",
@@ -58,10 +47,8 @@ const services = [
     description:
       "Visibility meets relevance.\nWe focus on building authority that converts organic traffic.",
     cta: "Know more",
-    image:
-      "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1000&auto=format&fit=crop",
-    thumb:
-      "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=150&auto=format&fit=crop",
+    image: seoImg,
+    thumb: seoImg,
   },
   {
     id: "content",
@@ -72,10 +59,8 @@ const services = [
     description:
       "From compelling copy to stunning visuals.\nWe craft narratives that people want to consume.",
     cta: "Know more",
-    image:
-      "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1000&auto=format&fit=crop",
-    thumb:
-      "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=150&auto=format&fit=crop",
+    image: contentWritingImg,
+    thumb: contentWritingImg,
   },
   {
     id: "adfilms",
@@ -86,24 +71,20 @@ const services = [
     description:
       "High-end production meets strategic marketing.\nWe create visual experiences that leave a mark.",
     cta: "Know more",
-    image:
-      "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1000&auto=format&fit=crop",
-    thumb:
-      "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=150&auto=format&fit=crop",
+    image: adFilmImg,
+    thumb: adFilmImg,
   },
   {
-    id: "webdev",
-    title: "Web Development",
-    headlineHighlight: "Robust digital infrastructure",
+    id: "videoediting",
+    title: "Video Editing & Motion Graphics",
+    headlineHighlight: "Dynamic visual storytelling",
     headlineRest:
-      " turning complex technical requirements into seamless, user-centric experiences.",
+      " that captures attention and brings your brand's narrative to life with precision.",
     description:
-      "Performance, accessibility, and design.\nWe build platforms ready to scale with your ambition.",
+      "Seamless transitions and high-impact graphics.\nWe transform raw footage into compelling visual experiences.",
     cta: "Know more",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop",
-    thumb:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=150&auto=format&fit=crop",
+    image: videoEditingImg,
+    thumb: videoEditingImg,
   },
 ];
 

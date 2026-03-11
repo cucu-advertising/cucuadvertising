@@ -1,6 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BigFooter } from "../components/Footer";
+import aboutHeroImg from "../assets/NEW/about us big.png";
+import arvindProfile1 from "../assets/arvind/Profile1.jpeg";
+import arvindProfile2 from "../assets/arvind/Profile2.jpeg";
 import { TRANSITION } from "../constants/config";
 
 const FadeInView = ({ children, delay = 0 }) => (
@@ -23,24 +26,84 @@ export const AboutPage = ({ setPage }) => {
       className="bg-[#050505] text-white selection:bg-[#197C48] selection:text-white"
     >
       {/* Hero Section */}
-      <section className="pt-48 pb-32 px-6 md:px-12 bg-[#197C48]">
-        <div className="max-w-[1400px] mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-[12vw] md:text-[8vw] font-black uppercase leading-[0.85] text-[#050505] mb-8"
+      <section className="pt-48 pb-16 px-6 md:px-12 bg-white relative overflow-hidden">
+        {/* Background Motif */}
+        <div className="absolute top-32 left-10 md:left-20 pointer-events-none select-none">
+          <span className="text-[20vw] font-black text-[#197C48]/3 leading-none uppercase">
+            ABOUT
+          </span>
+        </div>
+
+        <div className="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+          <div>
+            <div className="overflow-hidden mb-4">
+              <motion.span
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-[#197C48] font-bold tracking-[0.3em] uppercase text-xs md:text-sm"
+              >
+                Our Story
+              </motion.span>
+            </div>
+            
+            <h1 className="text-[12vw] md:text-[6.5vw] lg:text-[80px] xl:text-[96px] font-black uppercase leading-[0.8] tracking-tighter text-[#197C48] mb-12">
+              {["We're", "Cucu", "Advertising."].map((word, i) => (
+                <div key={i} className="overflow-hidden">
+                  <motion.span
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    transition={{ 
+                      duration: 0.8, 
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: i * 0.1 
+                    }}
+                    className="block"
+                  >
+                    {word}
+                  </motion.span>
+                </div>
+              ))}
+            </h1>
+
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="flex items-center gap-6 group"
+            >
+              <div className="h-[2px] w-12 bg-[#197C48]/30 group-hover:w-20 transition-all duration-500" />
+              <p className="text-lg md:text-xl lg:text-2xl font-bold uppercase tracking-tight text-[#000000]/60 max-w-md">
+                Aka: Client to User with Creative Understanding
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: 50 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="hidden md:block relative h-full flex items-center"
           >
-            We're <br /> CUCU <br /> Advertising.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#050505]/60"
-          >
-            Aka: Client to User with Creative Understanding
-          </motion.p>
+            {/* Animated Glow/Shadow */}
+            <div className="absolute -inset-20 bg-[#197C48]/5 blur-[120px] rounded-full -z-10 animate-pulse" />
+            
+            <motion.div
+              animate={{ y: [0, -20, 0] }}
+              transition={{ 
+                duration: 6, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="relative z-10 w-full p-2 bg-white rounded-[4rem] shadow-[0_60px_120px_-30px_rgba(25,124,72,0.15)] ring-1 ring-[#197C48]/5"
+            >
+              <img
+                src={aboutHeroImg}
+                alt="Cucu Advertising About Us"
+                className="w-full h-auto rounded-[3.5rem] grayscale-[5%] hover:grayscale-0 transition-all duration-700 shadow-2xl"
+              />
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -177,18 +240,27 @@ export const AboutPage = ({ setPage }) => {
             </div>
             <div className="md:col-span-5 relative">
               <FadeInView delay={0.3}>
-                <div className="aspect-[4/5] bg-[#197C48] rounded-[3rem] overflow-hidden relative group">
-                  <div className="absolute inset-0 bg-[#050505]/10 group-hover:bg-transparent transition-colors duration-500" />
+                <div className="aspect-[4/5] bg-[#197C48] rounded-[3rem] overflow-hidden relative group shadow-2xl">
+                  {/* Default Image */}
+                  <img
+                    src={arvindProfile1}
+                    alt="Arvind Arandkar"
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+                  />
+                  {/* Hover Image */}
+                  <img
+                    src={arvindProfile2}
+                    alt="Arvind Arandkar - Creative Mode"
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
+                  />
+                  
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                  
                   <div className="absolute bottom-8 left-8 text-white z-10">
-                    <p className="text-2xl font-black uppercase">
+                    <p className="text-xl md:text-2xl font-black uppercase tracking-tight">
                       Founder & Creative Head
                     </p>
-                  </div>
-                  {/* Image placeholder if needed later */}
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-8xl text-white opacity-20 font-black">
-                      AA
-                    </span>
                   </div>
                 </div>
               </FadeInView>

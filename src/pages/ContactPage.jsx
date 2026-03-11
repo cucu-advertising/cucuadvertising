@@ -149,11 +149,11 @@ export const ContactPage = ({ setPage }) => {
               New Business
             </h4>
             <p className="text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer">
-              hello@cucuadvertising.com
+              coffee@cucuadvertising.com
             </p>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-8 md:items-center">
+        {/* <div className="flex flex-col md:flex-row gap-8 md:items-center">
           <div className="w-1 h-16 bg-[#FFBD12] hidden md:block" />
           <div>
             <h4 className="text-white font-black uppercase tracking-widest mb-2 bg-[#197C48] px-4 py-1 inline-block">
@@ -163,7 +163,7 @@ export const ContactPage = ({ setPage }) => {
               coffee@cucuadvertising.com
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="mt-24 text-center">
@@ -233,7 +233,7 @@ export const ContactPage = ({ setPage }) => {
           </div>
           <div className="text-right">
             <p className="font-mono text-sm uppercase font-bold text-white">
-              © 2023 Cucu Advertising
+              © 2026 Cucu Advertising
             </p>
             <p className="font-mono text-sm uppercase opacity-70 text-white">
               Bangalore • Mumbai • Hyderabad

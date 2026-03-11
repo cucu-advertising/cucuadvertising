@@ -40,7 +40,7 @@ const SocialLink = ({ href, label, icon }) => (
   <motion.div
     className="relative flex flex-col items-center"
     initial="initial"
-    whileHover="hover"
+    // whileHover="hover"
   >
     <motion.span
       variants={{
@@ -76,7 +76,7 @@ export const StandardFooterContent = () => (
     </div>
     <div className="text-right">
       <p className="font-mono text-sm uppercase font-bold text-inherit">
-        © 2023 Cucu Advertising
+        © 2026 Cucu Advertising
       </p>
       <p className="font-mono text-sm uppercase opacity-70 text-inherit">
         Karnataka • Tamil Nadu • Kerala
