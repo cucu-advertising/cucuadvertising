@@ -12,6 +12,7 @@ import contentWritingImg from "../assets/services/content writing.jpg";
 import performanceMarketingImg from "../assets/services/performance marketing.jpg";
 import seoImg from "../assets/services/seo.jpg";
 import socialMediaImg from "../assets/services/social media marketing.jpg";
+import webDevImg from "../assets/services/web development.jpg";
 
 const services = [
   {
@@ -85,6 +86,18 @@ const services = [
     cta: "Know more",
     image: videoEditingImg,
     thumb: videoEditingImg,
+  },
+  {
+    id: "webdevelopment",
+    title: "Web Development",
+    headlineHighlight: "Custom digital architectures",
+    headlineRest:
+      " built for scale, performance, and an exceptional user experience across all devices.",
+    description:
+      "Future-ready web solutions.\nWe bridge the gap between complex functionality and sleek, intuitive design.",
+    cta: "Know more",
+    image: webDevImg,
+    thumb: webDevImg,
   },
 ];
 
@@ -186,7 +199,7 @@ export const ServicesPage = ({ setPage }) => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.5 }}
-                  className="text-gray-400 font-black text-xs md:text-sm tracking-[0.4em] uppercase"
+                  className="text-[#197C48] font-black text-xs md:text-sm tracking-[0.4em] uppercase"
                 >
                   {activeService.title}
                 </motion.h2>
@@ -261,7 +274,7 @@ export const ServicesPage = ({ setPage }) => {
             </div>
 
             {/* Right-Edge Visual Navigator */}
-            <div className="w-16 lg:w-24 h-full flex flex-col justify-center items-center gap-2 lg:gap-4 bg-[#f8f9fa] border-l border-gray-100 relative z-20 py-4 lg:py-8">
+            <div className="w-16 lg:w-24 h-full flex flex-col justify-center items-center gap-2 lg:gap-4 bg-[#197C48] border-l border-gray-100 relative z-20 py-4 lg:py-8">
               {services.map((s, i) => (
                 <div
                   key={s.id}

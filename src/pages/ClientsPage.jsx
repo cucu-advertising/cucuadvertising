@@ -466,7 +466,7 @@ export const ClientsPage = ({ setPage }) => {
       </motion.div>
 
       {/* Design Studio Section - OUTSIDE motion.div for proper sticky behavior */}
-      <DesignStudioSection />
+      {/* <DesignStudioSection /> */}
 
       {/* Philosophy Section (Cinematic Quote) */}
       <section className="bg-white py-32 md:py-56 text-center px-8 relative overflow-hidden">

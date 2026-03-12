@@ -46,20 +46,20 @@ export const FAQ = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-12 bg-[#0a0a0a] relative z-10">
+    <section className="py-16 md:py-24 px-6 md:px-12 bg-white relative z-10">
       <div className="max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_1.2fr] gap-12 md:gap-20">
         {/* Left Side - Heading + Image + Description */}
         <div className="sticky top-32 h-fit">
-          <span className="text-white/30 font-mono text-xs tracking-[0.3em] uppercase block mb-6">
+          <span className="text-slate-400 font-mono text-xs tracking-[0.3em] uppercase block mb-6">
             Common Queries
           </span>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white leading-[0.95] tracking-tighter mb-10">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-slate-900 leading-[0.95] tracking-tighter mb-10">
             Clarity in <br />
             <span className="text-[#197C48]">Process</span>
           </h2>
 
           {/* Image */}
-          <div className="rounded-2xl overflow-hidden mb-8 w-full max-w-[280px] aspect-[16/9]">
+          <div className="rounded-2xl overflow-hidden mb-8 w-full max-w-[280px] aspect-[16/9] border border-slate-100">
             <img
               src="/FAQ.jpg"
               alt="Creative Process"
@@ -67,7 +67,7 @@ export const FAQ = () => {
             />
           </div>
 
-          <p className="text-white/50 text-sm leading-relaxed max-w-sm">
+          <p className="text-slate-500 text-sm leading-relaxed max-w-sm">
             Being a design studio at the forefront of digital transformation and
             product design, we take it upon ourselves to drop some knowledge,
             share insights, and answer the questions you've always wanted to
@@ -80,18 +80,18 @@ export const FAQ = () => {
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="border-t border-white/10 last:border-b last:border-white/10"
+              className="border-t border-slate-200 last:border-b last:border-slate-200"
               onMouseEnter={() => setOpenIndex(i)}
               onMouseLeave={() => setOpenIndex(null)}
             >
               <div className="w-full py-8 text-left flex justify-between items-center group cursor-default">
                 <span
-                  className={`text-lg md:text-xl font-bold transition-colors pr-8 ${openIndex === i ? "text-[#40F996]" : "text-white"}`}
+                  className={`text-lg md:text-xl font-bold transition-colors pr-8 ${openIndex === i ? "text-[#197C48]" : "text-slate-800"}`}
                 >
                   {faq.q}
                 </span>
                 <span
-                  className={`transition-all duration-300 shrink-0 ${openIndex === i ? "text-[#40F996] rotate-45" : "text-white/30"}`}
+                  className={`transition-all duration-300 shrink-0 ${openIndex === i ? "text-[#197C48] rotate-45" : "text-slate-300"}`}
                 >
                   <Plus size={28} />
                 </span>
@@ -105,7 +105,7 @@ export const FAQ = () => {
                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-8 text-white/60 text-base leading-relaxed max-w-2xl">
+                    <p className="pb-8 text-slate-500 text-base leading-relaxed max-w-2xl">
                       {faq.a}
                     </p>
                   </motion.div>

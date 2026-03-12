@@ -161,7 +161,7 @@ export const ProjectsColumns = () => {
   const column3 = projects.slice(6, 9);
 
   return (
-    <section className="bg-[#0a0a0a] py-20 px-6 md:px-12 overflow-hidden relative">
+    <section className="bg-white py-20 px-6 md:px-12 overflow-hidden relative">
       {/* Header */}
       <div className="max-w-[1800px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-start gap-8">
         <motion.div
@@ -171,7 +171,7 @@ export const ProjectsColumns = () => {
           transition={{ duration: 0.7 }}
           className="flex flex-col items-start lg:items-start"
         >
-          <h1 className="monigue-font text-white text-5xl md:text-6xl font-bold uppercase leading-[0.8] tracking-tight">
+          <h1 className="monigue-font text-slate-900 text-5xl md:text-6xl font-bold uppercase leading-[0.8] tracking-tight">
             OUR
           </h1>
           <h1
@@ -192,7 +192,7 @@ export const ProjectsColumns = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="md:text-right mt-4 md:mt-8"
         >
-          <h1 className="anton-sc-regular text-2xl md:text-3xl text-white/90 leading-tight">
+          <h1 className="anton-sc-regular text-2xl md:text-3xl text-slate-800 leading-tight">
             " COOL WAY TO SHOW PROJECTS " <br />
             <span className="text-[#197C48] opacity-80 italic">~ Anshu Singh</span>
           </h1>
@@ -200,13 +200,17 @@ export const ProjectsColumns = () => {
       </div>
 
       {/* Vertical Marquee Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-start max-w-[1800px] mx-auto h-[600px] md:h-[800px] overflow-hidden rounded-[2rem] border border-white/5 bg-[#111]/30 relative">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-start max-w-[1800px] mx-auto h-[600px] md:h-[800px] overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 relative shadow-2xl">
         <VerticalMarquee items={column1} baseVelocity={-2} direction={1} />
         <VerticalMarquee items={column2} baseVelocity={2} direction={-1} />
         <VerticalMarquee items={column3} baseVelocity={-2.5} direction={1} />
 
         {/* Soft radial overlay for depth */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a] opacity-80 z-20" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950 via-transparent to-slate-950 opacity-90 z-20" />
+        
+        {/* Subtle inner glow */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-30" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none z-30" />
       </div>
     </section>
   );

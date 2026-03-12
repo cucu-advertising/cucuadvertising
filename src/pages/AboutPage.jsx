@@ -23,7 +23,7 @@ export const AboutPage = ({ setPage }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-[#050505] text-white selection:bg-[#197C48] selection:text-white"
+      className="bg-white text-slate-900 selection:bg-[#197C48] selection:text-white"
     >
       {/* Hero Section */}
       <section className="pt-48 pb-16 px-6 md:px-12 bg-white relative overflow-hidden">
@@ -149,10 +149,10 @@ export const AboutPage = ({ setPage }) => {
       </section>
 
       {/* Visual Symmetry Section */}
-      <section className="py-32 px-6 md:px-12 bg-[#050505]">
+      <section className="py-32 px-6 md:px-12 bg-white border-t border-slate-100">
         <div className="max-w-[1200px] mx-auto text-center">
           <FadeInView>
-            <p className="text-2xl md:text-4xl font-light mb-16 opacity-70">
+            <p className="text-2xl md:text-4xl font-light mb-16 text-slate-400">
               Then came the part that made it perfect:
             </p>
           </FadeInView>
@@ -171,7 +171,7 @@ export const AboutPage = ({ setPage }) => {
                 >
                   C
                 </motion.div>
-                <p className="mt-4 uppercase tracking-widest text-sm opacity-50">
+                <p className="mt-4 uppercase tracking-widest text-sm font-bold text-slate-400">
                   Flip a C — it becomes a U
                 </p>
               </div>
@@ -187,11 +187,11 @@ export const AboutPage = ({ setPage }) => {
                     ease: "easeInOut",
                     delay: 2,
                   }}
-                  className="text-[15vw] md:text-[10vw] font-black text-white leading-none"
+                  className="text-[15vw] md:text-[10vw] font-black text-slate-900 leading-none"
                 >
                   U
                 </motion.div>
-                <p className="mt-4 uppercase tracking-widest text-sm opacity-50">
+                <p className="mt-4 uppercase tracking-widest text-sm font-bold text-slate-400">
                   Flip a U — it becomes a C
                 </p>
               </div>
@@ -199,7 +199,7 @@ export const AboutPage = ({ setPage }) => {
           </div>
 
           <FadeInView delay={0.6}>
-            <p className="text-2xl md:text-3xl max-w-3xl mx-auto leading-relaxed font-bold text-[#197C48]">
+            <p className="text-2xl md:text-3xl max-w-3xl mx-auto leading-relaxed font-black text-[#197C48] uppercase tracking-tighter">
               Now that’s visual symmetry. The connection, right there in the
               letters.
             </p>

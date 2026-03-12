@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Loader2, CheckCircle } from "lucide-react";
+import Swal from "sweetalert2";
 
 import facebookIcon from "../assets/footbar/facebook-icon.svg";
 import instagramIcon from "../assets/footbar/instagram-icon.svg";
@@ -9,11 +10,97 @@ import whatsappIcon from "../assets/footbar/whatsapp-icon.svg";
 
 export const ContactPage = ({ setPage }) => {
   const [status, setStatus] = useState("idle");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    business_mobile: "",
+    company_name: "",
+    about_business: "",
+  });
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("submitting");
-    setTimeout(() => setStatus("success"), 2000);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          business_mobile: formData.business_mobile,
+          company_name: formData.company_name,
+          about_business: formData.about_business,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        Swal.fire({
+          title: "Received!",
+          text: "Thank you for reaching out! We will get back to you shortly.",
+          icon: "success",
+          background: "#ffffff",
+          confirmButtonColor: "#197C48",
+          customClass: {
+            popup: "rounded-[2rem]",
+            confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+          },
+        });
+        setFormData({
+          name: "",
+          email: "",
+          business_mobile: "",
+          company_name: "",
+          about_business: "",
+        });
+      } else {
+        const errorData = await response.json();
+        setStatus("error");
+        
+        // Format detailed validation errors
+        let errorHint = "Something went wrong. Please try again.";
+        if (errorData.errors) {
+          errorHint = Object.values(errorData.errors).flat().join("\n");
+        } else if (errorData.message) {
+          errorHint = errorData.message;
+        }
+
+        Swal.fire({
+          title: "Note",
+          text: errorHint,
+          icon: "error",
+          background: "#ffffff",
+          confirmButtonColor: "#197C48",
+          customClass: {
+            popup: "rounded-[2rem]",
+            confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+          },
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("error");
+      Swal.fire({
+        title: "Error",
+        text: "Could not connect to the server. Please check your connection.",
+        icon: "error",
+        background: "#ffffff",
+        confirmButtonColor: "#197C48",
+        customClass: {
+          popup: "rounded-[2rem]",
+          confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+        },
+      });
+    }
   };
 
   return (
@@ -25,7 +112,7 @@ export const ContactPage = ({ setPage }) => {
     >
       <div className="max-w-[1800px] mx-auto grid lg:grid-cols-2 gap-24">
         <div>
-          <h1 className="text-[12vw] font-black uppercase leading-none mb-12 tracking-tighter">
+          <h1 className="text-[12vw] font-black uppercase leading-none mb-12 tracking-tighter text-[#197C48]">
             Let's <br /> Build.
           </h1>
           <div className="space-y-12">
@@ -37,9 +124,9 @@ export const ContactPage = ({ setPage }) => {
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
                   Email Us
                 </h4>
-                <p className="text-2xl font-light text-black/60">
-                  hello@cucuadvertising.com
-                </p>
+                <a href="mailto:coffee@cucuadvertising.com" className="text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors">
+                  coffee@cucuadvertising.com
+                </a>
               </div>
             </div>
             <div className="flex gap-8 items-start">
@@ -50,9 +137,9 @@ export const ContactPage = ({ setPage }) => {
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
                   Call Us
                 </h4>
-                <p className="text-2xl font-light text-black/60">
+                <a href="tel:+919440417034" className="text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors">
                   +91 94404 17034
-                </p>
+                </a>
               </div>
             </div>
             <div className="flex gap-8 items-start">
@@ -64,7 +151,7 @@ export const ContactPage = ({ setPage }) => {
                   Visit Us
                 </h4>
                 <p className="text-2xl font-light text-black/60">
-                  Bangalore • Mumbai • Hyderabad
+                  Hyderabad • Mumbai
                 </p>
               </div>
             </div>
@@ -72,72 +159,104 @@ export const ContactPage = ({ setPage }) => {
         </div>
 
         <div className="bg-[#197C48]/5 p-8 md:p-16 rounded-[4rem] border border-[#197C48]/10 shadow-sm">
-          {status === "success" ? (
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="h-full flex flex-col items-center justify-center text-center py-20"
-            >
-              <div className="w-24 h-24 bg-[#40F996] rounded-full flex items-center justify-center text-black mb-8">
-                <CheckCircle size={48} />
-              </div>
-              <h2 className="text-4xl font-black uppercase mb-4">Received.</h2>
-              <p className="text-xl opacity-70">
-                We'll get back to you within 24 hours.
-              </p>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest opacity-50">
+          <form onSubmit={handleSubmit} className="space-y-12">
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="space-y-4">
+                  <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
                     What's your name?
                   </label>
                   <input
                     required
                     type="text"
-                    className="w-full bg-transparent border-b-2 border-black/10 py-4 text-2xl focus:border-[#197C48] outline-none transition-colors"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
                     placeholder="John Doe"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest opacity-50">
+                <div className="space-y-4">
+                  <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
                     Your Email?
                   </label>
                   <input
                     required
                     type="email"
-                    className="w-full bg-transparent border-b-2 border-black/10 py-4 text-2xl focus:border-[#197C48] outline-none transition-colors"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
                     placeholder="john@example.com"
                   />
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest opacity-50">
+
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="space-y-4">
+                  <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
+                    Mobile Number
+                  </label>
+                  <input
+                    required
+                    type="tel"
+                    name="business_mobile"
+                    value={formData.business_mobile}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
+                    placeholder="+91 00000 00000"
+                  />
+                </div>
+                <div className="space-y-4">
+                  <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
+                    Company Name
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    name="company_name"
+                    value={formData.company_name}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
+                    placeholder="CUCU Advertising"
+                  />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
                   Tell us about your project
                 </label>
                 <textarea
                   required
                   rows={4}
-                  className="w-full bg-transparent border-b-2 border-black/10 py-4 text-2xl focus:border-[#197C48] outline-none transition-colors resize-none"
+                  name="about_business"
+                  value={formData.about_business}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all resize-none placeholder:text-slate-300"
                   placeholder="I want to build..."
                 />
               </div>
               <button
                 disabled={status === "submitting"}
-                className="w-full bg-[#40F996] text-black font-black uppercase py-8 text-xl tracking-widest hover:bg-[#197C48] transition-all disabled:opacity-50 flex items-center justify-center gap-4"
+                className="w-full bg-[#197C48] text-white font-black uppercase py-8 text-xl tracking-widest hover:bg-black transition-all shadow-xl hover:shadow-2xl active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-4 group"
               >
                 {status === "submitting" ? (
                   <>
-                    <Loader2 className="animate-spin" />
-                    Sending...
+                    <Loader2 className="animate-spin text-[#40F996]" />
+                    <span className="text-[#40F996]">Sending...</span>
                   </>
                 ) : (
-                  "Send Message"
+                  <>
+                    Send Message
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                    >
+                      <CheckCircle className="text-[#40F996]" />
+                    </motion.div>
+                  </>
                 )}
               </button>
             </form>
-          )}
         </div>
       </div>
 
@@ -148,9 +267,9 @@ export const ContactPage = ({ setPage }) => {
             <h4 className="text-white font-black uppercase tracking-widest mb-2 bg-[#197C48] px-4 py-1 inline-block">
               New Business
             </h4>
-            <p className="text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer">
+            <a href="mailto:coffee@cucuadvertising.com" className="text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer block">
               coffee@cucuadvertising.com
-            </p>
+            </a>
           </div>
         </div>
         {/* <div className="flex flex-col md:flex-row gap-8 md:items-center">
@@ -236,7 +355,7 @@ export const ContactPage = ({ setPage }) => {
               © 2026 Cucu Advertising
             </p>
             <p className="font-mono text-sm uppercase opacity-70 text-white">
-              Bangalore • Mumbai • Hyderabad
+              Hyderabad • Mumbai
             </p>
           </div>
         </div>

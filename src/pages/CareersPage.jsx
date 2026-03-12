@@ -12,6 +12,7 @@ import {
   Zap,
   ArrowRight,
 } from "lucide-react";
+import Swal from "sweetalert2";
 
 const heroContent = {
   MAFIA: {
@@ -73,25 +74,130 @@ const jobOpenings = [
     description:
       "Optimize digital ad campaigns across various platforms to drive measurable results for our clients.",
   },
-  {
-    id: 5,
-    title: "Frontend Developer (React)",
-    location: "Gurgaon",
-    type: "Permanent",
-    department: "Tech",
-    experience: "3-5 years",
-    description:
-      "Build high-performance, cinematic web experiences using React and modern CSS frameworks.",
-  },
+  
 ];
 
-const locations = ["Bangalore", "Gurgaon", "Mumbai"];
+const locations = ["Bangalore", "Mumbai"];
 
 export const CareersPage = ({ setPage }) => {
   const [activeLocation, setActiveLocation] = useState("Bangalore");
   const [selectedJob, setSelectedJob] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [activeWord, setActiveWord] = useState("MAFIA");
+
+  // Form state
+  const [status, setStatus] = useState("idle"); // idle, submitting, success, error
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobile: "",
+    linkedin: "",
+    portfolio: "",
+    resume: null,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "resume") {
+      setFormData({ ...formData, resume: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const data = new FormData();
+    data.append("job_title", selectedJob.title);
+    data.append("location", selectedJob.location);
+    data.append("first_name", formData.firstName);
+    data.append("last_name", formData.lastName);
+    data.append("email", formData.email);
+    data.append("mobile", formData.mobile);
+    data.append("linkedin_url", formData.linkedin);
+    data.append("portfolio_url", formData.portfolio);
+    data.append("resume", formData.resume);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/career", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: data,
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        Swal.fire({
+          title: "Applied!",
+          text: "Thank you for applying! We will review your profile and get back to you.",
+          icon: "success",
+          background: "#ffffff",
+          confirmButtonColor: "#197C48",
+          customClass: {
+            popup: "rounded-[2rem]",
+            confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+          },
+        }).then(() => {
+          setSelectedJob(null);
+          setShowForm(false);
+          setStatus("idle");
+        });
+
+        // Clear form data
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          mobile: "",
+          linkedin: "",
+          portfolio: "",
+          resume: null,
+        });
+      } else {
+        const errorData = await response.json();
+        setStatus("error");
+
+        // Format detailed validation errors
+        let errorHint = "Something went wrong. Please try again.";
+        if (errorData.errors) {
+          errorHint = Object.values(errorData.errors).flat().join("\n");
+        } else if (errorData.message) {
+          errorHint = errorData.message;
+        }
+
+        Swal.fire({
+          title: "Note",
+          text: errorHint,
+          icon: "error",
+          background: "#ffffff",
+          confirmButtonColor: "#197C48",
+          customClass: {
+            popup: "rounded-[2rem]",
+            confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+          },
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      setStatus("error");
+      Swal.fire({
+        title: "Error",
+        text: "Could not connect to the server. Please check your connection.",
+        icon: "error",
+        background: "#ffffff",
+        confirmButtonColor: "#197C48",
+        customClass: {
+          popup: "rounded-[2rem]",
+          confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+        },
+      });
+    }
+  };
 
   const filteredJobs = jobOpenings.filter(
     (job) => job.location === activeLocation,
@@ -102,7 +208,7 @@ export const CareersPage = ({ setPage }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-white min-h-screen font-sans"
+      className="bg-white min-h-screen font-sans text-slate-900"
     >
       {/* Navbar Spacer */}
       <div className="h-[100px] md:h-[30px]" />
@@ -243,8 +349,11 @@ export const CareersPage = ({ setPage }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => {
-                setSelectedJob(null);
-                setShowForm(false);
+                if (status !== "submitting") {
+                  setSelectedJob(null);
+                  setShowForm(false);
+                  setStatus("idle");
+                }
               }}
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
@@ -260,8 +369,10 @@ export const CareersPage = ({ setPage }) => {
                 onClick={() => {
                   setSelectedJob(null);
                   setShowForm(false);
+                  setStatus("idle");
                 }}
-                className="absolute top-8 right-8 z-10 p-2 bg-gray-100 hover:bg-black hover:text-white rounded-full transition-all"
+                disabled={status === "submitting"}
+                className="absolute top-8 right-8 z-10 p-2 bg-gray-100 hover:bg-black hover:text-white rounded-full transition-all disabled:opacity-50"
               >
                 <X size={20} />
               </button>
@@ -331,17 +442,33 @@ export const CareersPage = ({ setPage }) => {
                       </h2>
                     </div>
 
-                    <form className="space-y-8">
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                      {status === "error" && (
+                        <div className="bg-red-50 text-red-500 p-4 rounded-xl text-sm font-bold uppercase tracking-widest">
+                          Something went wrong. Please try again.
+                        </div>
+                      )}
                       <div className="space-y-4">
                         <p className="text-xs font-black uppercase tracking-widest text-black">
                           Resume <span className="text-red-500">*</span>
                         </p>
-                        <div className="w-full border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center hover:border-[#197C48] transition-all cursor-pointer group">
-                          <Upload className="mx-auto mb-4 text-gray-400 group-hover:text-[#197C48] transition-colors" />
-                          <p className="text-sm font-bold text-gray-500">
-                            Choose File
+                        <div className="relative w-full border-2 border-dashed border-slate-300 rounded-2xl p-8 text-center hover:border-[#197C48] bg-slate-50/50 transition-all cursor-pointer group">
+                          <input
+                            required
+                            key={formData.resume ? "file-selected" : "file-empty"}
+                            type="file"
+                            name="resume"
+                            onChange={handleChange}
+                            className="absolute inset-0 opacity-0 cursor-pointer"
+                            accept=".pdf,.doc,.docx"
+                          />
+                          <Upload className="mx-auto mb-4 text-slate-400 group-hover:text-[#197C48] transition-colors" />
+                          <p className="text-sm font-bold text-slate-600">
+                            {formData.resume
+                              ? formData.resume.name
+                              : "Choose File"}
                           </p>
-                          <p className="text-[10px] text-gray-400 mt-2 uppercase tracking-widest">
+                          <p className="text-[10px] text-slate-400 mt-2 uppercase tracking-widest">
                             PDF, DOC, DOCX | MAX 5MB
                           </p>
                         </div>
@@ -349,58 +476,86 @@ export const CareersPage = ({ setPage }) => {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">
                             First Name <span className="text-red-500">*</span>
                           </label>
                           <input
+                            required
                             type="text"
-                            className="w-full border-b-2 border-gray-100 focus:border-[#197C48] py-2 outline-none transition-all font-medium"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            className="w-full border-b-2 border-slate-200 focus:border-[#197C48] py-2 outline-none transition-all font-medium placeholder:text-slate-400 text-slate-900"
+                            placeholder="Enter Your First Name"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">
                             Last Name <span className="text-red-500">*</span>
                           </label>
                           <input
+                            required
                             type="text"
-                            className="w-full border-b-2 border-gray-100 focus:border-[#197C48] py-2 outline-none transition-all font-medium"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            className="w-full border-b-2 border-slate-200 focus:border-[#197C48] py-2 outline-none transition-all font-medium placeholder:text-slate-400 text-slate-900"
+                            placeholder="Enter Your Last Name"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">
                             Email ID <span className="text-red-500">*</span>
                           </label>
                           <input
+                            required
                             type="email"
-                            className="w-full border-b-2 border-gray-100 focus:border-[#197C48] py-2 outline-none transition-all font-medium"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="w-full border-b-2 border-slate-200 focus:border-[#197C48] py-2 outline-none transition-all font-medium placeholder:text-slate-400 text-slate-900"
+                            placeholder="Enter Your Email ID"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">
                             Mobile Number{" "}
                             <span className="text-red-500">*</span>
                           </label>
                           <input
+                            required
                             type="tel"
-                            className="w-full border-b-2 border-gray-100 focus:border-[#197C48] py-2 outline-none transition-all font-medium"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleChange}
+                            className="w-full border-b-2 border-slate-200 focus:border-[#197C48] py-2 outline-none transition-all font-medium placeholder:text-slate-400 text-slate-900"
+                            placeholder="Enter Your Mobile Number"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">
                             LinkedIn ID
                           </label>
                           <input
                             type="text"
-                            className="w-full border-b-2 border-gray-100 focus:border-[#197C48] py-2 outline-none transition-all font-medium"
+                            name="linkedin"
+                            value={formData.linkedin}
+                            onChange={handleChange}
+                            className="w-full border-b-2 border-slate-200 focus:border-[#197C48] py-2 outline-none transition-all font-medium placeholder:text-slate-400 text-slate-900"
+                            placeholder="Enter Your LinkedIn Link/ID"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">
                             Portfolio Link
                           </label>
                           <input
                             type="text"
-                            className="w-full border-b-2 border-gray-100 focus:border-[#197C48] py-2 outline-none transition-all font-medium"
+                            name="portfolio"
+                            value={formData.portfolio}
+                            onChange={handleChange}
+                            className="w-full border-b-2 border-slate-200 focus:border-[#197C48] py-2 outline-none transition-all font-medium placeholder:text-slate-400 text-slate-900"
+                            placeholder="Enter Your Portfolio Link"
                           />
                         </div>
                       </div>
@@ -408,20 +563,21 @@ export const CareersPage = ({ setPage }) => {
                       <div className="pt-8 flex flex-col md:flex-row gap-4">
                         <button
                           type="button"
-                          onClick={() => setShowForm(false)}
-                          className="flex-1 bg-gray-100 hover:bg-gray-200 py-6 rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
+                          onClick={() => {
+                            setShowForm(false);
+                            setStatus("idle");
+                          }}
+                          disabled={status === "submitting"}
+                          className="flex-1 bg-slate-100 hover:bg-slate-200 py-6 rounded-2xl text-xs font-black uppercase tracking-widest transition-all disabled:opacity-50 text-slate-900"
                         >
                           Back
                         </button>
                         <button
                           type="submit"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            alert("Application sent!");
-                          }}
-                          className="flex-[2] bg-[#197C48] hover:bg-black text-white py-6 rounded-2xl text-xs font-black uppercase tracking-widest transition-all"
+                          disabled={status === "submitting"}
+                          className="flex-[2] bg-[#197C48] hover:bg-black text-white py-6 rounded-2xl text-xs font-black uppercase tracking-widest transition-all disabled:opacity-50 flex items-center justify-center gap-4"
                         >
-                          Submit Application
+                          {status === "submitting" ? "Sending..." : "Submit Application"}
                         </button>
                       </div>
                     </form>

@@ -40,27 +40,14 @@ const SocialLink = ({ href, label, icon }) => (
   <motion.div
     className="relative flex flex-col items-center"
     initial="initial"
-    // whileHover="hover"
+    // whileHover="hover" // This was commented out in original, but removed in instruction. Keeping it removed.
   >
-    <motion.span
-      variants={{
-        initial: { opacity: 0, y: -10 },
-        hover: { opacity: 1, y: 50 },
-      }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="absolute pointer-events-none"
-    >
-      <img
-        src={icon}
-        alt={label}
-        className="w-12 h-12 md:w-14 md:h-14 object-contain"
-      />
-    </motion.span>
+    {/* The motion.span for the icon was removed in the instruction's SocialLink definition */}
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-bold text-lg md:text-xl uppercase tracking-widest hover:text-white transition-colors py-2"
+      className="font-bold text-lg md:text-xl uppercase tracking-widest text-[#197C48] hover:text-[#050505] transition-colors py-2"
     >
       {label}
     </a>
@@ -68,18 +55,18 @@ const SocialLink = ({ href, label, icon }) => (
 );
 
 export const StandardFooterContent = () => (
-  <div className="relative z-10 flex flex-col md:flex-row justify-between items-end border-t border-[#40F996]/30 pt-8 pb-12 w-full">
+  <div className="relative z-10 flex flex-col md:flex-row justify-between items-end border-t border-[#197C48]/20 pt-8 pb-12 w-full">
     <div className="flex flex-wrap gap-8 md:gap-12 mb-8 md:mb-0">
       {socialLinks.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
     </div>
     <div className="text-right">
-      <p className="font-mono text-sm uppercase font-bold text-inherit">
+      <p className="font-mono text-sm uppercase font-bold text-slate-950">
         © 2026 Cucu Advertising
       </p>
-      <p className="font-mono text-sm uppercase opacity-70 text-inherit">
-        Karnataka • Tamil Nadu • Kerala
+      <p className="font-mono text-sm uppercase text-slate-500">
+        Hyderabad • Mumbai
       </p>
     </div>
   </div>
@@ -91,10 +78,10 @@ export const BigFooter = ({ setPage }) => {
   };
 
   return (
-    <section className="min-h-screen bg-[#050505] text-[#40F996] flex flex-col justify-between p-6 md:p-12 relative overflow-hidden z-20">
+    <section className="min-h-[80vh] bg-white text-slate-950 flex flex-col justify-between p-6 md:p-12 relative overflow-hidden z-20">
       <div className="relative z-10 flex justify-between items-start pt-12">
         <div className="flex flex-col gap-4">
-          <h2 className="text-2xl font-bold uppercase">Start a Project</h2>
+          <h2 className="text-2xl font-black uppercase text-slate-950">Start a Project</h2>
         </div>
         <motion.div
           onClick={handleScrollToTop}
@@ -109,30 +96,42 @@ export const BigFooter = ({ setPage }) => {
               hovered: { opacity: 1, y: 0, scale: 1 },
             }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="absolute -top-12 right-0 bg-[#40F996] text-[#050505] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap pointer-events-none shadow-xl shadow-[#40F996]/20 z-50"
+            className="absolute -top-12 right-0 bg-[#197C48] text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap pointer-events-none shadow-xl shadow-[#197C48]/20 z-50"
           >
             Back to Top
             {/* Tooltip Arrow */}
-            <div className="absolute -bottom-1 right-6 w-2 h-2 bg-[#40F996] rotate-45" />
+            <div className="absolute -bottom-1 right-6 w-2 h-2 bg-[#197C48] rotate-45" />
           </motion.div>
 
-          <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.2em] text-[#40F996]/60 group-hover:text-[#40F996] transition-colors duration-500">
+          <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-[#197C48] transition-colors duration-500">
             We don't just deliver, we elevate.
           </span>
           <ArrowUpRight
             size={64}
-            className="text-[#40F996] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"
+            className="text-[#197C48] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"
           />
         </motion.div>
       </div>
 
-      <div className="relative z-10 text-center py-24">
-        <button
+      <div className="relative z-10 text-center py-20">
+        <motion.button
           onClick={() => setPage("contact")}
-          className="text-[18vw] font-black leading-none uppercase tracking-tighter text-[#40F996]/10 hover:text-[#197C48] transition-colors cursor-pointer"
+          style={{ 
+            "--blink-color": "#e2e8f0",
+            WebkitTextStroke: "1px rgba(25, 124, 72, 0.05)",
+          }}
+          animate={{ 
+            "--blink-color": ["#e2e8f0", "#197C48", "#e2e8f0"],
+          }}
+          transition={{ 
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="text-[18vw] font-black leading-none uppercase tracking-tighter cursor-pointer transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-[#197C48] from-50% to-[var(--blink-color)] to-50% bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0_0]"
         >
           Let's Talk
-        </button>
+        </motion.button>
       </div>
 
       <StandardFooterContent />
