@@ -27,20 +27,23 @@ export const ContactPage = ({ setPage }) => {
     setStatus("submitting");
 
     try {
-      const response = await fetch("http://localhost:8000/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+      const response = await fetch(
+        "https://cucuadvertising.com/backend/public/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            business_mobile: formData.business_mobile,
+            company_name: formData.company_name,
+            about_business: formData.about_business,
+          }),
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          business_mobile: formData.business_mobile,
-          company_name: formData.company_name,
-          about_business: formData.about_business,
-        }),
-      });
+      );
 
       if (response.ok) {
         setStatus("success");
@@ -52,7 +55,8 @@ export const ContactPage = ({ setPage }) => {
           confirmButtonColor: "#197C48",
           customClass: {
             popup: "rounded-[2rem]",
-            confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+            confirmButton:
+              "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
           },
         });
         setFormData({
@@ -65,7 +69,7 @@ export const ContactPage = ({ setPage }) => {
       } else {
         const errorData = await response.json();
         setStatus("error");
-        
+
         // Format detailed validation errors
         let errorHint = "Something went wrong. Please try again.";
         if (errorData.errors) {
@@ -82,7 +86,8 @@ export const ContactPage = ({ setPage }) => {
           confirmButtonColor: "#197C48",
           customClass: {
             popup: "rounded-[2rem]",
-            confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+            confirmButton:
+              "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
           },
         });
       }
@@ -97,7 +102,8 @@ export const ContactPage = ({ setPage }) => {
         confirmButtonColor: "#197C48",
         customClass: {
           popup: "rounded-[2rem]",
-          confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+          confirmButton:
+            "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
         },
       });
     }
@@ -124,7 +130,10 @@ export const ContactPage = ({ setPage }) => {
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
                   Email Us
                 </h4>
-                <a href="mailto:coffee@cucuadvertising.com" className="text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors">
+                <a
+                  href="mailto:coffee@cucuadvertising.com"
+                  className="text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors"
+                >
                   coffee@cucuadvertising.com
                 </a>
               </div>
@@ -137,7 +146,10 @@ export const ContactPage = ({ setPage }) => {
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
                   Call Us
                 </h4>
-                <a href="tel:+919440417034" className="text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors">
+                <a
+                  href="tel:+919440417034"
+                  className="text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors"
+                >
                   +91 94404 17034
                 </a>
               </div>
@@ -160,103 +172,103 @@ export const ContactPage = ({ setPage }) => {
 
         <div className="bg-[#197C48]/5 p-8 md:p-16 rounded-[4rem] border border-[#197C48]/10 shadow-sm">
           <form onSubmit={handleSubmit} className="space-y-12">
-              <div className="grid md:grid-cols-2 gap-12">
-                <div className="space-y-4">
-                  <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
-                    What's your name?
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div className="space-y-4">
-                  <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
-                    Your Email?
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
-                    placeholder="john@example.com"
-                  />
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-12">
-                <div className="space-y-4">
-                  <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
-                    Mobile Number
-                  </label>
-                  <input
-                    required
-                    type="tel"
-                    name="business_mobile"
-                    value={formData.business_mobile}
-                    onChange={handleChange}
-                    className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
-                    placeholder="+91 00000 00000"
-                  />
-                </div>
-                <div className="space-y-4">
-                  <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
-                    Company Name
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    name="company_name"
-                    value={formData.company_name}
-                    onChange={handleChange}
-                    className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
-                    placeholder="CUCU Advertising"
-                  />
-                </div>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-4">
+                <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
+                  What's your name?
+                </label>
+                <input
+                  required
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
+                  placeholder="John Doe"
+                />
               </div>
               <div className="space-y-4">
                 <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
-                  Tell us about your project
+                  Your Email?
                 </label>
-                <textarea
+                <input
                   required
-                  rows={4}
-                  name="about_business"
-                  value={formData.about_business}
+                  type="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all resize-none placeholder:text-slate-300"
-                  placeholder="I want to build..."
+                  className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
+                  placeholder="john@example.com"
                 />
               </div>
-              <button
-                disabled={status === "submitting"}
-                className="w-full bg-[#197C48] text-white font-black uppercase py-8 text-xl tracking-widest hover:bg-black transition-all shadow-xl hover:shadow-2xl active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-4 group"
-              >
-                {status === "submitting" ? (
-                  <>
-                    <Loader2 className="animate-spin text-[#40F996]" />
-                    <span className="text-[#40F996]">Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    Send Message
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ repeat: Infinity, duration: 1.5 }}
-                    >
-                      <CheckCircle className="text-[#40F996]" />
-                    </motion.div>
-                  </>
-                )}
-              </button>
-            </form>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-4">
+                <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
+                  Mobile Number
+                </label>
+                <input
+                  required
+                  type="tel"
+                  name="business_mobile"
+                  value={formData.business_mobile}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
+                  placeholder="+91 00000 00000"
+                />
+              </div>
+              <div className="space-y-4">
+                <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
+                  Company Name
+                </label>
+                <input
+                  required
+                  type="text"
+                  name="company_name"
+                  value={formData.company_name}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all placeholder:text-slate-300"
+                  placeholder="CUCU Advertising"
+                />
+              </div>
+            </div>
+            <div className="space-y-4">
+              <label className="text-xs font-black uppercase tracking-widest text-[#197C48]">
+                Tell us about your project
+              </label>
+              <textarea
+                required
+                rows={4}
+                name="about_business"
+                value={formData.about_business}
+                onChange={handleChange}
+                className="w-full bg-transparent border-b-2 border-slate-200 py-4 text-2xl focus:border-[#197C48] outline-none transition-all resize-none placeholder:text-slate-300"
+                placeholder="I want to build..."
+              />
+            </div>
+            <button
+              disabled={status === "submitting"}
+              className="w-full bg-[#197C48] text-white font-black uppercase py-8 text-xl tracking-widest hover:bg-black transition-all shadow-xl hover:shadow-2xl active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-4 group"
+            >
+              {status === "submitting" ? (
+                <>
+                  <Loader2 className="animate-spin text-[#40F996]" />
+                  <span className="text-[#40F996]">Sending...</span>
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >
+                    <CheckCircle className="text-[#40F996]" />
+                  </motion.div>
+                </>
+              )}
+            </button>
+          </form>
         </div>
       </div>
 
@@ -267,7 +279,10 @@ export const ContactPage = ({ setPage }) => {
             <h4 className="text-white font-black uppercase tracking-widest mb-2 bg-[#197C48] px-4 py-1 inline-block">
               New Business
             </h4>
-            <a href="mailto:coffee@cucuadvertising.com" className="text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer block">
+            <a
+              href="mailto:coffee@cucuadvertising.com"
+              className="text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer block"
+            >
               coffee@cucuadvertising.com
             </a>
           </div>

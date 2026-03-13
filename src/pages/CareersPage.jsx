@@ -74,7 +74,6 @@ const jobOpenings = [
     description:
       "Optimize digital ad campaigns across various platforms to drive measurable results for our clients.",
   },
-  
 ];
 
 const locations = ["Bangalore", "Mumbai"];
@@ -122,13 +121,16 @@ export const CareersPage = ({ setPage }) => {
     data.append("resume", formData.resume);
 
     try {
-      const response = await fetch("http://localhost:8000/api/career", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
+      const response = await fetch(
+        "https://cucuadvertising.com/backend/public/api/career",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: data,
         },
-        body: data,
-      });
+      );
 
       if (response.ok) {
         setStatus("success");
@@ -140,7 +142,8 @@ export const CareersPage = ({ setPage }) => {
           confirmButtonColor: "#197C48",
           customClass: {
             popup: "rounded-[2rem]",
-            confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+            confirmButton:
+              "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
           },
         }).then(() => {
           setSelectedJob(null);
@@ -178,7 +181,8 @@ export const CareersPage = ({ setPage }) => {
           confirmButtonColor: "#197C48",
           customClass: {
             popup: "rounded-[2rem]",
-            confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+            confirmButton:
+              "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
           },
         });
       }
@@ -193,7 +197,8 @@ export const CareersPage = ({ setPage }) => {
         confirmButtonColor: "#197C48",
         customClass: {
           popup: "rounded-[2rem]",
-          confirmButton: "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
+          confirmButton:
+            "rounded-xl font-bold uppercase tracking-widest px-8 py-3",
         },
       });
     }
@@ -455,7 +460,9 @@ export const CareersPage = ({ setPage }) => {
                         <div className="relative w-full border-2 border-dashed border-slate-300 rounded-2xl p-8 text-center hover:border-[#197C48] bg-slate-50/50 transition-all cursor-pointer group">
                           <input
                             required
-                            key={formData.resume ? "file-selected" : "file-empty"}
+                            key={
+                              formData.resume ? "file-selected" : "file-empty"
+                            }
                             type="file"
                             name="resume"
                             onChange={handleChange}
@@ -577,7 +584,9 @@ export const CareersPage = ({ setPage }) => {
                           disabled={status === "submitting"}
                           className="flex-[2] bg-[#197C48] hover:bg-black text-white py-6 rounded-2xl text-xs font-black uppercase tracking-widest transition-all disabled:opacity-50 flex items-center justify-center gap-4"
                         >
-                          {status === "submitting" ? "Sending..." : "Submit Application"}
+                          {status === "submitting"
+                            ? "Sending..."
+                            : "Submit Application"}
                         </button>
                       </div>
                     </form>
