@@ -5,6 +5,7 @@ import aboutHeroImg from "../assets/NEW/about us big.png";
 import arvindProfile1 from "../assets/arvind/Profile1.jpeg";
 import arvindProfile2 from "../assets/arvind/Profile2.jpeg";
 import { TRANSITION } from "../constants/config";
+import { MessageCircle, Sparkles, Zap } from "lucide-react";
 
 const FadeInView = ({ children, delay = 0 }) => (
   <motion.div
@@ -46,17 +47,17 @@ export const AboutPage = ({ setPage }) => {
                 Our Story
               </motion.span>
             </div>
-            
+
             <h1 className="text-[12vw] md:text-[6.5vw] lg:text-[80px] xl:text-[96px] font-black uppercase leading-[0.8] tracking-tighter text-[#197C48] mb-12">
               {["We're", "Cucu", "Advertising."].map((word, i) => (
                 <div key={i} className="overflow-hidden">
                   <motion.span
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
-                    transition={{ 
-                      duration: 0.8, 
+                    transition={{
+                      duration: 0.8,
                       ease: [0.16, 1, 0.3, 1],
-                      delay: i * 0.1 
+                      delay: i * 0.1,
                     }}
                     className="block"
                   >
@@ -87,13 +88,13 @@ export const AboutPage = ({ setPage }) => {
           >
             {/* Animated Glow/Shadow */}
             <div className="absolute -inset-20 bg-[#197C48]/5 blur-[120px] rounded-full -z-10 animate-pulse" />
-            
+
             <motion.div
               animate={{ y: [0, -20, 0] }}
-              transition={{ 
-                duration: 6, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
               }}
               className="relative z-10 w-full p-2 bg-white rounded-[4rem] shadow-[0_60px_120px_-30px_rgba(25,124,72,0.15)] ring-1 ring-[#197C48]/5"
             >
@@ -208,18 +209,21 @@ export const AboutPage = ({ setPage }) => {
       </section>
 
       {/* Founder Section */}
-      <section className="py-32 px-6 md:px-12 bg-[#F5F5F5] text-black">
+      <section className="py-32 px-6 md:px-12 bg-white text-black">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid md:grid-cols-12 gap-16 items-center">
-            <div className="md:col-span-7">
+            <div className="md:col-span-12 lg:col-span-7">
               <FadeInView>
-                <span className="inline-block px-4 py-1 bg-[#197C48] text-white text-xs font-bold uppercase tracking-widest rounded-full mb-6">
-                  The Brain Behind
-                </span>
-                <h2 className="text-5xl md:text-7xl font-black uppercase mb-8 leading-tight">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-[2px] bg-[#197C48]" />
+                  <span className="text-[#197C48] text-sm font-black uppercase tracking-widest">
+                    The Brain Behind
+                  </span>
+                </div>
+                <h2 className="text-6xl md:text-[90px] font-black uppercase mb-12 leading-[0.85] tracking-tighter">
                   Arvind Arandkar
                 </h2>
-                <div className="space-y-6 text-lg md:text-xl opacity-80 leading-relaxed">
+                <div className="space-y-8 text-xl md:text-2xl opacity-70 leading-relaxed max-w-2xl">
                   <p>
                     Now, all of this was from the head of Arvind Arandkar, the
                     founder. Talking to Arvind feels less like a pitch meeting
@@ -231,36 +235,56 @@ export const AboutPage = ({ setPage }) => {
                     and he's always up for a good conversation about pretty much
                     anything creative.
                   </p>
-                  <p className="font-bold text-black opacity-100 italic">
-                    That's the energy behind CUCU. That's who you're working
-                    with.
-                  </p>
+                  <motion.p 
+                    className="font-black text-black opacity-100 italic flex items-center gap-4"
+                  >
+                    <span className="w-8 h-8 rounded-full bg-[#197C48]/10 flex items-center justify-center">
+                      <Zap className="w-4 h-4 text-[#197C48]" />
+                    </span>
+                    "That's the energy behind CUCU. That's who you're working with."
+                  </motion.p>
                 </div>
               </FadeInView>
             </div>
-            <div className="md:col-span-5 relative">
+            
+            <div className="md:col-span-12 lg:col-span-5 relative mt-12 lg:mt-0">
               <FadeInView delay={0.3}>
-                <div className="aspect-[4/5] bg-[#197C48] rounded-[3rem] overflow-hidden relative group shadow-2xl">
-                  {/* Default Image */}
-                  <img
-                    src={arvindProfile1}
-                    alt="Arvind Arandkar"
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                  />
-                  {/* Hover Image */}
-                  <img
-                    src={arvindProfile2}
-                    alt="Arvind Arandkar - Creative Mode"
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
-                  />
+                <div className="aspect-square bg-slate-50 border border-slate-100 rounded-[4rem] p-12 relative group overflow-hidden shadow-sm">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#197C48]/5 rounded-full blur-3xl -mr-32 -mt-32" />
                   
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                  
-                  <div className="absolute bottom-8 left-8 text-white z-10">
-                    <p className="text-xl md:text-2xl font-black uppercase tracking-tight">
-                      Founder & Creative Head
-                    </p>
+                  <div className="relative z-10 h-full flex flex-col justify-between">
+                    <div className="flex gap-4">
+                      {[MessageCircle, Sparkles, Zap].map((Icon, i) => (
+                        <motion.div
+                          key={i}
+                          animate={{ y: [0, -10, 0] }}
+                          transition={{ duration: 4, delay: i * 0.5, repeat: Infinity }}
+                          className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center border border-slate-100"
+                        >
+                          <Icon className="w-6 h-6 text-[#197C48]" />
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="w-20 h-2 bg-[#197C48] rounded-full" />
+                      <h4 className="text-3xl font-black uppercase">
+                        Creative <br />Strategy
+                      </h4>
+                      <p className="text-slate-400 font-medium">
+                        Focused on human connection and visual excellence.
+                      </p>
+                    </div>
+
+                    <div className="pt-8 border-t border-slate-100 flex justify-between items-end">
+                      <div>
+                        <p className="text-xs font-bold text-[#197C48] uppercase tracking-widest mb-1">Founder</p>
+                        <p className="font-black uppercase">Arvind Arandkar</p>
+                      </div>
+                      <div className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-[#197C48] group-hover:border-[#197C48] transition-all duration-500">
+                        <Zap className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </FadeInView>
