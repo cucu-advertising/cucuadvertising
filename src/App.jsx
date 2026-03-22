@@ -127,6 +127,7 @@ export default function App() {
             project={selectedProject}
             onBack={() => setPage("work")}
             setPage={setPage}
+            setSelectedProject={setSelectedProject}
           />
         )}
       </AnimatePresence>

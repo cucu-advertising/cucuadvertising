@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BigFooter } from "../components/Footer";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { allProjects } from "../constants/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,45 +25,8 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
     return () => st.kill();
   }, []);
 
-  const filters = ["All", "Fintech", "Web3", "Fashion", "Tech", "Branding"];
+  const filters = ["All", ...new Set(allProjects.map((p) => p.category))];
 
-  const allProjects = [
-    {
-      title: "Neon Bank",
-      category: "Fintech",
-      img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1600",
-    },
-    {
-      title: "Vortex",
-      category: "Web3",
-      img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600",
-    },
-    {
-      title: "Ascend",
-      category: "Fashion",
-      img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1600",
-    },
-    {
-      title: "Onyx",
-      category: "Tech",
-      img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1600",
-    },
-    {
-      title: "Flux",
-      category: "Web3",
-      img: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=1600",
-    },
-    {
-      title: "Velvet",
-      category: "Fashion",
-      img: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&q=80&w=1600",
-    },
-    {
-      title: "Lumina",
-      category: "Branding",
-      img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=1600",
-    },
-  ];
 
   const filtered =
     filter === "All"
