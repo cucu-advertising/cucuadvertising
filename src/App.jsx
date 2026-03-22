@@ -16,9 +16,31 @@ import { CareersPage } from "./pages/CareersPage";
 import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 
 export default function App() {
-  const [page, setPage] = useState("home");
-  const [selectedProject, setSelectedProject] = useState(null);
+  // Persistence Initialization
+  const [page, setPage] = useState(() => {
+    return localStorage.getItem("cta_current_page") || "home";
+  });
+  
+  const [selectedProject, setSelectedProject] = useState(() => {
+    const saved = localStorage.getItem("cta_current_project");
+    try {
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
   const [isAppLoading, setIsAppLoading] = useState(true);
+
+  // Persistence Hook
+  useEffect(() => {
+    localStorage.setItem("cta_current_page", page);
+    if (selectedProject) {
+      localStorage.setItem("cta_current_project", JSON.stringify(selectedProject));
+    } else {
+      localStorage.removeItem("cta_current_project");
+    }
+  }, [page, selectedProject]);
 
   // Preloader logic: Wait for all images
   useEffect(() => {

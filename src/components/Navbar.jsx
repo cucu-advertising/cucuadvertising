@@ -28,7 +28,7 @@ export const Navbar = ({ activePage, setPage }) => {
   const navLinks = [
     { label: "About Us", path: "about", icon: aboutIcon },
     { label: "Services", path: "services", icon: servicesIcon },
-    // { label: "Our Work", path: "work", icon: projectsIcon },
+    { label: "Our Work", path: "work", icon: projectsIcon },
     // { label: "Awards", path: "awards", icon: awardsIcon },
     { label: "Clients", path: "clients", icon: clientsIcon },
     // { label: "Our Team", path: "team", icon: teamIcon },
