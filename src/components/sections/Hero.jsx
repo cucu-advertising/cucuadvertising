@@ -1,6 +1,8 @@
 import React from "react";
 // import ScrollExplosionCanvas from "../ScrollExplosionCanvas";
 import heroImage from "../../assets/banner.jpeg";
+import desktopBanner from "../../assets/banner-main-home.jpeg";
+import mobileBanner from "../../assets/banner-phone.jpeg";
 import { motion } from "framer-motion";
 
 export const Hero = ({ setPage }) => {
@@ -12,11 +14,14 @@ export const Hero = ({ setPage }) => {
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         className="w-full h-full"
       >
-        <img
-          src={heroImage}
-          alt="Cucu Advertising"
-          className="w-full h-full object-cover opacity-80"
-        />
+        <picture className="w-full h-full">
+          <source media="(max-width: 768px)" srcSet={mobileBanner} />
+          <img
+            src={desktopBanner}
+            alt="Cucu Advertising"
+            className="w-full h-full object-cover opacity-80"
+          />
+        </picture>
 
         {/* Deep Gradient Overlay for Premium Look */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#19463F]/40 via-transparent to-[#19463F]/60" />
