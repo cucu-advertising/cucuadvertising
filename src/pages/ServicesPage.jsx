@@ -30,9 +30,8 @@ const services = [
   {
     id: "performance",
     title: "Performance Marketing",
-    headlineHighlight: "Measurable growth engines",
-    headlineRest:
-      " optimized at every touchpoint to maximize your return on investment.",
+    headlineHighlight: "Maximizing your ROI",
+    headlineRest: " with data-driven growth and precision targeting.",
     description:
       "Data is our compass.\nWe scale your business with precision and targeted action.",
     cta: "Know more",
@@ -42,11 +41,10 @@ const services = [
   {
     id: "seo",
     title: "Search Engine Optimization",
-    headlineHighlight: "Dominating the search landscape",
-    headlineRest:
-      " with ethical strategies that ensure your brand is found by those who seek it.",
+    headlineHighlight: "Dominating search",
+    headlineRest: " with ethical strategies and high-ranking authority.",
     description:
-      "Visibility meets relevance.\nWe focus on building authority that converts organic traffic.",
+      "Visibility meets relevance.\nWe build authority that converts searchers into loyal customers.",
     cta: "Know more",
     image: seoImg,
     thumb: seoImg,
@@ -55,8 +53,7 @@ const services = [
     id: "content",
     title: "Content Creation",
     headlineHighlight: "Storytelling that connects",
-    headlineRest:
-      " audiences to your brand on an emotional level and drives real action.",
+    headlineRest: " and drives emotional action through every platform.",
     description:
       "From compelling copy to stunning visuals.\nWe craft narratives that people want to consume.",
     cta: "Know more",
@@ -67,10 +64,9 @@ const services = [
     id: "adfilms",
     title: "Ad Films",
     headlineHighlight: "Cinematic impact",
-    headlineRest:
-      " designed to tell your brand's story with flair and unforgettable visual power.",
+    headlineRest: " designed to tell your brand's unique visual story.",
     description:
-      "High-end production meets strategic marketing.\nWe create visual experiences that leave a mark.",
+      "High-end production meets strategy.\nWe create visual experiences that leave a lasting mark.",
     cta: "Know more",
     image: adFilmImg,
     thumb: adFilmImg,
@@ -78,11 +74,10 @@ const services = [
   {
     id: "videoediting",
     title: "Video Editing & Motion Graphics",
-    headlineHighlight: "Dynamic visual storytelling",
-    headlineRest:
-      " that captures attention and brings your brand's narrative to life with precision.",
+    headlineHighlight: "Dynamic visuals",
+    headlineRest: " that capture attention and bring your narrative to life.",
     description:
-      "Seamless transitions and high-impact graphics.\nWe transform raw footage into compelling visual experiences.",
+      "Seamless motion and high-impact graphics.\nCreating compelling visual experiences for your brand.",
     cta: "Know more",
     image: videoEditingImg,
     thumb: videoEditingImg,
@@ -90,11 +85,10 @@ const services = [
   {
     id: "webdevelopment",
     title: "Web Development",
-    headlineHighlight: "Custom digital architectures",
-    headlineRest:
-      " built for scale, performance, and an exceptional user experience across all devices.",
+    headlineHighlight: "Digital architectures",
+    headlineRest: " built for scale, performance, and seamless experiences.",
     description:
-      "Future-ready web solutions.\nWe bridge the gap between complex functionality and sleek, intuitive design.",
+      "Future-ready web solutions.\nBridging the gap between complex functionality and sleek design.",
     cta: "Know more",
     image: webDevImg,
     thumb: webDevImg,
@@ -191,20 +185,7 @@ export const ServicesPage = ({ setPage }) => {
           {/* 1. Visual Panel (Left) */}
           <div className="w-full h-[35vh] md:w-[50%] md:h-full bg-[#f8f9fa] relative flex items-center justify-center p-6 lg:p-16 overflow-hidden">
             {/* Top Left Title */}
-            <div className="absolute top-8 left-8 z-20">
-              <AnimatePresence mode="wait">
-                <motion.h2
-                  key={activeService.title}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-[#197C48] font-black text-xs md:text-sm tracking-[0.4em] uppercase"
-                >
-                  {activeService.title}
-                </motion.h2>
-              </AnimatePresence>
-            </div>
+
 
             {/* Image Render */}
             <AnimatePresence mode="wait">
@@ -238,8 +219,23 @@ export const ServicesPage = ({ setPage }) => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  className="max-w-xl"
                 >
+                  {/* Badge Title */}
+                  <div className="mb-6">
+                    <AnimatePresence mode="wait">
+                      <motion.h2
+                        key={activeService.title}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-block bg-[#197C48]/10 text-[#197C48] font-black text-sm md:text-base lg:text-lg tracking-[0.2em] uppercase px-4 py-2 rounded-lg"
+                      >
+                        {activeService.title}
+                      </motion.h2>
+                    </AnimatePresence>
+                  </div>
+
                   {/* Headline */}
                   <h1 className="text-2xl lg:text-3xl xl:text-4xl 2xl:text-[2.75rem] leading-[1.1] font-normal tracking-tight text-black">
                     <span className="text-[#197C48] font-black">
