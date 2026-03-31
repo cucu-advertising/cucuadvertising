@@ -32,7 +32,7 @@ export const Navbar = ({ activePage, setPage }) => {
     // { label: "Awards", path: "awards", icon: awardsIcon },
     { label: "Clients", path: "clients", icon: clientsIcon },
     // { label: "Our Team", path: "team", icon: teamIcon },
-    { label: "Careers", path: "careers", icon: careerIcon },
+    // { label: "Careers", path: "careers", icon: careerIcon },
     { label: "Contact Us", path: "contact", icon: contactIcon },
   ];
 
