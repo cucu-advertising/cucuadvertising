@@ -45,7 +45,7 @@ export const Navbar = ({ activePage, setPage }) => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full z-[100] px-4 py-10 pointer-events-none flex justify-center">
+      <div className="fixed top-0 left-0 w-full z-[100] px-4 py-6 pointer-events-none flex justify-center">
         <nav
           className={`pointer-events-auto h-14 px-6 flex items-center justify-between gap-8 bg-[#2d2d2d]/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl transition-all duration-500 w-full max-w-5xl`}
         >
