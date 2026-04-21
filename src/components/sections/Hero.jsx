@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export const Hero = ({ setPage }) => {
   return (
-    <section className="w-full h-screen relative bg-[#19463F] overflow-hidden pt-20 md:pt-28">
+    <section className="w-full h-screen relative bg-[#19463F] overflow-hidden">
       <motion.div
         initial={{ opacity: 0, scale: 1.1 }}
         animate={{ opacity: 1, scale: 1 }}
