@@ -197,7 +197,40 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
 
 
 
-        {/* Identity Section (Refined & Compact) */}
+        {/* 3. Results Section (New dynamic injection) */}
+        {project.results && (
+          <div className="bg-[#197C48] py-24 md:py-32 my-20">
+            <div className="px-6 md:px-12">
+              <h3 className="text-[#8CF2C6] text-[10px] font-black uppercase tracking-[0.4em] mb-12 block">
+                The Results
+              </h3>
+              <h2 className="text-6xl md:text-8xl lg:text-[10vw] font-black uppercase text-white leading-none tracking-tighter mb-20">
+                Impact <br /> & Growth.
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-24">
+                {project.results.map((result, idx) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    className="border-l border-white/20 pl-8"
+                  >
+                    <span className="text-6xl md:text-7xl font-black text-white block mb-4">
+                      {result.val}
+                    </span>
+                    <p className="text-lg md:text-xl text-[#8CF2C6] font-bold uppercase tracking-tight leading-tight">
+                      {result.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 4. Identity Section (Refined & Compact) */}
         <div className="px-6 md:px-12 py-12 md:py-16 border-t border-neutral-100 font-light">
           <div className="grid lg:grid-cols-12 gap-10 md:gap-16 items-start mb-20">
             <div className="lg:col-span-4">
