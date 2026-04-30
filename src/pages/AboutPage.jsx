@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BigFooter } from "../components/Footer";
 import aboutHeroImg from "../assets/NEW/about us big.png";
-import arvindProfile1 from "../assets/arvind/Profile1.jpeg";
+import arvindProfile1 from "../assets/arvind/Profile.jpeg";
 import arvindProfile2 from "../assets/arvind/Profile2.jpeg";
 import { TRANSITION } from "../constants/config";
 import { MessageCircle, Sparkles, Zap } from "lucide-react";
@@ -249,42 +249,39 @@ export const AboutPage = ({ setPage }) => {
             
             <div className="md:col-span-12 lg:col-span-5 relative mt-12 lg:mt-0">
               <FadeInView delay={0.3}>
-                <div className="aspect-square bg-slate-50 border border-slate-100 rounded-[4rem] p-12 relative group overflow-hidden shadow-sm">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#197C48]/5 rounded-full blur-3xl -mr-32 -mt-32" />
+                <div className="relative group">
+                  {/* Decorative Elements */}
+                  <div className="absolute -inset-4 bg-[#197C48]/5 rounded-[4.5rem] blur-2xl group-hover:bg-[#197C48]/10 transition-colors duration-700" />
                   
-                  <div className="relative z-10 h-full flex flex-col justify-between">
-                    <div className="flex gap-4">
-                      {[MessageCircle, Sparkles, Zap].map((Icon, i) => (
-                        <motion.div
-                          key={i}
-                          animate={{ y: [0, -10, 0] }}
-                          transition={{ duration: 4, delay: i * 0.5, repeat: Infinity }}
-                          className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center border border-slate-100"
-                        >
-                          <Icon className="w-6 h-6 text-[#197C48]" />
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="w-20 h-2 bg-[#197C48] rounded-full" />
-                      <h4 className="text-3xl font-black uppercase">
-                        Creative <br />Strategy
-                      </h4>
-                      <p className="text-slate-400 font-medium">
-                        Focused on human connection and visual excellence.
-                      </p>
-                    </div>
-
-                    <div className="pt-8 border-t border-slate-100 flex justify-between items-end">
-                      <div>
-                        <p className="text-xs font-bold text-[#197C48] uppercase tracking-widest mb-1">Founder</p>
-                        <p className="font-black uppercase">Arvind Arandkar</p>
+                  <div className="relative aspect-[4/5] bg-slate-50 rounded-[4rem] overflow-hidden shadow-2xl border border-slate-100">
+                    <img 
+                      src={arvindProfile1} 
+                      alt="Arvind Arandkar" 
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+                    
+                    {/* Floating Info Card */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="absolute bottom-8 left-8 right-8 p-6 bg-white/90 backdrop-blur-md rounded-3xl shadow-xl border border-white/20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+                    >
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="text-[10px] font-black text-[#197C48] uppercase tracking-[0.2em] mb-1">The Founder</p>
+                          <h4 className="text-xl font-black uppercase text-slate-900 leading-none">Arvind Arandkar</h4>
+                        </div>
+                        <div className="w-10 h-10 rounded-full bg-[#197C48] flex items-center justify-center shadow-lg shadow-[#197C48]/20">
+                          <Zap className="w-5 h-5 text-white" />
+                        </div>
                       </div>
-                      <div className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-[#197C48] group-hover:border-[#197C48] transition-all duration-500">
-                        <Zap className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
-                      </div>
-                    </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Corner Accent */}
+                  <div className="absolute -top-6 -right-6 w-24 h-24 bg-white rounded-3xl shadow-lg border border-slate-50 flex items-center justify-center p-4 rotate-12 group-hover:rotate-0 transition-transform duration-500 z-20">
+                    <Sparkles className="w-8 h-8 text-[#197C48]" />
                   </div>
                 </div>
               </FadeInView>
