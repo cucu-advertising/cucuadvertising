@@ -1,22 +1,30 @@
 export const allProjects = [
-  // {
-  //   title: "Split be",
-  //   category: "Fintech",
-  //   img: "/Clientwork/daily dose/[View 1] Main file.webp",
-  //   about: "Splitbi is a modern technology platform designed to streamline complex processes into manageable segments. The brand focuses on delivering high efficiency and organization to its users, ensuring that every interaction is clear and productive.",
-  //   scope: ["Visual Strategy", "Collateral Design", "Digital Integration", "Minimalist Layout"],
-  //   industry: "Digital Productivity & Business Services",
-  //   challenges: "The primary challenge was to create an identity that feels both high-tech and human-centric, communicating the concept of 'organizing' without appearing fragmented.",
-  //   solution: "A 'Clarity First' narrative that eliminates unnecessary complexity, positioning the brand as a tool for precision and order through minimalist design.",
-  //   identity: "Rooted in organized simplicity and modern balance, using a clean and airy layout with sharp, precise lines to reflect a high standard of accuracy.",
-  //   gallery: [
-  //     "/Clientwork/daily dose/daily 2.png",
-  //     "/Clientwork/daily dose/02. Coffee Pod Mockup.webp",
-  //     "/Clientwork/daily dose/8200-01-coffee-cup-mockup.webp",
-  //     "/Clientwork/daily dose/Apron Mockup.webp",
-  //     "/Clientwork/daily dose/Coffee Card Mockup.png"
-  //   ]
-  // },
+  {
+    title: "Arbor Road",
+    category: "Eco-Luxury",
+    img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1600&auto=format&fit=crop",
+    about: "Arbor Road Estate is a premium eco-luxury destination designed for refined, nature-driven travelers. The brand focuses on sustainability, founder-led storytelling, and providing an authentic retreat experience in the heart of nature.",
+    scope: ["Brand Identity", "Search Discovery", "Community Marketing", "Influencer Strategy"],
+    industry: "Luxury Hospitality & Eco-Tourism",
+    challenges: "Limited premium content to reflect property quality. Low discoverability for niche hospitality keywords. Vision and brand story not clearly communicated to potential guests online.",
+    solution: "A multi-channel strategy centered on founder-led storytelling, experience-based content, and targeted SEO for 'Eco Luxury Resort in Hyderabad'. We built organic trust through community engagement and curated influencer partnerships.",
+    identity: "A nature-inspired visual identity that emphasizes authentic retreat origins and sustainability values. Visual content focuses on the 'experience of stay' through premium photography and founder-led video narratives.",
+    results: [
+      { val: "+340%", label: "Organic Search Visibility Growth" },
+      { val: "#1", label: "Ranking: Eco Luxury Resort" },
+      { val: "1M", label: "Total Organic Impressions" },
+      { val: "80+", label: "Community Mentions" },
+      { val: "30+", label: "Visual Content Pieces" },
+      { val: "5L", label: "Influencer Driven Impressions" }
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
   {
     title: "Fruit Bandi",
     category: "Branding", 
@@ -159,32 +167,6 @@ export const allProjects = [
       "/Clientwork/daily dose/8200-01-coffee-cup-mockup.webp",
       "/Clientwork/daily dose/Apron Mockup.webp",
       "/Clientwork/daily dose/Coffee Card Mockup.png"
-    ]
-  },
-  {
-    title: "Arbor Road",
-    category: "Eco-Luxury",
-    img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1600&auto=format&fit=crop",
-    about: "Arbor Road Estate is a premium eco-luxury destination designed for refined, nature-driven travelers. The brand focuses on sustainability, founder-led storytelling, and providing an authentic retreat experience in the heart of nature.",
-    scope: ["Brand Identity", "Search Discovery", "Community Marketing", "Influencer Strategy"],
-    industry: "Luxury Hospitality & Eco-Tourism",
-    challenges: "Limited premium content to reflect property quality. Low discoverability for niche hospitality keywords. Vision and brand story not clearly communicated to potential guests online.",
-    solution: "A multi-channel strategy centered on founder-led storytelling, experience-based content, and targeted SEO for 'Eco Luxury Resort in Hyderabad'. We built organic trust through community engagement and curated influencer partnerships.",
-    identity: "A nature-inspired visual identity that emphasizes authentic retreat origins and sustainability values. Visual content focuses on the 'experience of stay' through premium photography and founder-led video narratives.",
-    results: [
-      { val: "+340%", label: "Organic Search Visibility Growth" },
-      { val: "#1", label: "Ranking: Eco Luxury Resort" },
-      { val: "1M", label: "Total Organic Impressions" },
-      { val: "80+", label: "Community Mentions" },
-      { val: "30+", label: "Visual Content Pieces" },
-      { val: "5L", label: "Influencer Driven Impressions" }
-    ],
-    gallery: [
-      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1600&auto=format&fit=crop"
     ]
   },
 ];

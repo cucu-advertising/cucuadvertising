@@ -18,6 +18,11 @@ export const HomePage = ({ setPage, setSelectedProject }) => {
   const modalContainer = useRef(null);
   const projects = [
     {
+      title: "Arbor Road",
+      category: "Eco-Luxury",
+      img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1600&auto=format&fit=crop",
+    },
+    {
       title: "Neon Bank",
       category: "Fintech",
       img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1600",
@@ -26,11 +31,6 @@ export const HomePage = ({ setPage, setSelectedProject }) => {
       title: "Vortex",
       category: "Web3",
       img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600",
-    },
-    {
-      title: "Ascend",
-      category: "Fashion",
-      img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1600",
     },
   ];
 
