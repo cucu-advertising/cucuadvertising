@@ -139,7 +139,7 @@ export const Hero = ({ setPage }) => {
         }
       `}</style>
 
-      <div className="lines flex flex-col items-center gap-[1.4rem] z-10">
+      <div className="lines flex flex-col items-center gap-[1.4rem] z-10 mt-20">
         {WORD_GROUPS.map((group, gIdx) => (
           <div key={gIdx} className="line flex items-baseline gap-[1.2rem] flex-wrap justify-center">
             {group.words.map((word, wIdx) => {
