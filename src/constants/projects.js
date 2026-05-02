@@ -1,7 +1,7 @@
 export const allProjects = [
   {
     title: "Arbor Road",
-    category: "Eco-Luxury",
+    category: "Brand Identity & Communication",
     img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1600&auto=format&fit=crop",
     about: "Arbor Road Estate is a premium eco-luxury destination designed for refined, nature-driven travelers. The brand focuses on sustainability, founder-led storytelling, and providing an authentic retreat experience in the heart of nature.",
     scope: ["Brand Identity", "Search Discovery", "Community Marketing", "Influencer Strategy"],
@@ -27,7 +27,7 @@ export const allProjects = [
   },
   {
     title: "Fruit Bandi",
-    category: "Branding", 
+    category: "Packaging Design", 
     img: "/Clientwork/fruit bandi/fd 3.png",
     about: "A culinary venture blending traditional flavors with a modern digital ordering experience.",
     scope: ["Branding", "Packaging", "Web Design"],
@@ -42,7 +42,7 @@ export const allProjects = [
   },
   {
     title: "One ENT",
-    category: "Health",
+    category: "User Experience & Interaction",
     img: "/Clientwork/One ent/ONEENT Brand Guidelines-12 banner.webp",
     about: "OneENT was established to provide a unified platform for specialized and compassionate ENT care. Led by Dr. Manusrut, the organization integrates the expertise of ENT specialists, audiologists, and therapists to treat conditions affecting the ear, nose, and throat.",
     scope: ["Strategic Foundation", "Visual Identity", "Design Systems", "Web Experience Design"],
@@ -68,7 +68,7 @@ export const allProjects = [
   },
   {
     title: "Secret Ping",
-    category: "Tech",
+    category: "Web Development",
     img: "/Clientwork/secretping/sp webiste.webp",
     about: "Secretping is a modern technology firm dedicated to providing secure and dependable communication monitoring services. The brand is built on a foundation of safety and unwavering trust, positioning itself as a proactive defender in the digital space.",
     scope: ["Visual Strategy", "Brand Voice", "Web Experience Design"],
@@ -94,7 +94,7 @@ export const allProjects = [
   },
   {
     title: "GN Caters",
-    category: "Hospitality",
+    category: "Packaging Design",
     img: "/Clientwork/happy events/Happy events menu.webp",
     about: "Founded in 2004, GN Caters is a culinary powerhouse offering over 700 cuisines. They blend a two-decade legacy with modern innovation to create premium dining experiences.",
     scope: ["Visual Identity", "Brand Strategy", "Collateral Design", "Website Design"],
@@ -112,7 +112,7 @@ export const allProjects = [
   },
   {
     title: "Happy Events",
-    category: "Events",
+    category: "User Experience & Interaction",
     img: "/Clientwork/happy events/Happy events bb.webp",
     about: "A specialized wedding planning and event décor firm focusing on transforming personal milestones into unforgettable celebrations with culturally resonant themes.",
     scope: ["Visual Strategy", "Brand Voice", "Collateral Design", "Asset Library"],
@@ -130,7 +130,7 @@ export const allProjects = [
   },
   {
     title: "Varun Engineers",
-    category: "Engineering",
+    category: "Web Development",
     img: "/Clientwork/varun/varun engineers all.webp",
     about: "Founded in 2005, Varun Engineers has evolved from a startup into a trusted supplier of industrial material handling equipment, pumps, and compressors. The brand is built on a foundation of durable performance and cost-effective engineering, positioning itself as a reliable engineering partner rather than just a supplier.",
     scope: ["Brand Voice", "Visual Strategy", "Collateral Design", "Web Experience Design"],
@@ -156,7 +156,7 @@ export const allProjects = [
   },
   {
     title: "Daily Dose",
-    category: "Branding",
+    category: "Brand Identity & Communication",
     img: "/Clientwork/daily dose/[View 1] Main file.webp",
     about: "The Daily Dose is a speciality coffee brand dedicated to the art of the perfect brew. We created a minimalist, high-impact visual identity that reflects their commitment to quality and contemporary culture.",
     scope: ["Brand Identity", "Packaging Design", "Logo Design"],
@@ -170,4 +170,5 @@ export const allProjects = [
     ]
   },
 ];
+
 
