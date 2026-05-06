@@ -220,10 +220,13 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
           >
             <button 
               onClick={() => setPage("contact")}
-              className="group relative flex items-center gap-4 px-8 py-4 bg-transparent border border-black/10 rounded-full hover:border-black transition-all duration-500"
+              className="group relative flex items-center gap-4 px-10 py-5 bg-transparent border border-black/10 rounded-full text-black hover:text-white transition-colors duration-500 overflow-hidden"
             >
-              <span className="text-lg font-bold uppercase tracking-widest">Let's Collaborate</span>
-              <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:translate-x-2 transition-transform duration-500">
+              {/* Animated Background Fill */}
+              <div className="absolute inset-0 bg-[#197C48] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-out z-0" />
+              
+              <span className="relative z-10 text-lg font-bold uppercase tracking-widest">Let's Collaborate</span>
+              <div className="relative z-10 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-white group-hover:text-[#197C48] group-hover:translate-x-2 transition-all duration-500">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
