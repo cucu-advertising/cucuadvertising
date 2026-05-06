@@ -21,7 +21,9 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
     "Web Development"
   ];
 
-  const filtered = allProjects.filter((p) => p.category === filter);
+  const filtered = filter === "Brand Identity & Communication" 
+    ? allProjects 
+    : allProjects.filter((p) => p.category === filter);
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
