@@ -176,7 +176,7 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
               initial={{ opacity: 0, x: -40, rotate: -15 }}
               whileInView={{ opacity: 1, x: 0, rotate: -8 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              src="/workbranding/banner 2.jpg" 
+              src="/workbranding/banner 2.webp" 
               alt="Work branding 2"
               className="w-full rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-neutral-100"
             />
@@ -188,7 +188,7 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
                 initial={{ opacity: 0, x: 40, rotate: 15 }}
                 whileInView={{ opacity: 1, x: 0, rotate: 5 }}
                 transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                src="/workbranding/banner 3.jpg" 
+                src="/workbranding/banner 3.webp" 
                 alt="Work branding 3"
                 className="w-4/5 ml-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-neutral-100 mb-4"
               />
@@ -196,7 +196,7 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
                 initial={{ opacity: 0, y: 30, rotate: -10 }}
                 whileInView={{ opacity: 1, y: 0, rotate: -3 }}
                 transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-                src="/workbranding/banner 4.jpg" 
+                src="/workbranding/banner 4.webp" 
                 alt="Work branding 4"
                 className="w-full rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.2)] border border-neutral-100 mt-[-20%] relative z-10"
               />
