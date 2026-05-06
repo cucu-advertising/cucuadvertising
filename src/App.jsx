@@ -5,15 +5,15 @@ import { Navbar } from "./components/Navbar";
 import { ComingSoon } from "./components/UIComponents";
 import Preloader from "./components/Preloader";
 
-// Pages
-import { HomePage } from "./pages/HomePage";
-import { WorkPage } from "./pages/WorkPage";
-import { ClientsPage } from "./pages/ClientsPage";
-import { ServicesPage } from "./pages/ServicesPage";
-import { AboutPage } from "./pages/AboutPage";
-import { ContactPage } from "./pages/ContactPage";
-import { CareersPage } from "./pages/CareersPage";
-import { ProjectDetailPage } from "./pages/ProjectDetailPage";
+// Pages (Lazy Loaded for Speed)
+const HomePage = React.lazy(() => import("./pages/HomePage").then(m => ({ default: m.HomePage })));
+const WorkPage = React.lazy(() => import("./pages/WorkPage").then(m => ({ default: m.WorkPage })));
+const ClientsPage = React.lazy(() => import("./pages/ClientsPage").then(m => ({ default: m.ClientsPage })));
+const ServicesPage = React.lazy(() => import("./pages/ServicesPage").then(m => ({ default: m.ServicesPage })));
+const AboutPage = React.lazy(() => import("./pages/AboutPage").then(m => ({ default: m.AboutPage })));
+const ContactPage = React.lazy(() => import("./pages/ContactPage").then(m => ({ default: m.ContactPage })));
+const CareersPage = React.lazy(() => import("./pages/CareersPage").then(m => ({ default: m.CareersPage })));
+const ProjectDetailPage = React.lazy(() => import("./pages/ProjectDetailPage").then(m => ({ default: m.ProjectDetailPage })));
 
 export default function App() {
   // Persistence Initialization
@@ -42,22 +42,58 @@ export default function App() {
     }
   }, [page, selectedProject]);
 
-  // Preloader logic: Wait for all images
+  // 1. Lenis Smooth Scrolling Initialization
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Sync Lenis with GSAP ScrollTrigger if possible
+    lenis.on('scroll', () => {
+      // ScrollTrigger.update();
+    });
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+  // 2. Optimized Preloader logic
   useEffect(() => {
     const images = document.querySelectorAll("img");
     const totalImages = images.length;
     let loadedCount = 0;
 
+    // Minimum display time for preloader (for branding)
+    const minLoadingTime = 1500;
+    const startTime = Date.now();
+
+    const finishLoading = () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+      setTimeout(() => setIsAppLoading(false), remainingTime);
+    };
+
     if (totalImages === 0) {
-      setIsAppLoading(false);
+      finishLoading();
       return;
     }
 
     const onImageLoad = () => {
       loadedCount++;
       if (loadedCount >= totalImages) {
-        // Slight delay for smoothness
-        setTimeout(() => setIsAppLoading(false), 500);
+        finishLoading();
       }
     };
 
@@ -66,12 +102,12 @@ export default function App() {
         onImageLoad();
       } else {
         img.addEventListener("load", onImageLoad);
-        img.addEventListener("error", onImageLoad); // Count errors too to avoid infinite loading
+        img.addEventListener("error", onImageLoad);
       }
     });
 
-    // Fallback: Max 10 seconds loading
-    const timer = setTimeout(() => setIsAppLoading(false), 10000);
+    // Fallback: Max 4 seconds loading for better UX
+    const timer = setTimeout(finishLoading, 4000);
 
     return () => {
       clearTimeout(timer);
@@ -93,43 +129,45 @@ export default function App() {
       <Navbar activePage={page} setPage={setPage} />
 
       <AnimatePresence mode="wait">
-        {page === "home" && (
-          <HomePage
-            key="home"
-            setPage={setPage}
-            setSelectedProject={setSelectedProject}
-          />
-        )}
-        {page === "work" && (
-          <WorkPage
-            key="work"
-            setPage={setPage}
-            setSelectedProject={setSelectedProject}
-          />
-        )}
-        {page === "services" && (
-          <ServicesPage key="services" setPage={setPage} />
-        )}
-        {page === "about" && <AboutPage key="about" setPage={setPage} />}
-        {page === "clients" && <ClientsPage key="clients" setPage={setPage} />}
-        {page === "contact" && <ContactPage key="contact" setPage={setPage} />}
-        {page === "team" && (
-          <ComingSoon
-            key="team"
-            title="Our Team"
-            onBack={() => setPage("home")}
-          />
-        )}
-        {page === "careers" && <CareersPage key="careers" setPage={setPage} />}
-        {page === "project-detail" && selectedProject && (
-          <ProjectDetailPage
-            key="project-detail"
-            project={selectedProject}
-            onBack={() => setPage("work")}
-            setPage={setPage}
-            setSelectedProject={setSelectedProject}
-          />
-        )}
+        <React.Suspense fallback={null}>
+          {page === "home" && (
+            <HomePage
+              key="home"
+              setPage={setPage}
+              setSelectedProject={setSelectedProject}
+            />
+          )}
+          {page === "work" && (
+            <WorkPage
+              key="work"
+              setPage={setPage}
+              setSelectedProject={setSelectedProject}
+            />
+          )}
+          {page === "services" && (
+            <ServicesPage key="services" setPage={setPage} />
+          )}
+          {page === "about" && <AboutPage key="about" setPage={setPage} />}
+          {page === "clients" && <ClientsPage key="clients" setPage={setPage} />}
+          {page === "contact" && <ContactPage key="contact" setPage={setPage} />}
+          {page === "team" && (
+            <ComingSoon
+              key="team"
+              title="Our Team"
+              onBack={() => setPage("home")}
+            />
+          )}
+          {page === "careers" && <CareersPage key="careers" setPage={setPage} />}
+          {page === "project-detail" && selectedProject && (
+            <ProjectDetailPage
+              key="project-detail"
+              project={selectedProject}
+              onBack={() => setPage("work")}
+              setPage={setPage}
+              setSelectedProject={setSelectedProject}
+            />
+          )}
+        </React.Suspense>
       </AnimatePresence>
     </div>
   );
