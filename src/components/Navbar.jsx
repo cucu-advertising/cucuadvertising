@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { TRANSITION } from "../constants/config";
-import logo from "../assets/logo_cucu_nobg.png";
+import logo from "../assets/logo_cucu_nobg.webp";
 
 export const Navbar = ({ activePage, setPage }) => {
   const [isOpen, setIsOpen] = useState(false);

@@ -28,7 +28,7 @@ export const allProjects = [
   {
     title: "Fruit Bandi",
     category: "Packaging Design", 
-    img: "/Clientwork/fruit bandi/fd 3.png",
+    img: "/Clientwork/fruit bandi/fd 3.webp",
     about: "A culinary venture blending traditional flavors with a modern digital ordering experience.",
     scope: ["Branding", "Packaging", "Web Design"],
     industry: "Food & Beverage",
@@ -36,7 +36,7 @@ export const allProjects = [
       "/Clientwork/fruit bandi/01.  Sauce Jar Mockup.webp",
       "/Clientwork/fruit bandi/02.webp",
       "/Clientwork/fruit bandi/board.webp",
-      "/Clientwork/fruit bandi/fd 3.png",
+      "/Clientwork/fruit bandi/fd 3.webp",
       "/Clientwork/fruit bandi/01.  Sauce Jar Mockup.webp"
     ]
   },
@@ -162,11 +162,11 @@ export const allProjects = [
     scope: ["Brand Identity", "Packaging Design", "Logo Design"],
     industry: "Food & Beverage",
     gallery: [
-      "/Clientwork/daily dose/daily 2.png",
+      "/Clientwork/daily dose/daily 2.webp",
       "/Clientwork/daily dose/02. Coffee Pod Mockup.webp",
       "/Clientwork/daily dose/8200-01-coffee-cup-mockup.webp",
       "/Clientwork/daily dose/Apron Mockup.webp",
-      "/Clientwork/daily dose/Coffee Card Mockup.png"
+      "/Clientwork/daily dose/Coffee Card Mockup.webp"
     ]
   },
 ];

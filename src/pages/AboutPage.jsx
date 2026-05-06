@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BigFooter } from "../components/Footer";
-import aboutHeroImg from "../assets/NEW/about us big.png";
-import arvindProfile1 from "../assets/arvind/Profile.jpeg";
-import arvindProfile2 from "../assets/arvind/Profile2.jpeg";
+import aboutHeroImg from "../assets/NEW/about us big.webp";
+import arvindProfile1 from "../assets/arvind/Profile.webp";
+import arvindProfile2 from "../assets/arvind/Profile2.webp";
 import { TRANSITION } from "../constants/config";
 import { MessageCircle, Sparkles, Zap } from "lucide-react";
 

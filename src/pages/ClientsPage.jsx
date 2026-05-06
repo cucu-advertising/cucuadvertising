@@ -60,7 +60,7 @@ const clientWork = [
     client: "Daily Dose",
     image: "/Clientwork/daily dose/02. Coffee Pod Mockup.webp",
   },
-  { client: "Daily Dose", image: "/Clientwork/daily dose/12.png" },
+  { client: "Daily Dose", image: "/Clientwork/daily dose/12.webp" },
   // {
   //   client: "Daily Dose",
   //   image: "/Clientwork/daily dose/8200-01-coffee-cup-mockup.webp",
@@ -68,9 +68,9 @@ const clientWork = [
   // { client: "Daily Dose", image: "/Clientwork/daily dose/Apron Mockup.webp" },
   // {
   //   client: "Daily Dose",
-  //   image: "/Clientwork/daily dose/Coffee Card Mockup.png",
+  //   image: "/Clientwork/daily dose/Coffee Card Mockup.webp",
   // },
-  // { client: "Daily Dose", image: "/Clientwork/daily dose/daily 2.png" },
+  // { client: "Daily Dose", image: "/Clientwork/daily dose/daily 2.webp" },
   // {
   //   client: "Daily Dose",
   //   image: "/Clientwork/daily dose/the daily dose logo color.webp",
@@ -93,7 +93,7 @@ const clientWork = [
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/5.webp" },
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/board.webp" },
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/cap.webp" },
-  // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/fd 3.png" },
+  // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/fd 3.webp" },
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/FRUIT COLOR.webp" },
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/logo.webp" },
   // Happy Events

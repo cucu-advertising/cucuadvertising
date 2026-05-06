@@ -5,13 +5,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import brandingImg from "../../assets/homepageservice/branding.png";
-import socialImg from "../../assets/homepageservice/socialmediamarketing.png";
+import brandingImg from "../../assets/homepageservice/branding.webp";
+import socialImg from "../../assets/homepageservice/socialmediamarketing.webp";
 import uiuxImg from "../../assets/homepageservice/uiux.webp";
-import videoImg from "../../assets/homepageservice/video.png";
-import nocodeImg from "../../assets/homepageservice/nocode.png";
-import fullstackImg from "../../assets/homepageservice/fullstack.jpg";
-import performanceImg from "../../assets/homepageservice/performancemarketing.png";
+import videoImg from "../../assets/homepageservice/video.webp";
+import nocodeImg from "../../assets/homepageservice/nocode.webp";
+import fullstackImg from "../../assets/homepageservice/fullstack.webp";
+import performanceImg from "../../assets/homepageservice/performancemarketing.webp";
 
 const services = [
   {

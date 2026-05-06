@@ -61,7 +61,7 @@ export const FAQ = () => {
           {/* Image */}
           <div className="rounded-2xl overflow-hidden mb-8 w-full max-w-[280px] aspect-[16/9] border border-slate-100">
             <img
-              src="/FAQ.jpg"
+              src="/FAQ.webp"
               alt="Creative Process"
               className="w-full h-auto object-cover"
             />
