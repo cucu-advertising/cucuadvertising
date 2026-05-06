@@ -169,15 +169,68 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
           </motion.div>
         </div>
 
-        <div className="px-6 md:px-24 mt-24 max-w-4xl mx-auto text-center">
+        <div className="px-6 md:px-24 mt-24 max-w-6xl mx-auto text-center relative py-12">
+          {/* Floating Side Images (Desktop only) */}
+          <div className="hidden lg:block absolute left-[-5%] top-1/2 -translate-y-1/2 w-48 z-10">
+            <motion.img 
+              initial={{ opacity: 0, x: -40, rotate: -15 }}
+              whileInView={{ opacity: 1, x: 0, rotate: -8 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              src="/workbranding/banner 2.jpg" 
+              alt="Work branding 2"
+              className="w-full rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-neutral-100"
+            />
+          </div>
+
+          <div className="hidden lg:block absolute right-[-5%] top-1/2 -translate-y-1/2 w-56 z-10">
+            <div className="relative">
+              <motion.img 
+                initial={{ opacity: 0, x: 40, rotate: 15 }}
+                whileInView={{ opacity: 1, x: 0, rotate: 5 }}
+                transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                src="/workbranding/banner 3.jpg" 
+                alt="Work branding 3"
+                className="w-4/5 ml-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-neutral-100 mb-4"
+              />
+              <motion.img 
+                initial={{ opacity: 0, y: 30, rotate: -10 }}
+                whileInView={{ opacity: 1, y: 0, rotate: -3 }}
+                transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+                src="/workbranding/banner 4.jpg" 
+                alt="Work branding 4"
+                className="w-full rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.2)] border border-neutral-100 mt-[-20%] relative z-10"
+              />
+            </div>
+          </div>
+
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xl md:text-2xl text-neutral-500 leading-relaxed font-medium"
+            className="text-xl md:text-3xl text-neutral-500 leading-relaxed font-medium max-w-3xl mx-auto"
           >
             We Believe That Every Project Has Its Own Story To Tell. From Concept To Completion, We Infuse Creativity, Strategy And Innovation To Deliver Exceptional Results.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-12 flex justify-center"
+          >
+            <button 
+              onClick={() => setPage("contact")}
+              className="group relative flex items-center gap-4 px-8 py-4 bg-transparent border border-black/10 rounded-full hover:border-black transition-all duration-500"
+            >
+              <span className="text-lg font-bold uppercase tracking-widest">Let's Collaborate</span>
+              <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:translate-x-2 transition-transform duration-500">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+            </button>
+          </motion.div>
         </div>
       </section>
 
