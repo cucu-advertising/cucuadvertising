@@ -52,11 +52,22 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
 
           
           <div className="lg:col-span-5 relative aspect-[16/10] lg:aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden shadow-2xl bg-neutral-100">
-            <img
-              src={project.img}
-              alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+            {project.img.toLowerCase().endsWith('.mp4') ? (
+              <video
+                src={project.img}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            ) : (
+              <img
+                src={project.img}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            )}
           </div>
 
         </div>
@@ -104,14 +115,25 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
         {/* 1.5 High-Impact Visual (Padded & Scaled) */}
         <div className="px-6 md:px-12 mt-10">
           <div className="aspect-[16/9] w-full overflow-hidden relative rounded-[3rem] shadow-2xl">
-            <motion.img 
-              initial={{ scale: 1.1, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              src={project.img} 
-              alt="Project Showcase" 
-              className="w-full h-full object-cover"
-            />
+            {project.img.toLowerCase().endsWith('.mp4') ? (
+              <video
+                src={project.img}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <motion.img 
+                initial={{ scale: 1.1, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                src={project.img} 
+                alt="Project Showcase" 
+                className="w-full h-full object-cover"
+              />
+            )}
             <div className="absolute inset-0 bg-black/5" />
           </div>
         </div>
@@ -183,11 +205,22 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
 
               {/* Image Content */}
               <div className="relative min-h-[400px] lg:min-h-full overflow-hidden">
-                <img 
-                  src={project.gallery && project.gallery[1] ? project.gallery[1] : project.img} 
-                  alt="Strategic Solution" 
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                {(project.gallery && project.gallery[1] ? project.gallery[1] : project.img).toLowerCase().endsWith('.mp4') ? (
+                  <video
+                    src={project.gallery && project.gallery[1] ? project.gallery[1] : project.img}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <img 
+                    src={project.gallery && project.gallery[1] ? project.gallery[1] : project.img} 
+                    alt="Strategic Solution" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -252,13 +285,25 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">
-              <img src={project.gallery && project.gallery[2] ? project.gallery[2] : project.img} alt="Brand Asset" className="w-full h-full object-cover" />
+              {(project.gallery && project.gallery[2] ? project.gallery[2] : project.img).toLowerCase().endsWith('.mp4') ? (
+                <video src={project.gallery && project.gallery[2] ? project.gallery[2] : project.img} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+              ) : (
+                <img src={project.gallery && project.gallery[2] ? project.gallery[2] : project.img} alt="Brand Asset" className="w-full h-full object-cover" />
+              )}
             </div>
             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl md:mt-12">
-              <img src={project.gallery && project.gallery[3] ? project.gallery[3] : project.img} alt="Typography" className="w-full h-full object-cover" />
+              {(project.gallery && project.gallery[3] ? project.gallery[3] : project.img).toLowerCase().endsWith('.mp4') ? (
+                <video src={project.gallery && project.gallery[3] ? project.gallery[3] : project.img} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+              ) : (
+                <img src={project.gallery && project.gallery[3] ? project.gallery[3] : project.img} alt="Typography" className="w-full h-full object-cover" />
+              )}
             </div>
             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl lg:mt-24">
-              <img src={project.gallery && project.gallery[4] ? project.gallery[4] : project.img} alt="Color Palette" className="w-full h-full object-cover" />
+              {(project.gallery && project.gallery[4] ? project.gallery[4] : project.img).toLowerCase().endsWith('.mp4') ? (
+                <video src={project.gallery && project.gallery[4] ? project.gallery[4] : project.img} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+              ) : (
+                <img src={project.gallery && project.gallery[4] ? project.gallery[4] : project.img} alt="Color Palette" className="w-full h-full object-cover" />
+              )}
             </div>
           </div>
         </div>
@@ -280,11 +325,22 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
               className="group cursor-pointer"
             >
               <div className="aspect-[16/10] overflow-hidden rounded-[2.5rem] bg-neutral-100 mb-8 relative">
-                <img 
-                  src={p.img} 
-                  alt={p.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                />
+                {p.img.toLowerCase().endsWith('.mp4') ? (
+                  <video
+                    src={p.img}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                  />
+                ) : (
+                  <img 
+                    src={p.img} 
+                    alt={p.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                  />
+                )}
               </div>
               <div className="flex justify-between items-start">
                 <div>

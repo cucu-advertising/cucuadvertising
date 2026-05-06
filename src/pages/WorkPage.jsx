@@ -36,7 +36,7 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
       className="bg-white min-h-screen text-black pt-32"
     >
       {/* 1. Header Section */}
-      <section className="px-6 md:px-24 mb-20">
+      <section className="px-6 md:px-24 mb-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
           <div className="w-full lg:w-max">
             <div className="relative">
@@ -58,6 +58,20 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
               A curated selection of our most impactful work, where strategy meets premium design.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* 1.5 Video Showcase Section */}
+      <section className="w-full mb-20 overflow-hidden">
+        <div className="w-full aspect-video md:aspect-[21/9] bg-neutral-100">
+          <video
+            src="/workbranding/Video Project 19.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
         </div>
       </section>
 
@@ -105,13 +119,24 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
                 onClick={() => handleProjectClick(p)}
               >
                 <div className="aspect-[16/11] overflow-hidden bg-neutral-100 rounded-2xl shadow-sm border border-neutral-200">
-                  <motion.img
-                    src={p.img}
-                    alt={p.title}
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.4 }}
-                    className="w-full h-full object-cover transition-all duration-500"
-                  />
+                  {p.img.toLowerCase().endsWith('.mp4') ? (
+                    <video
+                      src={p.img}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover transition-all duration-500"
+                    />
+                  ) : (
+                    <motion.img
+                      src={p.img}
+                      alt={p.title}
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ duration: 0.4 }}
+                      className="w-full h-full object-cover transition-all duration-500"
+                    />
+                  )}
                 </div>
                 <div className="mt-8">
                   <h3 className="text-3xl lg:text-4xl font-black text-black uppercase leading-none tracking-tighter mb-4">
