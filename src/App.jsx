@@ -4,6 +4,11 @@ import { AnimatePresence } from "framer-motion";
 import { Navbar } from "./components/Navbar";
 import { ComingSoon } from "./components/UIComponents";
 import Preloader from "./components/Preloader";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP Plugin
+gsap.registerPlugin(ScrollTrigger);
 
 // Pages (Lazy Loaded for Speed)
 const HomePage = React.lazy(() => import("./pages/HomePage").then(m => ({ default: m.HomePage })));
@@ -42,30 +47,42 @@ export default function App() {
     }
   }, [page, selectedProject]);
 
-  // 1. Lenis Smooth Scrolling Initialization
+  // 1. Lenis Smooth Scrolling Initialization with GSAP Sync
   useEffect(() => {
+    // Initialize Lenis
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    // Store lenis on window for global access (useful for scroll locking in components)
+    window.lenis = lenis;
 
-    requestAnimationFrame(raf);
+    // Sync ScrollTrigger with Lenis
+    lenis.on("scroll", ScrollTrigger.update);
 
-    // Sync Lenis with GSAP ScrollTrigger if possible
-    lenis.on('scroll', () => {
-      // ScrollTrigger.update();
+    // Use GSAP's ticker to drive Lenis's RAF loop
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000); // convert to milliseconds
     });
+
+    // Optional: Reset ScrollTrigger on refresh
+    ScrollTrigger.refresh();
+
+    // Prevent lag smoothing issues
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
       lenis.destroy();
+      window.lenis = null;
     };
   }, []);
 

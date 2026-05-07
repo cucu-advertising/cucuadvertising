@@ -100,6 +100,8 @@ export const AreasOfExpertise = () => {
       if (!wheelListener) {
         window.addEventListener("wheel", handleWheel, { passive: false });
         wheelListener = handleWheel;
+        // Stop Lenis to allow full control over the wheel event
+        if (window.lenis) window.lenis.stop();
       }
     };
 
@@ -107,6 +109,8 @@ export const AreasOfExpertise = () => {
       if (wheelListener) {
         window.removeEventListener("wheel", wheelListener);
         wheelListener = null;
+        // Resume Lenis
+        if (window.lenis) window.lenis.start();
       }
     };
 

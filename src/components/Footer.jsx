@@ -40,9 +40,7 @@ const SocialLink = ({ href, label, icon }) => (
   <motion.div
     className="relative flex flex-col items-center"
     initial="initial"
-    // whileHover="hover" // This was commented out in original, but removed in instruction. Keeping it removed.
   >
-    {/* The motion.span for the icon was removed in the instruction's SocialLink definition */}
     <a
       href={href}
       target="_blank"
@@ -74,7 +72,11 @@ export const StandardFooterContent = () => (
 
 export const BigFooter = ({ setPage }) => {
   const handleScrollToTop = () => {
-    gsap.to(window, { duration: 1.5, scrollTo: 0, ease: "power2.inOut" });
+    if (window.lenis) {
+      window.lenis.scrollTo(0);
+    } else {
+      gsap.to(window, { duration: 1.5, scrollTo: 0, ease: "power2.inOut" });
+    }
   };
 
   return (
