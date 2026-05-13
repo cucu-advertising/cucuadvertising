@@ -9,6 +9,140 @@ export const allProjects = [
     challenges: "Limited premium content to reflect property quality. Low discoverability for niche hospitality keywords. Vision and brand story not clearly communicated to potential guests online.",
     solution: "A multi-channel strategy centered on founder-led storytelling, experience-based content, and targeted SEO for 'Eco Luxury Resort in Hyderabad'. We built organic trust through community engagement and curated influencer partnerships.",
     identity: "A nature-inspired visual identity that emphasizes authentic retreat origins and sustainability values. Visual content focuses on the 'experience of stay' through premium photography and founder-led video narratives.",
+    subtitle: "Eco-Luxury Resort · Visual Branding, SEO & Community-Led Visibility",
+    goalObj: {
+      text: "Position Arbor Road Estate as a premium eco-luxury destination and grow visibility among refined, nature-driven travelers.",
+      pillars: [
+        {
+          num: "01",
+          title: "Brand identity and storytelling",
+          desc: "Build a strong visual identity and introduce the founder's vision through authentic storytelling."
+        },
+        {
+          num: "02",
+          title: "Search visibility and guest acquisition",
+          desc: "Rank for high-intent hospitality keywords and attract guests with refined travel experiences."
+        },
+        {
+          num: "03",
+          title: "Credibility and local brand recall",
+          desc: "Build trust through influencer visibility, community marketing, and stronger local presence."
+        }
+      ],
+      footer: "A multi-channel strategy designed to make Arbor Road the reference point for eco-luxury stays."
+    },
+    detailedChallenges: [
+      {
+        num: "01",
+        label: "Visual content",
+        desc: "Limited premium photography and video to reflect the true quality of the property."
+      },
+      {
+        num: "02",
+        label: "Search visibility",
+        desc: "Low discoverability on search engines for niche hospitality keywords."
+      },
+      {
+        num: "03",
+        label: "Founder story",
+        desc: "Vision and brand story not clearly communicated to potential guests online."
+      },
+      {
+        num: "04",
+        label: "Community reach",
+        desc: "Minimal presence in communities where premium travelers seek recommendations."
+      },
+      {
+        num: "05",
+        label: "Influencer trust",
+        desc: "No influencer exposure to establish credibility among new audiences."
+      }
+    ],
+    strategicDeepDives: [
+      {
+        num: "01",
+        title: "Founder-led storytelling",
+        subtitle: "We built the brand narrative around the founder's journey — the vision and values behind Arbor Road Estate.",
+        listLabel: "How we brought it to life:",
+        items: [
+          "Founder interviews and video storytelling",
+          "Documenting the eco-conscious retreat's origin",
+          "Sustainability values and guest philosophy content",
+          "Founder's voice integrated across all digital touchpoints"
+        ],
+        mediaNote: "Tap to watch the video"
+      },
+      {
+        num: "02",
+        title: "Premium photography and video",
+        subtitle: "Capturing the true essence and spatial quality of the eco-luxury property through high-resolution visual experiences.",
+        isGallery: true
+      },
+      {
+        num: "03",
+        title: "SEO: eco-luxury positioning",
+        subtitle: "A targeted SEO framework to improve visibility for intent-driven hospitality searches, anchored around the primary keyword: Eco Luxury Resort in Hyderabad.",
+        listLabel: "Actions taken",
+        items: [
+          "On-page keyword optimization",
+          "Experience-focused blog creation",
+          "Content hierarchy improvements",
+          "Metadata and indexing optimization",
+          "Structured internal linking"
+        ]
+      },
+      {
+        num: "04",
+        title: "Reddit community marketing",
+        subtitle: "We introduced the property into curated travel communities where users actively seek authentic stay recommendations.",
+        listLabel: "What we did:",
+        items: [
+          "Participated in relevant travel and lifestyle threads",
+          "Shared experience-based recommendations",
+          "Positioned within eco stay and retreat discussions",
+          "Built organic visibility through community engagement"
+        ]
+      },
+      {
+        num: "05",
+        title: "Influencer marketing",
+        subtitle: "3 curated influencers aligned with premium travel and lifestyle audiences.",
+        listLabel: "What we did:",
+        items: [
+          "Hosted stays at the property",
+          "Created authentic, experience-based content",
+          "Visual storytelling shared across platforms"
+        ],
+        footerNote: "Which has driven more than 5 lakh impressions",
+        mediaNote: "Video Link"
+      }
+    ],
+    channelsActivated: {
+      subtitle: "Five touchpoints. One layered strategy.",
+      channels: [
+        {
+          title: "Founder storytelling",
+          desc: "Authentic narrative content led by the founders, building trust and brand identity."
+        },
+        {
+          title: "Search discovery",
+          desc: "Eco-luxury SEO positioning to capture high-intent organic traffic."
+        },
+        {
+          title: "Reddit communities",
+          desc: "Community-led conversations to earn trust and drive organic word-of-mouth."
+        },
+        {
+          title: "Influencer networks",
+          desc: "Partnered voices amplifying reach through credible, niche audiences."
+        },
+        {
+          title: "Visual social media",
+          desc: "Premium photo and video content across visual-first platforms."
+        }
+      ],
+      layeredExposure: "Storytelling, search, and social validation working together across every channel."
+    },
     results: [
       { val: "+340%", label: "Organic Search Visibility Growth" },
       { val: "#1", label: "Ranking: Eco Luxury Resort" },
