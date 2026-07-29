@@ -7,72 +7,21 @@ import {
   useVelocity,
   useTransform,
 } from "framer-motion";
+import { allProjects } from "../../constants/projects"; // 👈 update this path to match where your project.js actually lives
 
-const projects = [
-  {
-    title: "Calentify",
-    category: "SaaS Product",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
-    height: "h-[280px]",
-  },
-  {
-    title: "Collabify",
-    category: "Agency Tool",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
-    height: "h-[360px]",
-  },
-  {
-    title: "Nike Air Max",
-    category: "E-Commerce",
-    image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop",
-    height: "h-[220px]",
-  },
-  //   {
-  //     title: "Dual Sense",
-  //     category: "Hardware",
-  //     image:
-  //       "https://images.unsplash.com/photo-1605906302484-3c672e10df2e?q=80&w=1000&auto=format&fit=crop",
-  //     height: "h-[320px]",
-  //   },
-  {
-    title: "Calorie Tracker",
-    category: "Health App",
-    image:
-      "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=1000&auto=format&fit=crop",
-    height: "h-[260px]",
-  },
-  {
-    title: "Lazaroy",
-    category: "Portfolio",
-    image:
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop",
-    height: "h-[200px]",
-  },
-  {
-    title: "Fintech App",
-    category: "Mobile App",
-    image:
-      "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000&auto=format&fit=crop",
-    height: "h-[300px]",
-  },
-  {
-    title: "Crypto Dashboard",
-    category: "Dashboard",
-    image:
-      "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=1000&auto=format&fit=crop",
-    height: "h-[240px]",
-  },
-  {
-    title: "Vortex Gaming",
-    category: "Web3",
-    image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
-    height: "h-[340px]",
-  },
+// Fixed height variations to keep the staggered masonry look
+const HEIGHTS = [
+  "h-[280px]", "h-[360px]", "h-[220px]", "h-[260px]",
+  "h-[200px]", "h-[300px]", "h-[240px]", "h-[340px]",
 ];
+
+// Pull from the SAME data used by your Portfolio page
+const projects = allProjects.map((p, i) => ({
+  title: p.title,
+  category: p.category,
+  image: p.img,
+  height: HEIGHTS[i % HEIGHTS.length],
+}));
 
 const VerticalMarquee = ({ items, baseVelocity = 100, direction = 1 }) => {
   const baseY = useMotionValue(0);
@@ -103,7 +52,6 @@ const VerticalMarquee = ({ items, baseVelocity = 100, direction = 1 }) => {
 
       moveBy += directionFactor.current * moveBy * velocityFactor.get();
 
-      // Wrap logically based on item count. -50% because we duplicate once.
       let nextBaseY = baseY.get() + moveBy;
       if (nextBaseY <= -50) nextBaseY = 0;
       if (nextBaseY > 0) nextBaseY = -50;
@@ -120,7 +68,6 @@ const VerticalMarquee = ({ items, baseVelocity = 100, direction = 1 }) => {
   return (
     <div className="flex flex-col gap-4 md:gap-5 overflow-hidden">
       <motion.div className="flex flex-col gap-4 md:gap-5" style={{ y }}>
-        {/* Duplicate items for seamless loop */}
         {[...items, ...items].map((p, i) => (
           <ProjectCard key={i} project={p} index={i} />
         ))}
@@ -156,13 +103,18 @@ const ProjectCard = ({ project, index }) => (
 );
 
 export const ProjectsColumns = () => {
-  const column1 = projects.slice(0, 3);
-  const column2 = projects.slice(3, 6);
-  const column3 = projects.slice(6, 9);
+  // Round-robin split so it auto-balances no matter how many projects you add later
+  const column1 = [];
+  const column2 = [];
+  const column3 = [];
+  projects.forEach((p, i) => {
+    if (i % 3 === 0) column1.push(p);
+    else if (i % 3 === 1) column2.push(p);
+    else column3.push(p);
+  });
 
   return (
     <section className="bg-white py-20 px-6 md:px-12 overflow-hidden relative">
-      {/* Header */}
       <div className="max-w-[1800px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-start gap-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -176,15 +128,12 @@ export const ProjectsColumns = () => {
           </h1>
           <h1
             className="monigue-font text-6xl md:text-[9rem] font-black uppercase leading-[0.8] tracking-tight"
-            style={{
-              color: "#197C48",
-            }}
+            style={{ color: "#197C48" }}
           >
             PROJECTS
           </h1>
         </motion.div>
 
-        {/* Right: Quote */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -194,21 +143,17 @@ export const ProjectsColumns = () => {
         >
           <h1 className="anton-sc-regular text-2xl md:text-3xl text-slate-800 leading-tight">
             " COOL WAY TO SHOW PROJECTS " <br />
-            <span className="text-[#197C48] opacity-80 italic">~ Anshu Singh</span>
+            
           </h1>
         </motion.div>
       </div>
 
-      {/* Vertical Marquee Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-start max-w-[1800px] mx-auto h-[600px] md:h-[800px] overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 relative shadow-2xl">
         <VerticalMarquee items={column1} baseVelocity={-2} direction={1} />
         <VerticalMarquee items={column2} baseVelocity={2} direction={-1} />
         <VerticalMarquee items={column3} baseVelocity={-2.5} direction={1} />
 
-        {/* Soft radial overlay for depth */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950 via-transparent to-slate-950 opacity-90 z-20" />
-        
-        {/* Subtle inner glow */}
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-30" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none z-30" />
       </div>

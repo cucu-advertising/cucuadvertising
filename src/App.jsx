@@ -1,26 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, useParams, Navigate } from "react-router-dom";
 // Components
 import { Navbar } from "./components/Navbar";
 import { ComingSoon } from "./components/UIComponents";
 import Preloader from "./components/Preloader";
+import EntryExperience from "./components/EntryExperience";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { allProjects } from "./constants/projects";
 
-// Pages
-import { HomePage } from "./pages/HomePage";
-import { WorkPage } from "./pages/WorkPage";
-import { ClientsPage } from "./pages/ClientsPage";
-import { ServicesPage } from "./pages/ServicesPage";
-import { AboutPage } from "./pages/AboutPage";
-import { ContactPage } from "./pages/ContactPage";
-import { CareersPage } from "./pages/CareersPage";
-import { ProjectDetailPage } from "./pages/ProjectDetailPage";
+// Register GSAP Plugin
+gsap.registerPlugin(ScrollTrigger);
 
-export default function App() {
-  // Persistence Initialization
-  const [page, setPage] = useState(() => {
-    return localStorage.getItem("cta_current_page") || "home";
-  });
-  
+// Pages (Lazy Loaded for Speed)
+const HomePage = React.lazy(() => import("./pages/HomePage").then(m => ({ default: m.HomePage })));
+const WorkPage = React.lazy(() => import("./pages/WorkPage").then(m => ({ default: m.WorkPage })));
+const ShowcasePage = React.lazy(() => import("./pages/ShowcasePage").then(m => ({ default: m.ShowcasePage })));
+const ClientsPage = React.lazy(() => import("./pages/ClientsPage").then(m => ({ default: m.ClientsPage })));
+const ServicesPage = React.lazy(() => import("./pages/ServicesPage").then(m => ({ default: m.ServicesPage })));
+const AboutPage = React.lazy(() => import("./pages/AboutPage").then(m => ({ default: m.AboutPage })));
+const ContactPage = React.lazy(() => import("./pages/ContactPage").then(m => ({ default: m.ContactPage })));
+const CareersPage = React.lazy(() => import("./pages/CareersPage").then(m => ({ default: m.CareersPage })));
+const ProjectDetailPage = React.lazy(() => import("./pages/ProjectDetailPage").then(m => ({ default: m.ProjectDetailPage })));
+
+const createSlug = (title) => {
+  if (!title) return "";
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+};
+
+function ProjectRouteWrapper({ setPage, setSelectedProject, latestProjectRef }) {
+  const { slug } = useParams();
+  const project = allProjects.find(p => createSlug(p.title) === slug);
+
+  useEffect(() => {
+    if (project) {
+      latestProjectRef.current = project;
+      setSelectedProject(project);
+    }
+  }, [project, setSelectedProject, latestProjectRef]);
+
+  if (!project) {
+    return <Navigate to="/work" replace />;
+  }
+
+  return (
+    <ProjectDetailPage
+      project={project}
+      onBack={() => setPage("work")}
+      setPage={setPage}
+      setSelectedProject={setSelectedProject}
+    />
+  );
+}
+
+function AppContent() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [selectedProject, setSelectedProject] = useState(() => {
     const saved = localStorage.getItem("cta_current_project");
     try {
@@ -30,7 +67,33 @@ export default function App() {
     }
   });
 
+  const latestProjectRef = useRef(selectedProject);
+  const handleSetSelectedProject = (proj) => {
+    latestProjectRef.current = proj;
+    setSelectedProject(proj);
+  };
+
   const [isAppLoading, setIsAppLoading] = useState(true);
+
+  // Cucu Advertising intro -> "Press Enter" -> plain reveal, shown once per
+  // browser session, only on the home route.
+  const [entryDone, setEntryDone] = useState(
+    () => sessionStorage.getItem("cucu_entry_done") === "1"
+  );
+
+  // Map active location back to semantic 'page' strings for Navbar active triggers
+  let page = "home";
+  const path = location.pathname;
+  const showEntryGate = path === "/" && !entryDone;
+  if (path.startsWith("/work")) page = "work";
+  else if (path.startsWith("/showcase")) page = "showcase";
+  else if (path.startsWith("/services")) page = "services";
+  else if (path.startsWith("/about")) page = "about";
+  else if (path.startsWith("/clients")) page = "clients";
+  else if (path.startsWith("/contact")) page = "contact";
+  else if (path.startsWith("/careers")) page = "careers";
+  else if (path.startsWith("/team")) page = "team";
+  else if (path.startsWith("/project")) page = "project-detail";
 
   // Persistence Hook
   useEffect(() => {
@@ -42,22 +105,93 @@ export default function App() {
     }
   }, [page, selectedProject]);
 
-  // Preloader logic: Wait for all images
+  // Intercept setPage navigation triggers cleanly
+  const setPage = (targetPage) => {
+    if (targetPage === "home") navigate("/");
+    else if (targetPage === "work") navigate("/work");
+    else if (targetPage === "showcase") navigate("/showcase");
+    else if (targetPage === "services") navigate("/services");
+    else if (targetPage === "about") navigate("/about");
+    else if (targetPage === "clients") navigate("/clients");
+    else if (targetPage === "contact") navigate("/contact");
+    else if (targetPage === "careers") navigate("/careers");
+    else if (targetPage === "team") navigate("/team");
+    else if (targetPage === "project-detail") {
+      const proj = latestProjectRef.current;
+      if (proj) {
+        navigate(`/project/${createSlug(proj.title)}`);
+      } else {
+        navigate("/work");
+      }
+    } else {
+      navigate(`/${targetPage}`);
+    }
+  };
+
+  // 1. Lenis Smooth Scrolling Initialization with GSAP Sync
+  useEffect(() => {
+    // Initialize Lenis
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    // Store lenis on window for global access (useful for scroll locking in components)
+    window.lenis = lenis;
+
+    // Sync ScrollTrigger with Lenis
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Use GSAP's ticker to drive Lenis's RAF loop
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000); // convert to milliseconds
+    });
+
+    // Optional: Reset ScrollTrigger on refresh
+    ScrollTrigger.refresh();
+
+    // Prevent lag smoothing issues
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
+      lenis.destroy();
+      window.lenis = null;
+    };
+  }, []);
+
+  // 2. Optimized Preloader logic
   useEffect(() => {
     const images = document.querySelectorAll("img");
     const totalImages = images.length;
     let loadedCount = 0;
 
+    // Minimum display time for preloader (for branding)
+    const minLoadingTime = 1500;
+    const startTime = Date.now();
+
+    const finishLoading = () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+      setTimeout(() => setIsAppLoading(false), remainingTime);
+    };
+
     if (totalImages === 0) {
-      setIsAppLoading(false);
+      finishLoading();
       return;
     }
 
     const onImageLoad = () => {
       loadedCount++;
       if (loadedCount >= totalImages) {
-        // Slight delay for smoothness
-        setTimeout(() => setIsAppLoading(false), 500);
+        finishLoading();
       }
     };
 
@@ -66,12 +200,12 @@ export default function App() {
         onImageLoad();
       } else {
         img.addEventListener("load", onImageLoad);
-        img.addEventListener("error", onImageLoad); // Count errors too to avoid infinite loading
+        img.addEventListener("error", onImageLoad);
       }
     });
 
-    // Fallback: Max 10 seconds loading
-    const timer = setTimeout(() => setIsAppLoading(false), 10000);
+    // Fallback: Max 4 seconds loading for better UX
+    const timer = setTimeout(finishLoading, 4000);
 
     return () => {
       clearTimeout(timer);
@@ -85,52 +219,57 @@ export default function App() {
   // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [page]);
+  }, [location.pathname]);
+
+  // Lock scrolling while the intro / "press enter" gate is showing
+  useEffect(() => {
+    document.body.style.overflow = showEntryGate ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showEntryGate]);
+
+  const handleEntryComplete = () => {
+    sessionStorage.setItem("cucu_entry_done", "1");
+    setEntryDone(true);
+  };
 
   return (
     <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-hidden noise">
       <Preloader isLoading={isAppLoading} />
-      <Navbar activePage={page} setPage={setPage} />
+      {showEntryGate && <EntryExperience onComplete={handleEntryComplete} />}
+      <Navbar
+        activePage={page}
+        setPage={setPage}
+        navReady={!showEntryGate}
+        homeMode={page === "home"}
+      />
 
       <AnimatePresence mode="wait">
-        {page === "home" && (
-          <HomePage
-            key="home"
-            setPage={setPage}
-            setSelectedProject={setSelectedProject}
-          />
-        )}
-        {page === "work" && (
-          <WorkPage
-            key="work"
-            setPage={setPage}
-            setSelectedProject={setSelectedProject}
-          />
-        )}
-        {page === "services" && (
-          <ServicesPage key="services" setPage={setPage} />
-        )}
-        {page === "about" && <AboutPage key="about" setPage={setPage} />}
-        {page === "clients" && <ClientsPage key="clients" setPage={setPage} />}
-        {page === "contact" && <ContactPage key="contact" setPage={setPage} />}
-        {page === "team" && (
-          <ComingSoon
-            key="team"
-            title="Our Team"
-            onBack={() => setPage("home")}
-          />
-        )}
-        {page === "careers" && <CareersPage key="careers" setPage={setPage} />}
-        {page === "project-detail" && selectedProject && (
-          <ProjectDetailPage
-            key="project-detail"
-            project={selectedProject}
-            onBack={() => setPage("work")}
-            setPage={setPage}
-            setSelectedProject={setSelectedProject}
-          />
-        )}
+        <React.Suspense fallback={null}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<HomePage setPage={setPage} setSelectedProject={handleSetSelectedProject} />} />
+            <Route path="/work" element={<WorkPage setPage={setPage} setSelectedProject={handleSetSelectedProject} />} />
+            <Route path="/showcase" element={<ShowcasePage key="showcase" setPage={setPage} />} />
+            <Route path="/services" element={<ServicesPage key="services" setPage={setPage} />} />
+            <Route path="/about" element={<AboutPage key="about" setPage={setPage} />} />
+            <Route path="/clients" element={<ClientsPage key="clients" setPage={setPage} />} />
+            <Route path="/contact" element={<ContactPage key="contact" setPage={setPage} />} />
+            <Route path="/team" element={<ComingSoon key="team" title="Our Team" onBack={() => setPage("home")} />} />
+            <Route path="/careers" element={<CareersPage key="careers" setPage={setPage} />} />
+            <Route path="/project/:slug" element={<ProjectRouteWrapper setPage={setPage} setSelectedProject={handleSetSelectedProject} latestProjectRef={latestProjectRef} />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </React.Suspense>
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }

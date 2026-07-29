@@ -47,10 +47,10 @@ const clients = [
   { id: 13, name: "Remedy", logo: logoRemedy },
   { id: 14, name: "Sannidhi", logo: logoSannidi },
   { id: 15, name: "Secretping", logo: logoSecretping },
-  { id: 16, name: "Split Be", logo: logoSplitBe },
+  { id: 16, name: "Splitbi", logo: logoSplitBe },
   { id: 17, name: "SVD", logo: logoSvd },
   { id: 18, name: "Varun", logo: logoVarun },
-  { id: 19, name: "Vijari", logo: logoVijari },
+  { id: 19, name: "Vihari", logo: logoVijari },
   { id: 20, name: "Zargold", logo: logoZargold },
 ];
 
@@ -60,7 +60,7 @@ const clientWork = [
     client: "Daily Dose",
     image: "/Clientwork/daily dose/02. Coffee Pod Mockup.webp",
   },
-  { client: "Daily Dose", image: "/Clientwork/daily dose/12.png" },
+  { client: "Daily Dose", image: "/Clientwork/daily dose/12.webp" },
   // {
   //   client: "Daily Dose",
   //   image: "/Clientwork/daily dose/8200-01-coffee-cup-mockup.webp",
@@ -68,9 +68,9 @@ const clientWork = [
   // { client: "Daily Dose", image: "/Clientwork/daily dose/Apron Mockup.webp" },
   // {
   //   client: "Daily Dose",
-  //   image: "/Clientwork/daily dose/Coffee Card Mockup.png",
+  //   image: "/Clientwork/daily dose/Coffee Card Mockup.webp",
   // },
-  // { client: "Daily Dose", image: "/Clientwork/daily dose/daily 2.png" },
+  // { client: "Daily Dose", image: "/Clientwork/daily dose/daily 2.webp" },
   // {
   //   client: "Daily Dose",
   //   image: "/Clientwork/daily dose/the daily dose logo color.webp",
@@ -93,7 +93,7 @@ const clientWork = [
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/5.webp" },
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/board.webp" },
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/cap.webp" },
-  // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/fd 3.png" },
+  // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/fd 3.webp" },
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/FRUIT COLOR.webp" },
   // { client: "Fruit Bandi", image: "/Clientwork/fruit bandi/logo.webp" },
   // Happy Events

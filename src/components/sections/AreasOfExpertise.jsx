@@ -5,13 +5,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import brandingImg from "../../assets/homepageservice/branding.png";
-import socialImg from "../../assets/homepageservice/socialmediamarketing.png";
+import brandingImg from "../../assets/homepageservice/branding.webp";
+import socialImg from "../../assets/homepageservice/socialmediamarketing.webp";
 import uiuxImg from "../../assets/homepageservice/uiux.webp";
-import videoImg from "../../assets/homepageservice/video.png";
-import nocodeImg from "../../assets/homepageservice/nocode.png";
-import fullstackImg from "../../assets/homepageservice/fullstack.jpg";
-import performanceImg from "../../assets/homepageservice/performancemarketing.png";
+import videoImg from "../../assets/homepageservice/video.webp";
+import nocodeImg from "../../assets/homepageservice/nocode.webp";
+import fullstackImg from "../../assets/homepageservice/fullstack.webp";
+import performanceImg from "../../assets/homepageservice/performancemarketing.webp";
 
 const services = [
   {
@@ -100,6 +100,8 @@ export const AreasOfExpertise = () => {
       if (!wheelListener) {
         window.addEventListener("wheel", handleWheel, { passive: false });
         wheelListener = handleWheel;
+        // Stop Lenis to allow full control over the wheel event
+        if (window.lenis) window.lenis.stop();
       }
     };
 
@@ -107,6 +109,8 @@ export const AreasOfExpertise = () => {
       if (wheelListener) {
         window.removeEventListener("wheel", wheelListener);
         wheelListener = null;
+        // Resume Lenis
+        if (window.lenis) window.lenis.start();
       }
     };
 

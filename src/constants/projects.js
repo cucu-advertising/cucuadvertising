@@ -1,26 +1,168 @@
 export const allProjects = [
-  // {
-  //   title: "Split be",
-  //   category: "Fintech",
-  //   img: "/Clientwork/daily dose/[View 1] Main file.webp",
-  //   about: "Splitbi is a modern technology platform designed to streamline complex processes into manageable segments. The brand focuses on delivering high efficiency and organization to its users, ensuring that every interaction is clear and productive.",
-  //   scope: ["Visual Strategy", "Collateral Design", "Digital Integration", "Minimalist Layout"],
-  //   industry: "Digital Productivity & Business Services",
-  //   challenges: "The primary challenge was to create an identity that feels both high-tech and human-centric, communicating the concept of 'organizing' without appearing fragmented.",
-  //   solution: "A 'Clarity First' narrative that eliminates unnecessary complexity, positioning the brand as a tool for precision and order through minimalist design.",
-  //   identity: "Rooted in organized simplicity and modern balance, using a clean and airy layout with sharp, precise lines to reflect a high standard of accuracy.",
-  //   gallery: [
-  //     "/Clientwork/daily dose/daily 2.png",
-  //     "/Clientwork/daily dose/02. Coffee Pod Mockup.webp",
-  //     "/Clientwork/daily dose/8200-01-coffee-cup-mockup.webp",
-  //     "/Clientwork/daily dose/Apron Mockup.webp",
-  //     "/Clientwork/daily dose/Coffee Card Mockup.png"
-  //   ]
-  // },
+  {
+    title: "Arbor Road",
+    category: "Brand Identity & Communication",
+    img: "/workbranding/arbor.webp",
+    about: "Arbor Road Estate is a premium eco-luxury destination designed for refined, nature-driven travelers. The brand focuses on sustainability, founder-led storytelling, and providing an authentic retreat experience in the heart of nature.",
+    scope: ["Brand Identity", "Search Discovery", "Community Marketing", "Influencer Strategy"],
+    industry: "Luxury Hospitality & Eco-Tourism",
+    challenges: "Limited premium content to reflect property quality. Low discoverability for niche hospitality keywords. Vision and brand story not clearly communicated to potential guests online.",
+    solution: "A multi-channel strategy centered on founder-led storytelling, experience-based content, and targeted SEO for 'Eco Luxury Resort in Hyderabad'. We built organic trust through community engagement and curated influencer partnerships.",
+    identity: "A nature-inspired visual identity that emphasizes authentic retreat origins and sustainability values. Visual content focuses on the 'experience of stay' through premium photography and founder-led video narratives.",
+    subtitle: "Eco-Luxury Resort · Visual Branding, SEO & Community-Led Visibility",
+    goalObj: {
+      text: "Position Arbor Road Estate as a premium eco-luxury destination and grow visibility among refined, nature-driven travelers.",
+      pillars: [
+        {
+          num: "01",
+          title: "Brand identity and storytelling",
+          desc: "Build a strong visual identity and introduce the founder's vision through authentic storytelling."
+        },
+        {
+          num: "02",
+          title: "Search visibility and guest acquisition",
+          desc: "Rank for high-intent hospitality keywords and attract guests with refined travel experiences."
+        },
+        {
+          num: "03",
+          title: "Credibility and local brand recall",
+          desc: "Build trust through influencer visibility, community marketing, and stronger local presence."
+        }
+      ],
+      footer: "A multi-channel strategy designed to make Arbor Road the reference point for eco-luxury stays."
+    },
+    detailedChallenges: [
+      {
+        num: "01",
+        label: "Visual content",
+        desc: "Limited premium photography and video to reflect the true quality of the property."
+      },
+      {
+        num: "02",
+        label: "Search visibility",
+        desc: "Low discoverability on search engines for niche hospitality keywords."
+      },
+      {
+        num: "03",
+        label: "Founder story",
+        desc: "Vision and brand story not clearly communicated to potential guests online."
+      },
+      {
+        num: "04",
+        label: "Community reach",
+        desc: "Minimal presence in communities where premium travelers seek recommendations."
+      },
+      {
+        num: "05",
+        label: "Influencer trust",
+        desc: "No influencer exposure to establish credibility among new audiences."
+      }
+    ],
+    strategicDeepDives: [
+      {
+        num: "01",
+        title: "Founder-led storytelling",
+        subtitle: "We built the brand narrative around the founder's journey — the vision and values behind Arbor Road Estate.",
+        listLabel: "How we brought it to life:",
+        items: [
+          "Founder interviews and video storytelling",
+          "Documenting the eco-conscious retreat's origin",
+          "Sustainability values and guest philosophy content",
+          "Founder's voice integrated across all digital touchpoints"
+        ],
+        mediaNote: "Tap to watch the video"
+      },
+      {
+        num: "02",
+        title: "Premium photography and video",
+        subtitle: "Capturing the true essence and spatial quality of the eco-luxury property through high-resolution visual experiences.",
+        isGallery: true
+      },
+      {
+        num: "03",
+        title: "SEO: eco-luxury positioning",
+        subtitle: "A targeted SEO framework to improve visibility for intent-driven hospitality searches, anchored around the primary keyword: Eco Luxury Resort in Hyderabad.",
+        listLabel: "Actions taken",
+        items: [
+          "On-page keyword optimization",
+          "Experience-focused blog creation",
+          "Content hierarchy improvements",
+          "Metadata and indexing optimization",
+          "Structured internal linking"
+        ]
+      },
+      {
+        num: "04",
+        title: "Reddit community marketing",
+        subtitle: "We introduced the property into curated travel communities where users actively seek authentic stay recommendations.",
+        listLabel: "What we did:",
+        items: [
+          "Participated in relevant travel and lifestyle threads",
+          "Shared experience-based recommendations",
+          "Positioned within eco stay and retreat discussions",
+          "Built organic visibility through community engagement"
+        ]
+      },
+      {
+        num: "05",
+        title: "Influencer marketing",
+        subtitle: "3 curated influencers aligned with premium travel and lifestyle audiences.",
+        listLabel: "What we did:",
+        items: [
+          "Hosted stays at the property",
+          "Created authentic, experience-based content",
+          "Visual storytelling shared across platforms"
+        ],
+        footerNote: "Which has driven more than 5 lakh impressions",
+        mediaNote: "Video Link"
+      }
+    ],
+    channelsActivated: {
+      subtitle: "Five touchpoints. One layered strategy.",
+      channels: [
+        {
+          title: "Founder storytelling",
+          desc: "Authentic narrative content led by the founders, building trust and brand identity."
+        },
+        {
+          title: "Search discovery",
+          desc: "Eco-luxury SEO positioning to capture high-intent organic traffic."
+        },
+        {
+          title: "Reddit communities",
+          desc: "Community-led conversations to earn trust and drive organic word-of-mouth."
+        },
+        {
+          title: "Influencer networks",
+          desc: "Partnered voices amplifying reach through credible, niche audiences."
+        },
+        {
+          title: "Visual social media",
+          desc: "Premium photo and video content across visual-first platforms."
+        }
+      ],
+      layeredExposure: "Storytelling, search, and social validation working together across every channel."
+    },
+    results: [
+      { val: "+340%", label: "Organic Search Visibility Growth" },
+      { val: "#1", label: "Ranking: Eco Luxury Resort" },
+      { val: "1M", label: "Total Organic Impressions" },
+      { val: "80+", label: "Community Mentions" },
+      { val: "30+", label: "Visual Content Pieces" },
+      { val: "5L", label: "Influencer Driven Impressions" }
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
   {
     title: "Fruit Bandi",
-    category: "Branding", 
-    img: "/Clientwork/fruit bandi/fd 3.png",
+    category: "Packaging Design", 
+    img: "/Clientwork/fruit bandi/fd 3.webp",
     about: "A culinary venture blending traditional flavors with a modern digital ordering experience.",
     scope: ["Branding", "Packaging", "Web Design"],
     industry: "Food & Beverage",
@@ -28,20 +170,33 @@ export const allProjects = [
       "/Clientwork/fruit bandi/01.  Sauce Jar Mockup.webp",
       "/Clientwork/fruit bandi/02.webp",
       "/Clientwork/fruit bandi/board.webp",
-      "/Clientwork/fruit bandi/fd 3.png",
+      "/Clientwork/fruit bandi/fd 3.webp",
       "/Clientwork/fruit bandi/01.  Sauce Jar Mockup.webp"
     ]
   },
   {
     title: "One ENT",
-    category: "Health",
+    category: "User Experience & Interaction",
     img: "/Clientwork/One ent/ONEENT Brand Guidelines-12 banner.webp",
-    about: "OneENT provides a unified platform for specialized and compassionate ENT care, led by Dr. Manusrut. The brand is built on a philosophy of patient-first care, ethical practices, and a dedication to long-term wellness.",
-    scope: ["Strategic Foundation", "Visual Identity", "Design Systems", "Web Experience Design"],
-    industry: "Specialized Healthcare (Otorhinolaryngology)",
-    challenges: "The primary challenge was to create a clinical identity that felt modern and professional without appearing cold, maintaining medical precision while remaining warm.",
-    solution: "Positioned OneENT as a 'one stop' trusted platform that simplifies the patient journey through an empathy-driven communication strategy.",
-    identity: "A modern visual system featuring mirrored 'E' letterforms reaching for symmetry and balance, paired with Healing Teal Green and Deep Charcoal Navy.",
+    about: "One Ent is a specialized healthcare platform focused on compassionate and advanced ENT care. Led by Dr. Manusrut, the brand brings together ENT specialists, audiologists, and therapists to provide patient-first treatment with a strong focus on trust, ethics, and long-term wellness.",
+    scope: [
+      "Brand strategy centered on empathy and reliability.",
+      "Modern logo and warm clinical color palette.",
+      "Typography and stationery design system.",
+      "Informative web experience for ENT services and patient inquiries."
+    ],
+    industry: "Specialized Healthcare (ENT / Otorhinolaryngology)",
+    challenges: "OneENT operates in the Specialized Healthcare sector, specifically ENT (Otorhinolaryngology). Focus on safety and sensitive data protection. Requires precision, trust, and human connection. Balance between medical expertise and patient comfort. The main challenge was creating a healthcare identity that feels modern yet approachable. Communicate expertise without feeling cold. Avoid overused medical branding cliches. Build long-term trust through clarity and transparency.",
+    solution: "A one-stop trusted platform that simplifies the patient journey — prioritizing listening before treating. By adopting a patient-first approach, OneENT builds connection through empathy and consistent outcomes.",
+    identity: "The strategy positioned OneENT as a trusted \"one-stop\" ENT care platform. Mirrored \"E\" letterforms forming a continuous symbol. Circular design representing unity and ongoing care. Healing teal green for empathy and comfort. Deep charcoal navy for professionalism and trust. Poppins typography for a clean and modern appearance.",
+    results: [
+      { val: "1", label: "Unified Health Platform" },
+      { val: "100%", label: "Patient-First Identity" },
+      { val: "2", label: "Specialized Care Verticals" },
+      { val: "7", label: "Core Identity Guidelines" },
+      { val: "Sym", label: "Mirrored Ear Symmetry Logo" },
+      { val: "∞", label: "Continuity of Care" }
+    ],
     gallery: [
       "/Clientwork/One ent/ONEENT Brand Guidelines dress.webp",
       "/Clientwork/One ent/ONEENT Brand Guidelines hooarding.webp",
@@ -52,14 +207,27 @@ export const allProjects = [
   },
   {
     title: "Secret Ping",
-    category: "Tech",
+    category: "Web Development",
     img: "/Clientwork/secretping/sp webiste.webp",
-    about: "Secretping is a modern technology firm dedicated to providing secure and dependable communication monitoring services. The brand is built on a foundation of safety and unwavering trust.",
-    scope: ["Visual Strategy", "Typography System", "Brand Voice", "Web Experience Design"],
+    about: "Secretping is a modern technology company focused on secure communication and monitoring solutions. Built around trust and protection, the brand combines advanced technology with a user-focused approach to deliver safe and dependable experiences.",
+    scope: [
+      "Shield-inspired logo and high-contrast visual system",
+      "Space Grotesk typography for a technical feel",
+      "Professional and energetic brand voice",
+      "Secure web experience with a \"Ping\" monitoring interface"
+    ],
     industry: "Security & Digital Communications",
-    challenges: "Visually representing the dual nature of 'protection' and 'communication' without generic security imagery, using the initials S and P as a protective emblem.",
-    solution: "A layered design approach that combines vibrant energy with professional dependability, creating a brand image that is both strong and approachable.",
-    identity: "A protective shield emblem integrating a 'ping signal' formed by S and P segments, utilizing vibrant orange for alertness and deep blue for reliability.",
+    challenges: "Secretping operates in the Security & Digital Communications industry, where reliability and trust are essential. Focus on safety and sensitive data protection. Strong need for confidence and stability. Balance between technical strength and accessibility. The brand needed to represent both security and communication in a modern way. Avoid generic security visuals. Combine \"S\" and \"P\" into a meaningful symbol. Balance alertness with professional sophistication.",
+    solution: "A layered design approach that combines vibrant energy with professional dependability. The strategy emphasizes a 'strong and approachable' image, positioning Secretping as a proactive leader in secure communications.",
+    identity: "Secretping's identity combines protection and connectivity into one cohesive system. Layered \"S\" and \"P\" forms inspired by ping signals. Orange tones for energy and alertness. Deep blue palette for trust and reliability. Space Grotesk typography for a clean, futuristic feel.",
+    results: [
+      { val: "Enc", label: "End-to-End Secure Monitoring" },
+      { val: "Shield", label: "Protective Emblem Identity" },
+      { val: "Active", label: "Proactive Defense Strategy" },
+      { val: "Ping", label: "Real-time Signal Interface" },
+      { val: "100%", label: "High-Tech Precision" },
+      { val: "Trust", label: "Zero-Compromise Security" }
+    ],
     gallery: [
       "/Clientwork/secretping/Secretping Logo Concept_page-0007.webp",
       "/Clientwork/secretping/sp cardb.webp",
@@ -70,7 +238,7 @@ export const allProjects = [
   },
   {
     title: "GN Caters",
-    category: "Hospitality",
+    category: "Packaging Design",
     img: "/Clientwork/happy events/Happy events menu.webp",
     about: "Founded in 2004, GN Caters is a culinary powerhouse offering over 700 cuisines. They blend a two-decade legacy with modern innovation to create premium dining experiences.",
     scope: ["Visual Identity", "Brand Strategy", "Collateral Design", "Website Design"],
@@ -88,7 +256,7 @@ export const allProjects = [
   },
   {
     title: "Happy Events",
-    category: "Events",
+    category: "User Experience & Interaction",
     img: "/Clientwork/happy events/Happy events bb.webp",
     about: "A specialized wedding planning and event décor firm focusing on transforming personal milestones into unforgettable celebrations with culturally resonant themes.",
     scope: ["Visual Strategy", "Brand Voice", "Collateral Design", "Asset Library"],
@@ -106,14 +274,27 @@ export const allProjects = [
   },
   {
     title: "Varun Engineers",
-    category: "Engineering",
+    category: "Web Development",
     img: "/Clientwork/varun/varun engineers all.webp",
-    about: "A trusted supplier of industrial material handling equipment since 2005, Varun Engineers focuses on durable performance and cost-effective engineering solutions.",
-    scope: ["Visual Strategy", "Brand Voice", "Collateral Design", "Web Experience Design"],
+    about: "Varun Engineers was founded in 2005 by Mr. K. Ramesh and has grown into a trusted supplier of industrial material handling equipment, pumps, and compressors. The brand focuses on durable engineering, cost-effective solutions, and reliable industrial support for businesses.",
+    scope: [
+      "Geometric logo and professional color strategy.",
+      "Brand voice focused on precision and reliability.",
+      "Business cards, safety vests, van wraps, and packaging design.",
+      "Industrial product showcase website with inquiry features."
+    ],
     industry: "Industrial Equipment & Engineering Solutions",
-    challenges: "Modernizing a brand with two decades of history without losing credibility, reflecting industrial strength and technical precision.",
-    solution: "A 'knowledge-driven' narrative emphasizing 'No compromise on standards', replacing literal imagery with efficient geometric symbolism.",
-    identity: "A clever geometric icon merging 'V' (momentum) and 'E' (process), using a deep red palette to communicate power and commitment.",
+    challenges: "Varun Engineers operates in the Industrial Equipment & Engineering Solutions sector. Focus on durability and technical expertise. Supports industrial productivity and operations. Requires strong process-oriented and reliable systems. The challenge was to modernize the brand while maintaining its long-standing credibility. Reflect industrial strength with a modern identity. Communicate growth and forward movement. Create a scalable logo for machinery and digital use.",
+    solution: "The strategy moved away from traditional, literal industrial imagery toward a 'knowledge-driven' and 'efficient' narrative. By emphasizing 'No compromise on standards,' the brand reinforces a quality-focused promise that builds long-term trust.",
+    identity: "A clever geometric icon that merges the company's initials into a single powerful mark. A bold V shape forms the foundation, designed to evoke strength and forward momentum. Layered lines form a subtle E within the V, representing structured processes and technical expertise.",
+    results: [
+      { val: "6", label: "Complete Deliverable Sets" },
+      { val: "20+", label: "Years of Industry Legacy" },
+      { val: "4", label: "Core Brand Pillars Defined" },
+      { val: "100%", label: "Unified Brand Collateral" },
+      { val: "#1", label: "Priority: Standards First" },
+      { val: "1", label: "Powerful Geometric Mark" }
+    ],
     gallery: [
       "/Clientwork/varun/varun engineers logo and jacket.webp",
       "/Clientwork/varun/varun engineers truck.webp",
@@ -124,18 +305,19 @@ export const allProjects = [
   },
   {
     title: "Daily Dose",
-    category: "Branding",
+    category: "Brand Identity & Communication",
     img: "/Clientwork/daily dose/[View 1] Main file.webp",
     about: "The Daily Dose is a speciality coffee brand dedicated to the art of the perfect brew. We created a minimalist, high-impact visual identity that reflects their commitment to quality and contemporary culture.",
     scope: ["Brand Identity", "Packaging Design", "Logo Design"],
     industry: "Food & Beverage",
     gallery: [
-      "/Clientwork/daily dose/daily 2.png",
+      "/Clientwork/daily dose/daily 2.webp",
       "/Clientwork/daily dose/02. Coffee Pod Mockup.webp",
       "/Clientwork/daily dose/8200-01-coffee-cup-mockup.webp",
       "/Clientwork/daily dose/Apron Mockup.webp",
-      "/Clientwork/daily dose/Coffee Card Mockup.png"
+      "/Clientwork/daily dose/Coffee Card Mockup.webp"
     ]
   },
 ];
+
 

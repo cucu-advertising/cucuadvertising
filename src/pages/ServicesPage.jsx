@@ -6,13 +6,13 @@ import { BigFooter } from "../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import adFilmImg from "../assets/services/Ad film.jpg";
-import videoEditingImg from "../assets/services/Video Editing and motion graphics.jpg";
-import contentWritingImg from "../assets/services/content writing.jpg";
-import performanceMarketingImg from "../assets/services/performance marketing.jpg";
-import seoImg from "../assets/services/seo.jpg";
-import socialMediaImg from "../assets/services/social media marketing.jpg";
-import webDevImg from "../assets/services/web development.jpg";
+import adFilmImg from "../assets/services/Ad film.webp";
+import videoEditingImg from "../assets/services/Video Editing and motion graphics.webp";
+import contentWritingImg from "../assets/services/content writing.webp";
+import performanceMarketingImg from "../assets/services/performance marketing.webp";
+import seoImg from "../assets/services/seo.webp";
+import socialMediaImg from "../assets/services/social media marketing.webp";
+import webDevImg from "../assets/services/web development.webp";
 
 const services = [
   {
@@ -136,6 +136,8 @@ export const ServicesPage = ({ setPage }) => {
       if (!wheelListener) {
         window.addEventListener("wheel", handleWheel, { passive: false });
         wheelListener = handleWheel;
+        // Stop Lenis to allow full control over the wheel event
+        if (window.lenis) window.lenis.stop();
       }
     };
 
@@ -143,6 +145,8 @@ export const ServicesPage = ({ setPage }) => {
       if (wheelListener) {
         window.removeEventListener("wheel", wheelListener);
         wheelListener = null;
+        // Resume Lenis
+        if (window.lenis) window.lenis.start();
       }
     };
 

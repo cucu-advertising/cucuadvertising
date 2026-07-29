@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/logo_cucu_nobg.png";
+import logo from "../assets/logo_cucu_nobg.webp";
 
 const Preloader = ({ isLoading }) => {
   return (

@@ -1,22 +1,22 @@
 import React from "react";
 
 // Importing actual files from src/assets/client
-import ravasaLogo from "../../assets/client/RavasaArtboard 1 copy.png";
-import varunLogo from "../../assets/client/varun.png";
-import happyEventsLogo from "../../assets/client/Happy events.png";
-import jaspireLogo from "../../assets/client/Jaspire logo.png";
+import ravasaLogo from "../../assets/client/RavasaArtboard 1 copy.webp";
+import varunLogo from "../../assets/client/varun.webp";
+import happyEventsLogo from "../../assets/client/Happy events.webp";
+import jaspireLogo from "../../assets/client/Jaspire logo.webp";
 import logoPng from "../../assets/client/logo png.png";
-import artboard4 from "../../assets/client/Artboard 4.png";
-import artboard39 from "../../assets/client/Artboard 39 copy 6.png";
-import lapwingLogo from "../../assets/client/Lapwing PNG.png";
-import zargoldLogo from "../../assets/client/zargold.png";
-import vihariLogo from "../../assets/client/vihari.png";
-import svdLogo from "../../assets/client/svd.png";
-import remediLogo from "../../assets/client/remedi.png";
-import oryzaLogo from "../../assets/client/oryza.png";
-import globusLogo from "../../assets/client/globus it.png";
-import fruitBandiLogo from "../../assets/client/fruit bandi.png";
-import sannidhiLogo from "../../assets/client/Sannidhi-Logo.png";
+import artboard4 from "../../assets/client/Artboard 4.webp";
+import artboard39 from "../../assets/client/Artboard 39 copy 6.webp";
+import lapwingLogo from "../../assets/client/Lapwing PNG.webp";
+import zargoldLogo from "../../assets/client/zargold.webp";
+import vihariLogo from "../../assets/client/vihari.webp";
+import svdLogo from "../../assets/client/svd.webp";
+import remediLogo from "../../assets/client/remedi.webp";
+import oryzaLogo from "../../assets/client/oryza.webp";
+import globusLogo from "../../assets/client/globus it.webp";
+import fruitBandiLogo from "../../assets/client/fruit bandi.webp";
+import sannidhiLogo from "../../assets/client/Sannidhi-Logo.webp";
 
 export const ClientsListing = () => {
   const clients = [
@@ -31,7 +31,7 @@ export const ClientsListing = () => {
     { name: "Zargold", logo: zargoldLogo },
     { name: "Vihari", logo: vihariLogo },
     { name: "SVD", logo: svdLogo },
-    { name: "Remedi", logo: remediLogo },
+    { name: "Remedy", logo: remediLogo },
     { name: "Oryza", logo: oryzaLogo },
     { name: "Globus IT", logo: globusLogo },
     { name: "Fruit Bandi", logo: fruitBandiLogo },

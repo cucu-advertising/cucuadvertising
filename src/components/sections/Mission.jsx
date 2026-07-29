@@ -1,5 +1,4 @@
 import React from "react";
-import folksImg from "../../assets/folks.png";
 
 export const Mission = () => (
   <section className="py-16 md:py-24 px-6 md:px-12 bg-white text-[#197C48] border-b border-[#197C48]/10 relative z-10">
@@ -15,36 +14,8 @@ export const Mission = () => (
         </h2>
       </div>
 
-      {/* Right - Image + Text */}
+      {/* Right - Text */}
       <div className="flex flex-col justify-end">
-        {/* Half-cropped image with black sidebar */}
-        <div
-          className="flex mb-8 rounded-2xl overflow-hidden border-2 border-[#197C48]/10"
-          style={{ maxHeight: "180px" }}
-        >
-          {/* Black vertical sidebar with rotated text */}
-          <div className="bg-black flex items-center justify-center shrink-0 w-8 md:w-10 relative">
-            <span
-              className="text-white text-[8px] md:text-[9px] font-black uppercase tracking-[0.25em] whitespace-nowrap"
-              style={{
-                writingMode: "vertical-rl",
-                transform: "rotate(180deg)",
-              }}
-            >
-              For Brands - CUCU
-              {/* · For Enterprise */}
-            </span>
-          </div>
-          {/* Cropped image */}
-          <div className="flex-1 overflow-hidden">
-            <img
-              src={folksImg}
-              alt="Our Creative Team"
-              className="w-full h-auto object-cover object-top"
-            />
-          </div>
-        </div>
-
         <p className="text-xl md:text-2xl text-[#050505] font-light leading-relaxed mb-12">
           We're folks madly in love with design, storytelling, strategy, and
           production. We are building brands that don't just exist, but actually

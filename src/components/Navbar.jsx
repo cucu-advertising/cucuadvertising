@@ -2,21 +2,35 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { TRANSITION } from "../constants/config";
-import logo from "../assets/logo_cucu_nobg.png";
+import logo from "../assets/logo_cucu_nobg.webp";
 
-import aboutIcon from "../assets/navbar/about-icon.png";
-import servicesIcon from "../assets/navbar/services-icon.png";
-import clientsIcon from "../assets/navbar/clients-icon.png";
-import careerIcon from "../assets/navbar/career-icon.svg";
-import contactIcon from "../assets/navbar/contact-icon.png";
-import projectsIcon from "../assets/navbar/projects-icon.svg";
-import awardsIcon from "../assets/navbar/awards-icon.svg";
-import teamIcon from "../assets/navbar/team-icon.svg";
-
-export const Navbar = ({ activePage, setPage }) => {
+export const Navbar = ({ activePage, setPage, navReady = true, homeMode = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
+
+  // On the homepage, the nav is hidden completely until the visitor scrolls
+  // past the hero — then it fades in from the top and becomes a sticky
+  // glassmorphism bar. Every other page keeps the nav visible as normal.
+  const [homeRevealed, setHomeRevealed] = useState(false);
+
+  useEffect(() => {
+    if (!homeMode) return;
+    const handleHomeScroll = () => {
+      setHomeRevealed(window.scrollY > 80);
+    };
+    handleHomeScroll();
+    window.addEventListener("scroll", handleHomeScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleHomeScroll);
+  }, [homeMode]);
+
+  // Reset the reveal state whenever we leave home mode so the nav waits
+  // for a fresh scroll the next time the homepage loads.
+  useEffect(() => {
+    if (!homeMode) setHomeRevealed(false);
+  }, [homeMode]);
+
+  const navHidden = !navReady || (homeMode && !homeRevealed);
+  const isGlass = homeMode; // light glassmorphism styling only applies on the homepage
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -26,175 +40,147 @@ export const Navbar = ({ activePage, setPage }) => {
   });
 
   const navLinks = [
-    { label: "About Us", path: "about", icon: aboutIcon },
-    { label: "Services", path: "services", icon: servicesIcon },
-    { label: "Our Work", path: "work", icon: projectsIcon },
-    // { label: "Awards", path: "awards", icon: awardsIcon },
-    { label: "Clients", path: "clients", icon: clientsIcon },
-    // { label: "Our Team", path: "team", icon: teamIcon },
-    // { label: "Careers", path: "careers", icon: careerIcon },
-    { label: "Contact Us", path: "contact", icon: contactIcon },
+    { label: "Home", path: "home" },
+    { label: "About", path: "about" },
+    { label: "Services", path: "services" },
+    { label: "Portfolio", path: "work" },
   ];
 
   useEffect(() => {
-    // Check if we've already shown the intro animation in this session
-    const shown = sessionStorage.getItem("logo_animated");
-    if (shown) setHasAnimated(true);
-
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleAnimationComplete = () => {
-    sessionStorage.setItem("logo_animated", "true");
-    setHasAnimated(true);
-  };
-
-  const logoVariants = {
-    initial: { x: "280px", opacity: 0 },
-    animate: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 2.5,
-        ease: [0.45, 0, 0.55, 1], // Custom cubic-bezier for smooth writing feel
-        delay: 0.5,
-      },
-    },
-  };
-
-  const textVariants = {
-    initial: { clipPath: "inset(0 0 0 100%)", opacity: 0 },
-    animate: {
-      clipPath: "inset(0 0 0 0%)",
-      opacity: 1,
-      transition: {
-        duration: 2.5,
-        ease: [0.45, 0, 0.55, 1],
-        delay: 0.5,
-      },
-    },
+  const isLinkActive = (link) => {
+    if (activePage === link.path) return true;
+    if (link.children && link.children.some(child => activePage === child.path)) return true;
+    return false;
   };
 
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <motion.div
-        style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-0.75 bg-[#197C48] origin-left z-[102]"
-      />
-
-      <nav
-        className={`fixed top-0 left-0 w-full z-[100] pt-[calc(1.5rem+6px)] pb-6 md:pt-[calc(0.75rem+6px)] md:pb-3 px-8 md:px-12 flex justify-between items-center transition-all duration-300 bg-white border-b border-gray-100 shadow-sm`}
+      <div
+        className={`fixed top-0 left-0 w-full z-[100] px-4 py-6 flex justify-center pointer-events-none`}
       >
-        <button
-          onClick={() => setPage("home")}
-          className="flex items-center group cursor-pointer"
+        <motion.nav
+          layout
+          initial={false}
+          animate={navHidden ? { opacity: 0, y: -24 } : { opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 220, damping: 28 }}
+          style={{ pointerEvents: navHidden ? "none" : "auto" }}
+          className={`h-14 px-6 flex items-center justify-between gap-8 rounded-2xl border shadow-2xl w-full max-w-5xl transition-colors duration-500 ${
+            isGlass
+              ? "bg-white/70 backdrop-blur-xl border-black/5"
+              : "bg-[#2d2d2d]/90 backdrop-blur-md border-white/10"
+          }`}
         >
-          <motion.div
-            initial={!hasAnimated ? "initial" : false}
-            animate={!hasAnimated ? "animate" : false}
-            onAnimationComplete={handleAnimationComplete}
-            className="flex items-center relative"
+          {/* Logo Section */}
+          <button
+            onClick={() => setPage("home")}
+            className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
-            <motion.div className="flex items-center">
-              <motion.img
-                src={logo}
-                alt="Cucu Advertising"
-                variants={logoVariants}
-                className="h-10 md:h-14 w-auto object-contain z-20"
-              />
-              <motion.span
-                variants={textVariants}
-                className="ml-3 text-2xl md:text-3xl font-black tracking-tighter text-black uppercase whitespace-nowrap"
-              >
-                CUCU <span className="text-[#197C48]">Advertising</span>
-              </motion.span>
-            </motion.div>
-          </motion.div>
-        </button>
+            <img
+              src={logo}
+              alt="Cucu"
+              className={`h-8 w-auto object-contain ${isGlass ? "" : "brightness-0 invert"}`}
+            />
+            <span className={`hidden sm:block text-lg font-bold tracking-tight capitalize ${isGlass ? "text-black" : "text-white"}`}>
+              cucu advertising
+            </span>
+          </button>
 
-        <div className="hidden md:flex gap-8 lg:gap-10 items-center mt-8">
-          {navLinks.map((link) => (
-            <motion.div
-              key={link.path}
-              className="relative flex flex-col items-center"
-              initial="initial"
-              animate={activePage === link.path ? "hover" : "initial"}
-              whileHover="hover"
-            >
-              <motion.span
-                variants={{
-                  initial: { opacity: 0, y: 10 },
-                  hover: { opacity: 1, y: -35 },
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="absolute pointer-events-none"
-              >
-                <img
-                  src={link.icon}
-                  alt={link.label}
-                  className="w-10 h-10 object-contain"
-                />
-              </motion.span>
-              <button
-                onClick={() => setPage(link.path)}
-                className={`text-[12px] lg:text-[13px] font-black uppercase tracking-[0.05em] transition-colors py-2 cursor-pointer ${
-                  activePage === link.path
-                    ? "text-[#197C48]"
-                    : "text-black hover:text-[#197C48]"
-                }`}
-              >
-                {link.label}
-              </button>
-            </motion.div>
-          ))}
-        </div>
-
-        <button
-          className="md:hidden text-black p-2 cursor-pointer"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <Menu size={24} />
-        </button>
-      </nav>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={TRANSITION}
-            className="fixed inset-0 bg-white z-[101] flex flex-col items-center justify-center gap-6 pointer-events-auto"
-          >
-            <button
-              className="absolute top-8 right-8 text-black cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            >
-              <X size={32} />
-            </button>
+          {/* Desktop Navigation */}
+          <div className={`hidden md:flex items-center rounded-xl p-1 gap-1 ${isGlass ? "bg-black/5" : "bg-[#252525]"}`}>
             {navLinks.map((link) => (
               <button
-                key={link.path}
-                onClick={() => {
-                  setPage(link.path);
-                  setIsOpen(false);
-                }}
-                className="text-2xl font-black uppercase tracking-tighter text-black hover:text-[#197C48] flex items-center gap-4 cursor-pointer"
+                key={link.label}
+                onClick={() => setPage(link.path)}
+                className={`relative px-5 py-2 text-sm font-medium transition-colors duration-300 cursor-pointer rounded-lg ${
+                  isLinkActive(link)
+                    ? isGlass ? "text-white bg-black shadow-sm" : "text-black bg-white shadow-sm"
+                    : isGlass ? "text-black/50 hover:text-[#1AEF9A]" : "text-white/60 hover:text-[#1AEF9A]"
+                }`}
+                style={{ transitionTimingFunction: "ease" }}
               >
-                <img
-                  src={link.icon}
-                  alt={link.label}
-                  className="w-12 h-12 object-contain"
-                />
                 {link.label}
               </button>
             ))}
+          </div>
+
+          {/* CTA Section */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setPage("contact")}
+              className={`hidden md:block px-6 py-2 text-sm font-semibold rounded-xl transition-colors duration-300 cursor-pointer border shadow-lg active:scale-95 whitespace-nowrap ${
+                isGlass
+                  ? "bg-black text-white border-black/10 hover:bg-[#1AEF9A] hover:border-[#1AEF9A] hover:text-black"
+                  : "bg-black text-white border-white/5 hover:bg-[#1AEF9A] hover:text-black"
+              }`}
+              style={{ transitionTimingFunction: "ease" }}
+            >
+              Get Started
+            </button>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className={`md:hidden p-2 cursor-pointer transition-colors duration-300 ${isGlass ? "text-black/70 hover:text-[#1AEF9A]" : "text-white/80 hover:text-[#1AEF9A]"}`}
+              onClick={() => setIsOpen(!isOpen)}
+              style={{ transitionTimingFunction: "ease" }}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </motion.nav>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 bg-[#1a1a1a]/95 backdrop-blur-xl z-[99] flex flex-col items-center justify-center p-8 pt-24"
+          >
+            <div className="flex flex-col gap-4 w-full max-w-xs">
+              {navLinks.map((link) => (
+                <button
+                  key={link.label}
+                  onClick={() => {
+                    setPage(link.path);
+                    setIsOpen(false);
+                  }}
+                  className={`w-full text-3xl font-bold tracking-tight py-4 flex items-center justify-center gap-3 transition-colors duration-300 ease-in-out ${
+                    isLinkActive(link) ? "text-white" : "text-white/40 hover:text-[#1AEF9A]"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+              <button
+                onClick={() => {
+                  setPage("contact");
+                  setIsOpen(false);
+                }}
+                className={`text-3xl font-bold tracking-tight py-4 text-center transition-colors duration-300 ease-in-out ${
+                  activePage === "contact" ? "text-white" : "text-white/40 hover:text-[#1AEF9A]"
+                }`}
+              >
+                Get Started
+              </button>
+            </div>
+            
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="mt-16 text-white/50 hover:text-[#1AEF9A] transition-colors duration-300 ease-in-out"
+            >
+              Close Menu
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
 };
+

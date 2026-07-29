@@ -16,6 +16,7 @@
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-router-dom": "^7.15.0",
     "sweetalert2": "^11.26.22",
     "tailwindcss": "^4.1.18",
     "webp-converter": "^2.3.3"
