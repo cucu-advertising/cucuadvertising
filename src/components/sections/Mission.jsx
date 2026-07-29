@@ -1,5 +1,4 @@
 import React from "react";
-import folksImg from "../../assets/folks.webp";
 
 export const Mission = () => (
   <section className="py-16 md:py-24 px-6 md:px-12 bg-white text-[#197C48] border-b border-[#197C48]/10 relative z-10">

@@ -132,7 +132,7 @@ export const BigFooter = ({ setPage }) => {
           }}
           className="text-[18vw] font-black leading-none uppercase tracking-tighter cursor-pointer transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-[#197C48] from-50% to-[var(--blink-color)] to-50% bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0_0]"
         >
-          Let's Talk
+          Let's Connect
         </motion.button>
       </div>
 

@@ -55,34 +55,6 @@ const clients = [
 ];
 
 const clientWork = [
-  // Daily Dose
-  {
-    client: "Daily Dose",
-    image: "/Clientwork/daily dose/02. Coffee Pod Mockup.webp",
-  },
-  { client: "Daily Dose", image: "/Clientwork/daily dose/12.webp" },
-  // {
-  //   client: "Daily Dose",
-  //   image: "/Clientwork/daily dose/8200-01-coffee-cup-mockup.webp",
-  // },
-  // { client: "Daily Dose", image: "/Clientwork/daily dose/Apron Mockup.webp" },
-  // {
-  //   client: "Daily Dose",
-  //   image: "/Clientwork/daily dose/Coffee Card Mockup.webp",
-  // },
-  // { client: "Daily Dose", image: "/Clientwork/daily dose/daily 2.webp" },
-  // {
-  //   client: "Daily Dose",
-  //   image: "/Clientwork/daily dose/the daily dose logo color.webp",
-  // },
-  // {
-  //   client: "Daily Dose",
-  //   image: "/Clientwork/daily dose/the daily dose logo.webp",
-  // },
-  // {
-  //   client: "Daily Dose",
-  //   image: "/Clientwork/daily dose/[View 1] Main file.webp",
-  // },
   // Fruit Bandi
   {
     client: "Fruit Bandi",

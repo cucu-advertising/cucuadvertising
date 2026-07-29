@@ -12,11 +12,6 @@ import contentOryzaUgc2 from "../assets/showcase/content-oryza-ugc-2.webp";
 import contentOryzaHoardings from "../assets/showcase/content-oryza-hoardings.webp";
 import contentDailyMedPamphlet from "../assets/showcase/content-dailymed-pamphlet.webp";
 
-// Photography
-import photoFood from "../assets/showcase/photo-food-gncaterers.webp";
-import photoResortNature from "../assets/showcase/photo-resort-nature.webp";
-import photoResortExterior from "../assets/showcase/photo-resort-exterior.webp";
-
 // AI Reels
 import aiGlobusIt from "../assets/showcase/ai-globusit.webp";
 import aiJaspire from "../assets/showcase/ai-jaspire.webp";
@@ -110,36 +105,8 @@ export const showcaseSections = [
     ],
   },
   {
-    id: "photography",
-    label: "03",
-    title: "Photography",
-    subtitle: "Food, Property & Nature",
-    intro:
-      "Original photography that captures a brand's product and place — from plated dishes to the grounds guests actually walk through.",
-    items: [
-      {
-        client: "GN Caterers",
-        img: photoFood,
-        caption:
-          "Culinary photography built to make every dish feel like the centerpiece — biryani, crisp fried starters, and traditional sweets shot for appetite appeal.",
-      },
-      {
-        client: "Ravasa Retreat",
-        img: photoResortNature,
-        caption:
-          "Aerial and nature photography of the retreat grounds — lighthouse, ponds, and resident birdlife — capturing the property's slow, natural pace.",
-      },
-      {
-        client: "Ravasa Retreat",
-        img: photoResortExterior,
-        caption:
-          "Evening and exterior architectural photography — lit stairways, poolside views, and the building's clean facade after dark.",
-      },
-    ],
-  },
-  {
     id: "ai-reels",
-    label: "04",
+    label: "03",
     title: "AI Reels",
     subtitle: "AI-Generated Video Content",
     intro:
@@ -167,7 +134,7 @@ export const showcaseSections = [
   },
   {
     id: "web-designs",
-    label: "05",
+    label: "04",
     title: "Web Designs",
     subtitle: "Websites & Storefronts",
     intro:
