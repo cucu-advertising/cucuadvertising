@@ -170,7 +170,9 @@ export const Hero = ({ setPage }) => {
         ))}
       </div>
 
-      
+      <p className={`mt-14 font-medium text-[12px] tracking-[0.28em] uppercase text-[#ccc] transition-all duration-1000 z-10 ${isSubVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[10px]'}`}>
+        cucuadvertising.com<span className="dot"></span>
+      </p>
     </section>
   );
 };

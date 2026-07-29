@@ -178,17 +178,12 @@ export const allProjects = [
     title: "One ENT",
     category: "User Experience & Interaction",
     img: "/Clientwork/One ent/ONEENT Brand Guidelines-12 banner.webp",
-    about: "One Ent is a specialized healthcare platform focused on compassionate and advanced ENT care. Led by Dr. Manusrut, the brand brings together ENT specialists, audiologists, and therapists to provide patient-first treatment with a strong focus on trust, ethics, and long-term wellness.",
-    scope: [
-      "Brand strategy centered on empathy and reliability.",
-      "Modern logo and warm clinical color palette.",
-      "Typography and stationery design system.",
-      "Informative web experience for ENT services and patient inquiries."
-    ],
-    industry: "Specialized Healthcare (ENT / Otorhinolaryngology)",
-    challenges: "OneENT operates in the Specialized Healthcare sector, specifically ENT (Otorhinolaryngology). Focus on safety and sensitive data protection. Requires precision, trust, and human connection. Balance between medical expertise and patient comfort. The main challenge was creating a healthcare identity that feels modern yet approachable. Communicate expertise without feeling cold. Avoid overused medical branding cliches. Build long-term trust through clarity and transparency.",
+    about: "OneENT was established to provide a unified platform for specialized and compassionate ENT care. Led by Dr. Manusrut, the organization integrates the expertise of ENT specialists, audiologists, and therapists to treat conditions affecting the ear, nose, and throat.",
+    scope: ["Strategic Foundation", "Visual Identity", "Design Systems", "Web Experience Design"],
+    industry: "Specialized Healthcare (Otorhinolaryngology)",
+    challenges: "Communicate medical expertise and precision while remaining warm and approachable. Develop a scalable visual identity that works across various platforms without overused medical clichés. Establish long-term trust through clarity and transparency.",
     solution: "A one-stop trusted platform that simplifies the patient journey — prioritizing listening before treating. By adopting a patient-first approach, OneENT builds connection through empathy and consistent outcomes.",
-    identity: "The strategy positioned OneENT as a trusted \"one-stop\" ENT care platform. Mirrored \"E\" letterforms forming a continuous symbol. Circular design representing unity and ongoing care. Healing teal green for empathy and comfort. Deep charcoal navy for professionalism and trust. Poppins typography for a clean and modern appearance.",
+    identity: "A modern visual system featuring mirrored 'E' letterforms that create a continuous circular shape, symbolizing ear symmetry and continuity of care. Paired with Healing Teal Green for empathy and Deep Charcoal Navy for reliability.",
     results: [
       { val: "1", label: "Unified Health Platform" },
       { val: "100%", label: "Patient-First Identity" },
@@ -209,17 +204,12 @@ export const allProjects = [
     title: "Secret Ping",
     category: "Web Development",
     img: "/Clientwork/secretping/sp webiste.webp",
-    about: "Secretping is a modern technology company focused on secure communication and monitoring solutions. Built around trust and protection, the brand combines advanced technology with a user-focused approach to deliver safe and dependable experiences.",
-    scope: [
-      "Shield-inspired logo and high-contrast visual system",
-      "Space Grotesk typography for a technical feel",
-      "Professional and energetic brand voice",
-      "Secure web experience with a \"Ping\" monitoring interface"
-    ],
+    about: "Secretping is a modern technology firm dedicated to providing secure and dependable communication monitoring services. The brand is built on a foundation of safety and unwavering trust, positioning itself as a proactive defender in the digital space.",
+    scope: ["Visual Strategy", "Brand Voice", "Web Experience Design"],
     industry: "Security & Digital Communications",
-    challenges: "Secretping operates in the Security & Digital Communications industry, where reliability and trust are essential. Focus on safety and sensitive data protection. Strong need for confidence and stability. Balance between technical strength and accessibility. The brand needed to represent both security and communication in a modern way. Avoid generic security visuals. Combine \"S\" and \"P\" into a meaningful symbol. Balance alertness with professional sophistication.",
+    challenges: "Visually representing the dual nature of 'protection' and 'communication' without generic security imagery. Integrating the initials S and P into a shield-based symbol that feels like a protective emblem rather than a literal lettermark.",
     solution: "A layered design approach that combines vibrant energy with professional dependability. The strategy emphasizes a 'strong and approachable' image, positioning Secretping as a proactive leader in secure communications.",
-    identity: "Secretping's identity combines protection and connectivity into one cohesive system. Layered \"S\" and \"P\" forms inspired by ping signals. Orange tones for energy and alertness. Deep blue palette for trust and reliability. Space Grotesk typography for a clean, futuristic feel.",
+    identity: "A protective shield emblem integrating a 'ping signal' formed by layered S and P segments. Utilizing vibrant orange for alertness and deep blue for reliability, paired with the geometric Space Grotesk typeface for a technical, forward-thinking look.",
     results: [
       { val: "Enc", label: "End-to-End Secure Monitoring" },
       { val: "Shield", label: "Protective Emblem Identity" },
@@ -276,15 +266,10 @@ export const allProjects = [
     title: "Varun Engineers",
     category: "Web Development",
     img: "/Clientwork/varun/varun engineers all.webp",
-    about: "Varun Engineers was founded in 2005 by Mr. K. Ramesh and has grown into a trusted supplier of industrial material handling equipment, pumps, and compressors. The brand focuses on durable engineering, cost-effective solutions, and reliable industrial support for businesses.",
-    scope: [
-      "Geometric logo and professional color strategy.",
-      "Brand voice focused on precision and reliability.",
-      "Business cards, safety vests, van wraps, and packaging design.",
-      "Industrial product showcase website with inquiry features."
-    ],
+    about: "Founded in 2005, Varun Engineers has evolved from a startup into a trusted supplier of industrial material handling equipment, pumps, and compressors. The brand is built on a foundation of durable performance and cost-effective engineering, positioning itself as a reliable engineering partner rather than just a supplier.",
+    scope: ["Brand Voice", "Visual Strategy", "Collateral Design", "Web Experience Design"],
     industry: "Industrial Equipment & Engineering Solutions",
-    challenges: "Varun Engineers operates in the Industrial Equipment & Engineering Solutions sector. Focus on durability and technical expertise. Supports industrial productivity and operations. Requires strong process-oriented and reliable systems. The challenge was to modernize the brand while maintaining its long-standing credibility. Reflect industrial strength with a modern identity. Communicate growth and forward movement. Create a scalable logo for machinery and digital use.",
+    challenges: "Modernize a brand with two decades of history without losing established credibility. Reflect 'industrial strength' and 'technical precision' through a clean, modern aesthetic. Replace an aging logo with a scalable icon that works across heavy-duty equipment and digital screens.",
     solution: "The strategy moved away from traditional, literal industrial imagery toward a 'knowledge-driven' and 'efficient' narrative. By emphasizing 'No compromise on standards,' the brand reinforces a quality-focused promise that builds long-term trust.",
     identity: "A clever geometric icon that merges the company's initials into a single powerful mark. A bold V shape forms the foundation, designed to evoke strength and forward momentum. Layered lines form a subtle E within the V, representing structured processes and technical expertise.",
     results: [
