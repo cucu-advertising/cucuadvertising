@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import useTabAttention from "../hooks/useTabAttention";
 
-import { LandscapeScroll } from "../components/sections/LandscapeScroll";
+import { Hero } from "../components/sections/Hero";
 import { Mission } from "../components/sections/Mission";
 import { ProcessSection } from "../components/sections/ProcessSection";
 import { AreasOfExpertise } from "../components/sections/AreasOfExpertise";
@@ -71,7 +71,7 @@ export const HomePage = ({ setPage, setSelectedProject }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <LandscapeScroll setPage={setPage} />
+      <Hero setPage={setPage} />
       <Mission />
       {/* <AreasOfExpertise /> */}
       <ProcessSection />

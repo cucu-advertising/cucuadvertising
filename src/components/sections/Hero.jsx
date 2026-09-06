@@ -11,14 +11,14 @@ const WORD_GROUPS = [
   },
   {
     words: [
-      { text: "believe", delay: 560, className: "text-[#40F996]" },
+      { text: "believe", delay: 560, className: "text-[#16C768]" },
       { text: "in", delay: 700, className: "font-light italic text-[#c0c0c0] text-[clamp(40px,6.5vw,70px)]" },
     ],
   },
   {
     words: [
       { text: "your", delay: 880 },
-      { text: "brand.", delay: 1020, className: "text-[#40F996]" },
+      { text: "brand.", delay: 1020, className: "text-[#16C768]" },
     ],
   },
 ];
@@ -109,7 +109,7 @@ export const Hero = ({ setPage }) => {
         .particle {
           position: absolute;
           border-radius: 50%;
-          background: #40F996;
+          background: #16C768;
           opacity: 0;
           pointer-events: none;
           animation: rise linear infinite;
@@ -127,7 +127,7 @@ export const Hero = ({ setPage }) => {
           display: inline-block;
           width: 7px; height: 7px;
           border-radius: 50%;
-          background: #40F996;
+          background: #16C768;
           margin-left: 8px;
           vertical-align: middle;
           animation: blink 1.2s ease-in-out infinite;
@@ -136,6 +136,24 @@ export const Hero = ({ setPage }) => {
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
+        }
+
+        .sub {
+          font-family: 'Inter', sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: #ccc;
+          margin-top: 3.5rem;
+          opacity: 0;
+          transform: translateY(10px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .sub.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
       `}</style>
 
@@ -170,7 +188,9 @@ export const Hero = ({ setPage }) => {
         ))}
       </div>
 
-      
+      <p className={`sub ${isSubVisible ? "visible" : ""}`}>
+        cucuadvertising.com<span className="dot" />
+      </p>
     </section>
   );
 };
