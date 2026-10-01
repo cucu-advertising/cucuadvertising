@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BigFooter } from "../components/Footer";
+import { Play } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,8 +103,55 @@ export const ServicesPage = ({ setPage }) => {
 
         <div className="h-[calc(100vh-100px)] md:h-[calc(100vh-120px)] w-full flex flex-col md:flex-row overflow-hidden bg-white">
           {/* 1. Visual Panel (Left) */}
-          <div className="w-full h-[35vh] md:w-[50%] md:h-full bg-[#f8f9fa] relative flex items-center justify-center p-6 lg:p-16 overflow-hidden">
-            {/* Top Left Title */}
+          <div
+            className="w-full h-[35vh] md:w-[50%] md:h-full relative flex items-center justify-center p-6 lg:p-16 overflow-hidden"
+            style={{
+              // Soft brand glow: green blob top-left, mint blob bottom-right, near-white base
+              background:
+                "radial-gradient(circle at 15% 20%, rgba(25,124,72,0.14), transparent 45%), radial-gradient(circle at 85% 85%, rgba(140,242,198,0.28), transparent 45%), #f8faf9",
+            }}
+          >
+            {/* Faint dot grid, fading out toward the edges */}
+            <div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                backgroundImage: "radial-gradient(rgba(25,124,72,0.14) 1px, transparent 1px)",
+                backgroundSize: "24px 24px",
+                maskImage: "radial-gradient(ellipse at center, black 35%, transparent 75%)",
+                WebkitMaskImage: "radial-gradient(ellipse at center, black 35%, transparent 75%)",
+              }}
+            />
+
+            {/* Floating accents */}
+            <motion.div
+              aria-hidden
+              className="absolute top-[14%] right-[14%] text-[#197C48] opacity-[0.18] pointer-events-none"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Play className="w-6 h-6 md:w-9 md:h-9" fill="currentColor" />
+            </motion.div>
+            <motion.div
+              aria-hidden
+              className="absolute bottom-[16%] left-[12%] text-[#197C48] opacity-[0.18] pointer-events-none"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            >
+              <motion.svg viewBox="0 0 32 32" className="w-8 h-8 md:w-10 md:h-10" fill="currentColor" fillRule="evenodd" animate={{ rotate: 360 }} transition={{ duration: 14, repeat: Infinity, ease: "linear" }}>
+                <path d="M16.00 11.80 Q18.00 8.00 27.15 5.96 Q21.66 13.24 19.99 14.70 Q24.23 15.42 28.99 23.50 Q20.38 20.53 18.47 19.40 Q19.09 23.65 12.88 30.67 Q13.04 21.56 13.53 19.40 Q9.68 21.30 1.08 17.57 Q9.80 14.91 12.01 14.70 Q9.00 11.63 9.90 2.30 Q15.12 9.76 16.00 11.80 Z M18.2 16 a2.2 2.2 0 1 0 -4.4 0 a2.2 2.2 0 1 0 4.4 0 Z" />
+              </motion.svg>
+            </motion.div>
+            <motion.div
+              aria-hidden
+              className="hidden md:block absolute top-[22%] left-[16%] text-[#197C48] opacity-[0.14] pointer-events-none"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+            >
+              <motion.svg viewBox="0 0 32 32" className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" fillRule="evenodd" animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }}>
+                <path d="M16.00 11.80 Q18.00 8.00 27.15 5.96 Q21.66 13.24 19.99 14.70 Q24.23 15.42 28.99 23.50 Q20.38 20.53 18.47 19.40 Q19.09 23.65 12.88 30.67 Q13.04 21.56 13.53 19.40 Q9.68 21.30 1.08 17.57 Q9.80 14.91 12.01 14.70 Q9.00 11.63 9.90 2.30 Q15.12 9.76 16.00 11.80 Z M18.2 16 a2.2 2.2 0 1 0 -4.4 0 a2.2 2.2 0 1 0 4.4 0 Z" />
+              </motion.svg>
+            </motion.div>
 
 
             {/* Image Render */}
@@ -114,14 +162,21 @@ export const ServicesPage = ({ setPage }) => {
                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                 exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full h-full flex items-center justify-center"
+                className="relative z-10 w-full h-full flex items-center justify-center"
               >
-                <div className="h-full w-auto max-w-full md:h-auto md:w-full md:max-w-sm lg:max-w-md aspect-square rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] bg-white">
-                  <img
-                    src={activeService.image}
-                    alt={activeService.title}
-                    className="w-full h-full object-cover"
+                <div className="relative h-full w-auto max-w-full md:h-auto md:w-full md:max-w-sm lg:max-w-md aspect-square">
+                  {/* Tilted brand shape behind the card for depth */}
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 rounded-[2rem] md:rounded-[3rem] bg-[#197C48]/[0.09] rotate-6 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5"
                   />
+                  <div className="relative w-full h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-white shadow-[0_30px_80px_rgba(25,124,72,0.15)]">
+                    <img
+                      src={activeService.image}
+                      alt={activeService.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
