@@ -220,7 +220,7 @@ export const CareersPage = ({ setPage }) => {
 
       {/* Hero Section - Bold Yellow Styling */}
       <section className="bg-[#ffffff] py-24 md:py-37 px-6 md:px-12 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
+        <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
           <div className="w-full md:w-1/2">
             <div className="flex flex-col">
               {Object.keys(heroContent).map((word) => (
@@ -274,7 +274,7 @@ export const CareersPage = ({ setPage }) => {
 
       {/* Openings Section */}
       <section className="py-24 md:py-32 px-6 md:px-12 bg-[#197C48]">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1800px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-black mb-12">
               Current Openings

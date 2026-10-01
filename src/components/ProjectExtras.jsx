@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Optional case-study sections for ProjectDetailPage. Each one renders only
 // when its field exists on the project, so older projects are unaffected.
@@ -65,14 +65,119 @@ export const SubProjectsSection = ({ subProjects, brand }) => (
 
 const isVideoFile = (url) => /\.(webm|mp4|mov)$/i.test(url || "");
 
-const FilmCard = ({ film, idx, brand, vertical }) => {
-  const hasUrl = Boolean(film.url);
-  const Tag = hasUrl ? "a" : "div";
+// Pop-up player. Plays with sound and native controls; closes on ✕, Esc or a
+// click on the dark backdrop. Page scrolling is paused while it's open.
+const FilmModal = ({ film, vertical, onClose }) => {
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    window.lenis?.stop();
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.lenis?.start();
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
   return (
-    <Tag
-      {...(hasUrl ? { href: film.url, target: "_blank", rel: "noopener noreferrer" } : {})}
-      onMouseEnter={(e) => e.currentTarget.querySelector("video")?.play().catch(() => {})}
-      onMouseLeave={(e) => e.currentTarget.querySelector("video")?.pause()}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={onClose}
+      className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-10"
+      role="dialog"
+      aria-modal="true"
+      aria-label={film.title}
+    >
+      <button
+        onClick={onClose}
+        aria-label="Close video"
+        className="absolute top-5 right-5 md:top-8 md:right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-[#8CF2C6] hover:text-black text-white text-2xl flex items-center justify-center transition-colors"
+      >
+        ✕
+      </button>
+      <motion.div
+        initial={{ scale: 0.92, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.95, y: 10 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="flex flex-col items-center"
+      >
+        {isVideoFile(film.url) ? (
+          <video
+            src={film.url}
+            poster={film.thumbnail}
+            controls
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablePictureInPicture
+            disableRemotePlayback
+            onContextMenu={(e) => e.preventDefault()}
+            autoPlay
+            playsInline
+            className={`rounded-2xl bg-black shadow-2xl ${
+              vertical ? "h-[80vh] max-w-[90vw] w-auto" : "w-[90vw] max-w-6xl max-h-[80vh]"
+            }`}
+          />
+        ) : (
+          <iframe
+            src={film.url}
+            title={film.title}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className={`rounded-2xl bg-black shadow-2xl ${
+              vertical ? "h-[80vh] aspect-[9/16]" : "w-[90vw] max-w-6xl aspect-video"
+            }`}
+          />
+        )}
+        <p className="mt-4 text-white text-sm md:text-base font-bold uppercase tracking-widest">
+          {film.title}
+          {film.subtitle && <span className="text-white/50"> · {film.subtitle}</span>}
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const FilmCard = ({ film, idx, brand, vertical, onOpen }) => {
+  const hasUrl = Boolean(film.url);
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  // Hover preview with sound. Browsers only allow sound after the visitor has
+  // interacted with the page; if it's blocked, fall back to a silent preview.
+  const startPreview = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.play().catch(() => {
+      v.muted = true;
+      v.play().catch(() => {});
+    });
+  };
+  const stopPreview = () => videoRef.current?.pause();
+
+  return (
+    <div
+      role={hasUrl ? "button" : undefined}
+      tabIndex={hasUrl ? 0 : undefined}
+      onClick={() => {
+        if (!hasUrl) return;
+        stopPreview();
+        onOpen(film);
+      }}
+      onKeyDown={(e) => {
+        if (hasUrl && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          stopPreview();
+          onOpen(film);
+        }
+      }}
+      onMouseEnter={startPreview}
+      onMouseLeave={stopPreview}
       className={`relative block overflow-hidden rounded-3xl shadow-xl group bg-gradient-to-br from-[#197C48] to-neutral-950 ${
         vertical ? "aspect-[9/16]" : "aspect-video"
       } ${hasUrl ? "cursor-pointer" : "cursor-default"}`}
@@ -81,12 +186,16 @@ const FilmCard = ({ film, idx, brand, vertical }) => {
         // Shows the first frame and only plays on hover, so a page with several
         // films doesn't download every video up front.
         <video
+          ref={videoRef}
           src={`${film.url}#t=0.1`}
           poster={film.thumbnail}
           loop
-          muted
           playsInline
           preload="metadata"
+          disablePictureInPicture
+          onContextMenu={(e) => e.preventDefault()}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
           className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500"
         />
       ) : film.thumbnail && (
@@ -96,7 +205,12 @@ const FilmCard = ({ film, idx, brand, vertical }) => {
           className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
         />
       )}
-      <div className="absolute inset-0 p-5 md:p-6 flex flex-col justify-between text-white">
+      {/* Overlay — fades away while the preview plays so the video is visible */}
+      <div
+        className={`absolute inset-0 p-5 md:p-6 flex flex-col justify-between text-white transition-opacity duration-300 ${
+          playing ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <div className="flex justify-between text-[10px] font-bold uppercase tracking-[0.2em]">
           <span>Film / 0{idx + 1}</span>
           <span>{brand}</span>
@@ -117,13 +231,25 @@ const FilmCard = ({ film, idx, brand, vertical }) => {
           </p>
         </div>
       </div>
-    </Tag>
+      {/* Small "click to watch" hint while previewing */}
+      {hasUrl && (
+        <span
+          className={`absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur text-white text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-opacity duration-300 ${
+            playing ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          Click to watch full
+        </span>
+      )}
+    </div>
   );
 };
 
 // project.films: [{ title, subtitle, url?, thumbnail? }]
 // project.filmFormat: "vertical" (9:16, default) | "horizontal" (16:9)
 export const FilmsSection = ({ films, brand, format = "vertical", intro }) => {
+  const [openFilm, setOpenFilm] = useState(null);
+  const closeFilm = useCallback(() => setOpenFilm(null), []);
   const vertical = format !== "horizontal";
   const gridCols = !vertical
     ? "grid-cols-1"
@@ -148,9 +274,14 @@ export const FilmsSection = ({ films, brand, format = "vertical", intro }) => {
       </div>
       <div className={`grid gap-4 ${gridCols}`}>
         {films.map((film, idx) => (
-          <FilmCard key={idx} film={film} idx={idx} brand={brand} vertical={vertical} />
+          <FilmCard key={idx} film={film} idx={idx} brand={brand} vertical={vertical} onOpen={setOpenFilm} />
         ))}
       </div>
+      <AnimatePresence>
+        {openFilm && (
+          <FilmModal key="film-modal" film={openFilm} vertical={vertical} onClose={closeFilm} />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

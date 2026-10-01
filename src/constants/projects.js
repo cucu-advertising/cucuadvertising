@@ -348,7 +348,7 @@ export const allProjects = [
     ]
   },
   {
-    title: "ARK",
+    title: "ARK Groups",
     category: "Brand Identity & Communication",
     img: "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp",
     about: "ARK approached CUCU with a clear brief: create a compact UGC content series for its two premium villa projects, Artha and Aryama, translating project information into a human, watchable social format. Five films made to feel less like property advertising — and more like conversations people actually want to watch.",

@@ -130,7 +130,7 @@ export const BigFooter = ({ setPage }) => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="text-[13vw] whitespace-nowrap font-black leading-none uppercase tracking-tighter cursor-pointer transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-[#197C48] from-50% to-[var(--blink-color)] to-50% bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0_0]"
+          className="text-[min(13vw,224px)] whitespace-nowrap font-black leading-none uppercase tracking-tighter cursor-pointer transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-[#197C48] from-50% to-[var(--blink-color)] to-50% bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0_0]"
         >
           Let's Connect
         </motion.button>

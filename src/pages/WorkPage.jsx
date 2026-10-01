@@ -54,7 +54,7 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
       className="bg-white min-h-screen text-black pt-32"
     >
       {/* 1. Header Section */}
-      <section className="px-6 md:px-24 mb-10">
+      <section className="px-6 md:px-[max(3rem,calc((100%-1800px)/2))] mb-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
           <div className="w-full lg:w-max">
             <div className="relative">
@@ -98,7 +98,7 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
       </section>
 
       {/* 2. Portfolio Filter Section */}
-      <section className="px-6 md:px-24 mb-16">
+      <section className="px-6 md:px-[max(3rem,calc((100%-1800px)/2))] mb-16">
         <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16">
           <h2 className="text-3xl md:text-4xl font-light uppercase tracking-[0.2em] text-black/80 shrink-0">
             Portfolio
@@ -123,7 +123,7 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
       </section>
 
       {/* 3. Project Grid / Showcase Section */}
-      <main className="px-6 md:px-24 pb-24">
+      <main className="px-6 md:px-[max(3rem,calc((100%-1800px)/2))] pb-24">
         <AnimatePresence mode="wait">
           {!isShowcaseFilter ? (
             <motion.div

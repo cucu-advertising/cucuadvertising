@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { allProjects } from "../../constants/projects";
 
 // Projects shown on the home page, in order. Titles must match projects.js.
-const FEATURED_TITLES = ["Arbor Road", "One ENT", "ARK", "Varun Engineers"];
+const FEATURED_TITLES = ["Arbor Road", "One ENT", "ARK Groups", "Varun Engineers"];
 
 const featured = FEATURED_TITLES.map((t) => allProjects.find((p) => p.title === t)).filter(Boolean);
 

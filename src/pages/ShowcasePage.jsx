@@ -33,7 +33,7 @@ export const ShowcasePage = ({ setPage }) => {
       className="bg-white min-h-screen text-black pt-32"
     >
       {/* Header */}
-      <section className="px-6 md:px-24 mb-14">
+      <section className="px-6 md:px-[max(3rem,calc((100%-1800px)/2))] mb-14">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
           <div className="w-full lg:w-max">
             <div className="relative">
@@ -59,7 +59,7 @@ export const ShowcasePage = ({ setPage }) => {
       </section>
 
       {/* Section Filter Nav */}
-      <section className="px-6 md:px-24 mb-16">
+      <section className="px-6 md:px-[max(3rem,calc((100%-1800px)/2))] mb-16">
         <SectionNav active={active} onSelect={setActive} />
       </section>
 
@@ -71,7 +71,7 @@ export const ShowcasePage = ({ setPage }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.4 }}
-          className="px-6 md:px-24 pb-24"
+          className="px-6 md:px-[max(3rem,calc((100%-1800px)/2))] pb-24"
         >
           <div className="mb-12 max-w-3xl">
             <div className="flex items-center gap-4 mb-4">
@@ -126,7 +126,7 @@ export const ShowcasePage = ({ setPage }) => {
       </AnimatePresence>
 
       {/* CTA */}
-      <section className="px-6 md:px-24 pb-24">
+      <section className="px-6 md:px-[max(3rem,calc((100%-1800px)/2))] pb-24">
         <div className="max-w-6xl mx-auto text-center py-16 border-t border-neutral-100">
           <p className="text-xl md:text-2xl text-neutral-500 font-medium mb-10 max-w-2xl mx-auto">
             Want ongoing creative like this for your brand?

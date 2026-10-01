@@ -21,9 +21,13 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
     allProjects[(currentIndex + 2) % allProjects.length]
   ];
 
+  // Navigate to the next project's own URL (the page is chosen from the URL,
+  // so only updating state left the old project on screen). App scrolls the
+  // new page to the top on every route change.
   const handleNextProjectClick = (nextProject) => {
+    if (nextProject.disableDetail) return;
     setSelectedProject(nextProject);
-    window.scrollTo(0, 0);
+    setPage("project-detail");
   };
 
 

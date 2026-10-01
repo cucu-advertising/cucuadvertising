@@ -137,7 +137,7 @@ export const NameStory = () => {
 
   return (
     <section ref={ref} className="relative bg-white text-[#050505]" style={{ height: `${PHASES * 55 + 45}vh` }}>
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-6 text-center">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-28 md:pt-32 overflow-hidden px-6 text-center">
         <span className="mb-6 md:mb-8 text-xs md:text-sm font-black uppercase tracking-[0.35em]" style={{ color: GREEN }}>
           How we got our name
         </span>

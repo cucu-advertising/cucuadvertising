@@ -21,6 +21,8 @@ const FadeInView = ({ children, delay = 0 }) => (
   </motion.div>
 );
 
+const SHOW_FOUNDER = false;
+
 export const AboutPage = ({ setPage }) => {
   return (
     <motion.div
@@ -30,83 +32,100 @@ export const AboutPage = ({ setPage }) => {
       className="bg-white text-slate-900 selection:bg-[#197C48] selection:text-white"
     >
       {/* Hero Section */}
-      <section className="pt-28 md:pt-28 pb-12 px-6 md:px-12 bg-white relative overflow-hidden">
-        {/* Background Motif */}
-        <div className="absolute top-32 left-10 md:left-20 pointer-events-none select-none">
-          <span className="text-[20vw] font-black text-[#197C48]/[0.06] leading-none uppercase">
-            ABOUT
-          </span>
-        </div>
+      <section className="pt-28 md:pt-32 pb-10 md:pb-14 px-6 md:px-12 bg-white relative overflow-hidden">
+        <div className="max-w-[1800px] mx-auto">
+          {/* Label row */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-between border-b border-black/10 pb-4 text-xs md:text-sm font-bold uppercase tracking-[0.25em]"
+          >
+            <span className="text-[#197C48]">Our Story</span>
+            <span className="text-black/40">Hyderabad · Mumbai</span>
+          </motion.div>
 
-        <div className="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
-          <div>
-            <div className="overflow-hidden mb-4">
-              <motion.span
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-[#197C48] font-bold tracking-[0.3em] uppercase text-xs md:text-sm"
-              >
-                Our Story
-              </motion.span>
-            </div>
-
-            <h1 className="text-[12vw] md:text-[6.5vw] lg:text-[80px] xl:text-[96px] font-black uppercase leading-[0.8] tracking-tighter text-[#197C48] mb-12">
-              {["We're", "Cucu", "Advertising."].map((word, i) => (
-                <div key={i} className="overflow-hidden">
+          <div className="mt-10 md:mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
+            {/* Headline */}
+            <h1 className="lg:col-span-7 text-[17vw] md:text-[11vw] lg:text-[8.2vw] font-black uppercase leading-[0.82] tracking-tighter text-[#050505]">
+              {["We're", "Cucu"].map((word, i) => (
+                <span key={word} className="block overflow-hidden">
                   <motion.span
-                    initial={{ y: "100%" }}
-                    animate={{ y: 0 }}
-                    transition={{
-                      duration: 0.8,
-                      ease: [0.16, 1, 0.3, 1],
-                      delay: i * 0.1,
-                    }}
                     className="block"
+                    initial={{ y: "105%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
                   >
                     {word}
                   </motion.span>
-                </div>
+                </span>
               ))}
+              <span className="block overflow-hidden pb-[0.14em]">
+                <motion.span
+                  className="relative inline-block text-[#197C48]"
+                  initial={{ y: "105%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                >
+                  Advertising.
+                  {/* Mint underline swoosh */}
+                  <motion.span
+                    aria-hidden
+                    className="absolute left-[2%] right-0 -bottom-[0.08em] h-[0.12em] rounded-full bg-[#8CF2C6] -z-10 origin-left"
+                    style={{ rotate: "-1deg" }}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </motion.span>
+              </span>
             </h1>
 
+            {/* Illustration */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex items-center gap-6 group"
-            >
-              <div className="h-[2px] w-12 bg-[#197C48]/30 group-hover:w-20 transition-all duration-500" />
-              <p className="text-lg md:text-xl lg:text-2xl font-bold uppercase tracking-tight text-[#000000]/60 max-w-md">
-                Aka: Client to User with Creative Understanding
-              </p>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="hidden md:block relative h-full flex items-center"
-          >
-            {/* Animated Glow/Shadow */}
-            <div className="absolute -inset-20 bg-[#197C48]/5 blur-[120px] rounded-full -z-10 animate-pulse" />
-
-            <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="relative z-10 w-full p-2 bg-white rounded-[4rem] shadow-[0_60px_120px_-30px_rgba(25,124,72,0.15)] ring-1 ring-[#197C48]/5"
+              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              className="lg:col-span-5 group relative aspect-[4/3] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-[#f4f6f3] ring-1 ring-black/5"
             >
               <img
                 src={aboutHeroImg}
-                alt="Cucu Advertising About Us"
-                className="w-full h-auto rounded-[3.5rem] grayscale-[5%] hover:grayscale-0 transition-all duration-700 shadow-2xl"
+                alt="Cucu Advertising"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
             </motion.div>
+          </div>
+
+          {/* Bottom row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-10 md:mt-14 pt-8 border-t border-black/10 grid md:grid-cols-12 gap-8 items-end"
+          >
+            <p className="md:col-span-4 text-xl md:text-2xl font-black uppercase tracking-tight leading-tight text-[#050505]">
+              <span className="text-[#197C48]">C</span>lient to <span className="text-[#197C48]">U</span>ser, with{" "}
+              <span className="text-[#197C48]">C</span>reative <span className="text-[#197C48]">U</span>nderstanding.
+            </p>
+            <p className="md:col-span-5 text-base md:text-lg leading-relaxed text-black/60">
+              A Hyderabad-born creative and growth studio. Strategy, branding, content,
+              films and performance, brought together so ambitious brands feel sharper,
+              clearer and impossible to ignore.
+            </p>
+            <div className="md:col-span-3 flex flex-wrap md:justify-end gap-3">
+              <button
+                onClick={() => setPage("work")}
+                className="px-6 py-3 rounded-full bg-[#050505] text-white text-sm font-semibold hover:bg-[#197C48] transition-colors"
+              >
+                See our work ↗
+              </button>
+              <button
+                onClick={() => setPage("contact")}
+                className="px-6 py-3 rounded-full border border-[#050505] text-[#050505] text-sm font-semibold hover:bg-[#8CF2C6] hover:border-[#8CF2C6] transition-colors"
+              >
+                Start a project ↗
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -119,7 +138,8 @@ export const AboutPage = ({ setPage }) => {
 
       <Clients />
 
-      {/* Founder Section */}
+      {/* Founder Section — hidden for now. Change SHOW_FOUNDER to true to bring it back. */}
+      {SHOW_FOUNDER && (
       <section className="py-12 md:py-16 px-6 md:px-12 bg-white text-black">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid md:grid-cols-12 gap-16 items-center">
@@ -205,6 +225,7 @@ export const AboutPage = ({ setPage }) => {
           </div>
         </div>
       </section>
+      )}
 
 
       <BigFooter setPage={setPage} />

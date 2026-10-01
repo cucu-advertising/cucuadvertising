@@ -41,7 +41,7 @@ export const AboutStats = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: i * 0.1 }}
-          className={`py-10 md:py-14 px-2 md:px-8 ${i % 2 === 0 ? "border-r border-black/10" : "lg:border-r"} ${
+          className={`py-10 md:py-14 px-2 md:px-8 ${i % 2 === 0 ? "!pl-0" : ""} ${i === 2 ? "lg:!pl-8" : ""} ${i % 2 === 0 ? "border-r border-black/10" : "lg:border-r"} ${
             i === STATS.length - 1 ? "lg:border-r-0" : ""
           } ${i < 2 ? "border-b lg:border-b-0 border-black/10" : ""}`}
         >
@@ -107,7 +107,7 @@ export const AboutPlayground = () => (
             <span style={{ color: MINT }}>Not always ourselves.</span>
           </motion.h2>
         </div>
-        <p className="max-w-xl md:ml-auto text-base md:text-lg leading-relaxed text-white/75">
+        <p className="max-w-xl text-base md:text-lg leading-relaxed text-white/75">
           We take the brief seriously and the mood lightly. That's how good ideas
           survive long enough to become great work.
         </p>

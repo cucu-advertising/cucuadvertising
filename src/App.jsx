@@ -167,10 +167,22 @@ function AppContent() {
     window.dispatchEvent(new Event("cucu:loaded"));
   }, []);
 
-  // Scroll to top on page change
-  useEffect(() => {
+  // Every new page starts at the top. Lenis keeps its own scroll target, so a
+  // plain window.scrollTo isn't enough if the old page was still gliding —
+  // stop Lenis and jump it to 0 too. Runs on the route change and again once
+  // the old page has finished fading out and the new one is mounted.
+  const scrollToTop = useCallback(() => {
+    if (window.lenis) window.lenis.scrollTo(0, { immediate: true, force: true });
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, []);
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+  }, []);
+
+  useEffect(() => {
+    scrollToTop();
+  }, [location.pathname, scrollToTop]);
 
   return (
     <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-clip noise">
@@ -183,7 +195,7 @@ function AppContent() {
         homeMode={false}
       />
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={scrollToTop}>
         <React.Suspense fallback={null}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<HomePage setPage={setPage} setSelectedProject={handleSetSelectedProject} />} />
