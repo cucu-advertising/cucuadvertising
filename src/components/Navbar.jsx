@@ -83,6 +83,10 @@ export const Navbar = ({ activePage, setPage, navReady = true, homeMode = false 
             <span className="hidden sm:block text-lg font-bold tracking-tight capitalize text-black">
               cucu advertising
             </span>
+            {/* Phones only — desktop keeps "cucu advertising" above */}
+            <span className="sm:hidden text-xl font-black tracking-tighter text-black">
+              <span className="text-[#197C48]">C</span>UCU<span className="text-[#197C48]">.</span>
+            </span>
           </button>
 
           {/* Desktop Navigation */}
@@ -134,7 +138,7 @@ export const Navbar = ({ activePage, setPage, navReady = true, homeMode = false 
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 bg-[#1a1a1a]/95 backdrop-blur-xl z-[99] flex flex-col items-center justify-center p-8 pt-24"
           >
-            <div className="flex flex-col gap-4 w-full max-w-xs">
+            <div className="flex flex-col gap-1 w-full max-w-xs">
               {navLinks.map((link) => (
                 <button
                   key={link.label}
@@ -142,7 +146,7 @@ export const Navbar = ({ activePage, setPage, navReady = true, homeMode = false 
                     setPage(link.path);
                     setIsOpen(false);
                   }}
-                  className={`w-full text-3xl font-bold tracking-tight py-4 flex items-center justify-center gap-3 transition-colors duration-300 ease-in-out ${
+                  className={`w-full text-3xl font-bold tracking-tight py-2 flex items-center justify-center gap-3 transition-colors duration-300 ease-in-out ${
                     isLinkActive(link) ? "text-white" : "text-white/40 hover:text-[#31ee9c]"
                   }`}
                 >
@@ -154,7 +158,7 @@ export const Navbar = ({ activePage, setPage, navReady = true, homeMode = false 
                   setPage("contact");
                   setIsOpen(false);
                 }}
-                className={`text-3xl font-bold tracking-tight py-4 text-center transition-colors duration-300 ease-in-out ${
+                className={`text-3xl font-bold tracking-tight py-2 text-center transition-colors duration-300 ease-in-out ${
                   activePage === "contact" ? "text-white" : "text-white/40 hover:text-[#31ee9c]"
                 }`}
               >
@@ -164,7 +168,7 @@ export const Navbar = ({ activePage, setPage, navReady = true, homeMode = false 
             
             <button 
               onClick={() => setIsOpen(false)}
-              className="mt-16 text-white/50 hover:text-[#31ee9c] transition-colors duration-300 ease-in-out"
+              className="mt-10 text-white/50 hover:text-[#31ee9c] transition-colors duration-300 ease-in-out"
             >
               Close Menu
             </button>
