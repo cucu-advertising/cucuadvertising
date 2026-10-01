@@ -56,7 +56,7 @@ const ClientCard = ({ client }) => (
 
 export const Clients = () => (
   <section className="bg-white text-black py-20 md:py-28 overflow-hidden">
-    <div className="px-6 md:px-12 lg:px-24">
+    <div className="px-6 md:px-12 max-w-[1800px] mx-auto">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -66,7 +66,19 @@ export const Clients = () => (
           className="text-[14vw] md:text-[8vw] font-black uppercase leading-[0.85] tracking-tighter"
         >
           Clients
-        </motion.h2>      </div>
+        </motion.h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="md:text-right"
+        >
+          <p className="anton-sc-regular text-2xl md:text-3xl text-slate-800 leading-tight">
+            " BRANDS THAT TRUSTED US TO GROW "
+          </p>
+        </motion.div>
+      </div>
       <div className="h-px bg-black/80 mt-10 mb-14" />
     </div>
 

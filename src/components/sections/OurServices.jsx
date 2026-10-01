@@ -8,17 +8,31 @@ export const OurServices = ({ setPage }) => {
   const [open, setOpen] = useState(null);
 
   return (
-    <section className="bg-white text-black px-6 md:px-12 lg:px-24 py-20 md:py-28">
-      <div className="flex flex-col md:flex-row md:items-start md:justify-start gap-6">
+    <section className="bg-white text-black px-6 md:px-12 py-20 md:py-28">
+      <div className="max-w-[1800px] mx-auto">
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[14vw] md:text-[8vw] font-black uppercase leading-[0.85] tracking-tighter"
+          className="text-[12vw] md:text-[8vw] font-black uppercase leading-[0.85] tracking-tighter whitespace-nowrap shrink-0"
         >
           Our <span className="text-[#197C48]">services.</span>
         </motion.h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="md:text-right"
+        >
+          <p className="anton-sc-regular text-2xl md:text-3xl text-slate-800 leading-tight">
+            " Everything Your Brands
+            <br />
+            Needs to Grow "
+          </p>
+        </motion.div>
       </div>
       <div className="h-px bg-black/80 mt-10 mb-12" />
 
@@ -87,6 +101,7 @@ export const OurServices = ({ setPage }) => {
             </div>
           );
         })}
+      </div>
       </div>
     </section>
   );

@@ -15,7 +15,8 @@ export const FeaturedWork = ({ setPage, setSelectedProject }) => {
   };
 
   return (
-    <section className="bg-white text-black px-6 md:px-12 lg:px-24 py-20 md:py-28">
+    <section className="bg-white text-black px-6 md:px-12 py-20 md:py-28">
+      <div className="max-w-[1800px] mx-auto">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
         <div>
@@ -72,6 +73,7 @@ export const FeaturedWork = ({ setPage, setSelectedProject }) => {
             </div>
           </motion.div>
         ))}
+      </div>
       </div>
     </section>
   );

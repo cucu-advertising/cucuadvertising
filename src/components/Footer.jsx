@@ -80,7 +80,7 @@ export const BigFooter = ({ setPage }) => {
   };
 
   return (
-    <section className="min-h-[80vh] bg-white text-slate-950 flex flex-col justify-between p-6 md:p-12 relative overflow-hidden z-20">
+    <section className="min-h-[80vh] bg-white text-slate-950 flex flex-col justify-between py-6 md:py-12 px-6 md:px-[max(3rem,calc((100%-1800px)/2))] relative overflow-hidden z-20">
       <div className="relative z-10 flex justify-between items-start pt-12">
         <div className="flex flex-col gap-4">
           <h2 className="text-2xl font-black uppercase text-slate-950">Start a Project</h2>
