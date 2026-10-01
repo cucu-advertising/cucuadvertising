@@ -16,10 +16,11 @@ export const Showreel = () => {
   const radius = useTransform(scrollYProgress, [0, 1], [64, 28]);
 
   return (
-    <section ref={ref} className="bg-white px-4 md:px-12 py-12 md:py-20">
+    <section ref={ref} className="bg-white px-4 md:px-12 pt-6 md:pt-10 pb-4 md:pb-6">
+      {/* Sized to fit one screen below the fixed navbar (~120px tall). */}
       <motion.div
         style={{ scale, borderRadius: radius }}
-        className="relative overflow-hidden bg-neutral-100 shadow-2xl"
+        className="relative overflow-hidden bg-neutral-100 shadow-2xl h-[calc(100svh-140px)]"
       >
         <video
           src={showreelDesktop}
@@ -27,7 +28,7 @@ export const Showreel = () => {
           loop
           muted
           playsInline
-          className="hidden md:block w-full h-auto"
+          className="hidden md:block w-full h-full object-cover"
         />
         <video
           src={showreelMobile}
@@ -35,7 +36,7 @@ export const Showreel = () => {
           loop
           muted
           playsInline
-          className="md:hidden w-full h-auto"
+          className="md:hidden w-full h-full object-cover"
         />
       </motion.div>
     </section>

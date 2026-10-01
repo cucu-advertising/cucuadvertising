@@ -75,8 +75,8 @@ export const HomePage = ({ setPage, setSelectedProject }) => {
       exit={{ opacity: 0 }}
     >
       <Hero setPage={setPage} />
-      <Mission />
       <Showreel />
+      <Mission />
       {/* <AreasOfExpertise /> */}
       <FeaturedWork setPage={setPage} setSelectedProject={setSelectedProject} />
       <Clients />

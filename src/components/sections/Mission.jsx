@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Mission = () => (
-  <section className="py-16 md:py-24 px-6 md:px-12 bg-white text-[#197C48] border-b border-[#197C48]/10 relative z-10">
+  <section className="pt-8 md:pt-12 pb-16 md:pb-24 px-6 md:px-12 bg-white text-[#197C48] border-b border-[#197C48]/10 relative z-10">
     <div className="max-w-[1800px] mx-auto grid md:grid-cols-2 gap-16 md:gap-24">
       {/* Left - Heading */}
       <div>
