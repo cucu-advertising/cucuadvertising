@@ -5,7 +5,10 @@ import aboutHeroImg from "../assets/NEW/about us big.webp";
 import arvindProfile1 from "../assets/arvind/Profile.webp";
 import arvindProfile2 from "../assets/arvind/Profile2.webp";
 import { TRANSITION } from "../constants/config";
-import { MessageCircle, Sparkles, Zap } from "lucide-react";
+import { Sparkles, Zap } from "lucide-react";
+import { NameStory } from "../components/about/NameStory";
+import { AboutStats, AboutPlayground } from "../components/about/AboutExtras";
+import { Clients } from "../components/sections/Clients";
 
 const FadeInView = ({ children, delay = 0 }) => (
   <motion.div
@@ -27,10 +30,10 @@ export const AboutPage = ({ setPage }) => {
       className="bg-white text-slate-900 selection:bg-[#197C48] selection:text-white"
     >
       {/* Hero Section */}
-      <section className="pt-48 pb-16 px-6 md:px-12 bg-white relative overflow-hidden">
+      <section className="pt-28 md:pt-28 pb-12 px-6 md:px-12 bg-white relative overflow-hidden">
         {/* Background Motif */}
         <div className="absolute top-32 left-10 md:left-20 pointer-events-none select-none">
-          <span className="text-[20vw] font-black text-[#197C48]/3 leading-none uppercase">
+          <span className="text-[20vw] font-black text-[#197C48]/[0.06] leading-none uppercase">
             ABOUT
           </span>
         </div>
@@ -108,108 +111,16 @@ export const AboutPage = ({ setPage }) => {
         </div>
       </section>
 
-      {/* Brand Story Section */}
-      <section className="py-32 px-6 md:px-12 bg-white text-black">
-        <div className="max-w-[1200px] mx-auto">
-          <FadeInView>
-            <h2 className="text-4xl md:text-6xl font-black uppercase mb-16 leading-tight">
-              Here’s how we got here:
-            </h2>
-          </FadeInView>
+      <AboutStats />
 
-          <div className="grid md:grid-cols-2 gap-16 md:gap-32">
-            <FadeInView delay={0.2}>
-              <div className="space-y-8">
-                <p className="text-xl md:text-2xl leading-relaxed">
-                  Advertising is a bridge between Client to User. That's the
-                  connection we build every single day. So we took the prefix:{" "}
-                  <span className="font-black text-[#197C48]">CU</span>.
-                </p>
-                <p className="text-xl md:text-2xl leading-relaxed">
-                  But we don't just connect, we do it with the{" "}
-                  <span className="font-bold italic">
-                    Creative Understanding
-                  </span>{" "}
-                  of the brand. Again we took this prefix:{" "}
-                  <span className="font-black text-[#197C48]">CU</span>.
-                </p>
-              </div>
-            </FadeInView>
+      <NameStory />
 
-            <FadeInView delay={0.4}>
-              <div className="relative p-12 bg-[#F5F5F5] rounded-[2rem] overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#197C48] rounded-bl-full opacity-10 group-hover:scale-150 transition-transform duration-700" />
-                <p className="text-lg md:text-xl font-medium leading-relaxed italic relative z-10">
-                  "It wasn't just about combining words; it was about defining
-                  our purpose. The connection and the creativity."
-                </p>
-              </div>
-            </FadeInView>
-          </div>
-        </div>
-      </section>
+      <AboutPlayground />
 
-      {/* Visual Symmetry Section */}
-      <section className="py-32 px-6 md:px-12 bg-white border-t border-slate-100">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <FadeInView>
-            <p className="text-2xl md:text-4xl font-light mb-16 text-slate-400">
-              Then came the part that made it perfect:
-            </p>
-          </FadeInView>
-
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24 mb-16">
-            <FadeInView delay={0.2}>
-              <div className="flex flex-col items-center">
-                <motion.div
-                  animate={{ rotateY: [0, 180, 0] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="text-[15vw] md:text-[10vw] font-black text-[#197C48] leading-none"
-                >
-                  C
-                </motion.div>
-                <p className="mt-4 uppercase tracking-widest text-sm font-bold text-slate-400">
-                  Flip a C — it becomes a U
-                </p>
-              </div>
-            </FadeInView>
-
-            <FadeInView delay={0.4}>
-              <div className="flex flex-col items-center">
-                <motion.div
-                  animate={{ rotateX: [0, 180, 0] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 2,
-                  }}
-                  className="text-[15vw] md:text-[10vw] font-black text-slate-900 leading-none"
-                >
-                  U
-                </motion.div>
-                <p className="mt-4 uppercase tracking-widest text-sm font-bold text-slate-400">
-                  Flip a U — it becomes a C
-                </p>
-              </div>
-            </FadeInView>
-          </div>
-
-          <FadeInView delay={0.6}>
-            <p className="text-2xl md:text-3xl max-w-3xl mx-auto leading-relaxed font-black text-[#197C48] uppercase tracking-tighter">
-              Now that’s visual symmetry. The connection, right there in the
-              letters.
-            </p>
-          </FadeInView>
-        </div>
-      </section>
+      <Clients />
 
       {/* Founder Section */}
-      <section className="py-32 px-6 md:px-12 bg-white text-black">
+      <section className="py-12 md:py-16 px-6 md:px-12 bg-white text-black">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid md:grid-cols-12 gap-16 items-center">
             <div className="md:col-span-12 lg:col-span-7">
@@ -235,14 +146,12 @@ export const AboutPage = ({ setPage }) => {
                     and he's always up for a good conversation about pretty much
                     anything creative.
                   </p>
-                  <motion.p 
-                    className="font-black text-black opacity-100 italic flex items-center gap-4"
-                  >
-                    <span className="w-8 h-8 rounded-full bg-[#197C48]/10 flex items-center justify-center">
-                      <Zap className="w-4 h-4 text-[#197C48]" />
-                    </span>
-                    "That's the energy behind CUCU. That's who you're working with."
-                  </motion.p>
+                </div>
+                <blockquote className="mt-12 border-l-4 border-[#197C48] pl-6 md:pl-8 text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] text-black max-w-2xl">
+                  "That's the energy behind CUCU.{" "}
+                  <span className="text-[#197C48]">That's who you're working with."</span>
+                </blockquote>
+                <div>
                 </div>
               </FadeInView>
             </div>
@@ -254,10 +163,17 @@ export const AboutPage = ({ setPage }) => {
                   <div className="absolute -inset-4 bg-[#197C48]/5 rounded-[4.5rem] blur-2xl group-hover:bg-[#197C48]/10 transition-colors duration-700" />
                   
                   <div className="relative aspect-[4/5] bg-slate-50 rounded-[4rem] overflow-hidden shadow-2xl border border-slate-100">
-                    <img 
-                      src={arvindProfile1} 
-                      alt="Arvind Arandkar" 
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    <img
+                      src={arvindProfile1}
+                      alt="Arvind Arandkar"
+                      className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:opacity-0"
+                    />
+                    {/* Second portrait fades in on hover */}
+                    <img
+                      src={arvindProfile2}
+                      alt=""
+                      aria-hidden
+                      className="absolute inset-0 w-full h-full object-cover opacity-0 scale-105 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-100"
                     />
                     
                     {/* Floating Info Card */}
@@ -289,6 +205,7 @@ export const AboutPage = ({ setPage }) => {
           </div>
         </div>
       </section>
+
 
       <BigFooter setPage={setPage} />
     </motion.div>

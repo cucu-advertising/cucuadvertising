@@ -55,7 +55,7 @@ const ClientCard = ({ client }) => (
 );
 
 export const Clients = () => (
-  <section className="bg-white text-black py-20 md:py-28 overflow-hidden">
+  <section className="bg-white text-black py-12 md:py-16 overflow-hidden">
     <div className="px-6 md:px-12 max-w-[1800px] mx-auto">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <motion.h2

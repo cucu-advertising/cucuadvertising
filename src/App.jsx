@@ -173,7 +173,7 @@ function AppContent() {
   }, [location.pathname]);
 
   return (
-    <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-hidden noise">
+    <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-clip noise">
       <AnimatePresence>
         {isAppLoading && <Preloader key="loader" onFinish={handleLoaderFinish} />}
       </AnimatePresence>
