@@ -350,7 +350,7 @@ export const allProjects = [
   {
     title: "ARK Groups",
     category: "Brand Identity & Communication",
-    img: "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp",
+    img: "/Clientwork/ark/ark-out.webp",
     about: "ARK approached CUCU with a clear brief: create a compact UGC content series for its two premium villa projects, Artha and Aryama, translating project information into a human, watchable social format. Five films made to feel less like property advertising — and more like conversations people actually want to watch.",
     scope: ["UGC Content", "Creative Direction", "Scriptwriting", "5 UGC Films"],
     industry: "Real Estate — Premium Villas",
@@ -396,15 +396,15 @@ export const allProjects = [
     gallery: [
       "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
       "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
-      "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp",
+      "/Clientwork/ark/ark-out.webp",
       "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
-      "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp"
+      "/Clientwork/ark/ark-out.webp"
     ]
   },
   {
     title: "ES Enterprises",
     category: "Brand Identity & Communication",
-    img: "/brands/es-enterprises-cover.svg",
+    img: "/Clientwork/es/es-enterprises.webp",
     about: "CUCU was brought in to create one ad film that could explain ES Enterprises' projects without overwhelming the viewer with information — turning multiple points into a single narrative that feels direct, visual and easy to understand.",
     scope: ["Ad Film", "Creative Direction", "Content", "1 Campaign Film"],
     industry: "Real Estate & Projects",
@@ -431,17 +431,17 @@ export const allProjects = [
       ],
     },
     gallery: [
-      "/brands/es-enterprises-cover.svg",
-      "/brands/es-enterprises-cover.svg",
-      "/brands/es-enterprises-cover.svg",
-      "/brands/es-enterprises-cover.svg",
-      "/brands/es-enterprises-cover.svg"
+      "/Clientwork/es/es-enterprises.webp",
+      "/Clientwork/es/es-enterprises.webp",
+      "/Clientwork/es/es-enterprises.webp",
+      "/Clientwork/es/es-enterprises.webp",
+      "/Clientwork/es/es-enterprises.webp"
     ]
   },
   {
     title: "Subishi",
     category: "Brand Identity & Communication",
-    img: "/brands/subishi-cover.svg",
+    img: "/Clientwork/subishi/subishi.webp",
     about: "Subishi is a Hyderabad real-estate developer with a portfolio spanning premium villas and apartments. The brief for CUCU was to explain their projects through four short-form UGC films without making the content feel like a conventional property advertisement.",
     scope: ["UGC Content", "Creative Direction", "Short-form Video", "4 UGC Films"],
     industry: "Real Estate",
@@ -472,11 +472,11 @@ export const allProjects = [
       ],
     },
     gallery: [
-      "/brands/subishi-cover.svg",
-      "/brands/subishi-cover.svg",
-      "/brands/subishi-cover.svg",
-      "/brands/subishi-cover.svg",
-      "/brands/subishi-cover.svg"
+      "/Clientwork/subishi/subishi.webp",
+      "/Clientwork/subishi/subishi.webp",
+      "/Clientwork/subishi/subishi.webp",
+      "/Clientwork/subishi/subishi.webp",
+      "/Clientwork/subishi/subishi.webp"
     ]
   },
   {

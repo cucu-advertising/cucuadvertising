@@ -18,21 +18,22 @@ export const FeaturedWork = ({ setPage, setSelectedProject }) => {
     <section className="bg-white text-black px-6 md:px-12 py-20 md:py-28">
       <div className="max-w-[1800px] mx-auto">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-        <div>
+      <div className="flex flex-row items-end justify-between gap-4 md:gap-8">
+        <div className="min-w-0">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[14vw] md:text-[8vw] font-black uppercase leading-[0.85] tracking-tighter"
+            className="text-[15vw] md:text-[8vw] font-black uppercase leading-[0.85] tracking-tighter whitespace-nowrap"
           >
-            Featured <span className="text-[#197C48]">work</span>
+            Featured <br className="md:hidden" />
+            <span className="text-[#197C48]">work</span>
           </motion.h2>
         </div>
         <button
           onClick={() => setPage("work")}
-          className="self-start md:self-end shrink-0 px-7 py-3 rounded-full bg-black text-white text-sm font-semibold hover:bg-[#31ee9c] hover:text-black transition-colors duration-300"
+          className="shrink-0 mb-[calc(6.375vw-16px)] md:mb-0 px-4 py-2 md:px-7 md:py-3 rounded-full bg-black text-white text-xs md:text-sm font-semibold whitespace-nowrap hover:bg-[#31ee9c] hover:text-black transition-colors duration-300"
         >
           All projects
         </button>

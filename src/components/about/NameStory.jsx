@@ -42,7 +42,7 @@ const Caption = ({ children, delay = 1 }) => (
   </motion.p>
 );
 
-const BIG = "text-[16vw] md:text-[10vw] font-black uppercase leading-[0.85] tracking-tighter";
+const BIG = "text-[19vw] md:text-[10vw] font-black uppercase leading-[0.85] tracking-tighter";
 
 const Phase = ({ index }) => {
   switch (index) {
@@ -50,9 +50,9 @@ const Phase = ({ index }) => {
       return (
         <>
           <Lead>Advertising is a bridge between</Lead>
-          <div className={`${BIG} flex flex-wrap justify-center items-center gap-x-[0.25em]`}>
+          <div className={`${BIG} flex flex-col md:flex-row md:flex-wrap justify-center items-center gap-x-[0.25em] gap-y-1`}>
             <Initialled word="Client" fade delay={0.6} />
-            <span className="text-neutral-300">→</span>
+            <span className="text-neutral-300 rotate-90 md:rotate-0 text-[0.55em] md:text-[1em] leading-none">→</span>
             <Initialled word="User" fade delay={0.6} />
           </div>
           <Caption delay={1.3}>
@@ -65,7 +65,7 @@ const Phase = ({ index }) => {
       return (
         <>
           <Lead>But we don't just connect. We do it with</Lead>
-          <div className={`text-[11vw] md:text-[7.5vw] font-black uppercase leading-[0.9] tracking-tighter flex flex-col items-center`}>
+          <div className={`text-[10vw] md:text-[7.5vw] font-black uppercase leading-[0.9] tracking-tighter flex flex-col items-center`}>
             <Initialled word="Creative" fade delay={0.6} />
             <Initialled word="Understanding" fade delay={0.6} />
           </div>
@@ -137,7 +137,7 @@ export const NameStory = () => {
 
   return (
     <section ref={ref} className="relative bg-white text-[#050505]" style={{ height: `${PHASES * 55 + 45}vh` }}>
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-start pt-28 md:pt-32 overflow-hidden px-6 text-center">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center md:justify-start pt-16 pb-24 md:pb-0 md:pt-32 overflow-hidden px-6 text-center">
         <span className="mb-6 md:mb-8 text-xs md:text-sm font-black uppercase tracking-[0.35em]" style={{ color: GREEN }}>
           How we got our name
         </span>
@@ -154,6 +154,11 @@ export const NameStory = () => {
             <Phase index={phase} />
           </motion.div>
         </AnimatePresence>
+
+        {/* Current step name — phones only */}
+        <span className="md:hidden absolute bottom-[3.25rem] left-0 right-0 text-[11px] font-bold uppercase tracking-widest text-black/50">
+          {phase + 1} / {STEPS.length} · {STEPS[phase]}
+        </span>
 
         {/* Step tracker */}
         <div className="absolute bottom-8 md:bottom-12 left-6 right-6 md:left-12 md:right-12 flex items-center gap-3 md:gap-6">

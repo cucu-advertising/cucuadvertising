@@ -116,7 +116,7 @@ export const ServicesPage = ({ setPage }) => {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full h-full flex items-center justify-center"
               >
-                <div className="w-full max-w-sm lg:max-w-md aspect-square rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] bg-white">
+                <div className="h-full w-auto max-w-full md:h-auto md:w-full md:max-w-sm lg:max-w-md aspect-square rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] bg-white">
                   <img
                     src={activeService.image}
                     alt={activeService.title}

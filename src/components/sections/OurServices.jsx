@@ -71,7 +71,7 @@ export const OurServices = ({ setPage }) => {
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 md:px-12 pb-10 grid md:grid-cols-12 gap-8 items-center">
+                    <div className="px-6 md:px-12 pb-10 grid md:grid-cols-12 gap-6 md:gap-8 items-center">
                       <div className="md:col-span-7">
                         <p className="text-xl md:text-3xl font-bold leading-snug mb-5">
                           <span className="text-[#8CF2C6]">{service.headlineHighlight}</span>
@@ -87,7 +87,7 @@ export const OurServices = ({ setPage }) => {
                           {service.cta} <ArrowUpRight size={18} />
                         </button>
                       </div>
-                      <div className="md:col-span-5">
+                      <div className="order-first md:order-none md:col-span-5">
                         <img
                           src={service.image}
                           alt={service.title}

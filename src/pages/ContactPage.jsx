@@ -114,55 +114,55 @@ export const ContactPage = ({ setPage }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen pt-40 pb-24 bg-white text-black px-6 md:px-12"
+      className="min-h-screen pt-28 md:pt-40 pb-16 md:pb-24 bg-white text-black px-6 md:px-12"
     >
-      <div className="max-w-[1800px] mx-auto grid lg:grid-cols-2 gap-24">
-        <div>
-          <h1 className="text-[12vw] font-black uppercase leading-none mb-12 tracking-tighter text-[#197C48]">
+      <div className="max-w-[1800px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24">
+        <div className="min-w-0">
+          <h1 className="text-[18vw] lg:text-[12vw] font-black uppercase leading-none mb-8 md:mb-12 tracking-tighter text-[#197C48]">
             Let's <br /> Build.
           </h1>
-          <div className="space-y-12">
-            <div className="flex gap-8 items-start">
-              <div className="bg-[#197C48] p-4 rounded-2xl text-black">
+          <div className="space-y-8 md:space-y-12">
+            <div className="flex gap-4 md:gap-8 items-start">
+              <div className="shrink-0 bg-[#197C48] p-3 md:p-4 rounded-2xl text-black">
                 <Mail size={32} />
               </div>
-              <div>
-                <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
+              <div className="min-w-0">
+                <h4 className="text-base md:text-xl font-bold uppercase tracking-widest mb-1 md:mb-2">
                   Email Us
                 </h4>
                 <a
                   href="mailto:coffee@cucuadvertising.com"
-                  className="text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors"
+                  className="text-lg md:text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors break-all"
                 >
                   coffee@cucuadvertising.com
                 </a>
               </div>
             </div>
-            <div className="flex gap-8 items-start">
-              <div className="bg-[#197C48] p-4 rounded-2xl text-black">
+            <div className="flex gap-4 md:gap-8 items-start">
+              <div className="shrink-0 bg-[#197C48] p-3 md:p-4 rounded-2xl text-black">
                 <Phone size={32} />
               </div>
-              <div>
-                <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
+              <div className="min-w-0">
+                <h4 className="text-base md:text-xl font-bold uppercase tracking-widest mb-1 md:mb-2">
                   Call Us
                 </h4>
                 <a
                   href="tel:+919440417034"
-                  className="text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors"
+                  className="text-lg md:text-2xl font-light text-black/60 hover:text-[#197C48] transition-colors break-all"
                 >
                   +91 94404 17034
                 </a>
               </div>
             </div>
-            <div className="flex gap-8 items-start">
-              <div className="bg-[#197C48] p-4 rounded-2xl text-black">
+            <div className="flex gap-4 md:gap-8 items-start">
+              <div className="shrink-0 bg-[#197C48] p-3 md:p-4 rounded-2xl text-black">
                 <MapPin size={32} />
               </div>
-              <div>
-                <h4 className="text-xl font-bold uppercase tracking-widest mb-2">
+              <div className="min-w-0">
+                <h4 className="text-base md:text-xl font-bold uppercase tracking-widest mb-1 md:mb-2">
                   Visit Us
                 </h4>
-                <p className="text-2xl font-light text-black/60">
+                <p className="text-lg md:text-2xl font-light text-black/60">
                   Hyderabad • Mumbai
                 </p>
               </div>
@@ -170,7 +170,7 @@ export const ContactPage = ({ setPage }) => {
           </div>
         </div>
 
-        <div className="bg-[#197C48]/5 p-8 md:p-16 rounded-[4rem] border border-[#197C48]/10 shadow-sm">
+        <div className="min-w-0 bg-[#197C48]/5 p-6 md:p-16 rounded-[2.5rem] md:rounded-[4rem] border border-[#197C48]/10 shadow-sm">
           <form onSubmit={handleSubmit} className="space-y-12">
             <div className="grid md:grid-cols-2 gap-12">
               <div className="space-y-4">
@@ -272,16 +272,16 @@ export const ContactPage = ({ setPage }) => {
         </div>
       </div>
 
-      <div className="mt-40 grid md:grid-cols-2 gap-12">
+      <div className="mt-20 md:mt-40 grid md:grid-cols-2 gap-12">
         <div className="flex flex-col md:flex-row gap-8 md:items-center">
           <div className="w-1 h-16 bg-[#FFBD12] hidden md:block" />
-          <div>
+          <div className="min-w-0">
             <h4 className="text-white font-black uppercase tracking-widest mb-2 bg-[#197C48] px-4 py-1 inline-block">
               New Business
             </h4>
             <a
               href="mailto:coffee@cucuadvertising.com"
-              className="text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer block"
+              className="text-xl md:text-2xl text-black font-bold hover:text-[#197C48] transition-colors cursor-pointer block break-all"
             >
               coffee@cucuadvertising.com
             </a>

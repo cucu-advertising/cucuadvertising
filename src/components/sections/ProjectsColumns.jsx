@@ -90,12 +90,12 @@ const ProjectCard = ({ project, index }) => (
       alt={project.title}
       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-    <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-400" />
+    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-400">
       <span className="block text-[10px] font-mono uppercase tracking-[0.25em] text-[#C8F135] mb-1">
         {project.category}
       </span>
-      <h3 className="text-lg md:text-xl font-black uppercase text-white tracking-tight leading-none">
+      <h3 className="text-sm md:text-xl font-black uppercase text-white tracking-tight leading-none">
         {project.title}
       </h3>
     </div>
@@ -114,8 +114,8 @@ export const ProjectsColumns = () => {
   });
 
   return (
-    <section className="bg-white py-20 px-6 md:px-12 overflow-hidden relative">
-      <div className="max-w-[1800px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-start gap-8">
+    <section className="bg-white py-12 md:py-20 px-6 md:px-12 overflow-hidden relative">
+      <div className="max-w-[1800px] mx-auto mb-8 md:mb-16 flex flex-col md:flex-row justify-between items-start gap-4 md:gap-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -148,14 +148,16 @@ export const ProjectsColumns = () => {
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-start max-w-[1800px] mx-auto h-[600px] md:h-[800px] overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 relative shadow-2xl">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 items-start max-w-[1800px] mx-auto h-[520px] md:h-[800px] overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 relative shadow-2xl">
         <VerticalMarquee items={column1} baseVelocity={-2} direction={1} />
         <VerticalMarquee items={column2} baseVelocity={2} direction={-1} />
-        <VerticalMarquee items={column3} baseVelocity={-2.5} direction={1} />
+        <div className="hidden md:block">
+          <VerticalMarquee items={column3} baseVelocity={-2.5} direction={1} />
+        </div>
 
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950 via-transparent to-slate-950 opacity-90 z-20" />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-30" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none z-30" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950 via-transparent to-slate-950 opacity-50 md:opacity-90 z-20" />
+        <div className="absolute inset-x-0 top-0 h-16 md:h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none z-30" />
+        <div className="absolute inset-x-0 bottom-0 h-16 md:h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none z-30" />
       </div>
     </section>
   );

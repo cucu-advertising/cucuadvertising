@@ -47,7 +47,7 @@ export const AboutPage = ({ setPage }) => {
 
           <div className="mt-10 md:mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
             {/* Headline */}
-            <h1 className="lg:col-span-7 text-[17vw] md:text-[11vw] lg:text-[8.2vw] font-black uppercase leading-[0.82] tracking-tighter text-[#050505]">
+            <h1 className="min-w-0 lg:col-span-7 text-[12.5vw] md:text-[11vw] lg:text-[8.2vw] font-black uppercase leading-[0.82] tracking-tighter text-[#050505]">
               {["We're", "Cucu"].map((word, i) => (
                 <span key={word} className="block overflow-hidden">
                   <motion.span
@@ -86,7 +86,7 @@ export const AboutPage = ({ setPage }) => {
               initial={{ opacity: 0, y: 40, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="lg:col-span-5 group relative aspect-[4/3] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-[#f4f6f3] ring-1 ring-black/5"
+              className="min-w-0 lg:col-span-5 group relative aspect-[4/3] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-[#f4f6f3] ring-1 ring-black/5"
             >
               <img
                 src={aboutHeroImg}

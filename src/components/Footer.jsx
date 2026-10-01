@@ -38,14 +38,14 @@ const socialLinks = [
 
 const SocialLink = ({ href, label, icon }) => (
   <motion.div
-    className="relative flex flex-col items-center"
+    className="relative flex flex-col items-start md:items-center"
     initial="initial"
   >
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-bold text-lg md:text-xl uppercase tracking-widest text-[#197C48] hover:text-[#050505] transition-colors py-2"
+      className="font-bold text-base md:text-xl uppercase tracking-widest text-[#197C48] hover:text-[#050505] transition-colors py-2"
     >
       {label}
     </a>
@@ -53,17 +53,17 @@ const SocialLink = ({ href, label, icon }) => (
 );
 
 export const StandardFooterContent = () => (
-  <div className="relative z-10 flex flex-col md:flex-row justify-between items-end border-t border-[#197C48]/20 pt-8 pb-12 w-full">
-    <div className="flex flex-wrap gap-8 md:gap-12 mb-8 md:mb-0">
+  <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end border-t border-[#197C48]/20 pt-6 md:pt-8 pb-8 md:pb-12 w-full">
+    <div className="grid grid-cols-2 gap-x-8 gap-y-1 md:flex md:flex-wrap md:gap-12 mb-6 md:mb-0">
       {socialLinks.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
     </div>
-    <div className="text-right">
-      <p className="font-mono text-sm uppercase font-bold text-slate-950">
+    <div className="text-left md:text-right">
+      <p className="font-mono text-xs md:text-sm uppercase font-bold text-slate-950">
         © 2026 Cucu Advertising
       </p>
-      <p className="font-mono text-sm uppercase text-slate-500">
+      <p className="font-mono text-xs md:text-sm uppercase text-slate-500">
         Hyderabad • Mumbai
       </p>
     </div>
@@ -80,10 +80,10 @@ export const BigFooter = ({ setPage }) => {
   };
 
   return (
-    <section className="min-h-[80vh] bg-white text-slate-950 flex flex-col justify-between py-6 md:py-12 px-6 md:px-[max(3rem,calc((100%-1800px)/2))] relative overflow-hidden z-20">
-      <div className="relative z-10 flex justify-between items-start pt-12">
+    <section className="md:min-h-[80vh] bg-white text-slate-950 flex flex-col justify-between py-6 md:py-12 px-6 md:px-[max(3rem,calc((100%-1800px)/2))] relative overflow-hidden z-20">
+      <div className="relative z-10 flex justify-between items-start gap-6 pt-6 md:pt-12">
         <div className="flex flex-col gap-4">
-          <h2 className="text-2xl font-black uppercase text-slate-950">Start a Project</h2>
+          <h2 className="text-xl md:text-2xl font-black uppercase text-slate-950">Start a Project</h2>
         </div>
         <motion.div
           onClick={handleScrollToTop}
@@ -105,17 +105,16 @@ export const BigFooter = ({ setPage }) => {
             <div className="absolute -bottom-1 right-6 w-2 h-2 bg-[#197C48] rotate-45" />
           </motion.div>
 
-          <span className="text-[10px] md:text-sm font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-[#197C48] transition-colors duration-500">
+          <span className="max-w-[150px] md:max-w-none text-right text-[11px] md:text-sm font-black uppercase tracking-[0.15em] md:tracking-[0.2em] leading-snug text-slate-400 group-hover:text-[#197C48] transition-colors duration-500">
             We don't just deliver, we elevate.
           </span>
           <ArrowUpRight
-            size={64}
-            className="text-[#197C48] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"
+            className="w-10 h-10 md:w-16 md:h-16 text-[#197C48] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"
           />
         </motion.div>
       </div>
 
-      <div className="relative z-10 text-center py-20">
+      <div className="relative z-10 text-center py-12 md:py-20">
         <motion.button
           onClick={() => setPage("contact")}
           style={{ 
@@ -130,7 +129,7 @@ export const BigFooter = ({ setPage }) => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="text-[min(13vw,224px)] whitespace-nowrap font-black leading-none uppercase tracking-tighter cursor-pointer transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-[#197C48] from-50% to-[var(--blink-color)] to-50% bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0_0]"
+          className="text-[19vw] md:text-[min(13vw,224px)] md:whitespace-nowrap font-black leading-[0.9] md:leading-none uppercase tracking-tighter cursor-pointer transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-[#197C48] from-50% to-[var(--blink-color)] to-50% bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0_0]"
         >
           Let's Connect
         </motion.button>
