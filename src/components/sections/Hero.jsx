@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 
 const WORD_GROUPS = [
   {
@@ -23,31 +24,51 @@ const WORD_GROUPS = [
   },
 ];
 
+// Writing animation: each letter fades + slides in from the right, one after
+// another.
+const CHAR_STEP = 0.045; // seconds between letters
+const START_DELAY = 0.3;
+
+// Global letter index where each word starts (spaces count as a beat).
+let charCursor = 0;
+const WORD_START = WORD_GROUPS.map((group) =>
+  group.words.map((word) => {
+    const start = charCursor;
+    charCursor += word.text.length + 1;
+    return start;
+  })
+);
+const TOTAL_CHARS = charCursor;
+const TYPE_DURATION_MS = (START_DELAY + TOTAL_CHARS * CHAR_STEP) * 1000;
+
 export const Hero = ({ setPage }) => {
-  const [visibleWords, setVisibleWords] = useState(new Set());
-  const [floatingWords, setFloatingWords] = useState(new Set());
+  const [started, setStarted] = useState(false);
+  const [typed, setTyped] = useState(false);
   const [isSubVisible, setIsSubVisible] = useState(false);
   const stageRef = useRef(null);
 
+  // Start writing only once the intro loader has finished.
   useEffect(() => {
-    // Reveal words
-    WORD_GROUPS.forEach((group) => {
-      group.words.forEach((word) => {
-        const totalDelay = 400 + word.delay;
-        setTimeout(() => {
-          setVisibleWords((prev) => new Set([...prev, word.text + word.delay]));
-          
-          // Start floating after reveal
-          setTimeout(() => {
-            setFloatingWords((prev) => new Set([...prev, word.text + word.delay]));
-          }, 800);
-        }, totalDelay);
-      });
-    });
+    if (window.__cucuLoaded) {
+      setStarted(true);
+      return;
+    }
+    const onLoaded = () => setStarted(true);
+    window.addEventListener("cucu:loaded", onLoaded);
+    return () => window.removeEventListener("cucu:loaded", onLoaded);
+  }, []);
 
-    // Reveal subtext
-    setTimeout(() => setIsSubVisible(true), 2200);
+  useEffect(() => {
+    if (!started) return;
+    const typedTimer = setTimeout(() => setTyped(true), TYPE_DURATION_MS + 300);
+    const subTimer = setTimeout(() => setIsSubVisible(true), TYPE_DURATION_MS + 500);
+    return () => {
+      clearTimeout(typedTimer);
+      clearTimeout(subTimer);
+    };
+  }, [started]);
 
+  useEffect(() => {
     // Particles
     const stage = stageRef.current;
     if (stage) {
@@ -85,16 +106,6 @@ export const Hero = ({ setPage }) => {
           font-weight: 900;
           line-height: 1.05;
           padding-right: 0.1em;
-          transform: translateY(110%) rotateX(-40deg);
-          opacity: 0;
-          transform-origin: top center;
-          transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-          will-change: transform, opacity;
-        }
-
-        .word.visible {
-          transform: translateY(0) rotateX(0deg);
-          opacity: 1;
         }
 
         .float-word {
@@ -161,10 +172,6 @@ export const Hero = ({ setPage }) => {
         {WORD_GROUPS.map((group, gIdx) => (
           <div key={gIdx} className="line flex items-baseline gap-[1.2rem] flex-wrap justify-center">
             {group.words.map((word, wIdx) => {
-              const id = word.text + word.delay;
-              const isVisible = visibleWords.has(id);
-              const isFloating = floatingWords.has(id);
-              
               // Use provided className or default to dark color
               const colorClass = word.className && word.className.includes('text-') 
                 ? word.className 
@@ -172,15 +179,28 @@ export const Hero = ({ setPage }) => {
 
               return (
                 <div key={wIdx} className="word-wrap">
-                  <span 
-                    className={`word ${isVisible ? 'visible' : ''} ${isFloating ? 'float-word' : ''} ${colorClass}`}
-                    style={isFloating ? {
-                      animationDuration: `${(2.6 + Math.random() * 1.8).toFixed(2)}s`,
-                      animationDelay: `${(Math.random() * 2).toFixed(2)}s`
+                  <span
+                    className={`word ${typed ? "float-word" : ""} ${colorClass}`}
+                    style={typed ? {
+                      animationDuration: `${(2.6 + ((gIdx + wIdx) % 4) * 0.45).toFixed(2)}s`,
+                      animationDelay: `${(((gIdx * 3 + wIdx) % 5) * 0.4).toFixed(2)}s`
                     } : {}}
                   >
-                    {word.text}
-                  </span>
+                    {word.text.split("").map((char, cIdx) => (
+                      <motion.span
+                        key={cIdx}
+                        className="inline-block"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={started ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                        transition={{
+                          duration: 0.18,
+                          delay: START_DELAY + (WORD_START[gIdx][wIdx] + cIdx) * CHAR_STEP,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}                  </span>
                 </div>
               );
             })}

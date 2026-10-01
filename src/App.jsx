@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, useParams, Navigate } from "react-router-dom";
 // Components
 import { Navbar } from "./components/Navbar";
 import { ComingSoon } from "./components/UIComponents";
 import Preloader from "./components/Preloader";
-import EntryExperience from "./components/EntryExperience";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { allProjects } from "./constants/projects";
@@ -75,16 +74,9 @@ function AppContent() {
 
   const [isAppLoading, setIsAppLoading] = useState(true);
 
-  // Cucu Advertising intro -> "Press Enter" -> plain reveal, shown once per
-  // browser session, only on the home route.
-  const [entryDone, setEntryDone] = useState(
-    () => sessionStorage.getItem("cucu_entry_done") === "1"
-  );
-
   // Map active location back to semantic 'page' strings for Navbar active triggers
   let page = "home";
   const path = location.pathname;
-  const showEntryGate = path === "/" && !entryDone;
   if (path.startsWith("/work")) page = "work";
   else if (path.startsWith("/showcase")) page = "showcase";
   else if (path.startsWith("/services")) page = "services";
@@ -167,53 +159,12 @@ function AppContent() {
     };
   }, []);
 
-  // 2. Optimized Preloader logic
-  useEffect(() => {
-    const images = document.querySelectorAll("img");
-    const totalImages = images.length;
-    let loadedCount = 0;
-
-    // Minimum display time for preloader (for branding)
-    const minLoadingTime = 1500;
-    const startTime = Date.now();
-
-    const finishLoading = () => {
-      const elapsedTime = Date.now() - startTime;
-      const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
-      setTimeout(() => setIsAppLoading(false), remainingTime);
-    };
-
-    if (totalImages === 0) {
-      finishLoading();
-      return;
-    }
-
-    const onImageLoad = () => {
-      loadedCount++;
-      if (loadedCount >= totalImages) {
-        finishLoading();
-      }
-    };
-
-    images.forEach((img) => {
-      if (img.complete) {
-        onImageLoad();
-      } else {
-        img.addEventListener("load", onImageLoad);
-        img.addEventListener("error", onImageLoad);
-      }
-    });
-
-    // Fallback: Max 4 seconds loading for better UX
-    const timer = setTimeout(finishLoading, 4000);
-
-    return () => {
-      clearTimeout(timer);
-      images.forEach((img) => {
-        img.removeEventListener("load", onImageLoad);
-        img.removeEventListener("error", onImageLoad);
-      });
-    };
+  // 2. Intro loader runs its own timeline, then hands off via onFinish.
+  // Sections that animate on entry (e.g. the home hero) wait for this signal.
+  const handleLoaderFinish = useCallback(() => {
+    setIsAppLoading(false);
+    window.__cucuLoaded = true;
+    window.dispatchEvent(new Event("cucu:loaded"));
   }, []);
 
   // Scroll to top on page change
@@ -221,28 +172,15 @@ function AppContent() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Lock scrolling while the intro / "press enter" gate is showing
-  useEffect(() => {
-    document.body.style.overflow = showEntryGate ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [showEntryGate]);
-
-  const handleEntryComplete = () => {
-    sessionStorage.setItem("cucu_entry_done", "1");
-    setEntryDone(true);
-  };
-
   return (
     <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-hidden noise">
-      <Preloader isLoading={isAppLoading} />
-      {showEntryGate && <EntryExperience onComplete={handleEntryComplete} />}
+      <AnimatePresence>
+        {isAppLoading && <Preloader key="loader" onFinish={handleLoaderFinish} />}
+      </AnimatePresence>
       <Navbar
         activePage={page}
         setPage={setPage}
-        navReady={!showEntryGate}
-        homeMode={page === "home"}
+        homeMode={false}
       />
 
       <AnimatePresence mode="wait">

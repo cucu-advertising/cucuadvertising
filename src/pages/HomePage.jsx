@@ -4,7 +4,10 @@ import useTabAttention from "../hooks/useTabAttention";
 
 import { Hero } from "../components/sections/Hero";
 import { Mission } from "../components/sections/Mission";
-import { ProcessSection } from "../components/sections/ProcessSection";
+import { Showreel } from "../components/sections/Showreel";
+import { FeaturedWork } from "../components/sections/FeaturedWork";
+import { Clients } from "../components/sections/Clients";
+import { OurServices } from "../components/sections/OurServices";
 import { AreasOfExpertise } from "../components/sections/AreasOfExpertise";
 import { ProjectsColumns } from "../components/sections/ProjectsColumns";
 import { StickyProject } from "../components/sections/StickyProject";
@@ -73,8 +76,11 @@ export const HomePage = ({ setPage, setSelectedProject }) => {
     >
       <Hero setPage={setPage} />
       <Mission />
+      <Showreel />
       {/* <AreasOfExpertise /> */}
-      <ProcessSection />
+      <FeaturedWork setPage={setPage} setSelectedProject={setSelectedProject} />
+      <Clients />
+      <OurServices setPage={setPage} />
       <ProjectsColumns />
       <FAQ />
       <BigFooter setPage={setPage} />

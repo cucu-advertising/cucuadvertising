@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BigFooter } from "../components/Footer";
 import { allProjects } from "../constants/projects";
@@ -25,6 +25,20 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
   const filtered = !isShowcaseFilter
     ? allProjects.filter((p) => p.category === filter)
     : [];
+
+  // One cover photo per client, cycled in the showcase banner.
+  const clientSlides = allProjects.filter(
+    (p, i, arr) => p.img && arr.findIndex((q) => q.img === p.img) === i
+  );
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  useEffect(() => {
+    if (clientSlides.length < 2) return;
+    const timer = setInterval(() => {
+      setSlideIndex((i) => (i + 1) % clientSlides.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [clientSlides.length]);
 
   const handleProjectClick = (project) => {
     if (project.disableDetail) return;
@@ -67,15 +81,19 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
 
       {/* 1.5 Video Showcase Section */}
       <section className="w-full mb-20 overflow-hidden">
-        <div className="w-full aspect-video md:aspect-[21/9] bg-neutral-100">
-          <video
-            src="/workbranding/Video Project 19.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
+        <div className="relative w-full aspect-video md:aspect-[21/9] bg-neutral-100">
+          <AnimatePresence initial={false}>
+            <motion.img
+              key={clientSlides[slideIndex]?.img}
+              src={clientSlides[slideIndex]?.img}
+              alt={clientSlides[slideIndex]?.title}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </AnimatePresence>
         </div>
       </section>
 

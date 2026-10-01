@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 import { BigFooter } from "../components/Footer";
+import {
+  StatementSection,
+  SubProjectsSection,
+  FilmsSection,
+  ApproachSection,
+  PaletteSection,
+} from "../components/ProjectExtras";
 
 
 import { allProjects } from "../constants/projects";
@@ -502,6 +509,11 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
             </div>
           </section>
 
+          {project.statement && <StatementSection statement={project.statement} />}
+          {project.subProjects && (
+            <SubProjectsSection subProjects={project.subProjects} brand={project.title} />
+          )}
+
           {/* 2. Project Narrative Sections */}
           <section className="mb-20">
             {/* Challenges Section - Premium Light Style */}
@@ -568,6 +580,16 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
               </div>
             </div>
 
+            {project.films && (
+              <FilmsSection
+                films={project.films}
+                brand={project.title}
+                format={project.filmFormat}
+                intro={project.filmsIntro}
+              />
+            )}
+            {project.approach && <ApproachSection approach={project.approach} />}
+
             {/* 3. Results Section */}
             {project.results && (
               <div className="bg-[#197C48] py-24 md:py-32 my-20">
@@ -619,6 +641,10 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
                   </p>
                 </div>
               </div>
+
+              {project.palette && (
+                <PaletteSection palette={project.palette} typeface={project.typeface} />
+              )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">

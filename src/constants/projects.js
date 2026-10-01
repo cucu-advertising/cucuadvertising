@@ -309,9 +309,175 @@ export const allProjects = [
   },
   {
     title: "Naibu",
-    category: "Web Development",
+    category: "Brand Identity & Communication",
     img: "/Clientwork/naibu/naibu.webp",
-    disableDetail: true,
+    about: "Naibu Design Studio approached CUCU to develop a cohesive identity that could reflect the studio's design philosophy and personality across its core brand touchpoints — a design studio built around thoughtful spaces, detail and a distinct point of view.",
+    scope: ["Branding", "Visual Identity", "Logo & Typography", "Brand Applications"],
+    industry: "Architecture & Interior Design",
+    challenges: "Create one cohesive visual system for Naibu Design Studio. Make it distinct enough to carry personality, yet restrained enough to let the studio's work remain the focus. Bring the logo, typography, colour and applications together as one consistent brand system. Keep the identity refined and flexible so it sits comfortably beside architecture, interiors and project imagery.",
+    solution: "Build a system, not just a logo. We reduced the identity to elements that stay clear across scales and formats, structured consistent relationships between the mark, type, colour and layout, and extended the system so it moves naturally from stationery to signage and brand communication.",
+    identity: "Quiet confidence over visual noise. A clear, ownable visual language — primary mark, logo variations, a primary, secondary, accent and neutral colour system, and a considered type system — applied across stationery, business cards and signage.",
+    results: [
+      { val: "1", label: "Cohesive Brand System" },
+      { val: "3", label: "Identity Principles: Reduce, Structure, Extend" },
+      { val: "4", label: "Colour Roles Defined" },
+    ],
+    statement: { lead: "Build a system.", accent: "Not just a logo." },
+    approach: {
+      title: "An identity that feels as considered as the work.",
+      steps: [
+        { title: "Reduce", desc: "Strip the identity back to elements that can remain clear across different scales and formats." },
+        { title: "Structure", desc: "Create consistent relationships between the mark, type, colour and layout." },
+        { title: "Extend", desc: "Design the system so it can move naturally from stationery to signage and brand communication." },
+      ],
+    },
+    // TODO: add the final brand hex codes and typeface name.
+    palette: [
+      { name: "Primary" },
+      { name: "Secondary" },
+      { name: "Accent" },
+      { name: "Neutral" },
+    ],
+    typeface: { name: "Brand Typeface", note: "Final typeface, weights and hierarchy to be added." },
+    gallery: [
+      "/Clientwork/naibu/naibu.webp",
+      "/Clientwork/naibu/naibu.webp",
+      "/Clientwork/naibu/naibu.webp",
+      "/Clientwork/naibu/naibu.webp",
+      "/Clientwork/naibu/naibu.webp"
+    ]
+  },
+  {
+    title: "ARK",
+    category: "Brand Identity & Communication",
+    img: "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp",
+    about: "ARK approached CUCU with a clear brief: create a compact UGC content series for its two premium villa projects, Artha and Aryama, translating project information into a human, watchable social format. Five films made to feel less like property advertising — and more like conversations people actually want to watch.",
+    scope: ["UGC Content", "Creative Direction", "Scriptwriting", "5 UGC Films"],
+    industry: "Real Estate — Premium Villas",
+    challenges: "Make project information easy to understand without turning the video into a brochure. Use UGC language while keeping the overall visual treatment premium. Give Artha and Aryama their own identity without fragmenting the campaign. Create a five-film system that can live across social, ads and the website.",
+    solution: "Not another walkthrough. We found one strong hook per film, wrote scripts the way people actually speak, and kept the visuals premium with controlled framing, clean graphics and restrained post-production. Every film is structured to work as organic content, paid creative and a portfolio asset.",
+    identity: "One visual language, two project stories. Artha is a premium villa story centred on space, privacy and a more considered way of living. Aryama is a low-density villa community in Kongara Kalan, framed around lifestyle, connection and contemporary luxury.",
+    results: [
+      { val: "05", label: "UGC Films Delivered" },
+      { val: "2", label: "Premium Villa Projects" },
+      { val: "1", label: "Modular Content Library" },
+    ],
+    statement: { lead: "Not another", accent: "walkthrough." },
+    subProjects: [
+      {
+        name: "Artha",
+        desc: "A premium villa story centred on space, privacy and a more considered way of living.",
+        img: "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
+      },
+      {
+        name: "Aryama",
+        desc: "A low-density villa community in Kongara Kalan, framed around lifestyle, connection and contemporary luxury.",
+        img: "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp",
+      },
+    ],
+    // Video files live in public/videos/ark.
+    films: [
+      { title: "Film 01", subtitle: "Artha", url: "/videos/ark/Ark 01 final.webm" },
+      { title: "Film 02", subtitle: "Aryama", url: "/videos/ark/Ark 02 final.webm" },
+      { title: "Film 03", subtitle: "Artha", url: "/videos/ark/ark 03 final.webm" },
+      { title: "Film 04", subtitle: "Aryama", url: "/videos/ark/Ark 04 final.webm" },
+      { title: "Film 05", subtitle: "ARK", url: "/videos/ark/Ark 05 final.webm" },
+    ],
+    filmsIntro: "Five short-form UGC films — one visual language across two premium villa projects.",
+    approach: {
+      title: "Built for attention, not information overload.",
+      steps: [
+        { title: "Find the hook", desc: "Turn each project message into one strong question, observation or point of view." },
+        { title: "Write like people speak", desc: "Scripts stay conversational, direct and credible — without sounding like conventional property copy." },
+        { title: "Keep it visually premium", desc: "Natural UGC delivery meets controlled framing, clean graphics and restrained post-production." },
+        { title: "Design for reuse", desc: "Every film is structured to work as organic content, paid creative and a portfolio asset." },
+      ],
+    },
+    gallery: [
+      "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
+      "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
+      "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp",
+      "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
+      "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp"
+    ]
+  },
+  {
+    title: "ES Enterprises",
+    category: "Brand Identity & Communication",
+    img: "/brands/es-enterprises-cover.svg",
+    about: "CUCU was brought in to create one ad film that could explain ES Enterprises' projects without overwhelming the viewer with information — turning multiple points into a single narrative that feels direct, visual and easy to understand.",
+    scope: ["Ad Film", "Creative Direction", "Content", "1 Campaign Film"],
+    industry: "Real Estate & Projects",
+    challenges: "Bring different project messages into one coherent story. Keep the information clear while still making the film visually engaging. Create one master film that can work across presentations, social media and digital campaigns.",
+    solution: "Not more information — better storytelling. Instead of stacking project details, the ad follows a clear beginning, middle and end: establish the need, introduce the projects, communicate the key differentiators and close with one memorable brand message.",
+    identity: "Designed to keep moving. Project footage, on-screen text and motion are kept purposeful so every frame advances the story — a film that communicates information without feeling static or presentation-led, and closes on one strong brand thought.",
+    results: [
+      { val: "1", label: "Master Campaign Film" },
+      { val: "16:9", label: "Primary Format" },
+      { val: "4", label: "Step Narrative Approach" },
+    ],
+    statement: { lead: "Not more information.", accent: "Better storytelling." },
+    // TODO: add the film's YouTube/Vimeo url and final title.
+    films: [{ title: "The ES Enterprises Ad", subtitle: "Project Campaign Film" }],
+    filmFormat: "horizontal",
+    filmsIntro: "A single campaign film designed to explain the projects through a clear narrative instead of a conventional presentation.",
+    approach: {
+      title: "Every second has one job.",
+      steps: [
+        { title: "Find the core message", desc: "Identify what the audience actually needs to understand about the projects." },
+        { title: "Build the narrative", desc: "Arrange those points into a film that feels progressive rather than informational." },
+        { title: "Direct the visuals", desc: "Use footage, copy and motion only where they strengthen the message." },
+        { title: "End with recall", desc: "Close on one strong brand thought instead of another list of information." },
+      ],
+    },
+    gallery: [
+      "/brands/es-enterprises-cover.svg",
+      "/brands/es-enterprises-cover.svg",
+      "/brands/es-enterprises-cover.svg",
+      "/brands/es-enterprises-cover.svg",
+      "/brands/es-enterprises-cover.svg"
+    ]
+  },
+  {
+    title: "Subishi",
+    category: "Brand Identity & Communication",
+    img: "/brands/subishi-cover.svg",
+    about: "Subishi is a Hyderabad real-estate developer with a portfolio spanning premium villas and apartments. The brief for CUCU was to explain their projects through four short-form UGC films without making the content feel like a conventional property advertisement.",
+    scope: ["UGC Content", "Creative Direction", "Short-form Video", "4 UGC Films"],
+    industry: "Real Estate",
+    challenges: "Turn property details into a simple story people can follow in seconds. Keep the delivery natural and conversational instead of overly scripted. Make four videos feel connected while allowing every project to stand on its own. Create content that can work across organic social, paid media and the website.",
+    solution: "Less brochure, more conversation. Each film is built around one clear hook and one clear takeaway, focusing on what the project actually means to the person watching. Fast openings, natural delivery, vertical framing and compact storytelling make the films native to Reels, Shorts and paid social.",
+    identity: "Selling the idea of living, not just square feet. Four project-led UGC films that bring clarity, personality and a social-first format to real-estate communication — one simple content system for explaining Subishi projects.",
+    results: [
+      { val: "04", label: "UGC Films Delivered" },
+      { val: "9:16", label: "Vertical Social Format" },
+      { val: "1", label: "Reusable Content System" },
+    ],
+    statement: { lead: "Less brochure.", accent: "More conversation." },
+    // Video files live in public/videos/subishi (film-01.webm … film-04.webm).
+    films: [
+      { title: "Film 01", subtitle: "Subishi", url: "/videos/subishi/film-01.webm" },
+      { title: "Film 02", subtitle: "Subishi", url: "/videos/subishi/film-02.webm" },
+      { title: "Film 03", subtitle: "Subishi", url: "/videos/subishi/film-03.webm" },
+      { title: "Film 04", subtitle: "Subishi", url: "/videos/subishi/film-04.webm" },
+    ],
+    filmsIntro: "Four project-led UGC films in a vertical 9:16 format, made for Reels, Shorts and paid social.",
+    approach: {
+      title: "Built to make the property feel relevant.",
+      steps: [
+        { title: "Find the hook", desc: "Start with a reason to keep watching — not a list of specifications." },
+        { title: "Simplify the story", desc: "One video, one clear message, one memorable takeaway." },
+        { title: "Keep it natural", desc: "Conversational delivery and human pacing make branded content feel less like an ad." },
+        { title: "Design for reuse", desc: "The same film can live in organic social, paid campaigns and the portfolio." },
+      ],
+    },
+    gallery: [
+      "/brands/subishi-cover.svg",
+      "/brands/subishi-cover.svg",
+      "/brands/subishi-cover.svg",
+      "/brands/subishi-cover.svg",
+      "/brands/subishi-cover.svg"
+    ]
   },
   {
     title: "Siirii Studio",

@@ -64,7 +64,6 @@ export const Navbar = ({ activePage, setPage, navReady = true, homeMode = false 
         className={`fixed top-0 left-0 w-full z-[100] px-4 py-6 flex justify-center pointer-events-none`}
       >
         <motion.nav
-          layout
           initial={false}
           animate={navHidden ? { opacity: 0, y: -24 } : { opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 220, damping: 28 }}
