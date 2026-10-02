@@ -367,12 +367,12 @@ export const allProjects = [
       {
         name: "Artha",
         desc: "A premium villa story centred on space, privacy and a more considered way of living.",
-        img: "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
+        img: "/videos/ark/ark artha.jpeg",
       },
       {
         name: "Aryama",
         desc: "A low-density villa community in Kongara Kalan, framed around lifestyle, connection and contemporary luxury.",
-        img: "https://cdn.sanity.io/images/ffbodqom/production/58f8c1b937320b962b088a9f97e3580a42327eca-2000x1428.webp",
+        img: "/videos/ark/ark aryama.jpeg",
       },
     ],
     // Video files live in public/videos/ark.
@@ -456,10 +456,10 @@ export const allProjects = [
     statement: { lead: "Less brochure.", accent: "More conversation." },
     // Video files live in public/videos/subishi (film-01.webm … film-04.webm).
     films: [
-      { title: "Film 01", subtitle: "Subishi", url: "/videos/subishi/film-01.webm" },
-      { title: "Film 02", subtitle: "Subishi", url: "/videos/subishi/film-02.webm" },
-      { title: "Film 03", subtitle: "Subishi", url: "/videos/subishi/film-03.webm" },
-      { title: "Film 04", subtitle: "Subishi", url: "/videos/subishi/film-04.webm" },
+      { title: "Film 01", subtitle: "Subishi", url: "/videos/subishi/subishi 1.webm" },
+      { title: "Film 02", subtitle: "Subishi", url: "/videos/subishi/subhishi Ext.webm" },
+      { title: "Film 03", subtitle: "Subishi", url: "/videos/subishi/subishi 3.webm" },
+      { title: "Film 04", subtitle: "Subishi", url: "/videos/subishi/subishi 4.webm" },
     ],
     filmsIntro: "Four project-led UGC films in a vertical 9:16 format, made for Reels, Shorts and paid social.",
     approach: {
