@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { optimizedSrc, projectThumb } from "../utils/optimizedImage";
 import { BigFooter } from "../components/Footer";
 import { allProjects } from "../constants/projects";
 import { showcaseSections } from "../constants/showcaseSections";
@@ -85,7 +86,8 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
           <AnimatePresence initial={false}>
             <motion.img
               key={clientSlides[slideIndex]?.img}
-              src={clientSlides[slideIndex]?.img}
+              src={optimizedSrc(clientSlides[slideIndex]?.img, 2000)}
+              decoding="async"
               alt={clientSlides[slideIndex]?.title}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -158,8 +160,10 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
                       />
                     ) : (
                       <motion.img
-                        src={p.img}
+                        src={projectThumb(p, 1200)}
                         alt={p.title}
+                        loading="lazy"
+                        decoding="async"
                         whileHover={{ scale: 1.03 }}
                         transition={{ duration: 0.4 }}
                         className="w-full h-full object-cover transition-all duration-500"
@@ -215,8 +219,9 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
                   >
                     <div className="aspect-[16/9] overflow-hidden bg-neutral-100 rounded-2xl shadow-sm border border-neutral-200">
                       <motion.img
-                        src={item.img}
+                        src={optimizedSrc(item.img, 1200)}
                         alt={`${item.client} — ${activeShowcaseSection.title}`}
+                        decoding="async"
                         whileHover={{ scale: 1.03 }}
                         transition={{ duration: 0.4 }}
                         className="w-full h-full object-cover transition-all duration-500"

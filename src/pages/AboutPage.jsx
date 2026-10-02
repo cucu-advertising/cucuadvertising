@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BigFooter } from "../components/Footer";
-import aboutHeroImg from "../assets/NEW/about us big.webp";
+// Web-sized copy (1600px) of "about us big.webp" — the original is 3264px / 452KB.
+import aboutHeroImg from "../assets/NEW/about us big-1600.webp";
 import arvindProfile1 from "../assets/arvind/Profile.webp";
 import arvindProfile2 from "../assets/arvind/Profile2.webp";
 import { TRANSITION } from "../constants/config";

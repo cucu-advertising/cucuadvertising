@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { optimizedSrc } from "../utils/optimizedImage";
 
 // Optional case-study sections for ProjectDetailPage. Each one renders only
 // when its field exists on the project, so older projects are unaffected.
@@ -42,7 +43,9 @@ export const SubProjectsSection = ({ subProjects, brand }) => (
           className="relative min-h-[480px] md:min-h-[640px] rounded-[2.5rem] overflow-hidden shadow-2xl bg-neutral-900 group"
         >
           <img
-            src={sp.img}
+            src={optimizedSrc(sp.img, 1200)}
+            loading="lazy"
+            decoding="async"
             alt={sp.name}
             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
           />

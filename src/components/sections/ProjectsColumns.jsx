@@ -7,7 +7,8 @@ import {
   useVelocity,
   useTransform,
 } from "framer-motion";
-import { allProjects } from "../../constants/projects"; // 👈 update this path to match where your project.js actually lives
+import { allProjects } from "../../constants/projects";
+import { projectThumb } from "../../utils/optimizedImage"; // 👈 update this path to match where your project.js actually lives
 
 // Fixed height variations to keep the staggered masonry look
 const HEIGHTS = [
@@ -20,74 +21,67 @@ const projects = allProjects.map((p, i) => ({
   title: p.title,
   category: p.category,
   image: p.img,
+  thumb: p.thumb,
   height: HEIGHTS[i % HEIGHTS.length],
 }));
 
-const VerticalMarquee = ({ items, baseVelocity = 100, direction = 1 }) => {
+// One column of cards drifting vertically on a loop. The parent passes a shared
+// scroll-velocity value and an "active" flag, so the per-frame work only runs
+// while the section is actually on screen.
+const VerticalMarquee = ({ items, baseVelocity = 100, direction = 1, velocityFactor, activeRef }) => {
   const baseY = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400,
-  });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false,
-  });
-
   const y = useTransform(baseY, (v) => `${v}%`);
-
+  const columnRef = useRef(null);
   const directionFactor = useRef(direction);
+
   useEffect(() => {
     let lastTime = performance.now();
+    let requestId;
     const update = (time) => {
       const delta = time - lastTime;
-      let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-
-      if (velocityFactor.get() < 0) {
-        directionFactor.current = -1 * direction;
-      } else if (velocityFactor.get() > 0) {
-        directionFactor.current = 1 * direction;
-      }
-
-      moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
-      let nextBaseY = baseY.get() + moveBy;
-      if (nextBaseY <= -50) nextBaseY = 0;
-      if (nextBaseY > 0) nextBaseY = -50;
-
-      baseY.set(nextBaseY);
-
       lastTime = time;
-      requestAnimationFrame(update);
+      // Skip all work while off screen or when this column is hidden (phones).
+      if (activeRef.current && columnRef.current?.offsetParent !== null) {
+        let moveBy = directionFactor.current * baseVelocity * (Math.min(delta, 64) / 1000);
+        const vf = velocityFactor.get();
+        if (vf < 0) directionFactor.current = -1 * direction;
+        else if (vf > 0) directionFactor.current = 1 * direction;
+        moveBy += directionFactor.current * moveBy * vf;
+
+        let nextBaseY = baseY.get() + moveBy;
+        if (nextBaseY <= -50) nextBaseY = 0;
+        if (nextBaseY > 0) nextBaseY = -50;
+        baseY.set(nextBaseY);
+      }
+      requestId = requestAnimationFrame(update);
     };
-    const requestId = requestAnimationFrame(update);
+    requestId = requestAnimationFrame(update);
     return () => cancelAnimationFrame(requestId);
-  }, [baseVelocity, velocityFactor, direction]);
+  }, [baseVelocity, velocityFactor, direction, activeRef, baseY]);
 
   return (
-    <div className="flex flex-col gap-4 md:gap-5 overflow-hidden">
-      <motion.div className="flex flex-col gap-4 md:gap-5" style={{ y }}>
+    <div ref={columnRef} className="flex flex-col gap-4 md:gap-5 overflow-hidden">
+      <motion.div className="flex flex-col gap-4 md:gap-5 will-change-transform" style={{ y }}>
         {[...items, ...items].map((p, i) => (
-          <ProjectCard key={i} project={p} index={i} />
+          <ProjectCard key={i} project={p} />
         ))}
       </motion.div>
     </div>
   );
 };
 
-const ProjectCard = ({ project, index }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true, margin: "-40px" }}
-    transition={{ duration: 0.5, delay: (index % projects.length) * 0.05 }}
+// Plain card (no per-card in-view animation — 36 observers inside a moving
+// column was wasted work). Uses a 600px-wide copy of the cover image.
+const ProjectCard = ({ project }) => (
+  <div
     className={`group relative ${project.height} w-full rounded-2xl overflow-hidden bg-white/5 cursor-pointer flex-shrink-0`}
     style={{ borderRadius: "18px" }}
   >
     <img
-      src={project.image}
+      src={projectThumb(project, 600)}
       alt={project.title}
+      loading="lazy"
+      decoding="async"
       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
     />
     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-400" />
@@ -99,10 +93,27 @@ const ProjectCard = ({ project, index }) => (
         {project.title}
       </h3>
     </div>
-  </motion.div>
+  </div>
 );
 
 export const ProjectsColumns = () => {
+  // Shared by all three columns (was computed three times).
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
+  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: false });
+
+  // Only animate while the box is on (or near) the screen.
+  const boxRef = useRef(null);
+  const activeRef = useRef(false);
+  useEffect(() => {
+    const el = boxRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => (activeRef.current = entry.isIntersecting), { rootMargin: "200px 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   // Round-robin split so it auto-balances no matter how many projects you add later
   const column1 = [];
   const column2 = [];
@@ -148,11 +159,11 @@ export const ProjectsColumns = () => {
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 items-start max-w-[1800px] mx-auto h-[520px] md:h-[800px] overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 relative shadow-2xl">
-        <VerticalMarquee items={column1} baseVelocity={-2} direction={1} />
-        <VerticalMarquee items={column2} baseVelocity={2} direction={-1} />
+      <div ref={boxRef} className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 items-start max-w-[1800px] mx-auto h-[520px] md:h-[800px] overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 relative shadow-2xl">
+        <VerticalMarquee items={column1} baseVelocity={-2} direction={1} velocityFactor={velocityFactor} activeRef={activeRef} />
+        <VerticalMarquee items={column2} baseVelocity={2} direction={-1} velocityFactor={velocityFactor} activeRef={activeRef} />
         <div className="hidden md:block">
-          <VerticalMarquee items={column3} baseVelocity={-2.5} direction={1} />
+          <VerticalMarquee items={column3} baseVelocity={-2.5} direction={1} velocityFactor={velocityFactor} activeRef={activeRef} />
         </div>
 
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950 via-transparent to-slate-950 opacity-50 md:opacity-90 z-20" />

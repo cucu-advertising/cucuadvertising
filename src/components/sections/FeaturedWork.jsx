@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { allProjects } from "../../constants/projects";
+import { projectThumb } from "../../utils/optimizedImage";
 
 // Projects shown on the home page, in order. Titles must match projects.js.
 const FEATURED_TITLES = ["Arbor Road", "One ENT", "ARK Groups", "Varun Engineers"];
@@ -55,9 +56,10 @@ export const FeaturedWork = ({ setPage, setSelectedProject }) => {
           >
             <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-neutral-100">
               <img
-                src={project.img}
+                src={projectThumb(project, 1200)}
                 alt={project.title}
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
               />
               <div className="absolute top-5 right-5 w-14 h-14 rounded-full bg-[#8CF2C6] text-black flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500">

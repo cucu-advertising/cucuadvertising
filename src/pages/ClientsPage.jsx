@@ -7,6 +7,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { BigFooter } from "../components/Footer";
+import { optimizedSrc } from "../utils/optimizedImage";
 import DesignStudioSection from "../components/DesignStudioSection";
 
 // Client Logos Imports
@@ -361,7 +362,8 @@ export const ClientsPage = ({ setPage }) => {
                     className="w-[240px] md:w-[340px] aspect-[4/5] bg-[#111111] rounded-[3rem] overflow-hidden flex-shrink-0 relative group border border-white/5 transition-all duration-500 hover:border-white/10"
                   >
                     <img
-                      src={item.image}
+                      src={optimizedSrc(item.image, 600)}
+                      decoding="async"
                       alt={`${item.client} work`}
                       loading="lazy"
                       decoding="async"
@@ -398,7 +400,8 @@ export const ClientsPage = ({ setPage }) => {
                     className="w-[240px] md:w-[340px] aspect-[4/5] bg-[#111111] rounded-[3rem] overflow-hidden flex-shrink-0 relative group border border-white/5 transition-all duration-500 hover:border-white/10"
                   >
                     <img
-                      src={item.image}
+                      src={optimizedSrc(item.image, 600)}
+                      decoding="async"
                       alt=""
                       loading="lazy"
                       decoding="async"

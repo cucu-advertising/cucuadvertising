@@ -12,8 +12,16 @@ import {
 
 
 import { allProjects } from "../constants/projects";
+import { optimizedSrc, projectThumb } from "../utils/optimizedImage";
 
-export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject }) => {
+export const ProjectDetailPage = ({ project: rawProject, onBack, setPage, setSelectedProject }) => {
+  // Same project, but pointing at right-sized image copies: 2000px for the
+  // full-width hero, 1200px for gallery tiles. Videos/remote URLs unchanged.
+  const project = {
+    ...rawProject,
+    img: optimizedSrc(rawProject.img, 2000),
+    gallery: rawProject.gallery?.map((g) => optimizedSrc(g, 1200)),
+  };
   // Find next projects from the registry
   const currentIndex = allProjects.findIndex(p => p.title === project.title);
   const nextProjects = [
@@ -703,7 +711,9 @@ export const ProjectDetailPage = ({ project, onBack, setPage, setSelectedProject
                   />
                 ) : (
                   <img 
-                    src={p.img} 
+                    src={projectThumb(p, 1200)}
+                    loading="lazy"
+                    decoding="async"
                     alt={p.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                   />

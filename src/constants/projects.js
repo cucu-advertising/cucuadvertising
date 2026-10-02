@@ -1,6 +1,9 @@
 import photoFood from "../assets/showcase/photo-food-gncaterers.webp";
 import photoResortNature from "../assets/showcase/photo-resort-nature.webp";
 import photoResortExterior from "../assets/showcase/photo-resort-exterior.webp";
+import thumbFood from "../assets/showcase/thumbs/photo-food-gncaterers-800.webp";
+import thumbResortNature from "../assets/showcase/thumbs/photo-resort-nature-800.webp";
+import thumbResortExterior from "../assets/showcase/thumbs/photo-resort-exterior-800.webp";
 
 export const allProjects = [
   {
@@ -489,6 +492,7 @@ export const allProjects = [
     title: "GN Caterers",
     category: "Brand Identity & Communication",
     img: photoFood,
+    thumb: thumbFood,
     about:
       "Culinary photography built to make every dish feel like the centerpiece — biryani, crisp fried starters, and traditional sweets shot for appetite appeal.",
     scope: ["Product Photography", "Food Styling", "Visual Branding"],
@@ -499,6 +503,7 @@ export const allProjects = [
     title: "Ravasa Retreat — Nature",
     category: "Brand Identity & Communication",
     img: photoResortNature,
+    thumb: thumbResortNature,
     about:
       "Aerial and nature photography of the retreat grounds — lighthouse, ponds, and resident birdlife — capturing the property's slow, natural pace.",
     scope: ["Aerial Photography", "Nature Photography", "Visual Branding"],
@@ -509,6 +514,7 @@ export const allProjects = [
     title: "Ravasa Retreat — Exterior",
     category: "Brand Identity & Communication",
     img: photoResortExterior,
+    thumb: thumbResortExterior,
     about:
       "Evening and exterior architectural photography — lit stairways, poolside views, and the building's clean facade after dark.",
     scope: ["Architectural Photography", "Evening Photography", "Visual Branding"],

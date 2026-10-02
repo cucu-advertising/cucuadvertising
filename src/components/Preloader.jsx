@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/logo_cucu_nobg.webp";
+import { optimizedSrc } from "../utils/optimizedImage";
 
 // CUCU intro loader, played on every full page load.
 //   Act 1 — clover logo + "CUCU / Advertising" rises in.
@@ -35,7 +36,7 @@ const Preloader = ({ onFinish }) => {
   useEffect(() => {
     WORK.forEach((src) => {
       const img = new Image();
-      img.src = src;
+      img.src = optimizedSrc(src, 600);
     });
 
     document.body.style.overflow = "hidden";
@@ -138,7 +139,7 @@ const Preloader = ({ onFinish }) => {
               <AnimatePresence mode="popLayout">
                 <motion.img
                   key={step}
-                  src={WORK[step]}
+                  src={optimizedSrc(WORK[step], 600)}
                   alt=""
                   initial={{ opacity: 0, scale: 1.25 }}
                   animate={{ opacity: 1, scale: 1 }}
