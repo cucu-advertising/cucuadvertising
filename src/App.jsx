@@ -185,16 +185,13 @@ function AppContent() {
   }, [location.pathname, scrollToTop]);
 
   return (
-    <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-clip noise">
+    <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-clip">
       <AnimatePresence>
         {isAppLoading && <Preloader key="loader" onFinish={handleLoaderFinish} />}
       </AnimatePresence>
-      <Navbar
-        activePage={page}
-        setPage={setPage}
-        homeMode={false}
-      />
+      <Navbar />
 
+      <div id="main">
       <AnimatePresence mode="wait" onExitComplete={scrollToTop}>
         <React.Suspense fallback={null}>
           <Routes location={location} key={location.pathname}>
@@ -212,6 +209,7 @@ function AppContent() {
           </Routes>
         </React.Suspense>
       </AnimatePresence>
+      </div>
     </div>
   );
 }
