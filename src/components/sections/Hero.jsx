@@ -42,21 +42,10 @@ const TOTAL_CHARS = charCursor;
 const TYPE_DURATION_MS = (START_DELAY + TOTAL_CHARS * CHAR_STEP) * 1000;
 
 export const Hero = ({ setPage }) => {
-  const [started, setStarted] = useState(false);
+  const [started, setStarted] = useState(true);
   const [typed, setTyped] = useState(false);
   const [isSubVisible, setIsSubVisible] = useState(false);
   const stageRef = useRef(null);
-
-  // Start writing only once the intro loader has finished.
-  useEffect(() => {
-    if (window.__cucuLoaded) {
-      setStarted(true);
-      return;
-    }
-    const onLoaded = () => setStarted(true);
-    window.addEventListener("cucu:loaded", onLoaded);
-    return () => window.removeEventListener("cucu:loaded", onLoaded);
-  }, []);
 
   useEffect(() => {
     if (!started) return;

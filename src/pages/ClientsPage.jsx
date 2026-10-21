@@ -366,7 +366,6 @@ export const ClientsPage = ({ setPage }) => {
                       decoding="async"
                       alt={`${item.client} work`}
                       loading="lazy"
-                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity group-hover:opacity-60" />
@@ -404,7 +403,6 @@ export const ClientsPage = ({ setPage }) => {
                       decoding="async"
                       alt=""
                       loading="lazy"
-                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity group-hover:opacity-60" />

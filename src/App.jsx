@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, usePa
 // Components
 import { Navbar } from "./components/Navbar";
 import { ComingSoon } from "./components/UIComponents";
-import Preloader from "./components/Preloader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { allProjects } from "./constants/projects";
@@ -71,8 +70,6 @@ function AppContent() {
     latestProjectRef.current = proj;
     setSelectedProject(proj);
   };
-
-  const [isAppLoading, setIsAppLoading] = useState(true);
 
   // Map active location back to semantic 'page' strings for Navbar active triggers
   let page = "home";
@@ -159,10 +156,8 @@ function AppContent() {
     };
   }, []);
 
-  // 2. Intro loader runs its own timeline, then hands off via onFinish.
-  // Sections that animate on entry (e.g. the home hero) wait for this signal.
-  const handleLoaderFinish = useCallback(() => {
-    setIsAppLoading(false);
+  // Set loaded state immediately
+  useEffect(() => {
     window.__cucuLoaded = true;
     window.dispatchEvent(new Event("cucu:loaded"));
   }, []);
@@ -186,9 +181,6 @@ function AppContent() {
 
   return (
     <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-clip">
-      <AnimatePresence>
-        {isAppLoading && <Preloader key="loader" onFinish={handleLoaderFinish} />}
-      </AnimatePresence>
       <Navbar />
 
       <div id="main">
