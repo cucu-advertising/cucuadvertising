@@ -45,13 +45,35 @@ const ClientCard = ({ client }) => (
         src={client.logo}
         alt={client.name}
         loading="lazy"
-        className="max-h-full max-w-[150px] object-contain"
+        className="max-h-full !max-w-[150px] object-contain"
       />
     </div>
     <span className="text-base md:text-lg font-bold text-black/80 group-hover:text-[#197C48] transition-colors">
       {client.name}
     </span>
   </div>
+);
+
+// Infinite logo marquee — pauses on hover. Shared with the homepage.
+export const ClientMarquee = () => (
+  <>
+    <div className="group/marquee relative">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-white to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-white to-transparent z-10" />
+      <div className="flex w-max gap-10 md:gap-16 animate-[clientsMarquee_45s_linear_infinite] group-hover/marquee:[animation-play-state:paused]">
+        {[...clients, ...clients].map((client, idx) => (
+          <ClientCard key={idx} client={client} />
+        ))}
+      </div>
+    </div>
+
+    <style>{`
+      @keyframes clientsMarquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+    `}</style>
+  </>
 );
 
 export const Clients = () => (
@@ -75,29 +97,13 @@ export const Clients = () => (
           className="md:text-right"
         >
           <p className="anton-sc-regular text-2xl md:text-3xl text-slate-800 leading-tight">
-            " BRANDS THAT TRUSTED US TO GROW "
+            The brands that are part of our story.
           </p>
         </motion.div>
       </div>
       <div className="h-px bg-black/80 mt-10 mb-14" />
     </div>
 
-    {/* Infinite logo marquee — pauses on hover */}
-    <div className="group/marquee relative">
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-white to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-white to-transparent z-10" />
-      <div className="flex w-max gap-10 md:gap-16 animate-[clientsMarquee_45s_linear_infinite] group-hover/marquee:[animation-play-state:paused]">
-        {[...clients, ...clients].map((client, idx) => (
-          <ClientCard key={idx} client={client} />
-        ))}
-      </div>
-    </div>
-
-    <style>{`
-      @keyframes clientsMarquee {
-        from { transform: translateX(0); }
-        to { transform: translateX(-50%); }
-      }
-    `}</style>
+    <ClientMarquee />
   </section>
 );

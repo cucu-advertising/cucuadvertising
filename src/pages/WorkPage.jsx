@@ -63,18 +63,18 @@ export const WorkPage = ({ setPage, setSelectedProject }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-[45px] md:text-[55px] font-black text-black leading-[1.1] tracking-tight uppercase"
+                className="text-[45px] md:text-[55px] font-black text-black leading-[1.1] tracking-tight uppercase text-balance"
               >
-                Wow,
-                <br />
-                Just Wow
+                The work we've{" "}
+                <br className="hidden lg:block" />
+                been up to.
               </motion.h1>
               <div className="h-1.5 w-16 bg-[#197C48] mt-6" />
             </div>
           </div>
           <div className="w-full lg:max-w-md">
             <p className="text-lg text-neutral-500 leading-relaxed font-medium border-l-4 border-[#197C48] pl-8">
-              A curated selection of our most impactful work, where strategy meets premium design.
+              Different brands, different challenges, a lot of thinking in between.
             </p>
           </div>
         </div>

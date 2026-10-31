@@ -68,10 +68,7 @@ export const Navbar = () => {
       <a className="skip" href="#main">Skip to content</a>
       <header className="fauna-nav">
         <Link to="/" className="cucu-brand" aria-label="CUCU Advertising home">
-          <span className="brand-emblem">
-            <img src="/media/cucu-identity-green.png" alt="" width="1301" height="2048" />
-          </span>
-          <span className="brand-name">cucu<span>advertising</span></span>
+          <img className="brand-logo" src="/media/cucu-logo-horizontal.webp" alt="" width="645" height="240" />
         </Link>
         <div className="fauna-nav-right">
           <button
@@ -90,9 +87,9 @@ export const Navbar = () => {
                 {name}
               </Link>
             ))}
-            <Link to="/contact" className="mobile-meet">Let’s Talk</Link>
+            <Link to="/contact" className="mobile-meet">Let’s Build</Link>
           </nav>
-          <Link className="fauna-contact" to="/contact">Let’s Talk</Link>
+          <Link className="fauna-contact" to="/contact">Let’s Build</Link>
         </div>
       </header>
     </div>

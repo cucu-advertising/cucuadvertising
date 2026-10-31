@@ -106,7 +106,7 @@ export const BigFooter = ({ setPage }) => {
           </motion.div>
 
           <span className="max-w-[150px] md:max-w-none text-right text-[11px] md:text-sm font-black uppercase tracking-[0.15em] md:tracking-[0.2em] leading-snug text-slate-400 group-hover:text-[#197C48] transition-colors duration-500">
-            We don't just deliver, we elevate.
+            Got something good in mind? Let's make it happen.
           </span>
           <ArrowUpRight
             className="w-10 h-10 md:w-16 md:h-16 text-[#197C48] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"
@@ -131,7 +131,7 @@ export const BigFooter = ({ setPage }) => {
           }}
           className="text-[19vw] md:text-[min(13vw,224px)] md:whitespace-nowrap font-black leading-[0.9] md:leading-none uppercase tracking-tighter cursor-pointer transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-[#197C48] from-50% to-[var(--blink-color)] to-50% bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0_0]"
         >
-          Let's Connect
+          Let's Build
         </motion.button>
       </div>
 

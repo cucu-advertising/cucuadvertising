@@ -109,9 +109,9 @@ export const AboutPage = ({ setPage }) => {
               <span className="text-[#197C48]">C</span>reative <span className="text-[#197C48]">U</span>nderstanding.
             </p>
             <p className="md:col-span-5 text-base md:text-lg leading-relaxed text-black/60">
-              A Hyderabad-born creative and growth studio. Strategy, branding, content,
-              films and performance, brought together so ambitious brands feel sharper,
-              clearer and impossible to ignore.
+              A creative and growth studio from Hyderabad. We bring strategy, branding,
+              content, films and performance together to build brands people notice,
+              remember and choose.
             </p>
             <div className="md:col-span-3 flex flex-wrap md:justify-end gap-3">
               <button
@@ -124,7 +124,7 @@ export const AboutPage = ({ setPage }) => {
                 onClick={() => setPage("contact")}
                 className="px-6 py-3 rounded-full border border-[#050505] text-[#050505] text-sm font-semibold hover:bg-[#8CF2C6] hover:border-[#8CF2C6] transition-colors"
               >
-                Start a project ↗
+                Let's Build ↗
               </button>
             </div>
           </motion.div>

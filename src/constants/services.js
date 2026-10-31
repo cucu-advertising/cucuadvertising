@@ -1,6 +1,5 @@
 // Service list shared by the Services page and the home-page accordion.
 import adFilmImg from "../assets/services/Ad film.webp";
-import videoEditingImg from "../assets/services/Video Editing and motion graphics.webp";
 import contentWritingImg from "../assets/services/content writing.webp";
 import performanceMarketingImg from "../assets/services/performance marketing.webp";
 import seoImg from "../assets/services/seo.webp";
@@ -11,11 +10,8 @@ export const services = [
   {
     id: "social",
     title: "Social Media Marketing",
-    headlineHighlight: "Building digital communities",
-    headlineRest:
-      " through authentic conversations and data-driven engagement strategies.",
-    description:
-      "Content that sparks interaction.\nTurn casual followers into lifelong brand advocates.",
+    headlineHighlight: "We create content and conversations",
+    headlineRest: " that give people a reason to stick around.",
     cta: "Know more",
     image: socialMediaImg,
     thumb: socialMediaImg,
@@ -23,10 +19,8 @@ export const services = [
   {
     id: "performance",
     title: "Performance Marketing",
-    headlineHighlight: "Maximizing your ROI",
-    headlineRest: " with data-driven growth and precision targeting.",
-    description:
-      "Data is our compass.\nWe scale your business with precision and targeted action.",
+    headlineHighlight: "We turn insights into targeted campaigns",
+    headlineRest: " that help your business grow.",
     cta: "Know more",
     image: performanceMarketingImg,
     thumb: performanceMarketingImg,
@@ -34,10 +28,8 @@ export const services = [
   {
     id: "seo",
     title: "Search Engine Optimization",
-    headlineHighlight: "Dominating search",
-    headlineRest: " with ethical strategies and high-ranking authority.",
-    description:
-      "Visibility meets relevance.\nWe build authority that converts searchers into loyal customers.",
+    headlineHighlight: "We help the right people find you",
+    headlineRest: " when they're looking for what you offer.",
     cta: "Know more",
     image: seoImg,
     thumb: seoImg,
@@ -45,10 +37,8 @@ export const services = [
   {
     id: "content",
     title: "Content Creation",
-    headlineHighlight: "Storytelling that connects",
-    headlineRest: " and drives emotional action through every platform.",
-    description:
-      "From compelling copy to stunning visuals.\nWe craft narratives that people want to consume.",
+    headlineHighlight: "From words to visuals,",
+    headlineRest: " we create content that gets your brand noticed and stays with people.",
     cta: "Know more",
     image: contentWritingImg,
     thumb: contentWritingImg,
@@ -56,32 +46,18 @@ export const services = [
   {
     id: "adfilms",
     title: "Ad Films",
-    headlineHighlight: "Cinematic impact",
-    headlineRest: " designed to tell your brand's unique visual story.",
-    description:
-      "High-end production meets strategy.\nWe create visual experiences that leave a lasting mark.",
+    headlineHighlight: "We bring your brand to life",
+    headlineRest: " through films that capture attention and leave an impression.",
     cta: "Know more",
     image: adFilmImg,
     thumb: adFilmImg,
   },
   {
-    id: "videoediting",
-    title: "Video Editing & Motion Graphics",
-    headlineHighlight: "Dynamic visuals",
-    headlineRest: " that capture attention and bring your narrative to life.",
-    description:
-      "Seamless motion and high-impact graphics.\nCreating compelling visual experiences for your brand.",
-    cta: "Know more",
-    image: videoEditingImg,
-    thumb: videoEditingImg,
-  },
-  {
     id: "webdevelopment",
-    title: "Web Development",
-    headlineHighlight: "Digital architectures",
-    headlineRest: " built for scale, performance, and seamless experiences.",
-    description:
-      "Future-ready web solutions.\nBridging the gap between complex functionality and sleek design.",
+    title: "Web Experience",
+    headlineHighlight: "We build digital experiences",
+    headlineRest:
+      " that look good, work smoothly and make it easier for people to connect with your business.",
     cta: "Know more",
     image: webDevImg,
     thumb: webDevImg,

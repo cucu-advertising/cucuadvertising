@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { StudioDisplay } from "./StudioDisplay";
+import { ClientMarquee } from "../sections/Clients";
 import projects from "./projects.json";
 import "./website-home.css";
 
@@ -28,34 +29,18 @@ const backToTop = (e) => {
   else window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-// Real client logos — every file in src/assets/client-logos is picked up automatically.
-const logoFiles = import.meta.glob("../../assets/client-logos/*.{webp,png,jpg,svg}", {
-  eager: true,
-  import: "default",
-});
-const LOGO_NAMES = {
-  are: "ARE", "daily med": "Daily Med", es: "ES Enterprises", fb: "Fruit Bandi", globus: "Globus IT",
-  gn: "GN Caters", he: "Happy Events", jaspire: "Jaspire", nyra: "Nyra", "one ent": "One ENT",
-  oryza: "Oryza", ravasa: "Ravasa", remedy: "Remedy", sannidi: "Sannidhi", seccretping: "Secret Ping",
-  "split be": "Split Be", svd: "SVD", varun: "Varun Engineers", vijari: "Vihari", zargold: "Zargold",
-};
-const clientLogos = Object.entries(logoFiles).map(([path, logo]) => {
-  const file = path.split("/").pop().replace(/\.[^.]+$/, "");
-  return { name: LOGO_NAMES[file] || file, logo };
-});
-
 export const WebsiteHome = () => (
   <div className="cucu-site">
     <section className="cucu-cinema" aria-label="CUCU Advertising">
       <div className="cinema-copy">
         <h1>
-          <span>Being good ain't<br className="desktop-break" /> our thing,</span>
-          <br />we help you in<br />being <em>remembered.</em>
+          <span>People don’t</span>
+          <br />buy what they<br /><em>don’t notice.</em>
         </h1>
-        <p className="cinema-period">Period</p>
+        <p className="cinema-sub">Branding, content, films and digital from a young Hyderabad team that tells you honestly what works.</p>
         <div className="actions">
           <Link to="/work" className="pill cinema-primary">See Our Work</Link>
-          <Link to="/contact" className="pill">Book a Meet</Link>
+          <Link to="/contact" className="pill">Let’s Build</Link>
         </div>
       </div>
       <StudioDisplay />
@@ -64,7 +49,7 @@ export const WebsiteHome = () => (
     <section className="work-section editorial-work" id="selected-work">
       <div className="section-heading">
         <span className="eyebrow">Selected work</span>
-        <h2>Good thinking.<br /><span>Out in the world.</span></h2>
+        <h2>Good thinking<br /><span>deserves to be remembered.</span></h2>
         <Link className="text-link" to="/work">Explore all projects</Link>
       </div>
       <div className="project-grid">
@@ -85,9 +70,9 @@ export const WebsiteHome = () => (
 
     <section className="editorial-statement">
       <span className="eyebrow">The way we see it</span>
-      <h2>People don’t buy<br />what they <span>don’t notice.</span></h2>
+      <h2>Worth choosing isn’t<br />the same as <span>chosen.</span></h2>
       <div className="editorial-statement-bottom">
-        <p>We find what makes your business worth choosing. Then give people a reason to look, a reason to care and a reason to choose you.</p>
+        <p>We find what makes your business worth choosing. Then we give people a reason to look, a reason to care and a reason to choose you.</p>
         <Link className="text-link" to="/about">Get to know CUCU</Link>
       </div>
     </section>
@@ -96,7 +81,7 @@ export const WebsiteHome = () => (
       <div className="service-intro">
         <span className="eyebrow">What we do</span>
         <h2>From the first<br />“Who’s that?”<br />to “That’s the one.”</h2>
-        <p>Branding, content, films and digital experiences. Built around your business. Made for your audience.</p>
+        <p>Branding, content, films and digital experiences that turn first impressions into lasting connections.</p>
       </div>
       <div className="service-list">
         {services.map(([name, desc, detail], i) => (
@@ -118,13 +103,7 @@ export const WebsiteHome = () => (
 
     <section className="editorial-trust">
       <span className="eyebrow">A few names behind the work</span>
-      <div className="client-wall">
-        {clientLogos.map((c) => (
-          <div className="client-logo" key={c.name}>
-            <img src={c.logo} alt={c.name} loading="lazy" />
-          </div>
-        ))}
-      </div>
+      <ClientMarquee />
     </section>
 
     <section className="editorial-cta">
@@ -132,8 +111,8 @@ export const WebsiteHome = () => (
       <div className="cta-editorial-row">
         <h2>Let’s make<br /><span>you the one.</span></h2>
         <div>
-          <p>Tell us what you’re building.<br />We’ll bring a fresh perspective.</p>
-          <Link className="pill dark" to="/contact">Let’s Talk</Link>
+          <p>Tell us what you’re building.<br />We’ll help you build it better.</p>
+          <Link className="pill dark" to="/contact">Let’s Build</Link>
         </div>
       </div>
     </section>
@@ -142,9 +121,11 @@ export const WebsiteHome = () => (
       <div className="footer-surface">
         <div className="footer-content-grid">
           <div className="footer-intro">
-            <Link to="/" className="footer-brand" aria-label="CUCU Advertising home">cucu</Link>
-            <h2>Making brands<br />worth remembering.</h2>
-            <p>Based in Hyderabad.<br />Made for ambitious brands.</p>
+            <Link to="/" className="footer-brand" aria-label="CUCU Advertising home">
+              <img src="/media/cucu-logo-stacked.webp" alt="" width="488" height="762" loading="lazy" />
+            </Link>
+            <h2>Making brands people notice, remember and choose.</h2>
+            <p>Based in Hyderabad.<br />Made for brands ready to stand out.</p>
           </div>
           <nav className="footer-column" aria-label="Explore">
             <span>Explore</span>
@@ -162,7 +143,7 @@ export const WebsiteHome = () => (
           <div className="footer-column footer-conversation">
             <span>Start a conversation</span>
             <Link to="/contact">Tell us your brief</Link>
-            <Link to="/contact" className="footer-booking">Book a Meet</Link>
+            <Link to="/contact" className="footer-booking">Let’s Build</Link>
           </div>
         </div>
         <div className="footer-base">

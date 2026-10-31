@@ -221,12 +221,8 @@ export const ServicesPage = ({ setPage }) => {
                   {/* Decorative Element */}
                   <div className="w-12 h-1 bg-[#197C48] rounded-full mt-6 lg:mt-8 opacity-20"></div>
 
-                  {/* Description & CTA Container */}
+                  {/* CTA Container */}
                   <div className="mt-6 lg:mt-8">
-                    <p className="text-gray-500 text-sm md:text-base lg:text-lg leading-relaxed whitespace-pre-line mb-6 lg:mb-8 max-w-sm font-medium">
-                      {activeService.description}
-                    </p>
-
                     <button
                       onClick={() => setPage("contact")}
                       className="group flex items-center gap-4 text-xs font-black uppercase tracking-[0.2em] text-black hover:text-[#197C48] transition-all"

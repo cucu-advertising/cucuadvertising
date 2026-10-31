@@ -38,7 +38,7 @@
 .cucu-site .cinema-copy h1 { font-size: clamp(38px, 4.4vw, 75px); line-height: 1.17; font-weight: 500; letter-spacing: -.052em; max-width: 900px; animation: cucu-premise-in .7s both; }
 .cucu-site .cinema-copy h1 > span { color: #d4ded5; }
 .cucu-site .cinema-copy h1 em { font-weight: 500; font-style: normal; color: var(--lime); }
-.cucu-site .cinema-period { margin: 27px 0 35px; font-size: 20px; color: #cfe68e; font-weight: 500; letter-spacing: -.015em; display: inline-block; border-bottom: 1px solid #84ab76; padding-bottom: 6px; animation: cucu-premise-in .8s .12s both; }
+.cucu-site .cinema-sub { margin: 27px 0 35px; max-width: 520px; font-size: 18px; line-height: 1.6; color: #d4ded5; animation: cucu-premise-in .8s .12s both; }
 .cucu-site .cinema-copy .actions { margin: 0; gap: 12px; flex-wrap: wrap; }
 .cucu-site .cinema-copy .pill { border-color: #5d7361; color: #eff5e9; background: transparent; border-radius: 32px; font-size: 14px; }
 .cucu-site .cinema-copy .pill:hover { background: #e5f0d2; color: #101b12; border-color: #e5f0d2; }
@@ -110,12 +110,8 @@
 .cucu-site .service-copy a { font-size: 14px; text-decoration: underline; text-underline-offset: 5px; }
 
 /* Client names */
-.cucu-site .editorial-trust { padding: 15px 4.5% 100px; }
+.cucu-site .editorial-trust { padding: 15px 0 100px; overflow: hidden; }
 .cucu-site .editorial-trust > .eyebrow { text-align: center; margin-bottom: 36px; }
-.cucu-site .client-wall { display: grid; grid-template-columns: repeat(5, 1fr); gap: 48px 40px; padding: 25px 0; align-items: center; }
-.cucu-site .client-logo { height: 72px; display: flex; align-items: center; justify-content: center; }
-.cucu-site .client-logo img { max-height: 100%; max-width: min(170px, 100%); width: auto; height: auto; object-fit: contain; transition: transform .25s; }
-.cucu-site .client-logo:hover img { transform: scale(1.06); }
 
 /* CTA */
 .cucu-site .editorial-cta { background: var(--lime); padding: 75px 4.5% 85px; }
@@ -128,7 +124,8 @@
 .cucu-site .fauna-footer { padding: 18px; background: #fff; }
 .cucu-site .footer-surface { border-radius: 48px 48px 18px 18px; background: #e6efda; padding: 65px 4.5% 30px; }
 .cucu-site .footer-content-grid { display: grid; grid-template-columns: 1.8fr 1fr .85fr 1.15fr; gap: 7%; min-height: 330px; }
-.cucu-site .footer-brand { font-size: 43px; letter-spacing: -.09em; font-weight: 700; line-height: 1; color: #146b3b; display: inline-block; margin-bottom: 28px; }
+.cucu-site .footer-brand { display: inline-block; margin-bottom: 28px; }
+.cucu-site .footer-brand img { height: 130px; width: auto; }
 .cucu-site .footer-intro h2 { font-size: clamp(27px, 2.7vw, 42px); font-weight: 500; line-height: 1.2; letter-spacing: -.045em; }
 .cucu-site .footer-intro > p { font-size: 15px; color: #65775d; margin-top: 32px; line-height: 1.6; }
 .cucu-site .footer-column { display: flex; align-items: flex-start; flex-direction: column; gap: 21px; padding-top: 9px; font-size: 15px; }
@@ -173,8 +170,7 @@
   .cucu-site { padding-top: 92px; }
   .cucu-site .cucu-cinema { grid-template-columns: 1fr; gap: 0; min-height: 0; padding: 55px 7% 28px; margin: 0 12px; border-radius: 28px; }
   .cucu-site .cinema-copy h1 { font-size: clamp(34px, 6.6vw, 57px); max-width: 660px; }
-  .cucu-site .desktop-break { display: none; }
-  .cucu-site .cinema-period { margin: 22px 0 27px; font-size: 18px; }
+  .cucu-site .cinema-sub { margin: 22px 0 27px; font-size: 17px; }
   .cucu-site .studio-display { height: 510px; min-height: 510px; margin: 15px 0 0; max-width: 580px; width: 100%; justify-self: center; }
   .cucu-site .display-controls { left: 9%; right: 9%; bottom: 0; }
   .cucu-site .footer-content-grid { grid-template-columns: 1.3fr 1fr 1fr; gap: 35px; }
@@ -212,10 +208,8 @@
   .cucu-site .service summary { gap: 20px; padding: 25px 0; }
   .cucu-site .service-copy { padding-left: 0; }
   .cucu-site .service-copy p { font-size: 18px; }
-  .cucu-site .editorial-trust { padding: 10px 6% 65px; }
-  .cucu-site .editorial-trust > .eyebrow { text-align: left; margin-bottom: 20px; }
-  .cucu-site .client-wall { gap: 34px 24px; grid-template-columns: repeat(3, 1fr); }
-  .cucu-site .client-logo { height: 52px; }
+  .cucu-site .editorial-trust { padding: 10px 0 65px; }
+  .cucu-site .editorial-trust > .eyebrow { padding: 0 6%; text-align: left; margin-bottom: 20px; }
   .cucu-site .editorial-cta { padding: 55px 6% 60px; }
   .cucu-site .cta-editorial-row { grid-template-columns: 1fr; gap: 30px; }
   .cucu-site .editorial-cta h2 { font-size: clamp(49px, 11.5vw, 80px); }
@@ -224,12 +218,11 @@
 
 @media (max-width: 480px) {
   .cucu-site { padding-top: 88px; }
-  .cucu-site .client-wall { grid-template-columns: 1fr 1fr; }
   .cucu-site .cucu-cinema { padding: 42px 7% 22px; margin: 0 10px; border-radius: 26px; }
   .cucu-site .cinema-copy h1 { font-size: clamp(30px, 8.05vw, 39px); line-height: 1.22; letter-spacing: -.049em; }
   .cucu-site .cinema-copy .actions { gap: 9px; }
   .cucu-site .cinema-copy .pill { font-size: 13px; padding: 13px 20px; min-height: 49px; }
-  .cucu-site .cinema-period { margin: 19px 0 24px; font-size: 17px; }
+  .cucu-site .cinema-sub { margin: 19px 0 24px; font-size: 16px; }
   .cucu-site .studio-display { min-height: 365px; height: 365px; margin: 16px -10px 0; width: calc(100% + 20px); }
   .cucu-site .display-controls { left: 9%; right: 9%; font-size: 13px; }
   .cucu-site .fauna-footer { padding: 10px; }
@@ -245,6 +238,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cucu-site .cinema-copy h1, .cucu-site .cinema-period { animation: none; }
+  .cucu-site .cinema-copy h1, .cucu-site .cinema-sub { animation: none; }
   .cucu-site .display-canvas, .cucu-site .project-image img { transition: none; }
 }

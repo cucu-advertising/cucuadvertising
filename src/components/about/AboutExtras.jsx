@@ -10,7 +10,7 @@ const MINT = "#8CF2C6";
 const STATS = [
   { value: 50, suffix: "+", label: "Brands built & grown" },
   { value: 200, suffix: "%", label: "Average ROI increase" },
-  { value: 7, suffix: "", label: "Services under one roof" },
+  { value: 6, suffix: "", label: "Services under one roof" },
   { value: 2, suffix: "", label: "Cities · Hyderabad & Mumbai" },
 ];
 
@@ -83,7 +83,7 @@ const BELIEFS = [
   { title: "Listen before we create", desc: "Every brief starts with questions, not mood boards. The best ideas come from understanding the business first." },
   { title: "Creative with a reason", desc: "Pretty isn't the goal. Every visual, word and frame has a job: to make people notice, feel and act." },
   { title: "Strategy before pixels", desc: "Positioning, audience and message come first, so the design has something true to say." },
-  { title: "We stay till it works", desc: "Launch is the start, not the finish. We measure, learn and keep improving alongside you." },
+  { title: "Good work keeps getting better", desc: "Launch is the start, not the finish. We measure, learn and keep improving alongside you." },
 ];
 
 export const AboutPlayground = () => (
@@ -108,8 +108,8 @@ export const AboutPlayground = () => (
           </motion.h2>
         </div>
         <p className="max-w-xl text-base md:text-lg leading-relaxed text-white/75">
-          We take the brief seriously and the mood lightly. That's how good ideas
-          survive long enough to become great work.
+          We take the work seriously, but believe the best ideas come when there's
+          room to play.
         </p>
       </div>
 
