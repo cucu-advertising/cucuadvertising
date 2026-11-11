@@ -1,0 +1,56 @@
+/* Motion language — one set of curves and durations used everywhere. */
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --t-fast: 0.25s;
+  --t-base: 0.5s;
+  --t-slow: 1.1s;
+
+  /* Brand */
+  --c-paper: #ffffff;
+  --c-ink: #151715;
+  --c-forest: #0b1510;
+  --c-brand: #096037; /* the logo green */
+  --c-green: #1e9b59;
+  --c-lime: #cfe68e;
+  --c-sage: #e6efda;
+}
+
+/* Lines: each line rises out of its own mask. */
+.m-lines .m-line { display: block; overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.m-lines .m-line-in { display: block; transform: translateY(112%); transition: transform var(--t-slow) var(--ease-out); transition-delay: calc(var(--d, 0ms) + var(--i, 0) * 90ms); will-change: transform; }
+.m-lines.is-in .m-line-in { transform: none; }
+
+/* Reveal: fade and rise. */
+.m-reveal.m-rise { opacity: 0; transform: translateY(26px); transition: opacity 0.9s var(--ease-out) var(--d, 0ms), transform 0.9s var(--ease-out) var(--d, 0ms); }
+.m-reveal.m-rise.is-in { opacity: 1; transform: none; }
+
+/* Reveal: image curtain — the frame opens upward while the picture settles. */
+.m-reveal.m-clip { position: relative; }
+.m-clip-in { position: absolute; inset: 0; display: block; overflow: hidden; background: #dde2d8; clip-path: inset(100% 0 0 0); transition: clip-path 1.2s var(--ease-in-out) var(--d, 0ms); }
+.m-clip-in > img { transform: scale(1.18); transition: transform 1.6s var(--ease-out) var(--d, 0ms); }
+.m-clip.is-in > .m-clip-in { clip-path: inset(0 0 0 0); }
+.m-clip.is-in > .m-clip-in > img { transform: scale(1); }
+
+/* Scrub text */
+.m-scrub .m-word { display: inline-block; }
+
+/* Magnetic */
+.m-magnetic { display: inline-flex; will-change: transform; }
+
+/* Roll */
+.m-roll { position: relative; display: inline-block; overflow: hidden; vertical-align: bottom; line-height: 1.3; }
+.m-roll-a, .m-roll-b { display: block; transition: transform 0.55s var(--ease-out); }
+.m-roll-b { position: absolute; left: 0; top: 100%; white-space: nowrap; }
+a:hover > .m-roll > .m-roll-a, a:focus-visible > .m-roll > .m-roll-a, button:hover > .m-roll > .m-roll-a,
+a:hover > .m-roll > .m-roll-b, a:focus-visible > .m-roll > .m-roll-b, button:hover > .m-roll > .m-roll-b { transform: translateY(-100%); }
+
+/* Curve */
+.m-curve { position: absolute; left: 0; bottom: calc(100% - 1px); width: 100%; height: clamp(46px, 9vw, 150px); display: block; transform-origin: 50% 100%; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .m-lines .m-line-in, .m-reveal.m-rise, .m-clip-in, .m-clip-in > img { transition: none; transform: none; opacity: 1; clip-path: none; }
+  .m-roll-a, .m-roll-b { transition: none; }
+  a:hover > .m-roll > .m-roll-a, a:hover > .m-roll > .m-roll-b { transform: none; }
+  .m-curve { display: none; }
+}

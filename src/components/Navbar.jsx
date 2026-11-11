@@ -18,6 +18,20 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const toggle = useRef(null);
+  const [hidden, setHidden] = useState(false);
+
+  // The bar steps aside while reading down the page and returns on the way up.
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - last) < 6) return;
+      setHidden(y > last && y > 240);
+      last = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width:850px)");
@@ -64,7 +78,7 @@ export const Navbar = () => {
   }, [open]);
 
   return (
-    <div className="cucu-header">
+    <div className={"cucu-header" + (hidden && !open ? " is-hidden" : "")}>
       <a className="skip" href="#main">Skip to content</a>
       <header className="fauna-nav">
         <Link to="/" className="cucu-brand" aria-label="CUCU Advertising home">
@@ -82,12 +96,12 @@ export const Navbar = () => {
             <i aria-hidden="true" />
           </button>
           <nav id="navigation" className={"fauna-links" + (open ? " open" : "")} aria-label="Main navigation" onClick={(e) => e.target.closest("a") && setOpen(false)}>
-            {navigation.map(([name, url]) => (
-              <Link key={url} to={url} aria-current={isCurrent(pathname, url) ? "page" : undefined}>
+            {navigation.map(([name, url], i) => (
+              <Link key={url} to={url} style={{ "--i": i }} aria-current={isCurrent(pathname, url) ? "page" : undefined}>
                 {name}
               </Link>
             ))}
-            <Link to="/contact" className="mobile-meet">Let’s Build</Link>
+            <Link to="/contact" className="mobile-meet" style={{ "--i": navigation.length }}>Let’s Build</Link>
           </nav>
           <Link className="fauna-contact" to="/contact">Let’s Build</Link>
         </div>

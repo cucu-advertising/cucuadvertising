@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
 import { StudioDisplay } from "./StudioDisplay";
 import { ClientMarquee } from "../sections/Clients";
+import { SiteFooter } from "../SiteFooter";
+import { CurveRise, Lines, Magnetic, Reveal, Roll, ScrubText } from "../../motion/primitives";
+import { finePointer, reducedMotion } from "../../motion/core";
 import projects from "./projects.json";
 import "./website-home.css";
-
-// Homepage ported from cucu-website (Next.js) — styles are scoped under .cucu-site.
 
 const services = [
   ["Branding", "Give people a clear reason to choose you. We define your position, then build an identity that makes it recognisable.", "Brand strategy · Identity · Packaging · Campaigns"],
@@ -22,136 +25,161 @@ const featured = projects
 
 const projectUrl = (slug) => `/project/${slug}`;
 
-// Lenis owns scrolling, so route "Back to top" through it when it's running.
-const backToTop = (e) => {
-  e.preventDefault();
-  if (window.lenis) window.lenis.scrollTo(0);
-  else window.scrollTo({ top: 0, behavior: "smooth" });
+/* A "View project" tag that travels with the cursor over the work grid.
+   Mouse only — touch screens keep the tag pinned on each image. */
+const WorkCursor = ({ area }) => {
+  const tag = useRef(null);
+  const [enabled] = useState(() => finePointer() && !reducedMotion());
+
+  useEffect(() => {
+    const el = tag.current;
+    const zone = area.current;
+    if (!enabled || !el || !zone) return;
+    zone.classList.add("has-cursor-tag");
+    gsap.set(el, { xPercent: -50, yPercent: -50, scale: 0 });
+    const x = gsap.quickTo(el, "x", { duration: 0.45, ease: "power3.out" });
+    const y = gsap.quickTo(el, "y", { duration: 0.45, ease: "power3.out" });
+    let on = false;
+    const show = (v) => {
+      if (v === on) return;
+      on = v;
+      gsap.to(el, { scale: v ? 1 : 0, duration: 0.4, ease: v ? "power3.out" : "power3.in", overwrite: "auto" });
+    };
+    const move = (e) => {
+      x(e.clientX);
+      y(e.clientY);
+      show(Boolean(e.target.closest(".project-image")));
+    };
+    const leave = () => show(false);
+    zone.addEventListener("pointermove", move);
+    zone.addEventListener("pointerleave", leave);
+    window.addEventListener("scroll", leave, { passive: true });
+    return () => {
+      zone.classList.remove("has-cursor-tag");
+      zone.removeEventListener("pointermove", move);
+      zone.removeEventListener("pointerleave", leave);
+      window.removeEventListener("scroll", leave);
+    };
+  }, [enabled, area]);
+
+  if (!enabled) return null;
+  return createPortal(<span className="cucu-cursor-tag" ref={tag} aria-hidden="true">View project</span>, document.body);
 };
 
-export const WebsiteHome = () => (
-  <div className="cucu-site">
-    <section className="cucu-cinema" aria-label="CUCU Advertising">
-      <div className="cinema-copy">
-        <h1>
-          <span>People don’t</span>
-          <br />buy what they<br /><em>don’t notice.</em>
-        </h1>
-        <p className="cinema-sub">Branding, content, films and digital from a young Hyderabad team that tells you honestly what works.</p>
-        <div className="actions">
-          <Link to="/work" className="pill cinema-primary">See Our Work</Link>
-          <Link to="/contact" className="pill">Let’s Build</Link>
-        </div>
-      </div>
-      <StudioDisplay />
-    </section>
-
-    <section className="work-section editorial-work" id="selected-work">
-      <div className="section-heading">
-        <span className="eyebrow">Selected work</span>
-        <h2>Good thinking<br /><span>deserves to be remembered.</span></h2>
-        <Link className="text-link" to="/work">Explore all projects</Link>
-      </div>
-      <div className="project-grid">
-        {featured.map((p) => (
-          <Link className="project" key={p.slug} to={projectUrl(p.slug)}>
-            <div className="project-image">
-              <img src={p.coverImage} alt={`${p.title} — ${p.category} by CUCU`} loading="lazy" width="1400" height="1000" />
-              <span className="project-view">View project</span>
+const ServiceList = () => {
+  const [open, setOpen] = useState(0);
+  const id = useId();
+  return (
+    <div className="service-list">
+      {services.map(([name, desc, detail], i) => {
+        const isOpen = open === i;
+        return (
+          <Reveal className={"service" + (isOpen ? " is-open" : "")} key={name} delay={i * 70}>
+            <h3>
+              <button type="button" id={`${id}-b${i}`} aria-expanded={isOpen} aria-controls={`${id}-p${i}`} onClick={() => setOpen(isOpen ? -1 : i)}>
+                <span className="service-num">0{i + 1}</span>
+                <span className="service-name">{name}</span>
+                <span className="plus" aria-hidden="true" />
+              </button>
+            </h3>
+            <div className="service-panel" id={`${id}-p${i}`} role="region" aria-labelledby={`${id}-b${i}`} inert={!isOpen}>
+              <div className="service-panel-in">
+                <div className="service-copy">
+                  <p>{desc}</p>
+                  <span>{detail}</span>
+                  <Link to="/contact"><Roll>Discuss your {name.toLowerCase()} brief</Roll></Link>
+                </div>
+              </div>
             </div>
-            <div className="project-caption">
-              <h3>{p.title}</h3>
-              <span>{p.category}</span>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </section>
+          </Reveal>
+        );
+      })}
+    </div>
+  );
+};
 
-    <section className="editorial-statement">
-      <span className="eyebrow">The way we see it</span>
-      <h2>Worth choosing isn’t<br />the same as <span>chosen.</span></h2>
-      <div className="editorial-statement-bottom">
-        <p>We find what makes your business worth choosing. Then we give people a reason to look, a reason to care and a reason to choose you.</p>
-        <Link className="text-link" to="/about">Get to know CUCU</Link>
-      </div>
-    </section>
+export const WebsiteHome = () => {
+  const grid = useRef(null);
 
-    <section className="services editorial-services">
-      <div className="service-intro">
-        <span className="eyebrow">What we do</span>
-        <h2>From the first<br />“Who’s that?”<br />to “That’s the one.”</h2>
-        <p>Branding, content, films and digital experiences that turn first impressions into lasting connections.</p>
-      </div>
-      <div className="service-list">
-        {services.map(([name, desc, detail], i) => (
-          <details key={name} className="service">
-            <summary>
-              <span className="service-num">0{i + 1}</span>
-              <h3>{name}</h3>
-              <span className="plus" aria-hidden="true">+</span>
-            </summary>
-            <div className="service-copy">
-              <p>{desc}</p>
-              <span>{detail}</span>
-              <Link to="/contact">Discuss your {name.toLowerCase()} brief</Link>
-            </div>
-          </details>
-        ))}
-      </div>
-    </section>
-
-    <section className="editorial-trust">
-      <span className="eyebrow">A few names behind the work</span>
-      <ClientMarquee />
-    </section>
-
-    <section className="editorial-cta">
-      <span className="eyebrow">Your next chapter</span>
-      <div className="cta-editorial-row">
-        <h2>Let’s make<br /><span>you the one.</span></h2>
-        <div>
-          <p>Tell us what you’re building.<br />We’ll help you build it better.</p>
-          <Link className="pill dark" to="/contact">Let’s Build</Link>
-        </div>
-      </div>
-    </section>
-
-    <footer className="fauna-footer">
-      <div className="footer-surface">
-        <div className="footer-content-grid">
-          <div className="footer-intro">
-            <Link to="/" className="footer-brand" aria-label="CUCU Advertising home">
-              <img src="/media/cucu-logo-stacked.webp" alt="" width="488" height="762" loading="lazy" />
-            </Link>
-            <h2>Making brands people notice, remember and choose.</h2>
-            <p>Based in Hyderabad.<br />Made for brands ready to stand out.</p>
+  return (
+    <>
+      <div className="cucu-site" id="top">
+        <section className="cucu-cinema" aria-label="CUCU Advertising">
+          <div className="cinema-copy">
+            <Lines as="h1" after="intro" delay={120}>
+              <span className="dim">People don’t</span>
+              <>buy what they</>
+              <em>don’t notice.</em>
+            </Lines>
+            <Reveal as="p" className="cinema-sub" after="intro" delay={520}>
+              Branding, content, films and digital from a young Hyderabad team that tells you honestly what works.
+            </Reveal>
+            <Reveal className="actions" after="intro" delay={640}>
+              <Magnetic><Link to="/work" className="pill cinema-primary"><Roll>See Our Work</Roll></Link></Magnetic>
+              <Magnetic><Link to="/contact" className="pill"><Roll>Let’s Build</Roll></Link></Magnetic>
+            </Reveal>
           </div>
-          <nav className="footer-column" aria-label="Explore">
-            <span>Explore</span>
-            <Link to="/">Home</Link>
-            <Link to="/work">Our work</Link>
-            <Link to={projectUrl("naibu")}>Naibu</Link>
-            <Link to={projectUrl("fruit-bandi")}>Fruit Bandi</Link>
-          </nav>
-          <nav className="footer-column" aria-label="CUCU">
-            <span>CUCU</span>
-            <Link to="/about">About us</Link>
-            <Link to="/careers">Careers</Link>
-            <Link to="/contact">Contact</Link>
-          </nav>
-          <div className="footer-column footer-conversation">
-            <span>Start a conversation</span>
-            <Link to="/contact">Tell us your brief</Link>
-            <Link to="/contact" className="footer-booking">Let’s Build</Link>
+          <StudioDisplay />
+        </section>
+
+        <section className="work-section editorial-work" id="selected-work">
+          <div className="section-heading">
+            <Reveal as="span" className="eyebrow">Selected work</Reveal>
+            <Lines as="h2">
+              <>Good thinking</>
+              <span className="dim">deserves to be remembered.</span>
+            </Lines>
+            <Reveal delay={200}><Link className="text-link" to="/work"><Roll>Explore all projects</Roll></Link></Reveal>
           </div>
-        </div>
-        <div className="footer-base">
-          <span>© {new Date().getFullYear()} CUCU Advertising</span>
-          <span>Hyderabad, India</span>
-          <a href="#top" onClick={backToTop}>Back to top</a>
-        </div>
+          <div className="project-grid" ref={grid}>
+            {featured.map((p, i) => (
+              <Link className="project" key={p.slug} to={projectUrl(p.slug)}>
+                <Reveal variant="clip" className="project-image" amount={0.25} delay={(i % 2) * 120}>
+                  <img src={p.coverImage} alt={`${p.title} — ${p.category} by CUCU`} loading="lazy" width="1400" height="1000" />
+                  <span className="project-view">View project</span>
+                </Reveal>
+                <Reveal className="project-caption" delay={250 + (i % 2) * 120}>
+                  <h3>{p.title}</h3>
+                  <span>{p.category}</span>
+                </Reveal>
+              </Link>
+            ))}
+          </div>
+          <WorkCursor area={grid} />
+        </section>
+
+        <section className="editorial-statement">
+          <CurveRise color="#151715" />
+          <Reveal as="span" className="eyebrow">The way we see it</Reveal>
+          <Lines as="h2">
+            <>Worth choosing isn’t</>
+            <>the same as <span className="lime">chosen.</span></>
+          </Lines>
+          <div className="editorial-statement-bottom">
+            <ScrubText text="We find what makes your business worth choosing. Then we give people a reason to look, a reason to care and a reason to choose you." />
+            <Reveal><Link className="text-link" to="/about"><Roll>Get to know CUCU</Roll></Link></Reveal>
+          </div>
+        </section>
+
+        <section className="services editorial-services">
+          <div className="service-intro">
+            <Reveal as="span" className="eyebrow">What we do</Reveal>
+            <Lines as="h2">
+              <>From the first</>
+              <>“Who’s that?”</>
+              <>to “That’s the one.”</>
+            </Lines>
+            <Reveal as="p" delay={200}>Branding, content, films and digital experiences that turn first impressions into lasting connections.</Reveal>
+          </div>
+          <ServiceList />
+        </section>
+
+        <section className="editorial-trust">
+          <Reveal as="span" className="eyebrow">A few names behind the work</Reveal>
+          <Reveal delay={120}><ClientMarquee /></Reveal>
+        </section>
       </div>
-    </footer>
-  </div>
-);
+      <SiteFooter />
+    </>
+  );
+};

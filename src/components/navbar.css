@@ -10,7 +10,10 @@
   z-index: 100;
   font-family: "Poppins", sans-serif;
   color: #151715;
+  transition: transform .7s cubic-bezier(.16, 1, .3, 1);
 }
+.cucu-header.is-hidden { transform: translateY(-101%); }
+.cucu-header:focus-within { transform: none; }
 .cucu-header * { box-sizing: border-box; }
 .cucu-header a { color: inherit; text-decoration: none; }
 .cucu-header button { font: inherit; cursor: pointer; }
@@ -31,6 +34,8 @@
 .cucu-header .fauna-links .mobile-meet { display: none; }
 .cucu-header .fauna-contact { display: inline-flex; align-items: center; justify-content: center; min-height: 62px; padding: 18px 29px; border-radius: 40px 14px 14px 40px; background: #CFE68E; color: #151715; font-size: 14px; font-weight: 500; white-space: nowrap; transition: background .22s; }
 .cucu-header .fauna-contact:hover { background: #bcd877; color: #151715; }
+.cucu-header .fauna-contact:active, .cucu-header .nav-toggle:active { transform: scale(.96); }
+.cucu-header .fauna-contact, .cucu-header .nav-toggle { transition: background .22s, transform .25s cubic-bezier(.16, 1, .3, 1); }
 .cucu-header .nav-toggle { display: none; }
 
 @media (max-width: 1100px) {
@@ -49,11 +54,17 @@
   .cucu-header .nav-toggle { position: relative; z-index: 2; display: flex; align-items: center; gap: 13px; border: 0; background: #edf2e9; border-radius: 30px; min-height: 49px; padding: 13px 19px; font-size: 14px; color: #20331f; }
   .cucu-header .nav-toggle i { width: 18px; height: 10px; display: block; border-top: 1.5px solid; border-bottom: 1.5px solid; transition: transform .2s; }
   .cucu-header .nav-toggle.active i { transform: rotate(-45deg); }
-  .cucu-header .fauna-links { display: none; }
+  /* A white sheet behind the open menu keeps the page from showing round its corners. */
+  .cucu-header::before { content: ""; position: fixed; inset: 0; z-index: -1; background: #fff; opacity: 0; visibility: hidden; transition: opacity .4s, visibility 0s .4s; }
+  .cucu-header:has(.fauna-links.open)::before { opacity: 1; visibility: visible; transition: opacity .4s, visibility 0s; }
+  /* The menu unrolls from under the bar and its links rise in turn. */
+  .cucu-header .fauna-links { position: fixed; inset: 92px 12px 12px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 35px 8%; gap: 10px; min-height: 0; background: #e6efda; border-radius: 28px; overflow: auto; visibility: hidden; clip-path: inset(0 0 100% 0 round 28px); transition: clip-path .7s cubic-bezier(.76, 0, .24, 1), visibility 0s .7s; }
+  .cucu-header .fauna-links > a { opacity: 0; transform: translateY(26px); transition: opacity .3s, transform .3s, color .2s, background .2s; }
+  .cucu-header .fauna-links.open > a { opacity: 1; transform: none; transition: opacity .7s cubic-bezier(.16, 1, .3, 1) calc(.25s + var(--i, 0) * 70ms), transform .7s cubic-bezier(.16, 1, .3, 1) calc(.25s + var(--i, 0) * 70ms), color .2s, background .2s; }
   .cucu-header .fauna-contact { min-height: 49px; padding: 13px 22px; border-radius: 30px 12px 12px 30px; }
-  .cucu-header .fauna-links.open { position: fixed; inset: 92px 12px 12px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 35px 8%; gap: 10px; background: #e6efda; border-radius: 28px; overflow: auto; }
-  .cucu-header .fauna-links.open > a { font-size: clamp(30px, 6vw, 44px); letter-spacing: -.05em; padding: 7px 18px; }
-  .cucu-header .fauna-links.open .mobile-meet { display: block; font-size: 18px; margin-top: 12px; background: #CFE68E; color: #151715; padding: 13px 23px; letter-spacing: 0; }
+  .cucu-header .fauna-links.open { visibility: visible; clip-path: inset(0 0 0 0 round 28px); transition: clip-path .7s cubic-bezier(.76, 0, .24, 1), visibility 0s; }
+  .cucu-header .fauna-links > a { font-size: clamp(30px, 6vw, 44px); letter-spacing: -.05em; padding: 7px 18px; }
+  .cucu-header .fauna-links .mobile-meet { display: block; font-size: 18px; margin-top: 12px; background: #CFE68E; color: #151715; padding: 13px 23px; letter-spacing: 0; }
 }
 
 @media (max-width: 480px) {
@@ -62,5 +73,9 @@
   .cucu-header .brand-logo { height: 46px; }
   .cucu-header .fauna-contact { display: none; }
   .cucu-header .nav-toggle { padding: 12px 17px; min-height: 46px; }
-  .cucu-header .fauna-links.open { inset: 88px 10px 10px; }
+  .cucu-header .fauna-links { inset: 88px 10px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cucu-header, .cucu-header .fauna-links, .cucu-header .fauna-links > a, .cucu-header .fauna-links.open > a { transition: none; }
 }

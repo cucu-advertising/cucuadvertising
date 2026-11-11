@@ -3,6 +3,8 @@ import { AnimatePresence } from "framer-motion";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, useParams, Navigate } from "react-router-dom";
 // Components
 import { Navbar } from "./components/Navbar";
+import { Intro } from "./components/Intro";
+import { onIntroDone } from "./motion/core";
 import { ComingSoon } from "./components/UIComponents";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -137,20 +139,22 @@ function AppContent() {
     lenis.on("scroll", ScrollTrigger.update);
 
     // Use GSAP's ticker to drive Lenis's RAF loop
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000); // convert to milliseconds
-    });
+    const tick = (time) => lenis.raf(time * 1000); // convert to milliseconds
+    gsap.ticker.add(tick);
+
+    // The opening sequence holds the page still until its curtain lifts.
+    if (document.documentElement.classList.contains("intro-lock")) lenis.stop();
 
     // Optional: Reset ScrollTrigger on refresh
     ScrollTrigger.refresh();
 
-    // Prevent lag smoothing issues
-    gsap.ticker.lagSmoothing(0);
+    // Lenis wants lag smoothing off, but while the opening plays a busy main
+    // thread must not make its timeline jump ahead — so switch once it is done.
+    const offIntro = onIntroDone(() => gsap.ticker.lagSmoothing(0));
 
     return () => {
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      offIntro();
+      gsap.ticker.remove(tick);
       lenis.destroy();
       window.lenis = null;
     };
@@ -181,6 +185,7 @@ function AppContent() {
 
   return (
     <div className="font-sans bg-[#050505] min-h-screen text-[#F0F0F0] selection:bg-[#8CF2C6] selection:text-[#050505] overflow-x-clip">
+      <Intro />
       <Navbar />
 
       <div id="main">
