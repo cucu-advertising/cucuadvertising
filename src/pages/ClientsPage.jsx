@@ -6,7 +6,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { BigFooter } from "../components/Footer";
+import { SiteFooter } from "../components/SiteFooter";
 import { optimizedSrc } from "../utils/optimizedImage";
 import DesignStudioSection from "../components/DesignStudioSection";
 
@@ -477,7 +477,7 @@ export const ClientsPage = ({ setPage }) => {
         </motion.div>
       </section>
 
-      <BigFooter setPage={setPage} />
+      <SiteFooter />
     </div>
   );
 };

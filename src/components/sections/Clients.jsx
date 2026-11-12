@@ -12,6 +12,8 @@ const logoFiles = import.meta.glob("../../assets/client-logos/*.{webp,png,jpg,sv
 // Display names for logo files (file name without extension -> label).
 const NAMES = {
   are: "ARE",
+  ark: "ARK Group",
+  "ministry of interiors": "Ministry of Interiors",
   "daily med": "Daily Med",
   es: "ES Enterprises",
   fb: "Fruit Bandi",
@@ -38,13 +40,14 @@ const clients = Object.entries(logoFiles).map(([path, logo]) => {
   return { name: NAMES[file] || file, logo };
 });
 
-const ClientCard = ({ client }) => (
-  <div className="shrink-0 w-[180px] md:w-[240px] flex flex-col items-center gap-2 group">
+const ClientCard = ({ client, copy = false }) => (
+  <div className={"shrink-0 w-[180px] md:w-[240px] flex flex-col items-center gap-2 group" + (copy ? " client-copy" : "")} aria-hidden={copy || undefined}>
     <div className="h-14 md:h-16 w-full flex items-center justify-center">
       <img
         src={client.logo}
         alt={client.name}
         loading="lazy"
+        decoding="async"
         className="max-h-full !max-w-[150px] object-contain"
       />
     </div>
@@ -60,9 +63,9 @@ export const ClientMarquee = () => (
     <div className="group/marquee relative">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-white to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-white to-transparent z-10" />
-      <div className="flex w-max gap-10 md:gap-16 animate-[clientsMarquee_45s_linear_infinite] group-hover/marquee:[animation-play-state:paused]">
+      <div className="client-track flex w-max gap-10 md:gap-16 animate-[clientsMarquee_50s_linear_infinite] group-hover/marquee:[animation-play-state:paused]">
         {[...clients, ...clients].map((client, idx) => (
-          <ClientCard key={idx} client={client} />
+          <ClientCard key={idx} client={client} copy={idx >= clients.length} />
         ))}
       </div>
     </div>
@@ -71,6 +74,13 @@ export const ClientMarquee = () => (
       @keyframes clientsMarquee {
         from { transform: translateX(0); }
         to { transform: translateX(-50%); }
+      }
+      /* The second copy only exists to make the loop seamless. With motion
+         reduced, the logos sit still in rows and the copy is hidden. */
+      .client-track { will-change: transform; }
+      @media (prefers-reduced-motion: reduce) {
+        .client-track { animation: none !important; width: auto !important; flex-wrap: wrap; justify-content: center; row-gap: 36px; padding: 0 5%; }
+        .client-copy { display: none !important; }
       }
     `}</style>
   </>

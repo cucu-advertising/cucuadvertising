@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BigFooter } from "../components/Footer";
+import { SiteFooter } from "../components/SiteFooter";
 import { showcaseSections as sections } from "../constants/showcaseSections";
 
 const SectionNav = ({ active, onSelect }) => (
@@ -147,7 +147,7 @@ export const ShowcasePage = ({ setPage }) => {
         </div>
       </section>
 
-      <BigFooter setPage={setPage} />
+      <SiteFooter />
     </motion.div>
   );
 };

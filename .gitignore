@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Server-only mail settings for the enquiry form
+public/api/enquiry-config.php
+public/api/_store/

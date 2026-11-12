@@ -1,19 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SiteFooter } from "../components/SiteFooter";
 import { CurveRise, Lines, Magnetic, Reveal, Roll, ScrubText } from "../motion/primitives";
 import { reducedMotion } from "../motion/core";
 import { Arrow, JobBoard } from "../components/careers/JobBoard";
 import { GENERAL_SLUG, jobs } from "../constants/jobs";
-import projects from "../components/website/projects.json";
 import useSeo from "../hooks/useSeo";
 import "../components/website/website-home.css";
 import "../components/careers/careers.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const reasons = [
   ["Work that means something", "Every brief starts with a real business and a real problem. We look for the idea that makes people notice, and then we make it properly."],
@@ -35,59 +30,6 @@ const scrollToJobs = (immediate = false) => {
   window.lenis?.resize?.();
   if (window.lenis) window.lenis.scrollTo(target, { offset: -24, immediate, force: true, duration: 1.4 });
   else target.scrollIntoView({ behavior: immediate || reducedMotion() ? "auto" : "smooth" });
-};
-
-/* Recent work, laid out as one long strip. On desktop the strip travels
-   sideways as the reader scrolls past; on touch screens it is swiped. */
-const WorkStrip = () => {
-  const wrap = useRef(null);
-  const track = useRef(null);
-
-  useEffect(() => {
-    const el = track.current;
-    const box = wrap.current;
-    if (!el || !box || reducedMotion()) return;
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 851px) and (hover: hover) and (pointer: fine)", () => {
-      box.classList.add("is-driven");
-      const tween = gsap.fromTo(
-        el,
-        { x: 0 },
-        {
-          x: () => -(el.scrollWidth - box.clientWidth),
-          ease: "none",
-          scrollTrigger: { trigger: box, start: "top 85%", end: "bottom 15%", scrub: 0.6, invalidateOnRefresh: true },
-        },
-      );
-      return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
-        gsap.set(el, { clearProps: "transform" });
-        box.classList.remove("is-driven");
-      };
-    });
-    return () => mm.revert();
-  }, []);
-
-  return (
-    <div className="cr-strip" ref={wrap}>
-      <ul className="cr-strip-track" ref={track}>
-        {projects.map((p, i) => (
-          <li key={p.slug} className={"cr-strip-item" + (i % 3 === 1 ? " is-tall" : "")}>
-            <Link to={`/project/${p.slug}`}>
-              <Reveal variant="clip" className="cr-strip-image" amount={0.15} delay={(i % 3) * 90}>
-                <img src={p.coverImage} alt={`${p.title} — ${p.category} by CUCU`} loading="lazy" width="1400" height="1000" />
-              </Reveal>
-              <span className="cr-strip-caption">
-                <span>{p.title}</span>
-                <span>{p.category}</span>
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
 };
 
 export const CareersPage = () => {
@@ -183,7 +125,6 @@ export const CareersPage = () => {
               <Reveal><Link className="text-link" to="/work"><Roll>See all the work</Roll></Link></Reveal>
             </div>
           </div>
-          <WorkStrip />
         </section>
 
         {/* 04 — Hiring process */}

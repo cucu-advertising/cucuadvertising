@@ -5,7 +5,7 @@ import { allProjects } from "../../constants/projects";
 import { projectThumb } from "../../utils/optimizedImage";
 
 // Projects shown on the home page, in order. Titles must match projects.js.
-const FEATURED_TITLES = ["Arbor Road", "One ENT", "ARK Groups", "Varun Engineers"];
+const FEATURED_TITLES = ["Arbor Road", "One ENT", "ARK Group", "Varun Engineers"];
 
 const featured = FEATURED_TITLES.map((t) => allProjects.find((p) => p.title === t)).filter(Boolean);
 

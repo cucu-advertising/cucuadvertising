@@ -50,20 +50,6 @@
 .careers .cr-culture .text-link { border-color: #a4aea1; white-space: nowrap; }
 .careers .cr-culture .text-link:hover { color: var(--lime); }
 
-.careers .cr-strip { margin-top: clamp(60px, 7vw, 110px); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-.careers .cr-strip::-webkit-scrollbar { display: none; }
-.careers .cr-strip.is-driven { overflow: hidden; scroll-snap-type: none; }
-.careers .cr-strip-track { display: flex; align-items: flex-end; gap: clamp(16px, 2vw, 30px); width: max-content; padding: 0 4.5%; will-change: transform; }
-.careers .cr-strip-item { width: clamp(250px, 30vw, 520px); flex-shrink: 0; scroll-snap-align: center; }
-.careers .cr-strip-item a { display: block; }
-.careers .cr-strip-image { aspect-ratio: 1.2; overflow: hidden; border-radius: 4px; }
-.careers .cr-strip-item.is-tall .cr-strip-image { aspect-ratio: .92; }
-.careers .cr-strip-image .m-clip-in { background: #232723; }
-.careers .cr-strip-image img { width: 100%; height: 100%; object-fit: cover; }
-.careers .cr-strip-item a:hover .cr-strip-image.is-in img, .careers .cr-strip-item a:focus-visible .cr-strip-image.is-in img { transform: scale(1.045); transition-duration: 1.1s; transition-delay: 0s; }
-.careers .cr-strip-caption { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 16px 0 0; font-size: 20px; letter-spacing: -.035em; transition: color var(--t-base) var(--ease-out); }
-.careers .cr-strip-caption span:last-child { font-size: 14px; letter-spacing: 0; color: #a9b2a8; }
-.careers .cr-strip-item a:hover .cr-strip-caption { color: var(--lime); }
 
 /* 04 — Hiring process */
 .careers .cr-process { padding: 110px 4.5% 60px; }
@@ -247,10 +233,6 @@
   .careers .cr-culture-bottom { margin: 30px 0 0; display: block; }
   .careers .cr-culture-bottom p { font-size: 19px; }
   .careers .cr-culture .text-link { margin-top: 25px; }
-  .careers .cr-strip { margin-top: 48px; }
-  .careers .cr-strip-track { padding: 0 6%; gap: 14px; }
-  .careers .cr-strip-item { width: 76vw; max-width: 380px; }
-  .careers .cr-strip-caption { font-size: 18px; }
   .careers .cr-process { padding: 60px 6% 30px; }
   .careers .cr-process h2 { font-size: 40px; }
   .careers .cr-steps { grid-template-columns: 1fr; row-gap: 0; }
@@ -296,7 +278,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .careers .cr-arrow, .careers .cr-job, .careers .cr-job-title, .careers .cr-job-arrow, .careers .cr-filter-list, .careers .cr-filter-caret, .careers .cr-step::before, .careers .cr-form-done, .careers .cr-strip-image img { transition: none; animation: none !important; }
+  .careers .cr-arrow, .careers .cr-job, .careers .cr-job-title, .careers .cr-job-arrow, .careers .cr-filter-list, .careers .cr-filter-caret, .careers .cr-step::before, .careers .cr-form-done { transition: none; animation: none !important; }
   .careers .cr-step.is-in::before, .careers .cr-step::before { transform: scaleX(.28); }
   .careers .cr-spinner { animation-duration: 2.4s; }
   .careers .cr-job-link:hover .cr-job-title { transform: none; }

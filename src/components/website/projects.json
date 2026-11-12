@@ -187,7 +187,7 @@
     "films": []
   },
   {
-    "title": "ARK Groups",
+    "title": "ARK Group",
     "category": "Films",
     "img": "/Clientwork/ark/ark-out.webp",
     "about": "ARK approached CUCU with a clear brief: create a compact UGC content series for its two premium villa projects, Artha and Aryama, translating project information into a human, watchable social format. Five films made to feel less like property advertising \u2014 and more like conversations people actually want to watch.",
@@ -269,7 +269,7 @@
     "gallery": [
       "/media/project-20.webp"
     ],
-    "slug": "ark-groups",
+    "slug": "ark-group",
     "coverImage": "/media/project-20.webp",
     "featured": true
   },

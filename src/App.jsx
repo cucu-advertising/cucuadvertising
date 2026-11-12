@@ -31,7 +31,10 @@ const createSlug = (title) => {
 };
 
 function ProjectRouteWrapper({ setPage, setSelectedProject, latestProjectRef }) {
-  const { slug } = useParams();
+  const { slug: rawSlug } = useParams();
+  // Addresses that changed when a project was renamed still open the project.
+  const RENAMED = { "ark-groups": "ark-group" };
+  const slug = RENAMED[rawSlug] || rawSlug;
   const project = allProjects.find(p => createSlug(p.title) === slug);
 
   useEffect(() => {
@@ -43,6 +46,9 @@ function ProjectRouteWrapper({ setPage, setSelectedProject, latestProjectRef }) 
 
   if (!project) {
     return <Navigate to="/work" replace />;
+  }
+  if (slug !== rawSlug) {
+    return <Navigate to={`/project/${slug}`} replace />;
   }
 
   return (

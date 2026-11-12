@@ -2,7 +2,6 @@ import React, { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { StudioDisplay } from "./StudioDisplay";
 import { Showcase } from "./Showcase";
-import { ClientMarquee } from "../sections/Clients";
 import { SiteFooter } from "../SiteFooter";
 import { CurveRise, Lines, Magnetic, Reveal, Roll, ScrubText } from "../../motion/primitives";
 import "./website-home.css";
@@ -59,7 +58,7 @@ export const WebsiteHome = () => {
               <em>don’t notice.</em>
             </Lines>
             <Reveal as="p" className="cinema-sub" after="intro" delay={520}>
-              Branding, content, films and digital from a young Hyderabad team that tells you honestly what works.
+              Branding, marketing, content, films and digital from a young team that tells you honestly what works.
             </Reveal>
             <Reveal className="actions" after="intro" delay={640}>
               <Magnetic><Link to="/work" className="pill cinema-primary"><Roll>See Our Work</Roll></Link></Magnetic>
@@ -95,11 +94,6 @@ export const WebsiteHome = () => {
             <Reveal as="p" delay={200}>Branding, content, films and digital experiences that turn first impressions into lasting connections.</Reveal>
           </div>
           <ServiceList />
-        </section>
-
-        <section className="editorial-trust">
-          <Reveal as="span" className="eyebrow">A few names behind the work</Reveal>
-          <Reveal delay={120}><ClientMarquee /></Reveal>
         </section>
       </div>
       <SiteFooter />

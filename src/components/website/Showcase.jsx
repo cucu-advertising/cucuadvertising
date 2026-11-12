@@ -13,13 +13,13 @@ gsap.registerPlugin(ScrollTrigger);
 const ORDER = [
   ["naibu", "forest"],
   ["fruit-bandi", "lime"],
-  ["ark-groups", "green"],
+  ["ark-group", "green"],
   ["one-ent", "sage"],
 ];
 const featured = ORDER.map(([slug, tone]) => ({ ...projects.find((p) => p.slug === slug), tone })).filter((p) => p.slug);
 
 // VIDEO SLOT — to give a panel a moving picture, add its slug and a video
-// file here, e.g.  "ark-groups": "/videos/showcase/ark.mp4"
+// file here, e.g.  "ark-group": "/videos/showcase/ark.mp4"
 // Use a short, muted, compressed loop (ideally under 4 MB). The project's
 // cover image stays underneath as the poster and the fallback, so a panel
 // never shows an empty frame or player controls while a video is missing.

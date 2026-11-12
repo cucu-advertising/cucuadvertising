@@ -169,10 +169,6 @@
 .cucu-site .service-copy a { font-size: 14px; border-bottom: 1px solid var(--ink); padding-bottom: 5px; }
 .cucu-site .service-copy a:hover { color: #167745; border-color: #167745; }
 
-/* Client names */
-.cucu-site .editorial-trust { padding: 15px 0 100px; overflow: hidden; }
-.cucu-site .editorial-trust > .eyebrow { text-align: center; margin-bottom: 36px; }
-
 /* The studio display fades up as the opening curtain lifts. */
 .cucu-site .studio-display { opacity: 0; transform: translateY(24px); transition: opacity 1.2s var(--ease-out) .35s, transform 1.4s var(--ease-out) .35s; }
 html.intro-revealed .cucu-site .studio-display { opacity: 1; transform: none; }
@@ -240,8 +236,6 @@ html.intro-revealed .cucu-site .studio-display { opacity: 1; transform: none; }
   .cucu-site .service button { gap: 20px; padding: 22px 0; }
   .cucu-site .service-copy { padding-left: 0; }
   .cucu-site .service-copy p { font-size: 18px; }
-  .cucu-site .editorial-trust { padding: 10px 0 65px; }
-  .cucu-site .editorial-trust > .eyebrow { padding: 0 6%; text-align: left; margin-bottom: 20px; }
 }
 
 @media (max-width: 480px) {

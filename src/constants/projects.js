@@ -204,12 +204,18 @@ export const allProjects = [
       { val: "Sym", label: "Mirrored Ear Symmetry Logo" },
       { val: "∞", label: "Continuity of Care" }
     ],
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
+    palette: [
+      { name: "Charcoal navy", hex: "#16202c" },
+      { name: "Teal", hex: "#45bc9f" },
+    ],
+    typeface: { name: "Open Sans", note: "Primary typeface" },
     gallery: [
+      "/Clientwork/One ent/pf-applications.webp",
       "/Clientwork/One ent/ONEENT Brand Guidelines dress.webp",
       "/Clientwork/One ent/ONEENT Brand Guidelines hooarding.webp",
       "/Clientwork/One ent/ONEENT Brand Guidelines mask.webp",
       "/Clientwork/One ent/ONEENT Brand Guidelines-12 banner.webp",
-      "/Clientwork/One ent/ONEENT Brand Guidelines dress.webp"
     ]
   },
   {
@@ -235,12 +241,20 @@ export const allProjects = [
       { val: "100%", label: "High-Tech Precision" },
       { val: "Trust", label: "Zero-Compromise Security" }
     ],
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
+    palette: [
+      { name: "White", hex: "#ffffff" },
+      { name: "Blue", hex: "#1c3799" },
+      { name: "Orange", hex: "#ff9700" },
+    ],
+    typeface: { name: "Alibaba Sans", note: "Primary typeface" },
     gallery: [
+      "/Clientwork/secretping/pf-applications.webp",
+      "/Clientwork/secretping/pf-website.webp",
       "/Clientwork/secretping/Secretping Logo Concept_page-0007.webp",
       "/Clientwork/secretping/sp cardb.webp",
       "/Clientwork/secretping/Secretping Logo.webp",
       "/Clientwork/secretping/sp webiste.webp",
-      "/Clientwork/secretping/sp cardb.webp"
     ]
   },
   {
@@ -253,12 +267,17 @@ export const allProjects = [
     challenges: "Balancing a 'Grand Yet Grounded' identity—handling massive logistics for 50k+ guests while maintaining a personal, luxury feel.",
     solution: "Positioning as 'gracious hosts' rather than food vendors, utilizing a 'Confident, Not Loud' approach with elegant visuals and a focus on perfection.",
     identity: "A 'moment of reveal' logo featuring a hand lifting a cloche, encased in a circular emblem. A palette of deep navy blue, gold accents, and warm cream.",
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
+    palette: [
+      { name: "Navy", hex: "#112e4b" },
+      { name: "Cream", hex: "#fff6e7" },
+      { name: "Gold", hex: "#d3ae34" },
+    ],
+    typeface: { name: "Times New Roman", note: "Primary typeface" },
     gallery: [
-      "/Clientwork/happy events/Happy events menu.webp",
-      "/Clientwork/happy events/Happy events paper.webp",
-      "/Clientwork/happy events/Happy events id.webp",
-      "/Clientwork/happy events/Happy events menu.webp",
-      "/Clientwork/happy events/Happy events paper.webp"
+      "/Clientwork/GN/pf-applications.webp",
+      "/Clientwork/GN/pf-website.webp",
+      "/Clientwork/GN/pf-website-pages.webp",
     ]
   },
   {
@@ -271,12 +290,19 @@ export const allProjects = [
     challenges: "Projecting an image that is both premium and practical, bridging traditional Indian celebrations with modern, clean design.",
     solution: "An 'Emotion-Driven' narrative focusing on feelings and memories, emphasizing seamless execution and a client-centric, flexible service model.",
     identity: "A 'Circular Seal' symbolizing unity and joy, featuring floral motifs and a palette of rose-pink and muted gold for warmth and elegance.",
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
+    palette: [
+      { name: "Blush", hex: "#f4e0d7" },
+      { name: "Rose", hex: "#ce708a" },
+      { name: "Sand", hex: "#cab890" },
+      { name: "Olive black", hex: "#2b2c1e" },
+    ],
+    typeface: { name: "Times New Roman", note: "Primary typeface" },
     gallery: [
+      "/Clientwork/happy events/pf-applications.webp",
       "/Clientwork/happy events/Happy events bb.webp",
       "/Clientwork/happy events/Happy events logos.webp",
       "/Clientwork/happy events/Happy events letter.webp",
-      "/Clientwork/happy events/Happy events bb.webp",
-      "/Clientwork/happy events/Happy events logos.webp"
     ]
   },
   {
@@ -302,12 +328,21 @@ export const allProjects = [
       { val: "#1", label: "Priority: Standards First" },
       { val: "1", label: "Powerful Geometric Mark" }
     ],
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
+    palette: [
+      { name: "Maroon", hex: "#86000e" },
+      { name: "White", hex: "#ffffff" },
+    ],
+    typeface: { name: "Montserrat", note: "Primary typeface" },
     gallery: [
+      "/Clientwork/varun/pf-applications.webp",
+      "/Clientwork/varun/pf-website.webp",
+      "/Clientwork/varun/pf-crm.webp",
+      "/Clientwork/varun/pf-website-pages.webp",
       "/Clientwork/varun/varun engineers logo and jacket.webp",
       "/Clientwork/varun/varun engineers truck.webp",
       "/Clientwork/varun/varun engineers business card.webp",
       "/Clientwork/varun/varun engineers all.webp",
-      "/Clientwork/varun/varun engineers logo and jacket.webp"
     ]
   },
   {
@@ -334,28 +369,25 @@ export const allProjects = [
         { title: "Extend", desc: "Design the system so it can move naturally from stationery to signage and brand communication." },
       ],
     },
-    // TODO: add the final brand hex codes and typeface name.
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
     palette: [
-      { name: "Primary" },
-      { name: "Secondary" },
-      { name: "Accent" },
-      { name: "Neutral" },
+      { name: "Copper", hex: "#c28857" },
+      { name: "Taupe", hex: "#8f7966" },
+      { name: "Amber", hex: "#febf32" },
     ],
-    typeface: { name: "Brand Typeface", note: "Final typeface, weights and hierarchy to be added." },
+    typeface: { name: "Nura", note: "Primary typeface" },
     gallery: [
+      "/Clientwork/naibu/pf-applications.webp",
+      "/Clientwork/naibu/pf-website.webp",
       "/Clientwork/naibu/naibu.webp",
-      "/Clientwork/naibu/naibu.webp",
-      "/Clientwork/naibu/naibu.webp",
-      "/Clientwork/naibu/naibu.webp",
-      "/Clientwork/naibu/naibu.webp"
     ]
   },
   {
-    title: "ARK Groups",
+    title: "ARK Group",
     category: "Brand Identity & Communication",
     img: "/Clientwork/ark/ark-out.webp",
     about: "ARK approached CUCU with a clear brief: create a compact UGC content series for its two premium villa projects, Artha and Aryama, translating project information into a human, watchable social format. Five films made to feel less like property advertising — and more like conversations people actually want to watch.",
-    scope: ["UGC Content", "Creative Direction", "Scriptwriting", "5 UGC Films"],
+    scope: ["UGC Content", "Influencer Marketing", "Creative Direction", "Scriptwriting", "5 UGC Films"],
     industry: "Real Estate — Premium Villas",
     challenges: "Make project information easy to understand without turning the video into a brochure. Use UGC language while keeping the overall visual treatment premium. Give Artha and Aryama their own identity without fragmenting the campaign. Create a five-film system that can live across social, ads and the website.",
     solution: "Not another walkthrough. We found one strong hook per film, wrote scripts the way people actually speak, and kept the visuals premium with controlled framing, clean graphics and restrained post-production. Every film is structured to work as organic content, paid creative and a portfolio asset.",
@@ -396,13 +428,11 @@ export const allProjects = [
         { title: "Design for reuse", desc: "Every film is structured to work as organic content, paid creative and a portfolio asset." },
       ],
     },
-    gallery: [
-      "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
-      "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
-      "/Clientwork/ark/ark-out.webp",
-      "https://cdn.sanity.io/images/ffbodqom/production/3d930769ddc075d657eb9020fbcceb8e5705d180-2000x1697.webp",
-      "/Clientwork/ark/ark-out.webp"
-    ]
+    // The client's own logo, as supplied. Shown beside the visual language.
+    brandMark: { src: "/Clientwork/ark/ark-group-logo.webp", alt: "ARK Group logo — Above & Beyond" },
+    // Only real ARK material belongs here. Add further stills, mockups or
+    // campaign creatives to public/Clientwork/ark and list them below.
+    gallery: []
   },
   {
     title: "ES Enterprises",
@@ -486,7 +516,44 @@ export const allProjects = [
     title: "Siirii Studio",
     category: "Brand Identity & Communication",
     img: "/Clientwork/siirii/siirii.webp",
-    disableDetail: true,
+    scope: ["Brand Identity", "Logo Design", "Packaging & Tags", "Brand Applications"],
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
+    palette: [
+      { name: "Magenta", hex: "#9f2a5e" },
+      { name: "Ivory", hex: "#f1e0cf" },
+      { name: "White", hex: "#ffffff" },
+    ],
+    typeface: { name: "DM Sans", note: "Primary typeface" },
+    gallery: ["/Clientwork/siirii/pf-applications.webp"],
+  },
+  // The two projects below come from the CUCU portfolio deck. Only what the
+  // deck shows is stated; add `about`, `industry`, `challenges` and `solution`
+  // when the written case study is ready and the page will grow to fit.
+  {
+    title: "Square",
+    category: "Brand Identity & Communication",
+    img: "/Clientwork/square/square-cover.webp",
+    scope: ["Brand Identity", "Logo Design", "App Icon", "Brand Applications"],
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
+    palette: [
+      { name: "Blue", hex: "#3a55a5" },
+      { name: "Lime", hex: "#dbe796" },
+    ],
+    typeface: { name: "Neue Montreal", note: "Primary typeface" },
+    gallery: ["/Clientwork/square/pf-applications.webp"],
+  },
+  {
+    title: "Split Be",
+    category: "Brand Identity & Communication",
+    img: "/Clientwork/split be/split-be-cover.webp",
+    scope: ["Brand Identity", "Logo Design", "App Icon", "Brand Applications"],
+    // Brand colours and typeface, as presented in the CUCU portfolio deck.
+    palette: [
+      { name: "Midnight", hex: "#030826" },
+      { name: "Signal green", hex: "#0aff7e" },
+    ],
+    typeface: { name: "Poppins", note: "Primary typeface" },
+    gallery: ["/Clientwork/split be/pf-applications.webp"],
   },
   {
     title: "GN Caterers",
