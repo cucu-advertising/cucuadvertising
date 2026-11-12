@@ -22,6 +22,7 @@ const ServicesPage = React.lazy(() => import("./pages/ServicesPage").then(m => (
 const AboutPage = React.lazy(() => import("./pages/AboutPage").then(m => ({ default: m.AboutPage })));
 const ContactPage = React.lazy(() => import("./pages/ContactPage").then(m => ({ default: m.ContactPage })));
 const CareersPage = React.lazy(() => import("./pages/CareersPage").then(m => ({ default: m.CareersPage })));
+const JobPage = React.lazy(() => import("./pages/JobPage").then(m => ({ default: m.JobPage })));
 const ProjectDetailPage = React.lazy(() => import("./pages/ProjectDetailPage").then(m => ({ default: m.ProjectDetailPage })));
 
 const createSlug = (title) => {
@@ -201,6 +202,7 @@ function AppContent() {
             <Route path="/contact" element={<ContactPage key="contact" setPage={setPage} />} />
             <Route path="/team" element={<ComingSoon key="team" title="Our Team" onBack={() => setPage("home")} />} />
             <Route path="/careers" element={<CareersPage key="careers" setPage={setPage} />} />
+            <Route path="/careers/:slug" element={<JobPage />} />
             <Route path="/project/:slug" element={<ProjectRouteWrapper setPage={setPage} setSelectedProject={handleSetSelectedProject} latestProjectRef={latestProjectRef} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

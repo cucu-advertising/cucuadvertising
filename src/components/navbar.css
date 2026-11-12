@@ -22,13 +22,15 @@
 .cucu-header .skip { position: absolute; top: -100px; left: 20px; background: #151715; color: #fff; padding: 12px; z-index: 101; }
 .cucu-header .skip:focus { top: 10px; }
 
-.cucu-header .fauna-nav { height: var(--nav-h); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 25px; background: #fff; }
-.cucu-header .cucu-brand { display: flex; align-items: center; flex-shrink: 0; }
+/* logo | links | CTA. The two outer columns are equal (1fr each), which keeps
+   the links at the exact centre of the bar regardless of logo and CTA widths. */
+.cucu-header .fauna-nav { height: var(--nav-h); padding: 0 32px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; column-gap: 25px; background: #fff; }
+.cucu-header .cucu-brand { display: flex; align-items: center; flex-shrink: 0; justify-self: start; }
 .cucu-header .brand-logo { height: 62px; width: auto; display: block; }
 
-.cucu-header .fauna-nav-right { display: flex; align-items: center; gap: 7px; }
-.cucu-header .fauna-links { display: flex; align-items: center; gap: 3px; padding: 8px 12px; background: #edf2e9; border-radius: 18px 40px 40px 18px; min-height: 62px; }
-.cucu-header .fauna-links > a { font-size: 14px; padding: 13px 16px; border-radius: 26px; transition: color .2s, background .2s; }
+.cucu-header .fauna-nav-right { display: flex; align-items: center; gap: 7px; justify-self: end; grid-column: 3; }
+.cucu-header .fauna-links { grid-column: 2; display: flex; align-items: center; gap: 3px; padding: 8px 12px; background: #edf2e9; border-radius: 40px; min-height: 62px; }
+.cucu-header .fauna-links > a { font-size: 14px; padding: 13px 16px; border-radius: 26px; white-space: nowrap; transition: color .2s, background .2s; }
 .cucu-header .fauna-links > a[aria-current=page] { color: #146d3b; background: #dfeace; }
 .cucu-header .fauna-links > a:hover { color: #146d3b; background: #e0ead8; }
 .cucu-header .fauna-links .mobile-meet { display: none; }
@@ -41,14 +43,23 @@
 @media (max-width: 1100px) {
   .cucu-header { --nav-h: 100px; }
   .cucu-header .fauna-nav { padding: 0 24px; }
+  .cucu-header .fauna-nav { column-gap: 14px; }
   .cucu-header .fauna-links { padding: 7px; }
   .cucu-header .fauna-links > a { padding: 13px 11px; }
   .cucu-header .fauna-contact { padding: 17px 23px; }
 }
 
+@media (max-width: 960px) and (min-width: 851px) {
+  .cucu-header .brand-logo { height: 54px; }
+  .cucu-header .fauna-links { gap: 0; }
+  .cucu-header .fauna-links > a { padding: 13px 9px; }
+  .cucu-header .fauna-contact { padding: 17px 18px; }
+}
+
 @media (max-width: 850px) {
   .cucu-header { --nav-h: 92px; }
-  .cucu-header .fauna-nav { padding: 0 23px; }
+  .cucu-header .fauna-nav { padding: 0 23px; grid-template-columns: auto 1fr; }
+  .cucu-header .fauna-nav-right { grid-column: 2; }
   .cucu-header .brand-logo { height: 54px; }
   .cucu-header .fauna-nav-right { gap: 8px; }
   .cucu-header .nav-toggle { position: relative; z-index: 2; display: flex; align-items: center; gap: 13px; border: 0; background: #edf2e9; border-radius: 30px; min-height: 49px; padding: 13px 19px; font-size: 14px; color: #20331f; }

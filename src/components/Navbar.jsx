@@ -7,8 +7,9 @@ import "./navbar.css";
 const navigation = [
   ["Home", "/"],
   ["About", "/about"],
-  ["Services", "/services"],
   ["Portfolio", "/work"],
+  ["Services", "/services"],
+  ["Careers", "/careers"],
 ];
 
 const isCurrent = (pathname, url) =>
@@ -56,7 +57,11 @@ export const Navbar = () => {
         toggle.current?.focus();
       }
       if (e.key === "Tab") {
-        const nodes = Array.from(document.querySelectorAll(".cucu-header .nav-toggle,.cucu-header .fauna-links.open a"));
+        // Menu button first, then the links, whatever their order in the markup.
+        const nodes = [
+          ...document.querySelectorAll(".cucu-header .nav-toggle"),
+          ...document.querySelectorAll(".cucu-header .fauna-links.open a"),
+        ];
         const first = nodes[0],
           last = nodes[nodes.length - 1];
         if (e.shiftKey && document.activeElement === first) {
@@ -84,6 +89,16 @@ export const Navbar = () => {
         <Link to="/" className="cucu-brand" aria-label="CUCU Advertising home">
           <img className="brand-logo" src="/media/cucu-logo-horizontal.webp" alt="" width="645" height="240" />
         </Link>
+        {/* Three columns — logo | links | CTA — with equal outer columns, so the
+            links sit at the true centre of the bar whatever the logo and CTA measure. */}
+        <nav id="navigation" className={"fauna-links" + (open ? " open" : "")} aria-label="Main navigation" onClick={(e) => e.target.closest("a") && setOpen(false)}>
+          {navigation.map(([name, url], i) => (
+            <Link key={url} to={url} style={{ "--i": i }} aria-current={isCurrent(pathname, url) ? "page" : undefined}>
+              {name}
+            </Link>
+          ))}
+          <Link to="/contact" className="mobile-meet" style={{ "--i": navigation.length }}>Let’s Build</Link>
+        </nav>
         <div className="fauna-nav-right">
           <button
             ref={toggle}
@@ -95,14 +110,6 @@ export const Navbar = () => {
             <span>{open ? "Close" : "Menu"}</span>
             <i aria-hidden="true" />
           </button>
-          <nav id="navigation" className={"fauna-links" + (open ? " open" : "")} aria-label="Main navigation" onClick={(e) => e.target.closest("a") && setOpen(false)}>
-            {navigation.map(([name, url], i) => (
-              <Link key={url} to={url} style={{ "--i": i }} aria-current={isCurrent(pathname, url) ? "page" : undefined}>
-                {name}
-              </Link>
-            ))}
-            <Link to="/contact" className="mobile-meet" style={{ "--i": navigation.length }}>Let’s Build</Link>
-          </nav>
           <Link className="fauna-contact" to="/contact">Let’s Build</Link>
         </div>
       </header>
