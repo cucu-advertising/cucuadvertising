@@ -275,9 +275,9 @@ export const SiteFooter = () => {
           <div className="sf-col sf-col-wide">
             <span className="sf-label">Say hello</span>
             <ul>
+              {/* The two ways to reach us carry the same weight: same size, same roll-over. */}
               <li><a className="sf-big" href="mailto:coffee@cucuadvertising.com"><Roll>coffee@cucuadvertising.com</Roll></a></li>
-              <li><a href="tel:+919440417034"><Roll>+91 94404 17034</Roll></a></li>
-              <li><a href="https://api.whatsapp.com/send?phone=919440417034" target="_blank" rel="noopener noreferrer"><Roll>WhatsApp us</Roll></a></li>
+              <li><a className="sf-big" href="https://api.whatsapp.com/send?phone=919440417034" target="_blank" rel="noopener noreferrer"><Roll>WhatsApp us</Roll></a></li>
             </ul>
           </div>
           <nav className="sf-col" aria-label="Social">

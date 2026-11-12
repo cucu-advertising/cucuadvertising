@@ -1,16 +1,18 @@
 import React, { useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { CurveRise } from "../../motion/primitives";
 
-// Scroll-driven story of the name. The section is several screens tall; its
-// content stays pinned while the visitor scrolls through five steps.
-const GREEN = "#197C48";
+// Scroll-driven story of the name, told on a dark stage. The section is several
+// screens tall; its content stays in place while the visitor scrolls through
+// four steps. Styles live in pages/inner-pages.css (.ns-*).
 const STEPS = ["Client → User", "Creative Understanding", "CU + CU", "Visual symmetry"];
 const PHASES = STEPS.length;
+const EASE = [0.16, 1, 0.3, 1];
 
-// First letter stays in brand green; the rest fades away after a beat.
+// First letter stays lit; the rest fades away after a beat.
 const Initialled = ({ word, fade = false, delay = 0 }) => (
-  <span className="inline-flex whitespace-nowrap">
-    <span style={{ color: GREEN }}>{word[0]}</span>
+  <span className="ns-word">
+    <span className="ns-lit">{word[0]}</span>
     {word
       .slice(1)
       .split("")
@@ -18,7 +20,7 @@ const Initialled = ({ word, fade = false, delay = 0 }) => (
         <motion.span
           key={i}
           initial={{ opacity: 1 }}
-          animate={{ opacity: fade ? 0.12 : 1 }}
+          animate={{ opacity: fade ? 0.16 : 1 }}
           transition={{ duration: 0.6, delay: fade ? delay + i * 0.04 : 0 }}
         >
           {ch}
@@ -27,22 +29,13 @@ const Initialled = ({ word, fade = false, delay = 0 }) => (
   </span>
 );
 
-const Lead = ({ children }) => (
-  <p className="text-lg md:text-2xl text-neutral-500 font-medium mb-6 md:mb-10">{children}</p>
-);
+const Lead = ({ children }) => <p className="ns-lead">{children}</p>;
 
 const Caption = ({ children, delay = 1 }) => (
-  <motion.p
-    initial={{ opacity: 0, y: 12 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay }}
-    className="mt-8 md:mt-12 text-base md:text-2xl font-black uppercase tracking-tight"
-  >
+  <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay, ease: EASE }} className="ns-caption">
     {children}
   </motion.p>
 );
-
-const BIG = "text-[19vw] md:text-[10vw] font-black uppercase leading-[0.85] tracking-tighter";
 
 const Phase = ({ index }) => {
   switch (index) {
@@ -50,27 +43,26 @@ const Phase = ({ index }) => {
       return (
         <>
           <Lead>Advertising is a bridge between</Lead>
-          <div className={`${BIG} flex flex-col md:flex-row md:flex-wrap justify-center items-center gap-x-[0.25em] gap-y-1`}>
+          <div className="ns-big ns-row">
             <Initialled word="Client" fade delay={0.6} />
-            <span className="text-neutral-300 rotate-90 md:rotate-0 text-[0.55em] md:text-[1em] leading-none">→</span>
+            <span className="ns-soft ns-arrow">→</span>
             <Initialled word="User" fade delay={0.6} />
           </div>
           <Caption delay={1.3}>
-            That's the connection we build every day. So we took the prefix:{" "}
-            <span style={{ color: GREEN }}>CU</span>.
+            That’s the connection we build every day. So we took the prefix: <span className="ns-lit">CU</span>.
           </Caption>
         </>
       );
     case 1:
       return (
         <>
-          <Lead>But we don't just connect. We do it with</Lead>
-          <div className={`text-[10vw] md:text-[7.5vw] font-black uppercase leading-[0.9] tracking-tighter flex flex-col items-center`}>
+          <Lead>But we don’t just connect. We do it with</Lead>
+          <div className="ns-big ns-mid ns-stack">
             <Initialled word="Creative" fade delay={0.6} />
             <Initialled word="Understanding" fade delay={0.6} />
           </div>
           <Caption delay={1.4}>
-            Of the brand. Again, the prefix: <span style={{ color: GREEN }}>CU</span>.
+            Of the brand. Again, the prefix: <span className="ns-lit">CU</span>.
           </Caption>
         </>
       );
@@ -78,48 +70,35 @@ const Phase = ({ index }) => {
       return (
         <>
           <Lead>Two connections. One name.</Lead>
-          <div className={`${BIG} flex justify-center`} style={{ color: GREEN }}>
-            <motion.span
-              initial={{ x: "-60%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-            >
+          <div className="ns-big ns-row ns-tight">
+            <motion.span className="ns-lit" initial={{ x: "-60%", opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}>
               CU
             </motion.span>
-            <motion.span
-              initial={{ x: "60%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-              className="text-[#050505]"
-            >
+            <motion.span initial={{ x: "60%", opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}>
               CU
             </motion.span>
           </div>
-          <Caption delay={1}>
-            Client to User, with Creative Understanding.
-          </Caption>
+          <Caption delay={1}>Client to User, with Creative Understanding.</Caption>
         </>
       );
     default:
       return (
         <>
           <Lead>Then came the part that made it perfect.</Lead>
-          <div className={`${BIG} flex justify-center items-center gap-[0.15em]`}>
+          <div className="ns-big ns-row">
             {/* A C turned a quarter-turn opens upward — it becomes a U. */}
             <motion.span
-              className="inline-block"
-              style={{ color: GREEN }}
+              className="ns-lit ns-turn"
               animate={{ rotate: [0, 0, -90, -90, 0] }}
               transition={{ duration: 3.2, times: [0, 0.2, 0.45, 0.8, 1], repeat: Infinity, ease: "easeInOut" }}
             >
               C
             </motion.span>
-            <span className="text-neutral-300 text-[0.5em]">=</span>
+            <span className="ns-soft ns-equals">=</span>
             <span>U</span>
           </div>
           <Caption delay={0.8}>
-            Flip a C, it's a U. Flip a U, it's a C.{" "}
-            <span style={{ color: GREEN }}>Now that's visual symmetry.</span>
+            Flip a C, it’s a U. Flip a U, it’s a C. <span className="ns-lit">Now that’s visual symmetry.</span>
           </Caption>
         </>
       );
@@ -136,11 +115,10 @@ export const NameStory = () => {
   });
 
   return (
-    <section ref={ref} className="relative bg-white text-[#050505]" style={{ height: `${PHASES * 55 + 45}vh` }}>
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center md:justify-start pt-16 pb-24 md:pb-0 md:pt-32 overflow-hidden px-6 text-center">
-        <span className="mb-6 md:mb-8 text-xs md:text-sm font-black uppercase tracking-[0.35em]" style={{ color: GREEN }}>
-          How we got our name
-        </span>
+    <section ref={ref} className="ns" style={{ height: `${PHASES * 55 + 45}vh` }} aria-label="How we got our name">
+      <CurveRise color="#151715" />
+      <div className="ns-stage">
+        <span className="eyebrow ns-eyebrow">How we got our name</span>
 
         <AnimatePresence mode="wait">
           <motion.div
@@ -148,40 +126,22 @@ export const NameStory = () => {
             initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -40, filter: "blur(8px)" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center max-w-6xl"
+            transition={{ duration: 0.5, ease: EASE }}
+            className="ns-phase"
           >
             <Phase index={phase} />
           </motion.div>
         </AnimatePresence>
 
-        {/* Current step name — phones only */}
-        <span className="md:hidden absolute bottom-[3.25rem] left-0 right-0 text-[11px] font-bold uppercase tracking-widest text-black/50">
-          {phase + 1} / {STEPS.length} · {STEPS[phase]}
-        </span>
-
-        {/* Step tracker */}
-        <div className="absolute bottom-8 md:bottom-12 left-6 right-6 md:left-12 md:right-12 flex items-center gap-3 md:gap-6">
+        <div className="ns-tracker" aria-hidden="true">
           {STEPS.map((label, i) => (
-            <div key={label} className="flex-1">
-              <div className="h-[3px] rounded-full bg-black/10 overflow-hidden">
-                <motion.div
-                  className="h-full rounded-full"
-                  style={{ background: GREEN }}
-                  animate={{ width: i <= phase ? "100%" : "0%" }}
-                  transition={{ duration: 0.5 }}
-                />
-              </div>
-              <span
-                className={`hidden md:block mt-3 text-[11px] font-bold uppercase tracking-widest transition-colors ${
-                  i === phase ? "text-black" : "text-black/30"
-                }`}
-              >
-                {label}
-              </span>
+            <div key={label} className={"ns-step" + (i === phase ? " is-current" : "")}>
+              <span className="ns-bar"><i style={{ transform: `scaleX(${i <= phase ? 1 : 0})` }} /></span>
+              <span className="ns-step-label">{label}</span>
             </div>
           ))}
         </div>
+        <span className="ns-mobile-step" aria-hidden="true">{phase + 1} / {STEPS.length} · {STEPS[phase]}</span>
       </div>
     </section>
   );

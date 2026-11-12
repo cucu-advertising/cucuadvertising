@@ -1,13 +1,10 @@
-import React, { useEffect, useId, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import React, { useId, useState } from "react";
 import { Link } from "react-router-dom";
-import gsap from "gsap";
 import { StudioDisplay } from "./StudioDisplay";
+import { Showcase } from "./Showcase";
 import { ClientMarquee } from "../sections/Clients";
 import { SiteFooter } from "../SiteFooter";
 import { CurveRise, Lines, Magnetic, Reveal, Roll, ScrubText } from "../../motion/primitives";
-import { finePointer, reducedMotion } from "../../motion/core";
-import projects from "./projects.json";
 import "./website-home.css";
 
 const services = [
@@ -17,54 +14,6 @@ const services = [
   ["Digital", "Your website should make the next step obvious. We design websites, apps and CRM systems around what your customers and your team need to do.", "Interactive web · App design · Development · CRM"],
   ["Performance", "Put the right message in front of the right people. Then test, measure and improve what happens after the click.", "Meta Ads · Google Ads · Creative testing · Measurement"],
 ];
-
-const featuredOrder = ["naibu", "fruit-bandi", "ark-groups", "one-ent"];
-const featured = projects
-  .filter((p) => p.featured)
-  .sort((a, b) => featuredOrder.indexOf(a.slug) - featuredOrder.indexOf(b.slug));
-
-const projectUrl = (slug) => `/project/${slug}`;
-
-/* A "View project" tag that travels with the cursor over the work grid.
-   Mouse only — touch screens keep the tag pinned on each image. */
-const WorkCursor = ({ area }) => {
-  const tag = useRef(null);
-  const [enabled] = useState(() => finePointer() && !reducedMotion());
-
-  useEffect(() => {
-    const el = tag.current;
-    const zone = area.current;
-    if (!enabled || !el || !zone) return;
-    zone.classList.add("has-cursor-tag");
-    gsap.set(el, { xPercent: -50, yPercent: -50, scale: 0 });
-    const x = gsap.quickTo(el, "x", { duration: 0.45, ease: "power3.out" });
-    const y = gsap.quickTo(el, "y", { duration: 0.45, ease: "power3.out" });
-    let on = false;
-    const show = (v) => {
-      if (v === on) return;
-      on = v;
-      gsap.to(el, { scale: v ? 1 : 0, duration: 0.4, ease: v ? "power3.out" : "power3.in", overwrite: "auto" });
-    };
-    const move = (e) => {
-      x(e.clientX);
-      y(e.clientY);
-      show(Boolean(e.target.closest(".project-image")));
-    };
-    const leave = () => show(false);
-    zone.addEventListener("pointermove", move);
-    zone.addEventListener("pointerleave", leave);
-    window.addEventListener("scroll", leave, { passive: true });
-    return () => {
-      zone.classList.remove("has-cursor-tag");
-      zone.removeEventListener("pointermove", move);
-      zone.removeEventListener("pointerleave", leave);
-      window.removeEventListener("scroll", leave);
-    };
-  }, [enabled, area]);
-
-  if (!enabled) return null;
-  return createPortal(<span className="cucu-cursor-tag" ref={tag} aria-hidden="true">View project</span>, document.body);
-};
 
 const ServiceList = () => {
   const [open, setOpen] = useState(0);
@@ -99,8 +48,6 @@ const ServiceList = () => {
 };
 
 export const WebsiteHome = () => {
-  const grid = useRef(null);
-
   return (
     <>
       <div className="cucu-site" id="top">
@@ -122,31 +69,7 @@ export const WebsiteHome = () => {
           <StudioDisplay />
         </section>
 
-        <section className="work-section editorial-work" id="selected-work">
-          <div className="section-heading">
-            <Reveal as="span" className="eyebrow">Selected work</Reveal>
-            <Lines as="h2">
-              <>Good thinking</>
-              <span className="dim">deserves to be remembered.</span>
-            </Lines>
-            <Reveal delay={200}><Link className="text-link" to="/work"><Roll>Explore all projects</Roll></Link></Reveal>
-          </div>
-          <div className="project-grid" ref={grid}>
-            {featured.map((p, i) => (
-              <Link className="project" key={p.slug} to={projectUrl(p.slug)}>
-                <Reveal variant="clip" className="project-image" amount={0.25} delay={(i % 2) * 120}>
-                  <img src={p.coverImage} alt={`${p.title} — ${p.category} by CUCU`} loading="lazy" width="1400" height="1000" />
-                  <span className="project-view">View project</span>
-                </Reveal>
-                <Reveal className="project-caption" delay={250 + (i % 2) * 120}>
-                  <h3>{p.title}</h3>
-                  <span>{p.category}</span>
-                </Reveal>
-              </Link>
-            ))}
-          </div>
-          <WorkCursor area={grid} />
-        </section>
+        <Showcase />
 
         <section className="editorial-statement">
           <CurveRise color="#151715" />
