@@ -283,7 +283,9 @@ export const ContactPage = () => {
         <section className="pg-hero ct-hero" aria-label="Contact CUCU Advertising">
           <div className="pg-hero-top">
             <Reveal as="span" className="eyebrow" after="intro" delay={80}>Contact</Reveal>
-            <Reveal as="span" className="eyebrow pg-hero-place" after="intro" delay={140}>Hyderabad, India</Reveal>
+            <Reveal as="span" className="ct-hero-logo" after="intro" delay={140}>
+              <img src="/media/cucu-logo-horizontal.webp" alt="CUCU Advertising" width="645" height="240" />
+            </Reveal>
           </div>
           <Lines as="h1" after="intro" delay={120}>
             <span className="dim">Good things start</span>

@@ -33,7 +33,8 @@ const createSlug = (title) => {
 function ProjectRouteWrapper({ setPage, setSelectedProject, latestProjectRef }) {
   const { slug: rawSlug } = useParams();
   // Addresses that changed when a project was renamed still open the project.
-  const RENAMED = { "ark-groups": "ark-group" };
+  // Old addresses that should still land somewhere sensible.
+  const RENAMED = { "ark-groups": "ark-group", "ravasa-retreat-exterior": "ravasa-retreat-nature" };
   const slug = RENAMED[rawSlug] || rawSlug;
   const project = allProjects.find(p => createSlug(p.title) === slug);
 

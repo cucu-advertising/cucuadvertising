@@ -3,7 +3,16 @@ import {useEffect,useRef,useState} from 'react';
 import { Link } from 'react-router-dom';
 import projects from './projects.json';
 
-const selection=['fruit-bandi','naibu','one-ent'].map(slug=>projects.find(p=>p.slug===slug));
+// What plays on the television: CUCU's most established client brands, in this
+// order. An entry with a project page links to it; Oryza Farmlands has no project
+// page yet, so it shows its social media work and links to the portfolio.
+const fromProject=slug=>{const p=projects.find(x=>x.slug===slug);return {title:p.title,category:p.category,coverImage:p.coverImage,to:'/project/'+p.slug,label:'View project'}};
+const selection=[
+  fromProject('ark-group'),
+  {title:'Oryza Farmlands',category:'Social Media & Performance',coverImage:'/optimized/w1200/Clientwork/social/oryza.webp',to:'/work',label:'View portfolio'},
+  fromProject('one-ent'),
+  fromProject('subishi'),
+];
 
 export function StudioDisplay(){
   const mount=useRef(null);
@@ -90,7 +99,7 @@ export function StudioDisplay(){
         drawImage(index,1);if(fade>0)drawImage((index+1)%selection.length,fade);
         const p=selection[fade>.5?(index+1)%selection.length:index];
         ctx.fillStyle='#09130e';ctx.fillRect(0,660,1024,130);ctx.fillStyle='#f3f7ef';ctx.font='500 36px sans-serif';ctx.fillText(p.title,48,720);ctx.fillStyle='#cfe68e';ctx.font='23px sans-serif';ctx.fillText(p.category,48,755);
-        for(let i=0;i<3;i++){ctx.fillStyle=i===index?'#cfe68e':'#496050';ctx.beginPath();ctx.arc(905+i*26,724,5,0,Math.PI*2);ctx.fill()}
+        const shown=fade>.5?(index+1)%selection.length:index;for(let i=0;i<selection.length;i++){ctx.fillStyle=i===shown?'#cfe68e':'#496050';ctx.beginPath();ctx.arc(983-(selection.length-i)*26,724,5,0,Math.PI*2);ctx.fill()}
         ctx.fillStyle='rgba(0,0,0,.045)';for(let y=0;y<790;y+=4)ctx.fillRect(0,y,1024,1);
         ctx.restore();screenTexture.needsUpdate=true;
       };
@@ -128,6 +137,6 @@ export function StudioDisplay(){
   return <div className={'studio-display'+(ready?' display-ready':'')}>
     <div className="display-fallback"><img src={selection[0].coverImage} alt="" width="1200" height="800"/></div>
     <div className="display-canvas" ref={mount} aria-hidden="true"/>
-    <div className="display-controls"><Link to={'/project/'+currentProject.slug} aria-label={'View '+currentProject.title+' project'}>{currentProject.title}<span>View project</span></Link>{ready&&<button onClick={()=>setPaused(!paused)} aria-label={paused?'Play animation':'Pause animation'} aria-pressed={paused}>{paused?'Play':'Pause'}</button>}</div>
+    <div className="display-controls"><Link to={currentProject.to} aria-label={currentProject.label+': '+currentProject.title}>{currentProject.title}<span>{currentProject.label}</span></Link>{ready&&<button onClick={()=>setPaused(!paused)} aria-label={paused?'Play animation':'Pause animation'} aria-pressed={paused}>{paused?'Play':'Pause'}</button>}</div>
   </div>;
 }

@@ -1,13 +1,24 @@
+import logoArbor from "../assets/client-logos/are.webp";
+import logoArk from "../assets/client-logos/ark.webp";
+import logoEs from "../assets/client-logos/es.webp";
+import logoFruitBandi from "../assets/client-logos/fb.webp";
+import logoHappyEvents from "../assets/client-logos/he.webp";
+import logoOneEnt from "../assets/client-logos/one ent.webp";
+import logoSecretPing from "../assets/client-logos/seccretping.webp";
+import logoSplitBe from "../assets/client-logos/split be.webp";
+import logoVarun from "../assets/client-logos/varun.webp";
+import logoGn from "../assets/project-logos/gn-caterers.webp";
+import logoRavasa from "../assets/project-logos/ravasa-retreat.webp";
+import logoSubishi from "../assets/project-logos/subishi.webp";
 import photoFood from "../assets/showcase/photo-food-gncaterers.webp";
 import photoResortNature from "../assets/showcase/photo-resort-nature.webp";
-import photoResortExterior from "../assets/showcase/photo-resort-exterior.webp";
 import thumbFood from "../assets/showcase/thumbs/photo-food-gncaterers-800.webp";
 import thumbResortNature from "../assets/showcase/thumbs/photo-resort-nature-800.webp";
-import thumbResortExterior from "../assets/showcase/thumbs/photo-resort-exterior-800.webp";
 
 export const allProjects = [
   {
     title: "Arbor Road",
+    logo: { src: logoArbor },
     category: "Brand Identity & Communication",
     img: "/workbranding/arbor.webp",
     about: "Arbor Road Estate is a premium eco-luxury destination designed for refined, nature-driven travelers. The brand focuses on sustainability, founder-led storytelling, and providing an authentic retreat experience in the heart of nature.",
@@ -168,6 +179,7 @@ export const allProjects = [
   },
   {
     title: "Fruit Bandi",
+    logo: { src: logoFruitBandi },
     category: "Packaging Design", 
     img: "/Clientwork/fruit bandi/fd 3.webp",
     about: "A culinary venture blending traditional flavors with a modern digital ordering experience.",
@@ -183,6 +195,7 @@ export const allProjects = [
   },
   {
     title: "One ENT",
+    logo: { src: logoOneEnt },
     category: "User Experience & Interaction",
     img: "/Clientwork/One ent/ONEENT Brand Guidelines-12 banner.webp",
     about: "One Ent is a specialized healthcare platform focused on compassionate and advanced ENT care. Led by Dr. Manusrut, the brand brings together ENT specialists, audiologists, and therapists to provide patient-first treatment with a strong focus on trust, ethics, and long-term wellness.",
@@ -220,6 +233,7 @@ export const allProjects = [
   },
   {
     title: "Secret Ping",
+    logo: { src: logoSecretPing },
     category: "Web Development",
     img: "/Clientwork/secretping/sp webiste.webp",
     about: "Secretping is a modern technology company focused on secure communication and monitoring solutions. Built around trust and protection, the brand combines advanced technology with a user-focused approach to deliver safe and dependable experiences.",
@@ -259,6 +273,7 @@ export const allProjects = [
   },
   {
     title: "GN Caters",
+    logo: { src: logoGn },
     category: "Packaging Design",
     img: "/Clientwork/GN/gn-logo.webp",
     about: "Founded in 2004, GN Caters is a culinary powerhouse offering over 700 cuisines. They blend a two-decade legacy with modern innovation to create premium dining experiences.",
@@ -282,6 +297,7 @@ export const allProjects = [
   },
   {
     title: "Happy Events",
+    logo: { src: logoHappyEvents },
     category: "User Experience & Interaction",
     img: "/Clientwork/happy events/Happy events bb.webp",
     about: "A specialized wedding planning and event décor firm focusing on transforming personal milestones into unforgettable celebrations with culturally resonant themes.",
@@ -307,6 +323,7 @@ export const allProjects = [
   },
   {
     title: "Varun Engineers",
+    logo: { src: logoVarun },
     category: "Web Development",
     img: "/Clientwork/varun/varun engineers all.webp",
     about: "Varun Engineers was founded in 2005 by Mr. K. Ramesh and has grown into a trusted supplier of industrial material handling equipment, pumps, and compressors. The brand focuses on durable engineering, cost-effective solutions, and reliable industrial support for businesses.",
@@ -384,6 +401,7 @@ export const allProjects = [
   },
   {
     title: "ARK Group",
+    logo: { src: logoArk },
     category: "Brand Identity & Communication",
     img: "/Clientwork/ark/ark-out.webp",
     about: "ARK approached CUCU with a clear brief: create a compact UGC content series for its two premium villa projects, Artha and Aryama, translating project information into a human, watchable social format. Five films made to feel less like property advertising — and more like conversations people actually want to watch.",
@@ -419,6 +437,19 @@ export const allProjects = [
       { title: "Film 05", subtitle: "ARK", url: "/videos/ark/Ark 05 final.webm" },
     ],
     filmsIntro: "Five short-form UGC films — one visual language across two premium villa projects.",
+    // Influencer marketing: Instagram Reels, embedded from Instagram (not re-hosted).
+    // To add or remove a Reel, edit the list of links below.
+    influencer: {
+      title: ["Influence that moves", "beyond the feed."],
+      copy: "A showcase of influencer-led campaigns created to connect ARK Group with relevant audiences through engaging social content.",
+      reels: [
+        "https://www.instagram.com/reel/Dfhacg-ze6-/",
+        "https://www.instagram.com/reel/DfjySS3Jk6W/",
+        "https://www.instagram.com/reel/DfEbLB6xTSh/",
+        "https://www.instagram.com/reel/DdEYVMWSo2W/",
+        "https://www.instagram.com/reel/DdWZB0Szjru/",
+      ],
+    },
     approach: {
       title: "Built for attention, not information overload.",
       steps: [
@@ -436,6 +467,7 @@ export const allProjects = [
   },
   {
     title: "ES Enterprises",
+    logo: { src: logoEs },
     category: "Brand Identity & Communication",
     img: "/Clientwork/es/es-enterprises.webp",
     about: "CUCU was brought in to create one ad film that could explain ES Enterprises' projects without overwhelming the viewer with information — turning multiple points into a single narrative that feels direct, visual and easy to understand.",
@@ -473,6 +505,7 @@ export const allProjects = [
   },
   {
     title: "Subishi",
+    logo: { src: logoSubishi },
     category: "Brand Identity & Communication",
     img: "/Clientwork/subishi/subishi.webp",
     about: "Subishi is a Hyderabad real-estate developer with a portfolio spanning premium villas and apartments. The brief for CUCU was to explain their projects through four short-form UGC films without making the content feel like a conventional property advertisement.",
@@ -544,6 +577,7 @@ export const allProjects = [
   },
   {
     title: "Split Be",
+    logo: { src: logoSplitBe },
     category: "Brand Identity & Communication",
     img: "/Clientwork/split be/split-be-cover.webp",
     scope: ["Brand Identity", "Logo Design", "App Icon", "Brand Applications"],
@@ -557,6 +591,7 @@ export const allProjects = [
   },
   {
     title: "GN Caterers",
+    logo: { src: logoGn },
     category: "Brand Identity & Communication",
     img: photoFood,
     thumb: thumbFood,
@@ -568,6 +603,7 @@ export const allProjects = [
   },
   {
     title: "Ravasa Retreat — Nature",
+    logo: { src: logoRavasa, bg: "#000000" },
     category: "Brand Identity & Communication",
     img: photoResortNature,
     thumb: thumbResortNature,
@@ -576,17 +612,6 @@ export const allProjects = [
     scope: ["Aerial Photography", "Nature Photography", "Visual Branding"],
     industry: "Hospitality & Retreats",
     gallery: [photoResortNature],
-  },
-  {
-    title: "Ravasa Retreat — Exterior",
-    category: "Brand Identity & Communication",
-    img: photoResortExterior,
-    thumb: thumbResortExterior,
-    about:
-      "Evening and exterior architectural photography — lit stairways, poolside views, and the building's clean facade after dark.",
-    scope: ["Architectural Photography", "Evening Photography", "Visual Branding"],
-    industry: "Hospitality & Retreats",
-    gallery: [photoResortExterior],
   },
 ];
 

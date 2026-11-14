@@ -29,6 +29,7 @@ import "./portfolio.css";
      identity, brandMark { src, alt }        visual language
      palette[] { name, hex }, typeface       brand colours and type
      results[] { val, label }                numbers
+     influencer { title, copy, reels[] }     Instagram Reels, embedded from Instagram
 */
 
 const two = (n) => String(n).padStart(2, "0");
@@ -199,6 +200,99 @@ const Films = ({ project }) => {
   );
 };
 
+/* ───────────── Influencer marketing: Reels embedded from Instagram ─────────────
+   The Reels stay on Instagram and are shown through Instagram's own embed, so
+   nothing is downloaded or re-hosted. Embeds are only requested once the section
+   is close to the screen. If an embed is blocked or unavailable, the card behind
+   it and the link below it still lead to the Reel. */
+
+const reelId = (url) => (String(url).match(/\/(?:reel|reels|p)\/([^/?#]+)/) || [])[1];
+
+const Influencer = ({ project }) => {
+  const { influencer, title } = project;
+  const root = useRef(null);
+  const [near, setNear] = useState(false);
+  const reels = (influencer.reels || []).map((url) => ({ url, id: reelId(url) })).filter((r) => r.id);
+
+  useEffect(() => {
+    const el = root.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setNear(true); io.disconnect(); }
+    }, { rootMargin: "500px 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Instagram's embed reports its real height; fit each frame to it so a Reel
+  // is never cropped or left with a gap.
+  useEffect(() => {
+    const onMessage = (e) => {
+      if (!/^https:\/\/(www\.)?instagram\.com$/.test(e.origin)) return;
+      let data = e.data;
+      try { if (typeof data === "string") data = JSON.parse(data); } catch { return; }
+      const height = data && data.type === "MEASURE" && data.details && Number(data.details.height);
+      if (!height || !root.current) return;
+      root.current.querySelectorAll("iframe").forEach((frame) => {
+        if (frame.contentWindow === e.source) {
+          frame.style.height = `${Math.round(height)}px`;
+          frame.parentElement.classList.add("is-sized");
+        }
+      });
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
+
+  if (!reels.length) return null;
+
+  return (
+    <section className="cs-influence" aria-labelledby="cs-influence-title" ref={root}>
+      <CurveRise color="#151715" />
+      <div className="cs-head">
+        <div>
+          <Reveal as="span" className="eyebrow">Influencer Marketing</Reveal>
+          <Lines as="h2" id="cs-influence-title">
+            {(influencer.title || []).map((line, i) => (i === 0 ? <React.Fragment key={line}>{line}</React.Fragment> : <span className="lime" key={line}>{line}</span>))}
+          </Lines>
+        </div>
+        <div className="cs-head-side">
+          {influencer.copy && <Reveal as="p" delay={150}>{influencer.copy}</Reveal>}
+          <Reveal as="span" className="cs-hint" delay={220}>{two(reels.length)} Reels, played from Instagram</Reveal>
+        </div>
+      </div>
+      <ol className="cs-reel-row" tabIndex={0} aria-label={`${title} influencer Reels, scroll sideways for more`}>
+        {reels.map((reel, i) => (
+          <Reveal as="li" className="cs-reel" key={reel.id} delay={(i % 4) * 80}>
+            <span className="cs-reel-frame">
+              <a className="cs-reel-fallback" href={reel.url} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true">
+                <span className="pg-num">{two(i + 1)}</span>
+                <span>Reel {two(i + 1)}</span>
+                <span>View on Instagram</span>
+              </a>
+              {near && (
+                <iframe
+                  src={`https://www.instagram.com/reel/${reel.id}/embed/`}
+                  title={`${title} influencer Reel ${i + 1} on Instagram`}
+                  loading="lazy"
+                  scrolling="no"
+                  allow="encrypted-media; picture-in-picture; web-share; clipboard-write"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              )}
+            </span>
+            <a className="cs-reel-link" href={reel.url} target="_blank" rel="noopener noreferrer">
+              <span>{two(i + 1)}</span>
+              <span>View on Instagram <Arrow /></span>
+            </a>
+          </Reveal>
+        ))}
+      </ol>
+    </section>
+  );
+};
+
 /* ───────────── Closing: the next project ───────────── */
 
 export const NextProject = ({ project }) => {
@@ -220,8 +314,12 @@ export const NextProject = ({ project }) => {
             <span className="cs-next-ring"><Arrow /></span>
           </Reveal>
         </span>
-        <Reveal variant="clip" className="cs-next-image" amount={0.15}>
-          {isVideo(next.img) ? (
+        <Reveal variant="clip" className={"cs-next-image" + (next.logo ? " has-logo" : "")} amount={0.15}>
+          {next.logo ? (
+            <span className="cs-next-logo" style={next.logo.bg ? { "--logo-bg": next.logo.bg } : undefined}>
+              <img src={next.logo.src} alt="" loading="lazy" decoding="async" />
+            </span>
+          ) : isVideo(next.img) ? (
             <video src={next.img} muted loop playsInline autoPlay={!reducedMotion()} />
           ) : (
             <img src={projectThumb(next, 1200)} alt="" loading="lazy" decoding="async" />
@@ -410,6 +508,8 @@ export const CaseStudy = ({ project }) => {
         )}
 
         {films && films.length > 0 && <Films project={project} />}
+
+        {project.influencer && <Influencer project={project} />}
 
         {/* Brand colours and typeface */}
         {palette.length > 0 && (

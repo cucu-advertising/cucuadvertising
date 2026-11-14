@@ -28,7 +28,6 @@ export const AboutPage = () => {
         <section className="pg-hero" aria-label="About CUCU Advertising">
           <div className="pg-hero-top">
             <Reveal as="span" className="eyebrow" after="intro" delay={80}>Our story</Reveal>
-            <Reveal as="span" className="eyebrow pg-hero-place" after="intro" delay={140}>Hyderabad · Mumbai</Reveal>
           </div>
           <Lines as="h1" after="intro" delay={120}>
             <span className="dim">We’re CUCU</span>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "../components/SiteFooter";
 import { CucuMark } from "../components/brand/CucuMark";
 import { CurveRise, Lines, Magnetic, Reveal, Roll } from "../motion/primitives";
-import { reducedMotion } from "../motion/core";
+import { finePointer, reducedMotion } from "../motion/core";
 import { allProjects } from "../constants/projects";
 import { optimizedSrc, projectThumb } from "../utils/optimizedImage";
 import { projectPath } from "../utils/projectSlug";
@@ -49,14 +49,33 @@ const social = [
   { client: "Daily Med", kind: "Website", img: "/Clientwork/social/dailymed-website.webp" },
 ];
 
+// Listing order: the most established brands lead, smaller projects follow.
+// Anything not named here keeps its order from projects.js, in between.
+const LEAD = ["ARK Group", "Subishi", "One ENT"];
+const TRAIL = ["Fruit Bandi"];
+const ordered = [
+  ...LEAD.map((t) => allProjects.find((p) => p.title === t)).filter(Boolean),
+  ...allProjects.filter((p) => !LEAD.includes(p.title) && !TRAIL.includes(p.title)),
+  ...TRAIL.map((t) => allProjects.find((p) => p.title === t)).filter(Boolean),
+];
+
 const Card = ({ project, index }) => {
+  const { logo } = project;
+  const peek = finePointer() && !reducedMotion();
   const body = (
     <>
-      <Reveal variant="clip" className="pf-card-image" amount={0.12}>
-        {isVideo(project.img) ? (
+      <Reveal variant="clip" className={"pf-card-image" + (logo ? " has-logo" : "")} amount={0.12}>
+        {/* With a brand logo, the project picture waits underneath and is only
+            shown on hover, so it is not loaded at all on touch screens. */}
+        {(!logo || peek) && (isVideo(project.img) ? (
           <video src={project.img} muted loop playsInline autoPlay={!reducedMotion()} />
         ) : (
-          <img src={projectThumb(project, 1200)} alt={`${project.title} — ${project.industry || project.category}`} loading={index < 2 ? "eager" : "lazy"} decoding="async" />
+          <img className="pf-card-photo" src={projectThumb(project, 1200)} alt={logo ? "" : `${project.title} — ${project.industry || project.category}`} loading={!logo && index < 2 ? "eager" : "lazy"} decoding="async" />
+        ))}
+        {logo && (
+          <span className="pf-card-logo" style={logo.bg ? { "--logo-bg": logo.bg } : undefined}>
+            <img src={logo.src} alt={`${project.title} logo`} loading={index < 4 ? "eager" : "lazy"} decoding="async" />
+          </span>
         )}
       </Reveal>
       <span className="pf-card-meta">
@@ -77,7 +96,7 @@ const Card = ({ project, index }) => {
 
 export const WorkPage = () => {
   const [filter, setFilter] = useState("All");
-  const shown = filter === "All" ? allProjects : allProjects.filter((p) => p.category === filter);
+  const shown = filter === "All" ? ordered : ordered.filter((p) => p.category === filter);
 
   useSeo({
     title: "Portfolio | CUCU Advertising — Branding, Films, Content and Digital Work",

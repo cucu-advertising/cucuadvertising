@@ -8,13 +8,15 @@ import projects from "./projects.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// The four projects shown after the hero, in this order, each with the
-// brand colour of the block that carries its name.
+// The projects shown after the hero, most established brands first, each with
+// the brand colour of the block that carries its name. To change the order,
+// move the lines; to drop a project, delete its line.
 const ORDER = [
-  ["naibu", "forest"],
-  ["fruit-bandi", "lime"],
-  ["ark-group", "green"],
-  ["one-ent", "sage"],
+  ["ark-group", "forest"],
+  ["subishi", "lime"],
+  ["one-ent", "green"],
+  ["naibu", "sage"],
+  ["fruit-bandi", "forest"],
 ];
 const featured = ORDER.map(([slug, tone]) => ({ ...projects.find((p) => p.slug === slug), tone })).filter((p) => p.slug);
 
