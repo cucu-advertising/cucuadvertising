@@ -30,13 +30,19 @@ const createSlug = (title) => {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 };
 
+// /portfolio/<project> is another way of writing /project/<project>.
+function PortfolioAlias() {
+  const { slug } = useParams();
+  return <Navigate to={`/project/${slug}`} replace />;
+}
+
 function ProjectRouteWrapper({ setPage, setSelectedProject, latestProjectRef }) {
   const { slug: rawSlug } = useParams();
   // Addresses that changed when a project was renamed still open the project.
   // Old addresses that should still land somewhere sensible.
-  const RENAMED = { "ark-groups": "ark-group", "ravasa-retreat-exterior": "ravasa-retreat-nature" };
+  const RENAMED = { "ark-groups": "ark-group", "ravasa-retreat-exterior": "ravasa-retreat-nature", "square": "b-square", "harry-s-new-york": "harrys-new-york" };
   const slug = RENAMED[rawSlug] || rawSlug;
-  const project = allProjects.find(p => createSlug(p.title) === slug);
+  const project = allProjects.find(p => (p.slug || createSlug(p.title)) === slug);
 
   useEffect(() => {
     if (project) {
@@ -118,7 +124,7 @@ function AppContent() {
     else if (targetPage === "project-detail") {
       const proj = latestProjectRef.current;
       if (proj) {
-        navigate(`/project/${createSlug(proj.title)}`);
+        navigate(`/project/${proj.slug || createSlug(proj.title)}`);
       } else {
         navigate("/work");
       }
@@ -211,6 +217,8 @@ function AppContent() {
             <Route path="/careers" element={<CareersPage key="careers" setPage={setPage} />} />
             <Route path="/careers/:slug" element={<JobPage />} />
             <Route path="/project/:slug" element={<ProjectRouteWrapper setPage={setPage} setSelectedProject={handleSetSelectedProject} latestProjectRef={latestProjectRef} />} />
+            <Route path="/portfolio" element={<Navigate to="/work" replace />} />
+            <Route path="/portfolio/:slug" element={<PortfolioAlias />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </React.Suspense>

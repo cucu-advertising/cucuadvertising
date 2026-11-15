@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { SiteFooter } from "../components/SiteFooter";
 import { CaseStudy, NextProject } from "./CaseStudy";
+import { HarrysCaseStudy } from "./HarrysCaseStudy";
 import { optimizedSrc } from "../utils/optimizedImage";
 
 export const ProjectDetailPage = ({ project: rawProject }) => {
@@ -13,6 +14,15 @@ export const ProjectDetailPage = ({ project: rawProject }) => {
     gallery: rawProject.gallery?.map((g) => optimizedSrc(g, 1200)),
   };
   const isAdvanced = project.goalObj !== undefined;
+
+  // A project with its own page design (see `layout` in projects.js).
+  if (rawProject.layout === "harrys") {
+    return (
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <HarrysCaseStudy project={rawProject} />
+      </motion.div>
+    );
+  }
 
   // Every project uses the shared case-study layout. The one long-form
   // strategy study (it has `goalObj`) keeps its own structure below.

@@ -551,9 +551,9 @@ export const CaseStudy = ({ project }) => {
               <Reveal as="p" className="cs-identity-text" delay={100}>{identity}</Reveal>
             </div>
             {brandMark && (
-              <Reveal className="cs-mark" delay={160}>
+              <Reveal className="cs-mark" delay={160} style={{ "--d": "160ms", ...(brandMark.bg ? { background: brandMark.bg, color: "#fff" } : {}) }}>
                 <img src={brandMark.src} alt={brandMark.alt} loading="lazy" decoding="async" />
-                <span>Client identity</span>
+                <span style={brandMark.bg ? { color: "inherit", opacity: 0.8 } : undefined}>Client identity</span>
               </Reveal>
             )}
           </section>

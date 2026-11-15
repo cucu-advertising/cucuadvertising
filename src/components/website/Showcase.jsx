@@ -15,8 +15,7 @@ const ORDER = [
   ["ark-group", "forest"],
   ["subishi", "lime"],
   ["one-ent", "green"],
-  ["naibu", "sage"],
-  ["fruit-bandi", "forest"],
+  ["varun-engineers", "sage"],
 ];
 const featured = ORDER.map(([slug, tone]) => ({ ...projects.find((p) => p.slug === slug), tone })).filter((p) => p.slug);
 

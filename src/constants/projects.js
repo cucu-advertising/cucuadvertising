@@ -10,6 +10,7 @@ import logoVarun from "../assets/client-logos/varun.webp";
 import logoGn from "../assets/project-logos/gn-caterers.webp";
 import logoRavasa from "../assets/project-logos/ravasa-retreat.webp";
 import logoSubishi from "../assets/project-logos/subishi.webp";
+import harrysWordmarkChalk from "../assets/harrys/wordmark-chalk.webp";
 import photoFood from "../assets/showcase/photo-food-gncaterers.webp";
 import photoResortNature from "../assets/showcase/photo-resort-nature.webp";
 import thumbFood from "../assets/showcase/thumbs/photo-food-gncaterers-800.webp";
@@ -505,7 +506,8 @@ export const allProjects = [
   },
   {
     title: "Subishi",
-    logo: { src: logoSubishi },
+    logo: { src: logoSubishi, bg: "#3b4c9c" },
+    brandMark: { src: logoSubishi, alt: "Subishi logo", bg: "#3b4c9c" },
     category: "Brand Identity & Communication",
     img: "/Clientwork/subishi/subishi.webp",
     about: "Subishi is a Hyderabad real-estate developer with a portfolio spanning premium villas and apartments. The brief for CUCU was to explain their projects through four short-form UGC films without making the content feel like a conventional property advertisement.",
@@ -563,7 +565,7 @@ export const allProjects = [
   // deck shows is stated; add `about`, `industry`, `challenges` and `solution`
   // when the written case study is ready and the page will grow to fit.
   {
-    title: "Square",
+    title: "B Square",
     category: "Brand Identity & Communication",
     img: "/Clientwork/square/square-cover.webp",
     scope: ["Brand Identity", "Logo Design", "App Icon", "Brand Applications"],
@@ -612,6 +614,20 @@ export const allProjects = [
     scope: ["Aerial Photography", "Nature Photography", "Visual Branding"],
     industry: "Hospitality & Retreats",
     gallery: [photoResortNature],
+  },
+  // A brand concept by CUCU, taken from the Harry's brand book. It has its own
+  // page design (src/pages/HarrysCaseStudy.jsx); `layout` is what selects it.
+  // It is a portfolio concept: no venue, launch or results are claimed.
+  {
+    title: "Harry’s New York",
+    slug: "harrys-new-york",
+    layout: "harrys",
+    logo: { src: harrysWordmarkChalk, bg: "#172A4D" },
+    category: "Brand Identity & Communication",
+    industry: "Brand Identity · Concept",
+    img: "/Clientwork/harrys/harrys-cover.webp",
+    about: "Harry’s New York is a brand identity concept by CUCU Advertising: an expressive script signature, a restrained palette of Ink Blue, Chalk and Stone, and Libre Franklin as the supporting typeface.",
+    scope: ["Brand Identity", "Logo Design", "Colour & Typography", "Brand Guidelines"],
   },
 ];
 
