@@ -9,6 +9,11 @@ import logoSplitBe from "../assets/client-logos/split be.webp";
 import logoVarun from "../assets/client-logos/varun.webp";
 import logoGn from "../assets/project-logos/gn-caterers.webp";
 import logoRavasa from "../assets/project-logos/ravasa-retreat.webp";
+// Logo presentations: the logo as it is shown on the project's own cover picture,
+// used in the "Logo design" chapter where no separate logo file has been supplied.
+import presentNaibu from "../assets/project-logos/naibu-presentation.webp";
+import presentSiirii from "../assets/project-logos/siirii-presentation.webp";
+import presentBSquare from "../assets/project-logos/b-square-presentation.webp";
 import logoSubishi from "../assets/project-logos/subishi.webp";
 import harrysWordmarkChalk from "../assets/harrys/wordmark-chalk.webp";
 import photoFood from "../assets/showcase/photo-food-gncaterers.webp";
@@ -325,6 +330,8 @@ export const allProjects = [
   {
     title: "Varun Engineers",
     logo: { src: logoVarun },
+    // Also listed under this discipline in the portfolio filter.
+    alsoIn: ["Brand Identity & Communication"],
     category: "Web Development",
     img: "/Clientwork/varun/varun engineers all.webp",
     about: "Varun Engineers was founded in 2005 by Mr. K. Ramesh and has grown into a trusted supplier of industrial material handling equipment, pumps, and compressors. The brand focuses on durable engineering, cost-effective solutions, and reliable industrial support for businesses.",
@@ -365,6 +372,7 @@ export const allProjects = [
   },
   {
     title: "Naibu",
+    logoVisual: { src: presentNaibu, alt: "Naibu Design Studio logo" },
     category: "Brand Identity & Communication",
     img: "/Clientwork/naibu/naibu.webp",
     about: "Naibu Design Studio approached CUCU to develop a cohesive identity that could reflect the studio's design philosophy and personality across its core brand touchpoints — a design studio built around thoughtful spaces, detail and a distinct point of view.",
@@ -549,6 +557,7 @@ export const allProjects = [
   },
   {
     title: "Siirii Studio",
+    logoVisual: { src: presentSiirii, alt: "Siirii Studio logo" },
     category: "Brand Identity & Communication",
     img: "/Clientwork/siirii/siirii.webp",
     scope: ["Brand Identity", "Logo Design", "Packaging & Tags", "Brand Applications"],
@@ -566,6 +575,7 @@ export const allProjects = [
   // when the written case study is ready and the page will grow to fit.
   {
     title: "B Square",
+    logoVisual: { src: presentBSquare, alt: "B Square logo" },
     category: "Brand Identity & Communication",
     img: "/Clientwork/square/square-cover.webp",
     scope: ["Brand Identity", "Logo Design", "App Icon", "Brand Applications"],
@@ -631,4 +641,22 @@ export const allProjects = [
   },
 ];
 
+/* The order projects appear in: on the Portfolio page (every filter) and in the
+   "Next project" link at the foot of each case study.
 
+   Projects named in PRIORITY come first, in exactly this order. Everything else
+   follows in the order it is written above, and those named in LAST close the list.
+   To move a project, move its name here. Nothing is sorted by name or date. */
+const PRIORITY = ["ARK Group", "Harry’s New York", "Varun Engineers", "Naibu", "Subishi", "One ENT"];
+const LAST = ["Fruit Bandi"];
+const byTitle = (t) => allProjects.find((p) => p.title === t);
+
+export const orderedProjects = [
+  ...PRIORITY.map(byTitle).filter(Boolean),
+  ...allProjects.filter((p) => !PRIORITY.includes(p.title) && !LAST.includes(p.title)),
+  ...LAST.map(byTitle).filter(Boolean),
+];
+
+// Whether a project is filed under a discipline (its `category`, or `alsoIn`).
+export const inCategory = (project, category) =>
+  project.category === category || (project.alsoIn || []).includes(category);

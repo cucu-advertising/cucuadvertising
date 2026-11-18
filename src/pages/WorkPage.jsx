@@ -5,7 +5,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { CucuMark } from "../components/brand/CucuMark";
 import { CurveRise, Lines, Magnetic, Reveal, Roll } from "../motion/primitives";
 import { finePointer, reducedMotion } from "../motion/core";
-import { allProjects } from "../constants/projects";
+import { allProjects, orderedProjects as ordered, inCategory } from "../constants/projects";
 import { optimizedSrc, projectThumb } from "../utils/optimizedImage";
 import { projectPath } from "../utils/projectSlug";
 import useSeo from "../hooks/useSeo";
@@ -49,16 +49,6 @@ const social = [
   { client: "Daily Med", kind: "Website", img: "/Clientwork/social/dailymed-website.webp" },
 ];
 
-// Listing order: the most established brands lead, smaller projects follow.
-// Anything not named here keeps its order from projects.js, in between.
-const LEAD = ["ARK Group", "Subishi", "One ENT"];
-const TRAIL = ["Fruit Bandi"];
-const ordered = [
-  ...LEAD.map((t) => allProjects.find((p) => p.title === t)).filter(Boolean),
-  ...allProjects.filter((p) => !LEAD.includes(p.title) && !TRAIL.includes(p.title)),
-  ...TRAIL.map((t) => allProjects.find((p) => p.title === t)).filter(Boolean),
-];
-
 const Card = ({ project, index }) => {
   const { logo } = project;
   const peek = finePointer() && !reducedMotion();
@@ -96,7 +86,7 @@ const Card = ({ project, index }) => {
 
 export const WorkPage = () => {
   const [filter, setFilter] = useState("All");
-  const shown = filter === "All" ? ordered : ordered.filter((p) => p.category === filter);
+  const shown = filter === "All" ? ordered : ordered.filter((p) => inCategory(p, filter));
 
   useSeo({
     title: "Portfolio | CUCU Advertising — Branding, Films, Content and Digital Work",

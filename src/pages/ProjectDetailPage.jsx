@@ -77,6 +77,22 @@ export const ProjectDetailPage = ({ project: rawProject }) => {
             </div>
           </div>
 
+          {/* 01 — Logo design: the same first chapter as every other project */}
+          {rawProject.logo && (
+            <section className="px-6 md:px-12 mb-24">
+              <div className="bg-[#edf2e9] rounded-[2.25rem] p-8 md:p-16 grid md:grid-cols-[1.5fr_1fr] gap-10 items-center">
+                <div>
+                  <span className="text-sm text-neutral-600 block mb-6"><span className="mr-3 text-neutral-400">01</span>Logo design</span>
+                  {project.identity && <p className="text-xl md:text-3xl font-medium tracking-tight leading-snug text-[#151715]">{project.identity}</p>}
+                </div>
+                <div className="bg-white rounded-3xl p-10 grid justify-items-center gap-5" style={rawProject.logo.bg ? { background: rawProject.logo.bg } : undefined}>
+                  <img src={rawProject.logo.src} alt={`${project.title} logo`} className="w-[72%] max-w-[300px] h-auto" loading="lazy" decoding="async" />
+                  <span className="text-[13px] text-neutral-500">Client identity</span>
+                </div>
+              </div>
+            </section>
+          )}
+
           {/* PAGE 1: The Goal & Pillars */}
           <section className="px-6 md:px-12 mb-32">
             <div className="bg-[#f8f8f8] rounded-[3rem] p-10 md:p-20 border border-neutral-100 shadow-sm">

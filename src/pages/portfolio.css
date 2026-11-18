@@ -177,6 +177,28 @@
 .cs .cs-film.is-empty .cs-film-frame { display: grid; place-items: center; background: repeating-linear-gradient(135deg, #edf2e9 0 14px, #e3eadd 14px 28px); border: 1px dashed #b6c2ad; }
 .cs .cs-film-soon { padding: 10px 18px; border-radius: 30px; background: #fff; font-size: 13px; color: #44523c; }
 
+/* Numbered identity chapters: Logo design, Colors, Typography, Mockups */
+.cs .cs-chapter { display: flex; align-items: baseline; gap: 14px; }
+.cs .cs-chapter span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.cs .cs-identity + .cs-system, .cs .cs-identity + .cs-show { padding-top: clamp(90px, 10vw, 160px); }
+.cs .cs-mark.is-fill { padding: 0; gap: 0; overflow: hidden; background: #151715; }
+.cs .cs-mark.is-fill img { width: 100%; }
+.cs .cs-identity + .cs-brief, .cs .cs-identity + .cs-films { margin-top: clamp(90px, 10vw, 160px); }
+.cs .cs-identity:has(+ .cs-direction) { margin-bottom: clamp(120px, 14vw, 230px); }
+.cs .cs-show:has(+ .cs-direction) { padding-bottom: clamp(120px, 14vw, 230px); }
+.cs .cs-identity.is-brief h2 { font-size: clamp(34px, 4.4vw, 76px); }
+.cs .cs-system + .cs-system { margin-top: clamp(-70px, -5vw, -40px); }
+.cs .cs-system + .cs-show { padding-top: 0; }
+.cs .cs-typo .cs-type.is-wide { grid-template-rows: none; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: 24px 8%; margin-top: clamp(44px, 5vw, 80px); padding: clamp(28px, 4vw, 64px); min-height: clamp(240px, 26vw, 400px); }
+.cs .cs-type.is-wide .cs-type-aa { align-self: end; font-size: clamp(120px, 17vw, 300px); line-height: .82; }
+.cs .cs-type-meta { display: grid; gap: 12px; justify-items: end; text-align: right; }
+.cs .cs-type.is-wide .cs-type-name { font-size: clamp(30px, 4.2vw, 72px); }
+@media (max-width: 767px) {
+  .cs .cs-typo .cs-type.is-wide { grid-template-columns: 1fr; align-items: start; min-height: 0; }
+  .cs .cs-type-meta { justify-items: start; text-align: left; }
+  .cs .cs-identity + .cs-system, .cs .cs-identity + .cs-show { padding-top: 70px; }
+}
+
 /* Brand colours and typeface */
 .cs .cs-system { padding: 0 4.5% clamp(90px, 10vw, 160px); }
 .cs .cs-show + .cs-system { margin-top: clamp(-60px, -4vw, -30px); }

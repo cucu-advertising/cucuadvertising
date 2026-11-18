@@ -9,6 +9,24 @@ import wordmarkChalk from "../assets/harrys/wordmark-chalk.webp";
 import wordmarkInk from "../assets/harrys/wordmark-ink.webp";
 import hChalk from "../assets/harrys/h-chalk.webp";
 import hInk from "../assets/harrys/h-ink.webp";
+import menu from "../assets/harrys/mockups/menu.webp";
+import menuS from "../assets/harrys/mockups/menu-1000.webp";
+import table from "../assets/harrys/mockups/table-setting.webp";
+import tableS from "../assets/harrys/mockups/table-setting-1000.webp";
+import coasters from "../assets/harrys/mockups/coasters.webp";
+import coastersS from "../assets/harrys/mockups/coasters-1000.webp";
+import box from "../assets/harrys/mockups/gift-box.webp";
+import boxS from "../assets/harrys/mockups/gift-box-1000.webp";
+import tissue from "../assets/harrys/mockups/tissue-seal.webp";
+import tissueS from "../assets/harrys/mockups/tissue-seal-1000.webp";
+import check from "../assets/harrys/mockups/guest-check.webp";
+import checkS from "../assets/harrys/mockups/guest-check-1000.webp";
+import jacket from "../assets/harrys/mockups/chef-jacket.webp";
+import jacketS from "../assets/harrys/mockups/chef-jacket-1000.webp";
+import seal from "../assets/harrys/mockups/brass-seal.webp";
+import sealS from "../assets/harrys/mockups/brass-seal-1000.webp";
+import leather from "../assets/harrys/mockups/leather-deboss.webp";
+import leatherS from "../assets/harrys/mockups/leather-deboss-1000.webp";
 import "../components/website/website-home.css";
 import "./inner-pages.css";
 import "./portfolio.css";
@@ -23,11 +41,12 @@ import "./harrys.css";
    Harry’s is a portfolio concept. Nothing here claims a venue, an opening,
    a campaign or a result.
 
-   TO ADD THE SIGNATURE PATTERN: the brand book describes a repeat pattern but
-   the artwork was not in the file. Put the approved artwork in
-   src/assets/harrys/, import it here and set PATTERN to it; the pattern band
-   in section 06 then appears on its own. */
-const PATTERN = null;
+   The page follows the same four chapters as every identity project:
+   01 Logo design, 02 Colors, 03 Typography, 04 Mockups.
+
+   TO ADD OR CHANGE A MOCKUP: put the picture in src/assets/harrys/mockups/
+   (a full-size file and a "-1000" copy), import both below and add a line to
+   MOCKUPS. `wide` gives a picture the full width; the others sit in pairs. */
 
 // Libre Franklin is the brand's supporting typeface. It is only needed on this
 // page, so it is requested here rather than on every page of the site.
@@ -55,11 +74,18 @@ const HIERARCHY = [
   { title: "Emphasis", text: "Use Italic sparingly. Avoid unnecessary font changes within a single composition." },
 ];
 
-const MATERIALS = [
-  { title: "Print", text: "Check fine strokes, color consistency and text size on a physical proof." },
-  { title: "Leather & linen", text: "Use a discreet debossed or embroidered H. Keep placement consistent." },
-  { title: "Business cards & correspondence", text: "Lead with the wordmark. Keep contact information clear and use the H as a supporting signature." },
-  { title: "Menus & guest checks", text: "Prioritise readable information, aligned prices and generous margins. Keep the pattern away from item lists and totals." },
+// The approved mockups, in the order they are shown. Every picture keeps its
+// own 16:9 proportions and is never cropped.
+const MOCKUPS = [
+  { src: menu, small: menuS, wide: true, name: "Menu", alt: "Harry’s menu: an Ink Blue cover with the signature, and the dinner menu page inside" },
+  { src: table, small: tableS, name: "Table setting", alt: "A place setting with a Harry’s napkin on a white plate" },
+  { src: coasters, small: coastersS, name: "Coasters", alt: "Harry’s coasters in Ink Blue, Chalk and Stone on a marble table" },
+  { src: box, small: boxS, wide: true, name: "Gift box", alt: "A Harry’s gift box sliding open to show tissue printed with the signature pattern" },
+  { src: tissue, small: tissueS, name: "Signature pattern", alt: "Tissue paper printed with the Harry’s signature pattern, closed with an H seal" },
+  { src: check, small: checkS, name: "Guest check", alt: "A Harry’s bill folder held open with a guest check inside" },
+  { src: jacket, small: jacketS, wide: true, name: "Chef’s jacket", alt: "An Ink Blue chef’s jacket with the Harry’s signature on the chest" },
+  { src: seal, small: sealS, name: "Brass seal", alt: "A brass seal engraved with the standalone H" },
+  { src: leather, small: leatherS, name: "Debossed leather", alt: "The Harry’s signature and H debossed into blue leather" },
 ];
 
 const Head = ({ num, label, children, side }) => (
@@ -100,7 +126,7 @@ export const HarrysCaseStudy = ({ project }) => {
   return (
     <>
       <div className="cucu-site pg cs hy">
-        {/* 01 — Project hero */}
+        {/* Project hero */}
         <section className="pg-hero cs-hero hy-hero" aria-label="Harry’s New York">
           <div className="pg-hero-top">
             <Reveal as="span" className="eyebrow" after="intro" delay={80}>
@@ -128,9 +154,9 @@ export const HarrysCaseStudy = ({ project }) => {
         </section>
 
         <div className="hy-body">
-          {/* 02 — The brand story */}
+          {/* The brand story */}
           <section className="hy-story" aria-labelledby="hy-story-title">
-            <Reveal as="span" className="eyebrow hy-eyebrow"><span>01</span>Brand story</Reveal>
+            <Reveal as="span" className="eyebrow hy-eyebrow">Brand story</Reveal>
             <h2 id="hy-story-title" className="hy-vh">The brand story</h2>
             <ScrubText
               className="hy-story-lead"
@@ -160,11 +186,11 @@ export const HarrysCaseStudy = ({ project }) => {
             </div>
           </section>
 
-          {/* 03 — Logo design */}
+          {/* 01 — Logo design */}
           <section className="hy-logo" aria-label="Logo design">
             <Head
-              num="02"
-              label="The logo"
+              num="01"
+              label="Logo design"
               side="The Harry’s signature gives the restaurant a human presence. Its flowing script, open curves and sweeping strokes suggest the ease and confidence of a thoughtful host."
             >
               <>A signature,</>
@@ -242,11 +268,11 @@ export const HarrysCaseStudy = ({ project }) => {
             </ol>
           </section>
 
-          {/* 04 — Colour palette */}
+          {/* 02 — Colors */}
           <section className="hy-colour" aria-label="Colour palette">
             <Head
-              num="03"
-              label="Colour palette"
+              num="02"
+              label="Colors"
               side="Ink Blue and Chalk form the core identity. Stone supports them through fine rules and secondary details. The palette takes its character from dark leather, warm paper and the composed atmosphere of a classic dining room."
             >
               <>Dark leather.</>
@@ -264,10 +290,10 @@ export const HarrysCaseStudy = ({ project }) => {
             </ul>
           </section>
 
-          {/* 05 — Typography: an Ink Blue chapter */}
+          {/* 03 — Typography: an Ink Blue chapter */}
           <section className="hy-type" aria-label="Typography">
             <Head
-              num="04"
+              num="03"
               label="Typography"
               side="The Harry’s script is the custom brand signature. Libre Franklin is the supporting type family for headlines, brand copy, menus and practical information. Its clear forms balance the expressive wordmark without competing with it."
             >
@@ -288,6 +314,13 @@ export const HarrysCaseStudy = ({ project }) => {
                 </Reveal>
               </div>
             </div>
+            <Reveal className="hy-script">
+              <Wordmark on="ink" alt="The Harry’s script wordmark, supplied artwork" />
+              <div>
+                <span className="hy-label">The brand signature</span>
+                <p>The script wordmark is supplied artwork, not a font. It is placed as a finished piece and never typed.</p>
+              </div>
+            </Reveal>
             <ol className="hy-hierarchy">
               {HIERARCHY.map((h, i) => (
                 <Reveal as="li" key={h.title} delay={(i % 2) * 90}>
@@ -298,98 +331,38 @@ export const HarrysCaseStudy = ({ project }) => {
             </ol>
           </section>
 
-          {/* 06 — Brand elements and pattern */}
-          <section className="hy-elements" aria-label="Brand elements and pattern">
+          {/* 04 — Mockups */}
+          <section className="hy-mockups" aria-label="Mockups">
             <Head
-              num="05"
-              label="Elements"
-              side="The identity uses a small family of supporting elements: the standalone H, the signature repeat, fine rules and open frames. Each comes from the lettering or the discipline of the layout."
-            >
-              <>Deliberate,</>
-              <span className="hy-soft">and consistent.</span>
-            </Head>
-            <div className="hy-element-grid">
-              <Reveal variant="clip" className="hy-plate is-frame" amount={0.12}>
-                <span className="hy-plate-in">
-                  <span className="hy-open-frame"><HMark alt="The standalone H inside an open frame" /></span>
-                </span>
-              </Reveal>
-              <div className="hy-element-copy">
-                <Reveal>
-                  <span className="hy-label">The H</span>
-                  <p>A compact signature for small details and quiet closing moments.</p>
-                </Reveal>
-                <Reveal delay={90}>
-                  <span className="hy-label">Fine rules &amp; open frames</span>
-                  <p>Use a light stroke with generous space around the content. Avoid stacking decorative borders.</p>
-                </Reveal>
-                <Reveal delay={180}>
-                  <span className="hy-label">The signature pattern</span>
-                  <p>The flowing curves of the lettering form a continuous decorative rhythm. Alternating motifs create movement while keeping the pattern connected to the signature.</p>
-                </Reveal>
-                <Reveal delay={270}>
-                  <span className="hy-label">Where it lives</span>
-                  <p>Menu endpapers, bill-folder linings, tissue and stationery backs. Ink Blue on Chalk or the reverse, paired with plain space.</p>
-                </Reveal>
-              </div>
-            </div>
-            {PATTERN && (
-              <Reveal variant="clip" className="hy-pattern" amount={0.12}>
-                <img src={PATTERN} alt="The Harry’s signature pattern" loading="lazy" decoding="async" />
-              </Reveal>
-            )}
-          </section>
-
-          {/* 07 — Brand applications: compositions, not photographed products */}
-          <section className="hy-apps" aria-label="Brand applications">
-            <Head
-              num="06"
-              label="Stationery"
-              side="Stationery brings the identity into the guest’s hands. Let the quality of the material and the clarity of the layout carry the premium impression."
+              num="04"
+              label="Mockups"
+              side="Stationery brings the identity into the guest’s hands. The same signatures, palette, typography and spacing carry across each piece, and the signature pattern lines boxes, tissue and stationery backs."
             >
               <>Into the</>
               <span className="hy-soft">guest’s hands.</span>
             </Head>
-            <div className="hy-stage">
-              <div className="hy-stage-col">
-                <Reveal as="figure" className="hy-piece">
-                  <span className="hy-card is-ink"><Wordmark on="ink" alt="Business card front: the wordmark in Chalk on Ink Blue" /></span>
-                  <figcaption>Business card, front</figcaption>
-                </Reveal>
-                <Reveal as="figure" className="hy-piece" delay={100}>
-                  <span className="hy-card is-chalk">
-                    <HMark alt="Business card reverse: the H in Ink Blue on Chalk" />
-                    <span className="hy-place" aria-hidden="true">New York</span>
-                  </span>
-                  <figcaption>Business card, reverse</figcaption>
-                </Reveal>
-              </div>
-              <Reveal as="figure" className="hy-piece" delay={160}>
-                <span className="hy-sheet is-chalk">
-                  <span className="hy-open-frame">
-                    <Wordmark alt="Menu cover: the wordmark in Ink Blue inside an open frame" />
-                    <span className="hy-place" aria-hidden="true">New York</span>
-                  </span>
-                </span>
-                <figcaption>Menu cover</figcaption>
-              </Reveal>
-              <Reveal as="figure" className="hy-piece" delay={240}>
-                <span className="hy-sheet is-ink"><HMark on="ink" alt="Bill folder: a discreet H in Chalk on Ink Blue" /></span>
-                <figcaption>Bill folder</figcaption>
-              </Reveal>
-            </div>
-            <Reveal as="p" className="hy-stage-note">Layout compositions built from the brand book’s stationery guidance.</Reveal>
-            <ol className="hy-materials">
-              {MATERIALS.map((m, i) => (
-                <Reveal as="li" key={m.title} delay={(i % 2) * 90}>
-                  <span className="hy-label">{m.title}</span>
-                  <p>{m.text}</p>
-                </Reveal>
+            <div className="hy-gallery">
+              {MOCKUPS.map((m, i) => (
+                <figure className={"hy-shot" + (m.wide ? " is-wide" : "")} key={m.name}>
+                  <Reveal variant="clip" className="hy-shot-frame" amount={0.12} delay={m.wide ? 0 : (i % 2) * 110}>
+                    <img
+                      src={m.src}
+                      srcSet={`${m.small} 1000w, ${m.src} 2000w`}
+                      sizes={m.wide ? "(max-width: 767px) 92vw, 88vw" : "(max-width: 767px) 92vw, 44vw"}
+                      alt={m.alt}
+                      width="2000"
+                      height="1125"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </Reveal>
+                  <figcaption><span>{String(i + 1).padStart(2, "0")}</span>{m.name}</figcaption>
+                </figure>
               ))}
-            </ol>
+            </div>
           </section>
 
-          {/* 08 — Closing */}
+          {/* Closing */}
           <section className="hy-close" aria-label="Harry’s New York, brand concept by CUCU Advertising">
             <Reveal className="hy-close-mark" amount={0.3}>
               <Wordmark on="ink" alt="Harry’s" />

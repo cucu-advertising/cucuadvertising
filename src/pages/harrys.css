@@ -90,10 +90,10 @@
 .hy .hy-min { display: flex; flex-wrap: wrap; gap: 20px 50px; margin: 10px 0 0; padding-top: 22px; border-top: 1px solid var(--hy-rule); }
 .hy .hy-min dt { font-family: var(--hy-franklin); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 .hy .hy-min dd { margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #172a4dd9; }
-.hy .hy-rules, .hy .hy-hierarchy, .hy .hy-materials { list-style: none; margin: clamp(70px, 8vw, 130px) 0 0; padding: 0; display: grid; gap: 0 5%; }
+.hy .hy-rules, .hy .hy-hierarchy { list-style: none; margin: clamp(70px, 8vw, 130px) 0 0; padding: 0; display: grid; gap: 0 5%; }
 .hy .hy-rules { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.hy .hy-rules li, .hy .hy-hierarchy li, .hy .hy-materials li { padding: 24px 0 6px; border-top: 1px solid var(--hy-rule); }
-.hy .hy-rules p, .hy .hy-hierarchy p, .hy .hy-materials p { font-size: 15px; max-width: 420px; }
+.hy .hy-rules li, .hy .hy-hierarchy li { padding: 24px 0 6px; border-top: 1px solid var(--hy-rule); }
+.hy .hy-rules p, .hy .hy-hierarchy p { font-size: 15px; max-width: 420px; }
 
 /* 04 — Colour */
 .hy .hy-fields { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; }
@@ -117,48 +117,23 @@
 .hy .hy-specimen { min-width: 0; }
 .hy .hy-type .hy-glyphs { font-size: clamp(19px, 2.5vw, 42px); line-height: 1.5; letter-spacing: .01em; color: var(--hy-chalk); overflow-wrap: anywhere; }
 .hy .hy-weights { list-style: none; margin: clamp(26px, 3vw, 44px) 0 0; padding: 22px 0 0; display: flex; flex-wrap: wrap; gap: 12px 44px; border-top: 1px solid #f0eee633; font-size: 17px; }
+.hy .hy-script { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: center; gap: 30px 6%; margin-top: clamp(60px, 7vw, 110px); padding-top: clamp(40px, 5vw, 70px); border-top: 1px solid #f0eee633; }
+.hy .hy-script .hy-wordmark { width: min(100%, 420px); }
+.hy .hy-script p { max-width: 460px; font-size: 16px; }
 .hy .hy-hierarchy { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .hy .hy-type .hy-hierarchy li { border-top-color: #f0eee633; padding-bottom: 26px; }
 .hy .hy-type .hy-label { color: var(--hy-stone); }
 .hy .hy-type, .hy .hy-type *, .hy .hy-close, .hy .hy-close * { cursor: url("/cursors/arrow-white.svg") 3 2, auto; }
 
-/* 06 — Elements */
-.hy .hy-element-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; gap: 40px 7%; }
-.hy .hy-plate.is-frame { aspect-ratio: 1.1; }
-.hy .hy-plate.is-frame .hy-plate-in { background: #e7e4da; padding: 9%; }
-.hy .hy-open-frame { position: relative; display: grid; place-items: center; align-content: center; gap: 8%; width: 100%; height: 100%; border: 1px solid var(--hy-stone); }
-.hy .hy-plate.is-frame .hy-h { width: 44%; }
-.hy .hy-element-copy { display: grid; align-content: center; }
-.hy .hy-element-copy > div { padding: 22px 0; border-top: 1px solid var(--hy-rule); }
-.hy .hy-element-copy > div:last-child { border-bottom: 1px solid var(--hy-rule); }
-.hy .hy-element-copy p { font-size: 16px; max-width: 520px; }
-.hy .hy-pattern { margin-top: clamp(50px, 6vw, 100px); aspect-ratio: 2.4; border-radius: 22px; overflow: hidden; }
-.hy .hy-pattern img { width: 100%; height: 100%; object-fit: cover; }
-
-/* 07 — Applications: flat layout compositions */
-.hy .hy-stage { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(18px, 3vw, 54px); padding: clamp(28px, 5vw, 84px); border-radius: 22px; background: #dedbd0; }
-.hy .hy-stage-col { display: grid; gap: clamp(18px, 3vw, 44px); }
-.hy .hy-piece { margin: 0; }
-.hy .hy-piece figcaption { margin-top: 14px; font-family: var(--hy-franklin); font-size: 12px; letter-spacing: .04em; color: #4b5266; }
-.hy .hy-card, .hy .hy-sheet { position: relative; display: grid; place-items: center; align-content: center; box-shadow: 0 1px 1px #172a4d14, 0 18px 40px -18px #172a4d59; transition: transform .9s var(--ease-out); }
-.hy .hy-card { aspect-ratio: 1.75; border-radius: 4px; }
-.hy .hy-sheet { aspect-ratio: .7; border-radius: 3px; }
-.hy .hy-stage .is-ink { background: var(--hy-ink); color: var(--hy-chalk); }
-.hy .hy-stage .is-chalk { background: var(--hy-chalk); color: var(--hy-ink); }
-.hy .hy-card .hy-wordmark { width: 54%; }
-.hy .hy-card .hy-h { width: 24%; }
-.hy .hy-card .hy-place, .hy .hy-sheet .hy-place { font-size: clamp(7px, .62vw, 10px); }
-.hy .hy-card .hy-place { position: absolute; left: 0; right: 0; bottom: 11%; text-align: center; }
-.hy .hy-sheet .hy-open-frame { position: absolute; inset: 8%; width: auto; height: auto; gap: 0; align-content: space-between; padding: 30% 0 12%; }
-.hy .hy-sheet .hy-wordmark { width: 70%; }
-.hy .hy-sheet.is-ink { place-items: end; align-content: end; padding: 9%; }
-.hy .hy-sheet.is-ink .hy-h { width: 27%; }
-@media (hover: hover) and (pointer: fine) {
-  .hy .hy-piece:hover .hy-card, .hy .hy-piece:hover .hy-sheet { transform: translateY(-8px); }
-}
-.hy .hy-stage-note { margin-top: 16px; font-size: 13px; color: #4b5266; }
-.hy .hy-materials { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.hy .hy-materials li { padding-bottom: 26px; }
+/* 04 — Mockups: an editorial gallery. Every picture keeps its 16:9 shape. */
+.hy .hy-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(34px, 4vw, 70px) clamp(14px, 1.6vw, 26px); }
+.hy .hy-shot { margin: 0; min-width: 0; }
+.hy .hy-shot.is-wide { grid-column: 1 / -1; }
+.hy .hy-shot:not(.is-wide):nth-of-type(3n) { margin-top: clamp(30px, 5vw, 90px); }
+.hy .hy-shot-frame { display: block; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #e2dfd5; }
+.hy .hy-shot-frame img { width: 100%; height: 100%; object-fit: cover; }
+.hy .hy-shot figcaption { display: flex; gap: 14px; margin-top: 14px; font-family: var(--hy-franklin); font-size: 13px; letter-spacing: .03em; color: var(--hy-ink); }
+.hy .hy-shot figcaption span { color: var(--hy-stone); font-variant-numeric: tabular-nums; }
 
 /* 08 — Closing */
 .hy .hy-body > .hy-close { position: relative; display: grid; place-items: center; min-height: min(86svh, 820px); padding-bottom: 96px; background: var(--hy-ink); color: var(--hy-chalk); border-top: 0; }
@@ -169,8 +144,6 @@
 @media (max-width: 1024px) {
   .hy .hy-body { margin: 12px 12px 0; border-radius: 28px; }
   .hy .hy-variant-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hy .hy-stage { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hy .hy-stage-col { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 767px) {
@@ -183,9 +156,12 @@
   .hy .hy-head { margin-bottom: 38px; }
   .hy .hy-head-side { padding-bottom: 0; }
   .hy .hy-story-lead { font-size: clamp(25px, 6.8vw, 34px); }
-  .hy .hy-story-grid, .hy .hy-duo, .hy .hy-usage, .hy .hy-element-grid, .hy .hy-type-grid { grid-template-columns: 1fr; }
+  .hy .hy-story-grid, .hy .hy-duo, .hy .hy-usage, .hy .hy-type-grid, .hy .hy-script, .hy .hy-gallery { grid-template-columns: 1fr; }
+  .hy .hy-shot:not(.is-wide):nth-of-type(3n) { margin-top: 0; }
+  .hy .hy-shot-frame { border-radius: 12px; }
+  .hy .hy-gallery { gap: 28px; }
   .hy .hy-story-grid { margin-top: 48px; gap: 44px; }
-  .hy .hy-plate, .hy .hy-clear, .hy .hy-field, .hy .hy-field-in, .hy .hy-stage { border-radius: 16px; }
+  .hy .hy-plate, .hy .hy-clear, .hy .hy-field, .hy .hy-field-in { border-radius: 16px; }
   .hy .hy-plate.is-primary { aspect-ratio: 1.25; }
   .hy .hy-plate.is-primary .hy-wordmark { width: 78%; }
   .hy .hy-cap { left: 16px; right: 16px; bottom: 14px; font-size: 11px; }
@@ -193,7 +169,7 @@
   .hy .hy-duo .hy-plate { aspect-ratio: 1.25; }
   .hy .hy-variants, .hy .hy-usage { margin-top: 68px; }
   .hy .hy-variant-grid { gap: 10px; }
-  .hy .hy-rules, .hy .hy-hierarchy, .hy .hy-materials { grid-template-columns: 1fr; margin-top: 56px; }
+  .hy .hy-rules, .hy .hy-hierarchy { grid-template-columns: 1fr; margin-top: 56px; }
   .hy .hy-fields { flex-direction: column; gap: 10px; }
   .hy .hy-field { min-height: 0; flex: none !important; }
   .hy .hy-field.is-ink { height: 240px; }
@@ -201,15 +177,8 @@
   .hy .hy-field.is-stone { height: 140px; }
   .hy .hy-aa { font-size: clamp(130px, 44vw, 220px); }
   .hy .hy-type .hy-glyphs { font-size: clamp(14px, 4.3vw, 24px); }
-  .hy .hy-plate.is-frame { aspect-ratio: 1; }
-  .hy .hy-stage { padding: 22px; gap: 22px 16px; }
-  .hy .hy-stage-col { gap: 16px; }
-  .hy .hy-card .hy-place, .hy .hy-sheet .hy-place { font-size: 7px; }
   .hy .hy-body > .hy-close { min-height: 520px; }
   .hy .hy-close-mark .hy-wordmark { width: 82%; }
   .hy .hy-close-foot { left: 6%; right: 6%; bottom: 24px; font-size: 9px; letter-spacing: .1em; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hy .hy-card, .hy .hy-sheet { transition: none; }
-}

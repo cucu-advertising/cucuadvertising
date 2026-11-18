@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "../components/SiteFooter";
 import { CurveRise, Lines, Reveal, Roll, ScrubText } from "../motion/primitives";
 import { reducedMotion } from "../motion/core";
-import { allProjects } from "../constants/projects";
+import { orderedProjects } from "../constants/projects";
 import { optimizedSrc, projectThumb } from "../utils/optimizedImage";
 import { projectPath } from "../utils/projectSlug";
 import useSeo from "../hooks/useSeo";
@@ -26,8 +26,15 @@ import "./portfolio.css";
      gallery[]                               further visuals
      films[] { title, subtitle, url }        films (no url = a labelled placeholder)
      filmFormat "vertical" | "horizontal"
-     identity, brandMark { src, alt }        visual language
-     palette[] { name, hex }, typeface       brand colours and type
+     logo { src, bg }, brandMark { src, alt }, identity     01 Logo design
+     logoVisual { src, alt }                                (the logo on its cover picture, when there is no logo file)
+     palette[] { name, hex }                                02 Colors
+     typeface { name, note }                                03 Typography
+     gallery[] (and subProjects[])                          04 Mockups
+
+   The four identity chapters always come in that order and are numbered as
+   they appear, so a project that has no palette yet simply has one chapter
+   fewer: nothing is shown empty and nothing is made up.
      results[] { val, label }                numbers
      influencer { title, copy, reels[] }     Instagram Reels, embedded from Instagram
 */
@@ -296,7 +303,8 @@ const Influencer = ({ project }) => {
 /* ───────────── Closing: the next project ───────────── */
 
 export const NextProject = ({ project }) => {
-  const list = allProjects.filter((p) => !p.disableDetail);
+  // Follows the same order as the Portfolio page.
+  const list = orderedProjects.filter((p) => !p.disableDetail);
   const at = list.findIndex((p) => p.title === project.title);
   const next = list[(at + 1) % list.length];
   if (!next || next.title === project.title) return null;
@@ -363,6 +371,17 @@ export const CaseStudy = ({ project }) => {
   const solutionText = solution && opener && solution.startsWith(opener) ? solution.slice(opener.length).trim() : solution;
   const hasDirection = statement || solution || approach;
   const hasShow = (subProjects && subProjects.length > 0) || gallery.length > 0;
+  // The identity chapters, numbered in the order they appear on this page.
+  // The logo: the client's mark, the logo file, or (where neither has been
+  // supplied) the logo as presented on the project's cover picture.
+  const mark = brandMark
+    || (project.logo ? { src: project.logo.src, alt: `${title} logo`, bg: project.logo.bg } : null)
+    || (project.logoVisual ? { ...project.logoVisual, fill: true } : null);
+  const chapters = [mark && "logo", palette.length > 0 && "colors", typeface && "type", gallery.length > 0 && "mockups"].filter(Boolean);
+  const num = (key) => two(chapters.indexOf(key) + 1);
+  const label = (id, text) => (
+    <Reveal as="span" className="eyebrow cs-chapter"><span>{num(id)}</span>{text}</Reveal>
+  );
 
   return (
     <>
@@ -409,6 +428,123 @@ export const CaseStudy = ({ project }) => {
           </section>
         )}
 
+        {/* 01 — Logo design */}
+        {mark ? (
+          <section className={"cs-identity has-mark" + (identity ? "" : " is-brief")} aria-label="Logo design">
+            <div>
+              {label("logo", "Logo design")}
+              {identity ? (
+                <Reveal as="p" className="cs-identity-text" delay={100}>{identity}</Reveal>
+              ) : (
+                <Lines as="h2">
+                  <>The mark</>
+                  <span className="dim">behind the brand.</span>
+                </Lines>
+              )}
+            </div>
+            <Reveal className={"cs-mark" + (mark.fill ? " is-fill" : "")} style={{ "--d": "160ms", ...(mark.bg ? { background: mark.bg, color: "#fff" } : {}) }}>
+              <img src={mark.src} alt={mark.alt} loading="lazy" decoding="async" />
+              {!mark.fill && <span style={mark.bg ? { color: "inherit", opacity: 0.8 } : undefined}>Client identity</span>}
+            </Reveal>
+          </section>
+        ) : identity && (
+          // No logo file for this project yet: its visual language is still told.
+          <section className="cs-identity">
+            <div>
+              <Reveal as="span" className="eyebrow">Visual language</Reveal>
+              <Reveal as="p" className="cs-identity-text" delay={100}>{identity}</Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* 02 — Colors */}
+        {palette.length > 0 && (
+          <section className="cs-system" aria-label="Brand colors">
+            <div className="cs-head">
+              <div>
+                {label("colors", "Colors")}
+                <Lines as="h2">
+                  <>The brand</>
+                  <span className="dim">palette.</span>
+                </Lines>
+              </div>
+            </div>
+            <div className="cs-system-grid">
+              <Reveal as="ul" className="cs-swatches" style={{ "--n": palette.length }}>
+                {palette.map((c) => (
+                  <li key={c.hex + c.name} style={{ background: c.hex, color: onSwatch(c.hex) }} className={onSwatch(c.hex) === "#151715" ? "is-light" : ""}>
+                    <span>{c.name}</span>
+                    <span>{c.hex.toUpperCase()}</span>
+                  </li>
+                ))}
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* 03 — Typography */}
+        {typeface && (
+          <section className="cs-system cs-typo" aria-label="Typography">
+            <div className="cs-head">
+              <div>
+                {label("type", "Typography")}
+                <Lines as="h2">
+                  <>The brand</>
+                  <span className="dim">typeface.</span>
+                </Lines>
+              </div>
+            </div>
+            <Reveal className="cs-type is-wide" delay={120}>
+              <span className="cs-type-aa" aria-hidden="true">Aa</span>
+              <span className="cs-type-meta">
+                <span className="cs-type-label">{typeface.note || "Typeface"}</span>
+                <span className="cs-type-name">{typeface.name}</span>
+              </span>
+            </Reveal>
+          </section>
+        )}
+
+        {/* 04 — Mockups */}
+        {hasShow && (
+          <section className="cs-show" aria-label={gallery.length > 0 ? "Mockups" : "The work"}>
+            <div className="cs-head">
+              <div>
+                {/* Pictures of the identity in use are mockups; a set of sub-projects is the work itself. */}
+                {gallery.length > 0 ? label("mockups", "Mockups") : <Reveal as="span" className="eyebrow">The work</Reveal>}
+                <Lines as="h2">
+                  {subProjects && subProjects.length > 1 ? (
+                    <>{two(subProjects.length)} projects.</>
+                  ) : (
+                    <>In the</>
+                  )}
+                  <span className="dim">{subProjects && subProjects.length > 1 ? "One visual language." : "real world."}</span>
+                </Lines>
+              </div>
+            </div>
+            {subProjects && subProjects.length > 0 && (
+              <div className="cs-pair">
+                {subProjects.map((sp, i) => (
+                  <figure key={sp.name} className={"cs-pair-item" + (i % 2 ? " is-offset" : "")}>
+                    <Frame src={sp.img} alt={`${sp.name} — ${title}`} width={1200} />
+                    <figcaption>
+                      <span className="pg-num">{two(i + 1)} / {two(subProjects.length)}</span>
+                      <Reveal as="h3">{sp.name}</Reveal>
+                      <Reveal as="p" delay={100}>{sp.desc}</Reveal>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            )}
+            {gallery.length > 0 && (
+              <div className="cs-gallery">
+                {gallery.map((g, i) => (
+                  <Frame key={g + i} src={g} alt={`${title} — mockup ${i + 1}`} width={i % 3 === 0 ? 2000 : 1200} className={"cs-g" + (i % 3)} />
+                ))}
+              </div>
+            )}
+          </section>
+        )}
+
         {problems.length > 0 && (
           <section className="cs-brief">
             <div className="cs-brief-head">
@@ -429,7 +565,7 @@ export const CaseStudy = ({ project }) => {
           </section>
         )}
 
-        {/* 03 — Creative direction: a black chapter */}
+        {/* Creative direction: a black chapter */}
         {hasDirection && (
           <section className="cs-direction">
             <CurveRise color="#151715" />
@@ -467,97 +603,9 @@ export const CaseStudy = ({ project }) => {
           </section>
         )}
 
-        {/* 04 — Showcase */}
-        {hasShow && (
-          <section className="cs-show">
-            <div className="cs-head">
-              <div>
-                <Reveal as="span" className="eyebrow">The work</Reveal>
-                <Lines as="h2">
-                  {subProjects && subProjects.length > 1 ? (
-                    <>{two(subProjects.length)} projects.</>
-                  ) : (
-                    <>In the</>
-                  )}
-                  <span className="dim">{subProjects && subProjects.length > 1 ? "One visual language." : "real world."}</span>
-                </Lines>
-              </div>
-            </div>
-            {subProjects && subProjects.length > 0 && (
-              <div className="cs-pair">
-                {subProjects.map((sp, i) => (
-                  <figure key={sp.name} className={"cs-pair-item" + (i % 2 ? " is-offset" : "")}>
-                    <Frame src={sp.img} alt={`${sp.name} — ${title}`} width={1200} />
-                    <figcaption>
-                      <span className="pg-num">{two(i + 1)} / {two(subProjects.length)}</span>
-                      <Reveal as="h3">{sp.name}</Reveal>
-                      <Reveal as="p" delay={100}>{sp.desc}</Reveal>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            )}
-            {gallery.length > 0 && (
-              <div className="cs-gallery">
-                {gallery.map((g, i) => (
-                  <Frame key={g + i} src={g} alt={`${title} — visual ${i + 1}`} width={i % 3 === 0 ? 2000 : 1200} className={"cs-g" + (i % 3)} />
-                ))}
-              </div>
-            )}
-          </section>
-        )}
-
         {films && films.length > 0 && <Films project={project} />}
 
         {project.influencer && <Influencer project={project} />}
-
-        {/* Brand colours and typeface */}
-        {palette.length > 0 && (
-          <section className="cs-system" aria-label="Brand colours and typeface">
-            <div className="cs-head">
-              <div>
-                <Reveal as="span" className="eyebrow">The system</Reveal>
-                <Lines as="h2">
-                  <>Colour</>
-                  <span className="dim">and type.</span>
-                </Lines>
-              </div>
-            </div>
-            <div className={"cs-system-grid" + (typeface ? " has-type" : "")}>
-              <Reveal as="ul" className="cs-swatches" style={{ "--n": palette.length }}>
-                {palette.map((c) => (
-                  <li key={c.hex + c.name} style={{ background: c.hex, color: onSwatch(c.hex) }} className={onSwatch(c.hex) === "#151715" ? "is-light" : ""}>
-                    <span>{c.name}</span>
-                    <span>{c.hex.toUpperCase()}</span>
-                  </li>
-                ))}
-              </Reveal>
-              {typeface && (
-                <Reveal className="cs-type" delay={120}>
-                  <span className="cs-type-label">{typeface.note || "Typeface"}</span>
-                  <span className="cs-type-aa" aria-hidden="true">Aa</span>
-                  <span className="cs-type-name">{typeface.name}</span>
-                </Reveal>
-              )}
-            </div>
-          </section>
-        )}
-
-        {/* 05 — Visual language and applications */}
-        {identity && (
-          <section className={"cs-identity" + (brandMark ? " has-mark" : "")}>
-            <div>
-              <Reveal as="span" className="eyebrow">Visual language</Reveal>
-              <Reveal as="p" className="cs-identity-text" delay={100}>{identity}</Reveal>
-            </div>
-            {brandMark && (
-              <Reveal className="cs-mark" delay={160} style={{ "--d": "160ms", ...(brandMark.bg ? { background: brandMark.bg, color: "#fff" } : {}) }}>
-                <img src={brandMark.src} alt={brandMark.alt} loading="lazy" decoding="async" />
-                <span style={brandMark.bg ? { color: "inherit", opacity: 0.8 } : undefined}>Client identity</span>
-              </Reveal>
-            )}
-          </section>
-        )}
 
         {results && results.length > 0 && (
           <section className="cs-results" aria-label="Delivered">
